@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
   <title>STA 199</title>
-  <link>/author/</link>
+  <link>https://sta199-fa20-002.netlify.app/author/</link>
   <description>Recent content on STA 199</description>
   <generator>Hugo -- gohugo.io</generator>
 <language>en-us</language>
 
-<atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
+<atom:link href="https://sta199-fa20-002.netlify.app/author/index.xml" rel="self" type="application/rss+xml" />
 
 
 <item>
   <title>Week 01: Intro</title>
-  <link>/schedule/week-01/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-01/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-01/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-01/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -121,10 +121,10 @@ font-size: 18px;
   
 <item>
   <title>Week 02: Data viz</title>
-  <link>/schedule/week-02/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-02/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-02/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-02/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -203,10 +203,10 @@ font-size: 18px;
   
 <item>
   <title>Week 03: Data wrangle</title>
-  <link>/schedule/week-03/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-03/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-03/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-03/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -293,10 +293,10 @@ font-size: 18px;
   
 <item>
   <title>Week 04: Probability</title>
-  <link>/schedule/week-04/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-04/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-04/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-04/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -373,10 +373,10 @@ font-size: 18px;
   
 <item>
   <title>Week 05: Bootstrap &#43; Data Ethics</title>
-  <link>/schedule/week-05/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-05/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-05/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-05/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -456,10 +456,10 @@ font-size: 18px;
   
 <item>
   <title>Week 06: Sim-based testing</title>
-  <link>/schedule/week-06/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-06/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-06/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-06/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -551,10 +551,10 @@ font-size: 18px;
   
 <item>
   <title>Week 07: Central Limit Theorem</title>
-  <link>/schedule/week-07/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-07/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-07/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-07/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -644,10 +644,10 @@ font-size: 18px;
   
 <item>
   <title>Week 08: Two-sample-inference</title>
-  <link>/schedule/week-08/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-08/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-08/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-08/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -744,10 +744,10 @@ font-size: 18px;
   
 <item>
   <title>Week 09: Linear models</title>
-  <link>/schedule/week-09/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-09/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-09/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-09/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -868,10 +868,10 @@ font-size: 18px;
   
 <item>
   <title>Week 10: Multiple linear regression</title>
-  <link>/schedule/week-10/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-10/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-10/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-10/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -986,10 +986,10 @@ font-size: 18px;
   
 <item>
   <title>Week 11: Classification &#43; Text analysis</title>
-  <link>/schedule/week-11/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-11/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-11/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-11/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -1100,10 +1100,10 @@ font-size: 18px;
   
 <item>
   <title>Week 12: Spatial data</title>
-  <link>/schedule/week-12/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-12/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-12/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-12/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -1185,10 +1185,10 @@ font-size: 18px;
   
 <item>
   <title>Week 13: Web scraping &#43; functions</title>
-  <link>/schedule/week-13/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-13/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-13/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-13/</guid>
   <description>&lt;style&gt;
 table {
 font-size: 18px;
@@ -1266,30 +1266,30 @@ font-size: 18px;
   
 <item>
   <title>Week 14</title>
-  <link>/schedule/week-14/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-14/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-14/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-14/</guid>
   <description>&lt;p&gt;Check back for details!&lt;/p&gt;
 </description>
   </item>
   
 <item>
   <title>Week 15</title>
-  <link>/schedule/week-15/</link>
+  <link>https://sta199-fa20-002.netlify.app/schedule/week-15/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/schedule/week-15/</guid>
+<guid>https://sta199-fa20-002.netlify.app/schedule/week-15/</guid>
   <description>&lt;p&gt;Check back for details!&lt;/p&gt;
 </description>
   </item>
   
 <item>
   <title>Course info</title>
-  <link>/home/band_two/</link>
+  <link>https://sta199-fa20-002.netlify.app/home/band_two/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/home/band_two/</guid>
+<guid>https://sta199-fa20-002.netlify.app/home/band_two/</guid>
   <description>&lt;style&gt;
   .column {
   width: 100%;
@@ -1338,10 +1338,10 @@ font-size: 18px;
   
 <item>
   <title>Help</title>
-  <link>/help/</link>
+  <link>https://sta199-fa20-002.netlify.app/help/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/help/</guid>
+<guid>https://sta199-fa20-002.netlify.app/help/</guid>
   <description>&lt;h2 id=&#34;getting-help-in-the-course&#34;&gt;Getting help in the course&lt;/h2&gt;
 &lt;p&gt;We expect everyone will have questions at some point in the semester, so we encourage you to use the following resources for help:&lt;/p&gt;
 &lt;h2 id=&#34;ask-questions-during-lectures-and-lab&#34;&gt;Ask questions during lectures and lab&lt;/h2&gt;
@@ -1399,10 +1399,10 @@ Go to &lt;a href=&#34;http://studentaffairs.duke.edu/dukereach&#34;&gt;studentaf
   
 <item>
   <title>Project: Showcase your inner data scientist!</title>
-  <link>/project/</link>
+  <link>https://sta199-fa20-002.netlify.app/project/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/project/</guid>
+<guid>https://sta199-fa20-002.netlify.app/project/</guid>
   <description>&lt;h2 id=&#34;timeline&#34;&gt;Timeline&lt;/h2&gt;
 &lt;p&gt;Proposal due &lt;strong&gt;Friday, October 9&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Draft report due &lt;strong&gt;Wednesday, October 28&lt;/strong&gt;&lt;/p&gt;
@@ -1551,7 +1551,7 @@ exactly upon knitting.&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;peer-feedback&#34;&gt;Peer feedback&lt;/h2&gt;
-&lt;p&gt;Critically reviewing others&amp;rsquo; work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned a team to review. As part of the review process, you must provide your partner team a copy of your current report by &lt;strong&gt;Wednesday, October 28&lt;/strong&gt;. After giving the report to your partner team, they will have until &lt;strong&gt;Friday, November 5&lt;/strong&gt; to provide a detailed critique about the written report and data analysis. This feedback is intended to help you create a high quality final project, as well as give you experience
+&lt;p&gt;Critically reviewing others&#39; work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned a team to review. As part of the review process, you must provide your partner team a copy of your current report by &lt;strong&gt;Wednesday, October 28&lt;/strong&gt;. After giving the report to your partner team, they will have until &lt;strong&gt;Friday, November 5&lt;/strong&gt; to provide a detailed critique about the written report and data analysis. This feedback is intended to help you create a high quality final project, as well as give you experience
 reading and constructively critiquing the work of others.&lt;/p&gt;
 &lt;p&gt;During the peer feedback process, you will be provided read-only access to your  partner team&amp;rsquo;s GitHub repo. Provide your feedback in the form of GitHub issues to your partner team&amp;rsquo;s GitHub repo.&lt;/p&gt;
 &lt;p&gt;Peer feedback will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team&amp;rsquo;s report: the research context and motivation, exploratory data analysis, and any inference, modeling, or conclusions. As you work on the draft, the focus should be on the analysis and less on crafting the final report. &lt;strong&gt;Your draft must include a reasonable attempt at each analysis component - exploratory data analysis, inference or modeling, and drawing initial conclusions.&lt;/strong&gt;&lt;/p&gt;
@@ -1728,7 +1728,7 @@ of results is unclear.&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;Include the following code in a code chunk at the top of your .Rmd file to suppress all code, warnings, and other messages. Use the code chunk header &lt;code&gt;{r set-up, include = FALSE}&lt;/code&gt; to suppress this set up code.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;knitr&lt;span style=&#34;color:#666&#34;&gt;::&lt;/span&gt;opts_chunk&lt;span style=&#34;color:#666&#34;&gt;$&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;set&lt;/span&gt;(echo &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;FALSE&lt;/span&gt;,
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;knitr&lt;span style=&#34;color:#666&#34;&gt;::&lt;/span&gt;opts_chunk&lt;span style=&#34;color:#666&#34;&gt;$&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;set&lt;/span&gt;(echo &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;FALSE&lt;/span&gt;,
                       warning &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;FALSE&lt;/span&gt;, 
                       message &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;FALSE&lt;/span&gt;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;headers&#34;&gt;Headers&lt;/h3&gt;
@@ -1782,14 +1782,14 @@ output:
 &lt;li&gt;Use &lt;code&gt;coord_flip()&lt;/code&gt; to flip the &lt;em&gt;x&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt; axes on the plot. This is useful if you a bar plot with an x-axis that is difficult to read due to overlapping text.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;❌ &lt;strong&gt;NO! The x-axis is hard to read because the names overlap.&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;ggplot&lt;/span&gt;(data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mpg, &lt;span style=&#34;color:#00f&#34;&gt;aes&lt;/span&gt;(x &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; manufacturer)) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;ggplot&lt;/span&gt;(data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mpg, &lt;span style=&#34;color:#00f&#34;&gt;aes&lt;/span&gt;(x &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; manufacturer)) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;geom_bar&lt;/span&gt;()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/project/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://sta199-fa20-002.netlify.app/project/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;✅ &lt;strong&gt;YES! Names are readable&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;ggplot&lt;/span&gt;(data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mpg, &lt;span style=&#34;color:#00f&#34;&gt;aes&lt;/span&gt;(x &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; manufacturer)) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#00f&#34;&gt;ggplot&lt;/span&gt;(data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mpg, &lt;span style=&#34;color:#00f&#34;&gt;aes&lt;/span&gt;(x &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; manufacturer)) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;geom_bar&lt;/span&gt;() &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;coord_flip&lt;/span&gt;()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/project/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://sta199-fa20-002.netlify.app/project/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;do-a-little-more-to-make-the-plot-look-professional&#34;&gt;Do a little more to make the plot look professional!&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Informative title and axis labels&lt;/li&gt;
@@ -1799,7 +1799,7 @@ output:
 &lt;li&gt;&lt;em&gt;Optional: Added color - Use a coordinated color scheme throughout paper / presentation&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Optional: Applied a theme - Use same theme throughout paper / presentation&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;mpg &lt;span style=&#34;color:#666&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;mpg &lt;span style=&#34;color:#666&#34;&gt;%&amp;gt;%&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;count&lt;/span&gt;(manufacturer) &lt;span style=&#34;color:#666&#34;&gt;%&amp;gt;%&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;mutate&lt;/span&gt;(manufacturer &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;str_to_title&lt;/span&gt;(manufacturer)) &lt;span style=&#34;color:#666&#34;&gt;%&amp;gt;%&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;ggplot&lt;/span&gt;(&lt;span style=&#34;color:#00f&#34;&gt;aes&lt;/span&gt;(x &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;fct_reorder&lt;/span&gt;(manufacturer,n), y &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; n)) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
@@ -1809,7 +1809,7 @@ output:
        y &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ba2121&#34;&gt;&amp;#34;Count&amp;#34;&lt;/span&gt;, 
        title &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ba2121&#34;&gt;&amp;#34;The most common manufacturer is Dodge&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;theme_bw&lt;/span&gt;() 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/project/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://sta199-fa20-002.netlify.app/project/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;tables-and-model-output&#34;&gt;Tables and model output&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Use the &lt;code&gt;kable&lt;/code&gt; function from the knitr package to neatly output all tables and model output. This will also ensure all model coefficients are displayed.
@@ -1819,33 +1819,33 @@ output:
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;model &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;lm&lt;/span&gt;(mpg &lt;span style=&#34;color:#666&#34;&gt;~&lt;/span&gt; hp, data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mtcars)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;model &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#00f&#34;&gt;lm&lt;/span&gt;(mpg &lt;span style=&#34;color:#666&#34;&gt;~&lt;/span&gt; hp, data &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; mtcars)
 &lt;span style=&#34;color:#00f&#34;&gt;tidy&lt;/span&gt;(model) &lt;span style=&#34;color:#666&#34;&gt;%&amp;gt;%&lt;/span&gt;
   &lt;span style=&#34;color:#00f&#34;&gt;kable&lt;/span&gt;(digits &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;3&lt;/span&gt;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;std.error&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;p.value&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;term&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;estimate&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;std.error&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;statistic&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;p.value&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;(Intercept)&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;30.099&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.634&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;18.421&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;(Intercept)&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;30.099&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1.634&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;18.421&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td align=&#34;left&#34;&gt;hp&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;-0.068&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.010&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;-6.742&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hp&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;-0.068&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;0.010&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;-6.742&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1882,20 +1882,20 @@ output:
   
 <item>
   <title>STA 199: Intro to Data Science</title>
-  <link>/home/band_one/</link>
+  <link>https://sta199-fa20-002.netlify.app/home/band_one/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/home/band_one/</guid>
+<guid>https://sta199-fa20-002.netlify.app/home/band_one/</guid>
   <description>&lt;p&gt;Intro to data science and statistical thinking. Learn to explore, visualize,and analyze data to understand natural phenomena, investigate patterns, model outcomes,and make predictions, and do so in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effectively communicating results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language.&lt;/p&gt;
 </description>
   </item>
   
 <item>
   <title>Syllabus</title>
-  <link>/syllabus/</link>
+  <link>https://sta199-fa20-002.netlify.app/syllabus/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/syllabus/</guid>
+<guid>https://sta199-fa20-002.netlify.app/syllabus/</guid>
   <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;syllabus.pdf&#34;&gt;Click here&lt;/a&gt; to download a PDF copy of the syllabus.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;course-learning-objectives&#34;&gt;Course Learning Objectives&lt;/h2&gt;
 &lt;p&gt;By the end of the semester, you will…&lt;/p&gt;
@@ -1910,7 +1910,7 @@ output:
 &lt;p&gt;As a student in this course, you have agreed to uphold the &lt;a href=&#34;https://studentaffairs.duke.edu/conduct/about-us/duke-community-standard&#34;&gt;Duke Community Standard&lt;/a&gt; as well as the practices specific to this course.&lt;/p&gt;
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/_KN97j30ST4&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;h3 id=&#34;inclusive-community&#34;&gt;Inclusive community&lt;/h3&gt;
-&lt;p&gt;It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students&amp;rsquo; learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity and in alignment with &lt;a href=&#34;https://provost.duke.edu/initiatives/commitment-to-diversity-and-inclusion&#34;&gt;Duke’s Commitment to Diversity and Inclusion&lt;/a&gt;. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.&lt;/p&gt;
+&lt;p&gt;It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students&#39; learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity and in alignment with &lt;a href=&#34;https://provost.duke.edu/initiatives/commitment-to-diversity-and-inclusion&#34;&gt;Duke’s Commitment to Diversity and Inclusion&lt;/a&gt;. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.&lt;/p&gt;
 &lt;p&gt;Furthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives and experiences, and honors your identities. To help accomplish this:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If you feel like your performance in the class is being impacted by your experiences outside of class, please don&amp;rsquo;t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.&lt;/li&gt;
@@ -1938,7 +1938,7 @@ output:
 &lt;li&gt;The teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. A lot of questions are most effectively answered in-person, so office hours are a valuable resource. Please use them!&lt;/li&gt;
 &lt;li&gt;Outside of class and office hours, any general questions about course content or assignments should be posted on Piazza. There is a chance another student has already asked a similar question, so please check the other posts on Piazza before adding a new question. If you know the answer to a question posted on Piazza, I encourage you to respond!&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Check out the &lt;a href=&#34;/help/&#34;&gt;Help&lt;/a&gt; tab for more information about getting help and resources.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a href=&#34;https://sta199-fa20-002.netlify.app/help/&#34;&gt;Help&lt;/a&gt; tab for more information about getting help and resources.&lt;/p&gt;
 &lt;h3 id=&#34;email&#34;&gt;Email&lt;/h3&gt;
 &lt;p&gt;If there is a question that&amp;rsquo;s not appropriate for the public forum (Piazza), you are welcome to email me directly. &lt;strong&gt;If you email me, please include &amp;ldquo;STA 199&amp;rdquo; in the subject line.&lt;/strong&gt; Barring extenuating circumstances, I will respond to STA 199 emails within 48 hours Monday - Friday. I have more limited access to email on weekends.&lt;/p&gt;
 &lt;h2 id=&#34;activities--assessment&#34;&gt;Activities &amp;amp; Assessment&lt;/h2&gt;
@@ -1995,7 +1995,7 @@ output:
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;labs&#34;&gt;Labs&lt;/h3&gt;
-&lt;p&gt;In labs, you will apply the concepts discussed in lecture to various data analysis scenarios, with a focus on the computation. Most lab assignments will be performed in teams, and all team members are expected to contribute equally to the completion of each assignment. You are expected to use the team&amp;rsquo;s Git repository on the course&amp;rsquo;s GitHub page as the central platform for collaboration. Commits to this repository will be used as a metric of each team member&amp;rsquo;s relative contribution for each lab, and you will also be asked to evaluate your team members&amp;rsquo; engagement periodically during the semester. Lab assignments will be completed using R Markdown, correspond to an appropriate GitHub repository, and submitted as a .pdf file to Gradescope.&lt;/p&gt;
+&lt;p&gt;In labs, you will apply the concepts discussed in lecture to various data analysis scenarios, with a focus on the computation. Most lab assignments will be performed in teams, and all team members are expected to contribute equally to the completion of each assignment. You are expected to use the team&amp;rsquo;s Git repository on the course&amp;rsquo;s GitHub page as the central platform for collaboration. Commits to this repository will be used as a metric of each team member&amp;rsquo;s relative contribution for each lab, and you will also be asked to evaluate your team members&#39; engagement periodically during the semester. Lab assignments will be completed using R Markdown, correspond to an appropriate GitHub repository, and submitted as a .pdf file to Gradescope.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Sections 05L - 07L&lt;/strong&gt;: If you are in one of these sections, you are expected to attend lab during the scheduled time. You will spend most time working with your team to complete that week&amp;rsquo;s assignment. There will be teaching assistants available if you have questions as you work.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Section 08L:&lt;/strong&gt; Though you do not have a scheduled lab time, you will find a time with your team to work on the weekly lab assignment. The teaching team will provide tips and resources to help you establish a plan for collaboration. You will be able to ask questions during office hours and on Piazza.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;To accommodate unexpected events, the lowest lab grade will be dropped at the end of the semester for all students.&lt;/em&gt;&lt;/p&gt;
@@ -2143,10 +2143,10 @@ output:
   
 <item>
   <title>Teaching team and office hours</title>
-  <link>/home/band_three/</link>
+  <link>https://sta199-fa20-002.netlify.app/home/band_three/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
-<guid>/home/band_three/</guid>
+<guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
   <description>&lt;style&gt;
   .column {
   width: 100%;
@@ -2173,46 +2173,42 @@ output:
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Instructor&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:maria.tackett@duke.edu&#34;&gt;Prof. Maria Tackett&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:alexander.fisher@duke.edu&#34;&gt;Prof. Alexander Fisher&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Mon 1p - 2p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;TAs&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:salvador.chavero.arellano@duke.edu&#34;&gt;Salvador Arellano&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:yueming.shen@duke.edu&#34;&gt;Christine Shen&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Tue 10a - 12p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:morris.greenberg@duke.edu&#34;&gt;Morris Greenberg&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:zheyuan.liu@duke.edu&#34;&gt;Zoey Liu&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Fri 12p - 1p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:caroline.levenson@duke.edu&#34;&gt;Caroline Levenson&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:michael.sarkis@duke.edu&#34;&gt;Michael Sarkis&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Wed 2p - 4p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:ezinne.nwankwo@duke.edu&#34;&gt;Ezinne Nwankwo&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:blossom.mojekwu@duke.edu&#34;&gt;Blossom Mojekwu&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Mon &amp;amp; Wed 8:30a - 9:30a&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:martha.pahren@duke.edu&#34;&gt;Matty Pahren&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:sara.mehta@duke.edu&#34;&gt;Sara Mehta&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Tue &amp;amp; Thu 2p - 3p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:felipe.ossa@duke.edu&#34;&gt;Felipe Ossa&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:diane.y.kim@duke.edu&#34;&gt;Diane Kim&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Wed &amp;amp; Fri 5p - 6p&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;R Support TA&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:george.lindner@duke.edu&#34;&gt;George Lindner&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Tue 5p - 6p &amp;amp; Fri 3:30p - 4:30p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id=&#34;---r-support-ta--------george-lindnermailtogeorgelindnerdukeedu--------tue-5p---6p--fri-330p---430p&#34;&gt;|   R Support TA       | &lt;a href=&#34;mailto:george.lindner@duke.edu&#34;&gt;George Lindner&lt;/a&gt;       | Tue 5p - 6p &amp;amp; Fri 3:30p - 4:30p&lt;/h1&gt;
 </description>
   </item>
   

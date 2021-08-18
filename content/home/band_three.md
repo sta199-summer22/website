@@ -21,11 +21,10 @@ title: Teaching team and office hours
   
 |            |                     |     |
 |------------|---------------------|-----|
-| Instructor | [Prof. Maria Tackett](mailto:maria.tackett@duke.edu) | Mon 1p - 2p |
-| TAs         | [Salvador Arellano](mailto:salvador.chavero.arellano@duke.edu) | Tue 10a - 12p |
-|       | [Morris Greenberg](mailto:morris.greenberg@duke.edu)     | Fri 12p - 1p |
-|         | [Caroline Levenson](mailto:caroline.levenson@duke.edu)         | Wed 2p - 4p |
-|          | [Ezinne Nwankwo](mailto:ezinne.nwankwo@duke.edu)    | Mon & Wed 8:30a - 9:30a |
-|          | [Matty Pahren](mailto:martha.pahren@duke.edu)       | Tue & Thu 2p - 3p
-|          | [Felipe Ossa](mailto:felipe.ossa@duke.edu)       | Wed & Fri 5p - 6p
-|   R Support TA       | [George Lindner](mailto:george.lindner@duke.edu)       | Tue 5p - 6p & Fri 3:30p - 4:30p
+| Instructor | [Prof. Alexander Fisher](mailto:alexander.fisher@duke.edu) | Mon 1p - 2p |
+| TAs         | [Christine Shen](mailto:yueming.shen@duke.edu) | Tue 10a - 12p |
+|       | [Zoey Liu](mailto:zheyuan.liu@duke.edu)     | Fri 12p - 1p |
+|         | [Michael Sarkis](mailto:michael.sarkis@duke.edu)         | Wed 2p - 4p |
+|          | [Blossom Mojekwu](mailto:blossom.mojekwu@duke.edu)    | Mon & Wed 8:30a - 9:30a |
+|          | [Sara Mehta](mailto:sara.mehta@duke.edu)       | Tue & Thu 2p - 3p
+|          | [Diane Kim](mailto:diane.y.kim@duke.edu)       | Wed & Fri 5p - 6p
