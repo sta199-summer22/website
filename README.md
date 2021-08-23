@@ -2,12 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/91f940e1-647e-4d98-a773-0ce9cc487991/deploy-status)](https://app.netlify.com/sites/sta199-fa20-002/deploys)
 
-:link: [sta199-fa20-002.netlify.app](https://sta199-fa20-002.netlify.app/)
-
-## Colors
-
-- primary color: #7A4183
-- main accent: #00b3b3
+:link: [sta199-f21-001.netlify.app/](https://sta199-f21-001.netlify.app/)
 
 ## Attribution
 
