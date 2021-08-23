@@ -10,7 +10,7 @@
 [[main]]
    # pre = "<i class=\"fa fa-info-circle\"></i>"
     name = "Syllabus"
-    url = "/syllabus/"
+    url = "/syllabus/syllabus.pdf"
     weight = 20
 
 [[main]]
