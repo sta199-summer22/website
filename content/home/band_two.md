@@ -25,17 +25,17 @@ title: Course info
   </tr>
   <tr>
     <td class="tg-0pky">Labs</td>
-    <td class="tg-0pky">Lab 6315</td>
+    <td class="tg-0pky">Lab 1</td>
     <td class="tg-0pky">Friday 10:15 - 11:30am</td>
   </tr>
   <tr>
     <td class="tg-0pky"></td>
-    <td class="tg-0pky">Lab 6316</td>
+    <td class="tg-0pky">Lab 2</td>
     <td class="tg-0pky">Friday 12:00 - 1:15pm</td>
   </tr>
   <tr>
     <td class="tg-0pky"></td>
-    <td class="tg-0pky">Lab 6317</td>
+    <td class="tg-0pky">Lab 3</td>
     <td class="tg-0pky">Friday 1:45 - 3:00pm</td>
   </tr>
 </tbody>

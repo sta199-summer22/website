@@ -4,5 +4,5 @@ bandtwo:
   icon: fa-book
   icon_pack: fas
   what: |
-    - [OpenIntro Statistics 4th ed](https://leanpub.com/openintro-statistics) 
+    - [OpenIntro Statistics](https://openintro-ims.netlify.app/) 
     - [R for Data Science](https://r4ds.had.co.nz/) 

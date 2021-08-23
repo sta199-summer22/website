@@ -1,7 +1,7 @@
 ---
 title: Help
 ---
-
+<!---
 ## Getting help in the course
 
 We expect everyone will have questions at some point in the semester, so we encourage you to use the following resources for help: 
@@ -52,4 +52,4 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 - **DuWell**: Contact DuWell at (919) 681-8421, [duwell@studentaffairs.duke.edu](mailto:duwell@studentaffairs.duke.edu), or [studentaffairs.duke.edu/duwell](https://studentaffairs.duke.edu/duwell)
 
 - **WellTrack**: Contact WellTrack at [app.welltrack.com](https://app.welltrack.com/)
-
+-->

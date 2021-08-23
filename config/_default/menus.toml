@@ -33,11 +33,11 @@
     weight = 50
     
     
-[[main]]
+#[[main]]
    # pre = "<i class=\"fa fa-question-circle\" aria-hidden=\"true\"></i>"
-    name = "Help"
-    url = "/help/"
-    weight = 60
+  #  name = "Help"
+   # url = "/help/"
+    #weight = 60
     
 
 [[main]]
