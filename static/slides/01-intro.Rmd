@@ -74,7 +74,7 @@ class: middle, center
 
 --
 
-- Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.
+- Data science is using data in a principled way to gain understanding, insight, and knowledge.
 
 - We're going to learn to do this in a `tidy` way -- more on that later!
 
