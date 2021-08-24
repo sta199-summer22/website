@@ -5,7 +5,7 @@ lessons:
   - week: "Week 01"
     date: "Tue, Aug 24"
     title: "Welcome to STA 199!"
-    # slides: "https://sta199-fa21-003.netlify.app/slides/01-intro.html#1l"
+    slides: "01-intro.html#1l"
     ae: "appex01-unvotes.html"
   - date: "Thu, Aug 26"
     title: "Meet the Toolkit - Programming"

@@ -1,86 +1,111 @@
 ---
 title: "Welcome to STA 199!"
-author: "Prof. Maria Tackett"
+author: "Prof. Alexander Fisher"
 
 output:
   xaringan::moon_reader:
-    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
-    css: "sta199-slides.css"
-    logo: img/sta199-sticker-icon.png
-    lib_dir: libs/font-awesome
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
     nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      slideNumberFormat: "%current%" 
       ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
 ---
 
-```{r setup, include=FALSE}
-# R options
-options(
-  htmltools.dir.version = FALSE, # for blogdown
-  show.signif.stars = FALSE,     # for regression output
-  warm = 1
-  )
-# Set dpi and height for images
-library(knitr)
-opts_chunk$set(fig.height = 2.65, dpi = 300) 
-# ggplot2 color palette with gray
-color_palette <- list(gray = "#999999", 
-                      salmon = "#E69F00", 
-                      lightblue = "#56B4E9", 
-                      green = "#009E73", 
-                      yellow = "#F0E442", 
-                      darkblue = "#0072B2", 
-                      red = "#D55E00", 
-                      purple = "#CC79A7")
-
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-	fig.align = "center",
-	fig.height = 3.75,
-	fig.width = 6.25,
-	message = FALSE,
-	warning = FALSE
-)
+```{r child = "setup.Rmd"}
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(rvest)
+library(magick)
+library(pdftools)
 ```
 
-class: center, middle
 
-# Welcome!
+## Meet the teaching team: Instructor 
+
+
+### Prof. Alexander Fisher
+
+.pull-left[
+```{r, echo=FALSE,out.width = '75%'} 
+# knitr::include_graphics("img/01/MCC-WNV.pdf")
+knitr::include_graphics("img/01/alignment_xaringan.png")
+```
+]
+
+.pull-right[
+```{r, echo=FALSE,out.width = '75%'} 
+knitr::include_graphics("img/01/basic_tree_xar.png")
+# magick::image_read_pdf("img/01/alignment_xaringan.pdf",
+                       # pages = 1)
+# magick::image_read_pdf("img/01/MCC-WNV.pdf",
+#                        pages = 1)
+```
+]
+
+---
+
+## Meet the teaching team: TAs
+
+- Christine Shen
+
+- Zoey Liu
+
+- Michael Sarkis
+
+- Blossom Mojekwu
+
+- Sara Mehta
+
+- Mariana Izon
+
+---
+
+class: middle, center
+
+# Data Science
 
 ---
 
 ## What is data science?
 
-*"Data science is a concept to unify statistics, data analysis, machine learning and their related methods in order to understand and analyze actual phenomena with data. It employs techniques and theories drawn from many fields within the context of <font class="vocab">mathematics, statistics, information science, and computer science</font>."*
+--
 
-.pull-right[
-[-Wikipedia](https://en.wikipedia.org/wiki/Data_science)
-]
+- Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.
+
+- We're going to learn to do this in a `tidy` way -- more on that later!
+
+- This is a course on introduction to data science, with an emphasis on statistical thinking.
+
 ---
 
-## Course objectives
+## Course FAQ
 
---
+**Q - What data science background does this course assume?**
+A - None.
+
+<br>
+
+**Q - Is this an intro stat course?**
+A - While statistics $\neq$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics. However this course is not your typical high school statistics course.
+
+<br>
+
+**Q - Will we be doing computing?**
+A - Yes. We will use the computing language R.
+
+---
+
+## Course learning objectives
 
 - Learn to explore, visualize, and analyze data in a *reproducible* and *shareable* manner
 
---
-
 - Gain experience in data wrangling, exploratory data analysis, predictive modeling, and data visualization
 
---
-
 - Work on problems and case studies inspired by and based on *real-world questions* and data
-
---
 
 - Learn to effectively communicate results through written assignments and final project presentation
 
@@ -111,104 +136,82 @@ class: center, middle
 - Regression and classification
 
 - Statistical inference
-
 ]
+
 ---
 
-## Where to find information
+## Examples of data science in practice
 
-.vocab[Course Website]: [sta199-fa20-002.netlify.app/](https://sta199-fa20-002.netlify.app/)
-  - Central hub for the course!
+- [Apple Mobility Trends](https://covid19.apple.com/mobility)
 
-.vocab[Sakai]
-  - Gradebook
-  - Class videos
-  - Link to class meetings on Zoom
-  
-  
-.vocab[GitHub]: [https://github.com/sta199-fa20-002](https://github.com/sta199-fa20-002)
-  - Assignment repos (we'll talk more about that later)
+- [What redisctricting looks like in every state](https://projects.fivethirtyeight.com/redistricting-2022-maps/)
+
+- [Tracking their life via Fitbit](https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/)
+
+- [US Spread of COVID-19 maps and analytics](https://www.sharedgeo.org/COVID-19/)
 
 ---
 
 class: middle, center
 
-## Course strcture
+# The Course
 
 ---
 
-## Class meetings 
+## Course Toolkit
 
---
+**Course Website:** [sta199-f21-001.netlify.app](https://sta199-f21-001.netlify.app/)
+  - Central hub for the course!
+  - Quick tour of the website
 
-.vocab[Lecture]
-- Focus on concepts behind data analysis
-- Has two components:
-  - **Lecture content videos** to watch before we meet
-  - **Live lecture session** to ask questions and apply concepts from videos
+**Sakai** [sakai.duke.edu](https://sakai.duke.edu)
+  - Gradebook, quizzes
+  
+**Slack**: [https://sta199-001-f21.slack.com/](https://sta199-001-f21.slack.com/)
+  - Questions and general discussion
 
---
-
-.vocab[Lab]
-- Focus on computing using R `tidyverse` syntax
-- Apply concepts from lecture to case study scenarios
-- Work on labs individually or in teams of 3 - 4
+**GitHub:** [https://github.com/sta199-f21](https://github.com/sta199-f21)
+  - Distribute & work on assignments -- more on this later!
 
 ---
 
-## Textbooks and readings
+## Activities: Prepare, Practice, Perform
 
-- [OpenIntro Statistics](https://www.openintro.org/stat/textbook.php?stat_book=os)
+- **Prepare**: introduce new content and prepare for lectures
+  - Videos & readings before lecture
+  - Low-stakes prep quizzes on basic definitions & concepts from videos
+  - See *Prepare* column on course schedule 
 
 
-- [R for Data Science](http://r4ds.had.co.nz/)
-
-
-- Occasional articles and other readings posted on the course website
-
----
-
-## Activities and assessments
-
---
-
-- .vocab[Homework]: Individual assignments combining conceptual and computational skills. 
-
---
-
-- .vocab[Labs]: Individual or team assignments focusing on computational skills. 
-
---
-
-- .vocab[Exams]: Two take-home exams.
-
---
-
-- .vocab[Final Project]: Team project presented during the final exam period.
-
---
-
-- .vocab[Application Exercises]: Exercises worked on during the live lecture session.
-
---
-
-- .vocab[Statistics Experiences]: Engage with statistics outside of the classroom and reflect on your experience.
+- **Practice**: practice applying statistical concepts and computing
+  - Application Exercises (AE) during lecture
+  - Graded for completion 
 
 ---
 
-## Where to find help in the course
+## Activities: Prepare, Practice, Perform
+
+- **Perform**: Put together what you've learned to analyze real-world data
+  -  Weekly team or individual lab assignments
+  -  Periodic individual homework assignments
+  -  Two take-home exams
+  -  Final team project presented during the final exam period.
+
+---
+
+## Where to find help
 
 --
 
 - Attend .vocab[Office hours] to meet with a member of the teaching team.
 
+  - 10a-12p this Friday via zoom
+  - Full office hours begin the week of August 30
+
 --
 
-- Use .vocab[Piazza] for general questions about course content and/or assignments, since other students may benefit from the response.
+- Use **slack** for general questions about course content and/or assignments, since other students may benefit from the response.
 
---
-
-- Use email for questions regarding personal matters and/or grades.
 
 ---
 
@@ -237,10 +240,100 @@ Services include
 - outreach to student groups
 - and more...
 
-Services provided via Telehealth. To initiate services, you can contact their front desk at 919-660-1000.
+---
+
+## Course community & Learning environment
+
+--
+
+- Uphold the Duke Community Standard: 
+> - I will not lie, cheat, or steal in my academic endeavors;
+>- I will conduct myself honorably in all my endeavors; and
+> - I will act if the Standard is compromised.
+
+--
+
+- Respect, honor, and celebrate our diverse community 
+
+--
+
+- Learning environment that is welcoming, inclusive, and accessible to everyone
+
+---
+
+## Attending lectures and labs
+
+- You are expected to attend and participate lectures and labs
+
+- Please wear a mask to help protect your peers and others around you `r emo::ji("mask")`
+
+- **Please do not come to class if you have symptoms related to COVID-19, have had a known exposure to COVID-19, or have tested positive for COVID-19.**
+  - You will still have access to AEs and labs to complete remotely 
+  - Online office hours and slack are available to ask questions
+  - Email Professor Fisher if further arrangements needed
+  
+---
+
+class: middle, center
+
+# Questions? 
 
 ---
 
 class: middle, center
 
-[sta199-fa20-002.netlify.app](https://sta199-fa20-002.netlify.app)
+# Your turn!
+
+---
+
+## Create a GitHub account
+
+Go to https://github.com/, and create an account (unless you already have one). 
+
+After you create your account, go to [https://forms.gle/t4Z6jadPmyZhHDvq6](https://forms.gle/t4Z6jadPmyZhHDvq6) and enter your Duke email address (NETID@duke.edu) and GitHub username. 
+
+<small>
+Some tips from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
+</small>
+
+- <small>Incorporate your actual name!</small>
+- <small> Reuse your username from other contexts if you can, e.<small> g., Twitter or Slack.</small>
+- <small> Pick a username you will be comfortable revealing to your future boss.</small>
+- <small> Be as unique as possible in as few characters as possible. Shorter is better than longer.</small>
+- <small> Make it timeless.</small>
+- <small> Avoid words with special meaning in programming (e.g. `NA`).</small>
+
+```{r echo = F}
+countdown::countdown(minutes = 5, seconds = 0)
+```
+
+---
+
+# Let's look at some data!
+
+- Let's take a look at the [UN Votes](https://sta199-fa21-003.netlify.app/appex/appex01-unvotes.html) analysis.
+
+```{r echo = F}
+countdown::countdown(minutes = 5, seconds = 0)
+```
+
+---
+
+## For Thursday
+
+- We'll start talking about the computing toolkit
+
+- Watch videos for [Prepare: Week 01](https://sta199-f21-001.netlify.app/prepare/week-01.html)
+
+-  Reserve an **STA198-199 RStudio container**. 
+  - Go to https://vm-manage.oit.duke.edu/containers
+  - Click **Reserve Container** for the STA198-199 container
+
+- Submit your [GitHub username](https://forms.gle/t4Z6jadPmyZhHDvq6)
+
+- Bring laptop/tablet/Chromebook to class 
+
+- Join slack
+
+
+
