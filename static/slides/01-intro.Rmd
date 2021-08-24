@@ -164,8 +164,6 @@ knitr::include_graphics("img/01/prisonLetter.png")
 - Check 100M per second
 
 - 120,000,000,000 years of computational time
-
-- That's 120 billion years!
 ---
 
 class: middle, center
