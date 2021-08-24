@@ -151,6 +151,22 @@ A - Yes. We will use the computing language R.
 - [US Spread of COVID-19 maps and analytics](https://www.sharedgeo.org/COVID-19/)
 
 ---
+## Examples continued
+
+```{r, echo=FALSE,out.width = '75%'} 
+knitr::include_graphics("img/01/prisonLetter.png")
+```
+
+- $26 \times 25 \times 24 \times ... \times 2 \times 1 = 4 \times 10^{26}$ possible combinations
+
+--
+
+- Check 100M per second
+
+- 120,000,000,000 years of computational time
+
+- That's 120 billion years!
+---
 
 class: middle, center
 
