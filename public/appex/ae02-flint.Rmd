@@ -1,6 +1,6 @@
 ---
 title: "Application Exercise 02"
-date: "08.19.20"
+date: "TODAY'S DATE"
 author: "YOUR NAME"
 output: 
   html_document: 
@@ -41,7 +41,9 @@ Let's preview the data with the `glimpse()` function:
 glimpse(flint)
 ```
 
-There are ______ samples in the data set. 
+There are ______ time points the water was sampled in the data set.
+
+The total number of water samples is ______ .
 
 ## Analysis
 
@@ -54,7 +56,7 @@ flint %>%
   count(id)
 ```
 
-Fill in the code to see how many samples samples were taken from each zip code. Uncomment the lines (i.e. remove the `#` before running the code)
+Fill in the code to see how many samples were taken from each zip code. Uncomment the lines (i.e. remove the `#` before running the code)
 
 ```{r count-by-zip, echo = TRUE}
 # flint %>% 
@@ -130,9 +132,8 @@ What is the difference between the two plots? What are the advantages and disadv
 
 ## Submitting application exercises 
 
-**Once you have completed the activity, push your final changes to your GitHub repo! Make sure your repo is updated on GitHub, and that's all you need to do to submit application exercises for participation.**
+**No need to submit this application exercise. Typically you will push your final changes to a GitHub repo, and that's all you need to do to submit application exercises for participation.**
 
 ## References
 
 1. Langkjaer-Bain, R. (2017). The murky tale of Flint’s deceptive water data. Significance, 14: 16-21.
-2. Holtz, Y. (2018). Pimp my RMD: a few tips for R Markdown. Accessed at [https://holtzy.github.io/Pimp-my-rmd/](https://holtzy.github.io/Pimp-my-rmd/)
