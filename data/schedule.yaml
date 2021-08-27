@@ -16,6 +16,8 @@ lessons:
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d03-toolkit-git/u1-d03-toolkit-git.html#1"
   - date: "Fri, Aug 27"
     title: "Lab 01: Hello R!"
+    slides: "/slides/lab-01-slides.html"
+    lab: "lab01_hello-r.html"
   #  slides: "lab-01-slides.html"
   #  lab: "lab-01-hello-r.html"
     
@@ -34,7 +36,7 @@ lessons:
     # slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d04-viz-cat/u2-d04-viz-cat.html#1"
   - date:  "Fri, Sep 03"
     title: "Lab 02"
-
+    
   - week: "Week 03"
     date: "Tue, Sep 07"
     title: "Data wrangling"
