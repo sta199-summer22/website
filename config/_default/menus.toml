@@ -8,6 +8,12 @@
     weight = 10
 
 [[main]]
+    name = "Office hours"
+ #    pre = "<i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>"
+    url = "https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing"
+    weight = 15
+
+[[main]]
     name = "Schedule"
  #    pre = "<i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>"
     url = "/schedule/"

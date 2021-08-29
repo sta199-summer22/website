@@ -159,8 +159,10 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
       <guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
-      <description> .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher TBD   TAs Christine Shen TBD    Zoey Liu TBD    Michael Sarkis TBD    Blossom Mojekwu TBD    Sara Mehta TBD    Mariana Izon TBD    </description>
-      <content>&lt;style&gt;
+      <description>Click here for an updated spreadsheet of all office hours.
+ .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher TBD   TAs Christine Shen TBD    Zoey Liu TBD    Michael Sarkis TBD    Blossom Mojekwu TBD    Sara Mehta TBD    Mariana Izon TBD    </description>
+      <content>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing&#34;&gt;Click here&lt;/a&gt; for an updated spreadsheet of all office hours.&lt;/p&gt;
+&lt;style&gt;
   .column {
   width: 100%;
   }
