@@ -9,10 +9,25 @@ editor_options:
 
 # Logistics
 
+### Bulletin
+
 - Office hours up on website 
+- **label** questions on gradescope pdf
 - Lab 1 can be turned in until **Friday 11:59pm** with no penalty.
-- Homework 1 to be released on Thursday
+- Homework 1 to be released next week.
 - Due Thursday: prepare (watch videos before class)
+
+
+### Local setup: R, RStudio, Git
+
+- [download and install R](https://cran.r-project.org/)
+- [download and install RStudio IDE](https://www.rstudio.com/products/rstudio/download/#download)
+- [resource: install R, RStudio instructions sheet](https://rstudio-education.github.io/hopr/starting.html)
+- [install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+```
+install.packages("tidyverse")
+```
 
 # Main Ideas
 
@@ -29,8 +44,8 @@ Before we start the exercise, we need to configure git so that RStudio can commu
 Type the following lines of code in the **console** in RStudio, filling in your username and the email address associated with your GitHub account.
 
 ```{r eval = FALSE}
-library(usethis)
-use_git_config(user.name= "github username", user.email="your email")
+# library(usethis)
+# use_git_config(user.name= "github username", user.email="your email")
 ```
 
 Next load the `tidyverse` package. Recall, a package is just a bundle of 
@@ -51,6 +66,7 @@ We will introduce visualization using data on single-family homes sold in Minnea
 **Question:** What happens when you click the green arrow in the code chunk below? What changes in the "Environment" pane?
 
 ```{r load-data, message = FALSE}
+
 mn_homes <- read_csv("data/mn_homes.csv")
 ```
 
@@ -203,39 +219,39 @@ We can use smaller plots to display different subsets of the data using  facetin
 Let's try a few simple examples of faceting. Note that these plots should be improved by careful consideration of labels, aesthetics, etc.
 
 ```{r facet-1}
-ggplot(data = mn_homes, 
-       mapping = aes(x = area, y = salesprice)) + 
-   geom_point() + 
-   labs(title = "Sales price vs. area of homes in Minneapolis, MN",
-        x = "Area (square feet)", y = "Sales Price (dollars)") + 
-   facet_grid(. ~ beds)
+# ggplot(data = mn_homes, 
+#        mapping = aes(x = area, y = salesprice)) + 
+#    geom_point() + 
+#    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
+#         x = "Area (square feet)", y = "Sales Price (dollars)") + 
+#    facet_grid(. ~ beds)
 ```
 
 ```{r facet-2}
-ggplot(data = mn_homes, 
-       mapping = aes(x = area, y = salesprice)) + 
-   geom_point() + 
-   labs(title = "Sales price vs. area of homes in Minneapolis, MN",
-        x = "Area (square feet)", y = "Sales Price (dollars)") + 
-   facet_grid(beds ~ .)
+# ggplot(data = mn_homes, 
+#        mapping = aes(x = area, y = salesprice)) + 
+#    geom_point() + 
+#    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
+#         x = "Area (square feet)", y = "Sales Price (dollars)") + 
+#    facet_grid(beds ~ .)
 ```
 
 ```{r facet-3}
-ggplot(data = mn_homes, 
-       mapping = aes(x = area, y = salesprice)) + 
-   geom_point() + 
-   labs(title = "Sales price vs. area of homes in Minneapolis, MN",
-        x = "Area (square feet)", y = "Sales Price (dollars)") + 
-   facet_grid(beds ~ baths)
+# ggplot(data = mn_homes, 
+#        mapping = aes(x = area, y = salesprice)) + 
+#    geom_point() + 
+#    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
+#         x = "Area (square feet)", y = "Sales Price (dollars)") + 
+#    facet_grid(beds ~ baths)
 ```
 
 ```{r facet-4}
-ggplot(data = mn_homes, 
-       mapping = aes(x = area, y = salesprice)) + 
-   geom_point() + 
-   labs(title = "Sales price vs. area of homes in Minneapolis, MN",
-        x = "Area (square feet)", y = "Sales Price (dollars)") + 
-   facet_wrap(~ community)
+# ggplot(data = mn_homes, 
+#        mapping = aes(x = area, y = salesprice)) + 
+#    geom_point() + 
+#    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
+#         x = "Area (square feet)", y = "Sales Price (dollars)") + 
+#    facet_wrap(~ community)
 ```
 
 `facet_grid()`
