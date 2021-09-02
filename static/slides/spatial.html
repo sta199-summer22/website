@@ -34,10 +34,10 @@ class: center, middle, inverse, title-slide
 
 ---
 
-## Napoleon's 1812 Russia Campaign
+## 2013 - 2018 West Nile virus spread
 
-&lt;img src="img/23/napoleon.png" width="65%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="img/23/nextstrain_WNV.png" width="65%" style="display: block; margin: auto;" /&gt;
+- Map generated from [nextstrain.org](https://nextstrain.org/)
 
 
 
@@ -47,7 +47,6 @@ class: center, middle, inverse, title-slide
 
 - [Migrations](http://maps.tnc.org/migrations-in-motion/#4/43.26/-112.02)
 - [World Population Density](https://luminocity3d.org/WorldPopDen/#3/12.00/10.00)
-- [Global Power](https://www.gocompare.com/gas-and-electricity/what-powers-the-world/)
 
 ---
 
@@ -162,44 +161,6 @@ in a column called `geometry`.
 
 ---
 
-## A simple feature object
-
-.midi[
-
-```
-## Simple feature collection with 100 features and 6 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-## Geodetic CRS:  NAD27
-## First 10 features:
-##           name regstrd voted mailed rejectd ml_rqst
-## 1         ASHE   19414  8428     NA      NA    2666
-## 2    ALLEGHANY    7556  4101     NA      NA     971
-## 3        SURRY   46666 23660   4366       7    7088
-## 4    CURRITUCK   21803  7536     NA      NA    2472
-## 5  NORTHAMPTON   13891  6196    828       2    1441
-## 6     HERTFORD   14945  6955     NA      NA    1524
-## 7       CAMDEN    8128  3472    416       1     739
-## 8        GATES    8294  3105     NA      NA     847
-## 9       WARREN   13441  6878     NA      NA    1913
-## 10      STOKES   31649 14444   2162       2    3648
-##                          geometry
-## 1  MULTIPOLYGON (((-81.47276 3...
-## 2  MULTIPOLYGON (((-81.23989 3...
-## 3  MULTIPOLYGON (((-80.45634 3...
-## 4  MULTIPOLYGON (((-76.00897 3...
-## 5  MULTIPOLYGON (((-77.21767 3...
-## 6  MULTIPOLYGON (((-76.74506 3...
-## 7  MULTIPOLYGON (((-76.00897 3...
-## 8  MULTIPOLYGON (((-76.56251 3...
-## 9  MULTIPOLYGON (((-78.30876 3...
-## 10 MULTIPOLYGON (((-80.02567 3...
-```
-]
-
----
-
 class: center, middle
 
 # Visualizing spatial data
@@ -277,7 +238,7 @@ ggplot(nc) +
   labs(title = "North Carolina counties")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -290,7 +251,7 @@ ggplot(nc) +
   labs(title = "North Carolina counties with theme and aesthetics") 
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -304,7 +265,7 @@ ggplot(nc) +
   labs(title = "North Carolina counties with theme and aesthetics")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -317,7 +278,7 @@ ggplot(nc) +
   labs(title = "North Carolina counties with theme and aesthetics")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -331,7 +292,7 @@ ggplot(nc) +
   labs(title = "North Carolina counties with theme and aesthetics")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -380,7 +341,7 @@ Let's incorporate these variables into our plot using `ggplot`.
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="spatial_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -408,7 +369,7 @@ One way to set fill colors is with `scale_fill_gradient()`.
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="spatial_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -429,7 +390,7 @@ ggplot(nc) +
 
 ## "...it's just a population map!"
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -438,7 +399,7 @@ ggplot(nc) +
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="spatial_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .panel[.panel-name[Code]
@@ -527,7 +488,7 @@ ggplot(nc_game) +
   labs(title = "North Carolina gamelands")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -540,7 +501,7 @@ ggplot(nc_game) +
   labs(title = "North Carolina gamelands")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -556,7 +517,7 @@ ggplot(nc) +
   labs(title = "North Carolina gamelands and counties")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -572,7 +533,7 @@ ggplot(nc) +
   labs(title = "North Carolina gamelands and counties")
 ```
 
-&lt;img src="spatial_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="spatial_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -616,146 +577,6 @@ Manipulating spatial data objects is similar, but not identical to manipulating
 data frames. 
 
 Note the core data-wrangling functions from `dplyr` do work.
-
-
----
-
-class: center, middle
-
-# `dplyr` + `sf`
-
----
-
-## `select`
-
-
-```r
-nc %&gt;% 
-  select(name, regstrd, voted)
-```
-
-```
-## Simple feature collection with 100 features and 3 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-## Geodetic CRS:  NAD27
-## First 10 features:
-##           name regstrd voted                       geometry
-## 1         ASHE   19414  8428 MULTIPOLYGON (((-81.47276 3...
-## 2    ALLEGHANY    7556  4101 MULTIPOLYGON (((-81.23989 3...
-## 3        SURRY   46666 23660 MULTIPOLYGON (((-80.45634 3...
-## 4    CURRITUCK   21803  7536 MULTIPOLYGON (((-76.00897 3...
-## 5  NORTHAMPTON   13891  6196 MULTIPOLYGON (((-77.21767 3...
-## 6     HERTFORD   14945  6955 MULTIPOLYGON (((-76.74506 3...
-## 7       CAMDEN    8128  3472 MULTIPOLYGON (((-76.00897 3...
-## 8        GATES    8294  3105 MULTIPOLYGON (((-76.56251 3...
-## 9       WARREN   13441  6878 MULTIPOLYGON (((-78.30876 3...
-## 10      STOKES   31649 14444 MULTIPOLYGON (((-80.02567 3...
-```
-
----
-
-## `filter`
-
-
-```r
-nc %&gt;% 
-  filter(regstrd &gt; 100000)
-```
-
-```
-## Simple feature collection with 20 features and 6 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -82.88111 ymin: 33.88199 xmax: -77.10377 ymax: 36.25709
-## Geodetic CRS:  NAD27
-## First 10 features:
-##        name regstrd  voted mailed rejectd ml_rqst
-## 1   FORSYTH  270818 134770  35664      75   67472
-## 2  GUILFORD  381797 190530  42825     785   76615
-## 3  ALAMANCE  110127  52434  12788      19   22091
-## 4    ORANGE  111765  64016  22859      55   36560
-## 5    DURHAM  243045 138264  41767     348   70046
-## 6      WAKE  791821 421180 138483     781  244538
-## 7   IREDELL  130013  67128  14775       2   22390
-## 8  DAVIDSON  112872  54040  10012      87   16240
-## 9      PITT  122925  57304   9268      37   17595
-## 10  CATAWBA  108098  55018   8947      70   15004
-##                          geometry
-## 1  MULTIPOLYGON (((-80.0381 36...
-## 2  MULTIPOLYGON (((-79.53782 3...
-## 3  MULTIPOLYGON (((-79.24619 3...
-## 4  MULTIPOLYGON (((-79.01814 3...
-## 5  MULTIPOLYGON (((-79.01814 3...
-## 6  MULTIPOLYGON (((-78.92107 3...
-## 7  MULTIPOLYGON (((-80.72652 3...
-## 8  MULTIPOLYGON (((-80.06441 3...
-## 9  MULTIPOLYGON (((-77.47388 3...
-## 10 MULTIPOLYGON (((-80.96143 3...
-```
-
----
-
-## `summarize`
-
-
-```r
-nc %&gt;% 
-  summarize(mean_registered  = mean(regstrd),
-            mean_voted = median(voted))
-```
-
-```
-## Simple feature collection with 1 feature and 2 fields
-## Geometry type: MULTIPOLYGON
-## Dimension:     XY
-## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-## Geodetic CRS:  NAD27
-##   mean_registered mean_voted                       geometry
-## 1        73183.36      16217 MULTIPOLYGON (((-75.97629 3...
-```
-
-
----
-
-## Geometries are "sticky"
-
-The geometry is kept until it is deliberated dropped using `st_drop_geometry`.
-
---
-
-
-```r
-nc %&gt;% 
-  select(name, regstrd) %&gt;% 
-  filter(regstrd &gt; 100000) %&gt;% 
-* st_drop_geometry()
-```
-
-```
-##           name regstrd
-## 1      FORSYTH  270818
-## 2     GUILFORD  381797
-## 3     ALAMANCE  110127
-## 4       ORANGE  111765
-## 5       DURHAM  243045
-## 6         WAKE  791821
-## 7      IREDELL  130013
-## 8     DAVIDSON  112872
-## 9         PITT  122925
-## 10     CATAWBA  108098
-## 11    BUNCOMBE  206178
-## 12    JOHNSTON  142255
-## 13 MECKLENBURG  789547
-## 14    CABARRUS  149584
-## 15      GASTON  150779
-## 16  CUMBERLAND  225029
-## 17       UNION  167068
-## 18      ONSLOW  116300
-## 19 NEW HANOVER  177056
-## 20   BRUNSWICK  114115
-```
 
 ---
 

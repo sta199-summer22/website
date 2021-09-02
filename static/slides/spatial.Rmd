@@ -64,12 +64,12 @@ knitr::include_graphics("img/23/cholera.png")
 
 ---
 
-## Napoleon's 1812 Russia Campaign
+## 2013 - 2018 West Nile virus spread
 
 ```{r, echo=FALSE, out.width="65%"}
-knitr::include_graphics("img/23/napoleon.png")
+knitr::include_graphics("img/23/nextstrain_WNV.png")
 ```
-
+- Map generated from [nextstrain.org](https://nextstrain.org/)
 
 
 
@@ -79,7 +79,6 @@ knitr::include_graphics("img/23/napoleon.png")
 
 - [Migrations](http://maps.tnc.org/migrations-in-motion/#4/43.26/-112.02)
 - [World Population Density](https://luminocity3d.org/WorldPopDen/#3/12.00/10.00)
-- [Global Power](https://www.gocompare.com/gas-and-electricity/what-powers-the-world/)
 
 ---
 
@@ -263,17 +262,6 @@ box()
 in a column called `geometry`.
 - Simple features can contain both spatial and non-spatial data.
 - Functions for spatial data in `sf` begin `st_`.
-
----
-
-## A simple feature object
-
-.midi[
-```{r echo=FALSE}
-nc <- st_read("data/nc_votes.shp", quiet = TRUE)
-nc
-```
-]
 
 ---
 
@@ -578,57 +566,6 @@ Manipulating spatial data objects is similar, but not identical to manipulating
 data frames. 
 
 Note the core data-wrangling functions from `dplyr` do work.
-
-
----
-
-class: center, middle
-
-# `dplyr` + `sf`
-
----
-
-## `select`
-
-```{r}
-nc %>% 
-  select(name, regstrd, voted)
-```
-
----
-
-## `filter`
-
-```{r}
-nc %>% 
-  filter(regstrd > 100000)
-```
-
----
-
-## `summarize`
-
-```{r}
-nc %>% 
-  summarize(mean_registered  = mean(regstrd),
-            mean_voted = median(voted))
-```
-
-
----
-
-## Geometries are "sticky"
-
-The geometry is kept until it is deliberated dropped using `st_drop_geometry`.
-
---
-
-```{r}
-nc %>% 
-  select(name, regstrd) %>% 
-  filter(regstrd > 100000) %>% 
-  st_drop_geometry() #<<
-```
 
 ---
 
