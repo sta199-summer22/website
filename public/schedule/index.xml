@@ -160,7 +160,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
       
       <guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
       <description>Click here for an updated spreadsheet of office hours with locations and links.
- .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Tue, Thu 5-6p   TAs Christine Shen Mon 5-7p    Zoey Liu Wed 12-1p, Thu 2-3p    Michael Sarkis Tue, Thu 12-1p    Blossom Mojekwu TBD    Sara Mehta Mon 9-10a, Thu 9:30-10:30a    Mariana Izon TBD    </description>
+ .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Tue, Thu 5-6p   TAs Christine Shen Mon 5-7p    Zoey Liu Wed 12-1p, Thu 2-3p    Michael Sarkis Tue, Thu 12-1p    Blossom Mojekwu Tue, Thu 1-2p    Sara Mehta Mon 9-10a, Thu 9:30-10:30a    Mariana Izon Wed 6-8p    </description>
       <content>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing&#34;&gt;Click here&lt;/a&gt; for an updated spreadsheet of office hours with locations and links.&lt;/p&gt;
 &lt;style&gt;
   .column {
@@ -209,7 +209,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:blossom.mojekwu@duke.edu&#34;&gt;Blossom Mojekwu&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;TBD&lt;/td&gt;
+&lt;td&gt;Tue, Thu 1-2p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -219,7 +219,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:mariana.izon@duke.edu&#34;&gt;Mariana Izon&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;TBD&lt;/td&gt;
+&lt;td&gt;Wed 6-8p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

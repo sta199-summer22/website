@@ -1,0 +1,229 @@
+---
+title: "Data Visualization II"
+output: html_document
+author: "STA199"
+date: "9-2-2021"
+editor_options: 
+  chunk_output_type: console
+---
+
+## Bulletin
+  - Due Friday (tomorrow) at 11:59pm: 
+    - lab 01 (gradescope, github) **reminder: label questions on gradescope pdf**
+    - ae 03 (github)
+    
+  - Due Sunday at 11:59pm:
+    - ae 04 (github)
+    
+  - Due Tuesday by class time:
+    - prepare (videos)
+    - lab 02 (gradescope, github)
+    - quiz (sakai)
+
+# Main Ideas
+
+- There are different types of variables. 
+- Visualizations and summaries of variables must be consistent with the 
+variable type.
+
+# Lecture Notes and Exercises
+
+Load the `tidyverse` and `datasauRus` packages
+
+```{r message = FALSE}
+library(tidyverse)
+library(datasauRus)
+```
+
+There are two types of variables **numeric** and **categorical**.
+
+### Types of variables
+
+Numerical variables can be classified as either **continuous** or **discrete**. 
+Continuous numeric variables have an infinite number of values between any 
+two values. Discrete numeric variables have a countable number of values.
+
+- height
+- number of siblings
+
+Categorical variables can be classified as either **nominal** or **ordinal**. 
+Ordinal variables have a natural ordering.
+
+- hair color
+- education
+
+### Numeric Variables
+
+To describe the distribution of a numeric we will use the properties below.
+
+- shape
+  - skewness: right-skewed, left-skewed, symmetric
+  - modality: unimodal, bimodal, multimodal, uniform
+- center: mean (`mean`), median (`median`)
+- spread: range (`range`), standard deviation (`sd`), interquartile range (`IQR`)
+- outliers: observations outside the pattern of the data
+
+We will continue our investigation of home prices in Minneapolis, Minnesota.
+
+```{r load-data, message = FALSE}
+mn_homes <- read_csv("data/mn_homes.csv")
+```
+
+Add a `glimpse` to the code chunk below and identify the following variables as
+numeric continuous, numeric discrete, categorical ordinal, or categorical
+nominal. 
+
+- area
+- beds
+- community
+
+```{r glimpse-data}
+glimpse(mn_homes$community)
+```
+
+The `summary` command is also useful in looking at numerical variables. Use this command to look at the numeric variables from the previous chunk.
+
+```{r summarize}
+summary(mn_homes$beds)
+```
+
+We can use a **histogram** to summarize a numeric variable.
+
+```{r histogram}
+ggplot(data = mn_homes, 
+       mapping = aes(x = salesprice)) + 
+   geom_histogram(bins = 25)
+```
+
+A **density plot** is another option. We just connect the boxes in a histogram
+with a smooth curve.
+
+```{r density-plot}
+ggplot(data = mn_homes, 
+       mapping = aes(x = salesprice)) + 
+   geom_density()
+```
+
+Side-by-side **boxplots** are helpful to visualize the distribution of a numeric
+variable across the levels of a categorical variable.
+
+```{r boxplots}
+ggplot(data = mn_homes, 
+       mapping = aes(x = community, y = salesprice)) + 
+       geom_boxplot() + coord_flip() + 
+       labs(main= "Sales Price by Community", x= "Community", y="Sales Price")
+```
+
+**Question:** What is `coord_flip()` doing in the code chunk above? Try removing it to see.
+
+### Categorical Variables
+
+**Bar plots** allow us to visualize categorical variables.
+
+```{r bar-plot}
+ggplot(data = mn_homes) + 
+  geom_bar(mapping = aes(x = community)) + coord_flip() + 
+  labs(main= "Homes by Community", x= "Community", y="Number of Homes")
+```
+
+**Segmented bar plots** can be used to visualize two categorical variables.
+
+```{r segmented-bar-plot}
+library(viridis)
+ggplot(data = mn_homes, mapping = aes(x = community, fill = fireplace)) + 
+  geom_bar() +
+  coord_flip() + 
+  scale_fill_viridis(discrete=TRUE, option = "D", name="Fireplace?") +
+  labs(main= "Fireplaces by Community", x= "Community", y="Number of Homes")
+```
+
+```{r segmented-bar-plot-fill}
+ggplot(data = mn_homes, mapping = aes(x = community, fill = fireplace)) + 
+  geom_bar(position = "fill") + coord_flip() + 
+  scale_fill_viridis(discrete=TRUE, option = "D", name="Fireplace?") +
+  labs(main= "Percentage of Homes with a Fireplace by Community", x=
+  "Community", y="Percentage of Homes")
+```
+
+**Question:** Which of the above two visualizations do you prefer? Why? Is this answer always the same?
+
+There is something wrong with each of the plots below. Run the code for each plot, read the error, then identify and fix the problem.
+
+```{r fix-errors, eval = FALSE}
+ggplot(data = mn_homes) + 
+  geom_point(mapping = aes(x = lotsize, y = salesprice,
+                           shape = 21, size = .85))
+ggplot(data = mn_homes) + 
+  geom_point(x = lotsize, y = area), shape = 21, size = .85)
+ggplot(data = mn_homes) +
+  geom_point(mapping = aes(x = lotsize, y = area), color=community), size = 0.85)
+ggplot(data = mn_homes) +
+  geom_point(mapping = aes(x = 1otsize, y = area))
+```
+
+General principles for effective data visualization
+
+- keep it simple
+- use color effectively
+- tell a story
+
+Why is data visualization important? We will illustrate using the 
+`datasaurus_dozen` data from the `datasauRus` package.
+
+```{r glimpse-dinos}
+glimpse(datasaurus_dozen)
+```
+
+The code below calculates the correlation, mean of y, mean of x, standard deviation of y, and standard deviation of x for each of the 13 datasets.
+
+**Question:** What do you notice? 
+
+```{r summarize-dinos}
+datasaurus_dozen %>% 
+   group_by(dataset) %>%
+   summarize(r = cor(x, y), 
+             mean_y = mean(y),
+             mean_x = mean(x),
+             sd_x = sd(x),
+             sd_y = sd(y))
+```
+
+Let's visualize the relationships
+
+```{r visualize-dinos}
+ggplot(data = datasaurus_dozen, 
+       mapping = aes(x = x, y = y)) + 
+   geom_point(size = .5) + 
+   facet_wrap( ~ dataset)
+```
+
+**Question:** Why is visualization important?
+
+## Practice
+
+(1) Modify the code outline to create a faceted histogram examining the 
+distribution of year built within each community.
+
+When you are finished, remove `eval = FALSE` and knit the file to see the changes.
+
+Note: depending on the variable you use, you might want to change the bin width as I do below.
+
+```{r}
+ggplot(data = mn_homes, mapping = aes(x = area)) +
+  geom_histogram(binwidth = 100) +
+  facet_wrap(~ community) +
+  labs(x = "Area", 
+      title = "Which Communities Have the Largest Homes?", 
+      subtitle = "Faceted by Community")
+```
+
+### Additional Resources
+
+- https://ggplot2.tidyverse.org/
+- https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf
+- http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+- https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535
+- https://ggplot2-book.org/
+= https://ggplot2.tidyverse.org/reference/geom_histogram.html
+- https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+- https://github.com/GraphicsPrinciples/CheatSheet/blob/master/NVSCheatSheet.pdf

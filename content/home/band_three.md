@@ -27,6 +27,6 @@ title: Teaching team and office hours
 | TAs         | [Christine Shen](mailto:yueming.shen@duke.edu) | Mon  5-7p |
 |       | [Zoey Liu](mailto:zheyuan.liu@duke.edu)     | Wed 12-1p, Thu 2-3p |
 |         | [Michael Sarkis](mailto:michael.sarkis@duke.edu)         | Tue, Thu 12-1p |
-|          | [Blossom Mojekwu](mailto:blossom.mojekwu@duke.edu)    | TBD |
+|          | [Blossom Mojekwu](mailto:blossom.mojekwu@duke.edu)    | Tue, Thu 1-2p |
 |          | [Sara Mehta](mailto:sara.mehta@duke.edu)       | Mon 9-10a, Thu 9:30-10:30a |
-|          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | TBD |
+|          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | Wed 6-8p |
