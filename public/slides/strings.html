@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Strings in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="introds.org" />
+    <script src="libs/font-awesome/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script src="libs/font-awesome/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/font-awesome/str_view/str_view.css" rel="stylesheet" />
+    <script src="libs/font-awesome/str_view-binding/str_view.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Strings in R
+## <br> <br> Introduction to Data Science
+### <a href="https://www.introds.org/">introds.org</a>
+
+---
+
+
+
+
+
+
+
+
+
+
+## What is a "string"?
+
+A string is a collection of characters placed between quotes.
+
+A character is a single input from your keyboard (e.g. a single letter or a single punctuation mark).
+
+
+```r
+string1 &lt;- "Hi!"
+string2 &lt;- 'Hello, I am C-3PO, it is a pleasure to meet you.'
+```
+
+
+You can combine strings in a vector.
+
+
+```r
+string3 &lt;- c("It's against", "my programming", "to use inconsistent notation.")
+string3
+```
+
+```
+## [1] "It's against"                  "my programming"               
+## [3] "to use inconsistent notation."
+```
+
+---
+class: middle, center
+
+`stringr`
+---
+
+
+```r
+library(stringr)
+```
+
+... but it's also included in the `tidyverse`!
+
+--
+
+`stringr` provides many tools to work with strings, including functions that
+
+- count the characters in a string: `str_count()`
+
+- concatenate string vectors `str_c()`
+
+- detect patterns `str_detect()`
+
+- trim whitespace `str_trim()`
+
+--
+
+Begin with `str_`
+
+All take a vector of strings as their first argument
+
+
+---
+
+## Include a quotation in a string?
+
+Why doesn't the code below work?
+
+.midi[
+
+```r
+string3 &lt;- "I say "Hello" to the class"
+```
+
+```
+## Error: &lt;text&gt;:1:20: unexpected symbol
+## 1: string3 &lt;- "I say "Hello
+##                        ^
+```
+]
+
+--
+
+To include a double quote in a string, *escape it* using a backslash `\`.
+
+--
+
+.midi[
+
+```r
+string4 &lt;- "I say \"Hello\" to the class"
+```
+]
+
+--
+
+What if you want to include an actual backslash?
+
+--
+
+.midi[
+
+```r
+string5 &lt;- "\\"
+```
+]
+
+This may seem tedious but it will come up later!
+
+---
+
+## `writeLines`
+
+`writeLines` shows the contents of the string not
+including escapes.
+
+.pull-left[
+
+```r
+string4
+```
+
+```
+## [1] "I say \"Hello\" to the class"
+```
+
+```r
+writeLines(string4)
+```
+
+```
+## I say "Hello" to the class
+```
+]
+.pull-right[
+
+```r
+string5
+```
+
+```
+## [1] "\\"
+```
+
+```r
+writeLines(string5)
+```
+
+```
+## \
+```
+]
+
+
+---
+## rockyou.txt
+
+- RockYou developed software for social media platforms such as MySpace and Facebook
+
+- Stored user passwords in plain text files
+
+- Hacked in 2009 and over 32 million passwords leaked
+
+
+Let's look at the first 20
+
+```r
+rockyou20 &lt;- rockyou[1:20] 
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "password"  "iloveyou"  "princess" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "jessica"   "654321"    "michael"  
+## [19] "ashley"    "qwerty"
+```
+
+---
+
+## `str_length`
+
+Given a string, return the number of characters.
+
+.midi[
+
+```r
+password = "qwerty"
+str_length(password)
+```
+
+```
+## [1] 6
+```
+]
+
+Given a vector of strings, return the number of characters in each string.
+
+.midi[
+
+```r
+str_length(rockyou20)
+```
+
+```
+##  [1] 6 5 9 8 8 8 7 7 8 6 6 6 8 6 6 7 6 7 6 6
+```
+
+
+```r
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "password"  "iloveyou"  "princess" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "jessica"   "654321"    "michael"  
+## [19] "ashley"    "qwerty"
+```
+]
+
+--
+
+.pull-left[
+- Alabama: 7
+- Alaska: 6
+- Arizona: 7
+- Arkansas: 8
+]
+.pull-right[
+- California: 10
+- Colorado: 8
+- Connecticut: 11
+- ...
+]
+ 
+
+---
+
+## `str_c`
+
+Combine two or more strings.
+
+
+```r
+str_c("My", "password", "is", "qwerty")
+```
+
+```
+## [1] "Mypasswordisqwerty"
+```
+
+
+--
+
+Use `sep` to specify how the strings are separated.
+
+
+```r
+str_c("My", "password", "is", "qwerty", sep = " ")
+```
+
+```
+## [1] "My password is qwerty"
+```
+
+
+---
+
+## `str_to_lower` and `str_to_upper`
+
+Convert the case of a string from lower to upper or upper to lower.
+
+.midi[
+
+```r
+str_to_upper(rockyou20)
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "PASSWORD"  "ILOVEYOU"  "PRINCESS" 
+##  [7] "1234567"   "ROCKYOU"   "12345678"  "ABC123"    "NICOLE"    "DANIEL"   
+## [13] "BABYGIRL"  "MONKEY"    "LOVELY"    "JESSICA"   "654321"    "MICHAEL"  
+## [19] "ASHLEY"    "QWERTY"
+```
+]
+
+
+---
+
+## `str_sub`
+
+Extract parts of a string from `start` to `end`, inclusive.
+
+.midi[
+
+```r
+str_sub(rockyou20, 1, 4)
+```
+
+```
+##  [1] "1234" "1234" "1234" "pass" "ilov" "prin" "1234" "rock" "1234" "abc1"
+## [11] "nico" "dani" "baby" "monk" "love" "jess" "6543" "mich" "ashl" "qwer"
+```
+]
+
+--
+
+.midi[
+
+```r
+str_sub(rockyou20, -4, -1)
+```
+
+```
+##  [1] "3456" "2345" "6789" "word" "eyou" "cess" "4567" "kyou" "5678" "c123"
+## [11] "cole" "niel" "girl" "nkey" "vely" "sica" "4321" "hael" "hley" "erty"
+```
+]
+
+---
+
+## `str_sub` and `str_to_upper`
+
+
+Can combine `str_sub` and `str_to_upper` to capitalize each password.
+
+.midi[
+
+```r
+str_sub(rockyou20, 1, 1) &lt;- str_to_upper(str_sub(rockyou20, 1, 1))
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "Password"  "Iloveyou"  "Princess" 
+##  [7] "1234567"   "Rockyou"   "12345678"  "Abc123"    "Nicole"    "Daniel"   
+## [13] "Babygirl"  "Monkey"    "Lovely"    "Jessica"   "654321"    "Michael"  
+## [19] "Ashley"    "Qwerty"
+```
+]
+
+---
+
+## `str_sort`
+
+Sort a string. Here we sort in decreasing alphabetical order.
+
+.midi[
+
+```r
+str_sort(rockyou20, decreasing = TRUE)
+```
+
+```
+##  [1] "Rockyou"   "Qwerty"    "Princess"  "Password"  "Nicole"    "Monkey"   
+##  [7] "Michael"   "Lovely"    "Jessica"   "Iloveyou"  "Daniel"    "Babygirl" 
+## [13] "Ashley"    "Abc123"    "654321"    "123456789" "12345678"  "1234567"  
+## [19] "123456"    "12345"
+```
+]
+
+---
+
+## Regular Expressions
+
+A .vocab[regular expression] is a sequence of characters that allows you to 
+describe string patterns. We use them to search for patterns. 
+
+- extract a phone number from text data
+- determine if an email address is valid
+- determine if a password has the required number of letters, characters, and symbols
+- count the number of times "statistics" occurs in a corpus of text
+- ...
+
+---
+
+## Basic Match
+
+To demonstrate the power of regular expressions, let's see if any of the 32 million leaked passwords contain the exact phrase "dog"
+
+
+
+
+
+```r
+str_subset(rockyou, "dog")[1:30]
+```
+
+```
+##  [1] "catdog"      "hotdog"      "bulldogs"    "bulldog"     "doggie"     
+##  [6] "bigdog"      "maddog"      "snoopdogg"   "puppydog"    "doggy"      
+## [11] "dog123"      "snoopdog"    "ilovedogs"   "doggies"     "luckydog"   
+## [16] "catdog1"     "dogdog"      "reddog"      "bulldog1"    "mollydog"   
+## [21] "hotdog1"     "bulldogs1"   "dogcat"      "doggy1"      "hotdogs"    
+## [26] "dogsrule"    "thedog"      "catsanddogs" "topdog"      "daisydog"
+```
+
+
+
+---
+
+## Basic Match
+
+What about "d-g"? Match any character using `.`
+
+
+
+```r
+str_subset(rockyou, "d.g")[1:30]
+```
+
+```
+##  [1] "asdfgh"     "asdfghjkl"  "catdog"     "hotdog"     "bulldogs"  
+##  [6] "bulldog"    "asdfg"      "doggie"     "bigdog"     "maddog"    
+## [11] "digger"     "digimon"    "digital"    "candygirl"  "snoopdogg" 
+## [16] "puppydog"   "doggy"      "dog123"     "snoopdog"   "asdfghj"   
+## [21] "ilovedogs"  "doggies"    "asdfghjk"   "luckydog"   "catdog1"   
+## [26] "indigo"     "dogdog"     "madagascar" "reddog"     "bulldog1"
+```
+
+
+---
+
+## Anchors
+
+Match the start of a string using `^`
+
+
+
+
+.inverse[
+
+```r
+str_view_all(rockyou20, "^P")
+```
+
+<div id="htmlwidget-b8dfac3ef5bbf0ad2e4a" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b8dfac3ef5bbf0ad2e4a">{"x":{"html":"<ul>\n  <li>123456<\/li>\n  <li>12345<\/li>\n  <li>123456789<\/li>\n  <li><span class='match'>P<\/span>assword<\/li>\n  <li>Iloveyou<\/li>\n  <li><span class='match'>P<\/span>rincess<\/li>\n  <li>1234567<\/li>\n  <li>Rockyou<\/li>\n  <li>12345678<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+]
+
+
+
+
+
+```r
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "password"  "iloveyou"  "princess" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "jessica"   "654321"    "michael"  
+## [19] "ashley"    "qwerty"
+```
+
+---
+
+## Anchors
+
+Match the end of a string using `$`
+
+.inverse[
+
+```r
+str_view_all(rockyou20, "u$", match = TRUE)
+```
+
+<div id="htmlwidget-d7e4b6718505b31ff338" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7e4b6718505b31ff338">{"x":{"html":"<ul>\n  <li>iloveyo<span class='match'>u<\/span><\/li>\n  <li>rockyo<span class='match'>u<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+]
+---
+
+## `str_detect`
+
+Determine if a character vector matches a pattern.
+
+
+```r
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "password"  "iloveyou"  "princess" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "jessica"   "654321"    "michael"  
+## [19] "ashley"    "qwerty"
+```
+
+```r
+str_detect(rockyou20, "a")
+```
+
+```
+##  [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+## [13]  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE
+```
+
+---
+
+## `str_count`
+
+How many matches are there in a string?
+
+
+
+```r
+rockyou20
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "password"  "iloveyou"  "princess" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "jessica"   "654321"    "michael"  
+## [19] "ashley"    "qwerty"
+```
+
+```r
+str_count(rockyou20, "s")
+```
+
+```
+##  [1] 0 0 0 2 0 2 0 0 0 0 0 0 0 0 0 2 0 0 1 0
+```
+
+---
+
+## `str_replace_all`
+
+Replace all matches with new strings.
+
+
+```r
+str_replace_all(rockyou20, "s", "-")
+```
+
+```
+##  [1] "123456"    "12345"     "123456789" "pa--word"  "iloveyou"  "prince--" 
+##  [7] "1234567"   "rockyou"   "12345678"  "abc123"    "nicole"    "daniel"   
+## [13] "babygirl"  "monkey"    "lovely"    "je--ica"   "654321"    "michael"  
+## [19] "a-hley"    "qwerty"
+```
+
+
+
+---
+
+## Many Matches
+
+The regular expressions below match more than one character.
+
+- Match any digit using `\d` or `[[:digit:]]`
+- Match any whitespace using `\s` or `[[:space:]]`
+- Match f, g, or h using `[fgh]` 
+- Match anything but f, g, or h using `[^fgh]`
+- Match lower-case letters using `[a-z]` or `[[:lower:]]`
+- Match upper-case letters using `[A-Z]` or `[[:upper:]]`
+- Match alphabetic characters using `[A-z]` or `[[:alpha:]]`
+
+Remember these are regular expressions! To match digits you'll need to *escape*
+the string, so use `"\\d"`, not `"\d"`
+
+---
+
+## Additional resources
+
+- `stringr` website: https://stringr.tidyverse.org/
+- `stringr` and `regex` [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf)
+- [Chapter 14: Strings](https://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions) in R for Data Science
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%",
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
