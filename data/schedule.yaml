@@ -44,6 +44,7 @@ lessons:
     date: "Tue, Sep 07"
     title: "Grammar of data wrangling"
     prepare: "week-03.html"
+    ae: "ae-class-05.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d06-grammar-wrangle/u2-d06-grammar-wrangle.html#1"
   - title: "Working with a single data frame"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d07-single-df/u2-d07-single-df.html#1"
