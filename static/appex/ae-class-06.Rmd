@@ -1,0 +1,165 @@
+---
+title: "Data Wrangling II"
+output: html_document
+author: "STA199"
+date: "9.9.2021"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Bulletin
+- Due next Tuesday, September 14:
+  - Quiz 2
+  - Prep videos
+  - lab 03
+- HW \#1 released today, due next Thursday (the 16th)
+- Notice:
+  - When submitting lab/hw, match each question with every relevant page
+  - Check sakai for lab zoom if you cannot be there in person
+  - Take lab group survey: [https://forms.gle/hHPVKRoJG1QSWLSx6](https://forms.gle/hHPVKRoJG1QSWLSx6)
+
+# Finish Tuesday's AE
+
+# Main Idea: working with multiple data frames
+- To answer questions with data, we often need to use related data from many different datasets.
+- We can combine data from different sources using a well-chosen join function.
+
+# Lecture Notes and Exercises
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+Instead of working with a single dataset, usually you will have to work with many different related datasets. To answer research questions using related datasets, we need to join datasets together.
+
+There are many possible types of joins. All have the format 
+`something_join(x, y)`.
+
+- `inner_join()`: join all rows from `x` where there are matching values in `y`. 
+Return all combinations in case of multiple matches
+- `left_join()`: include all rows from `x`
+- `right_join()`: include all rows from `y`
+- `full_join()`: include all rows in `x` or `y`
+- `semi_join()`: return all rows from `x` with match in `y`
+- `anti_join()`: return all rows from `x` without a match in `y`
+
+```{r test-joins}
+x <- tibble(value = c(1, 2, 3),
+            xcol = c("x1", "x2", "x3"))
+y <- tibble(value = c(1, 2, 4),
+            ycol = c("y1", "y2", "y4"))
+x
+y
+```
+
+We will demonstrate each of the joins on these small, toy datasets. 
+
+```{r inner-join}
+x
+y
+inner_join(x, y)
+```
+
+```{r left-join}
+x
+y
+left_join(x, y)
+```
+
+```{r right-join}
+x
+y
+right_join(x, y)
+```
+
+```{r full-join}
+x
+y
+full_join(x, y)
+```
+
+```{r semi-join}
+x
+y
+semi_join(x, y)
+```
+
+```{r anti-join}
+x
+y
+anti_join(x, y)
+```
+
+How do the join functions above know to join `x` and `y` by `value`? Examine the names to find out.
+
+```{r names}
+names(x)
+names(y)
+```
+
+We will again work with data from the `nycflights13` package. We are going to work with a sample of 100 cases from three separate datasets in this pacakges.
+
+```{r load-flights-data, message=FALSE, warning=FALSE}
+flights2 <- read_csv("data/flights2.csv")
+airports2 <- read_csv("data/airports2.csv")
+planes2 <- read_csv("data/planes2.csv")
+
+# $X1 = NULL
+```
+
+Examine the documentation for the datasets `airports`, `flights`, and `planes`.
+
+**Question:** How are these datasets related? Suppose you wanted to make a map of the route of every flight. What variables would you need from which 
+datasets?
+
+Join flights to airports. Note these two datasets have no variables in common so we will have to specify the variable to join by using `by = `. Check out the documentation for more information.
+
+```{r flights-join}
+flights2 %>% 
+  left_join(airports2, by = c("dest" = "faa"))
+```
+
+## Practice
+
+(1) Create a new dataset `dest_delays` with the median arrival delay for each destination. Note this question does not require you to use joins.
+
+```{r make-dest-delays}
+
+```
+
+(2) Create a new dataset by joining `dest_delays` and `airports`. Only include observations that have both delay and airport information. Note `dest_delays` and `flights` have no variables in common so you will need to specify the variables to join using `by` as in the example above.
+
+```{r new-dataset}
+
+```
+
+**Question:** Are all of the observations in `dest_delays` included in the new dataset you created by joining `dest_delays` and `airports`? Use an appropriate join function to investigate this issue and determine what is going on here.
+
+
+Use an `anti_join` to help diagnose this issue. Recall `anti_join` returns all rows from `x` without a match in `y`.
+
+```{r anti-join2}
+
+```
+
+(3) Is there a relationship between the age of a plane and its delays? The plane tail number is given in the `tailnum` variable in the `flights` dataset. The year the plane was manufactured is given in the `year` variable in the `planes` dataset. 
+
+- Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in `plane_delays`.
+
+```{r step-1}
+
+```
+
+- Step #2: Join `plane_delays` to the `planes` data using an appropriate join and then use mutate to create an age variable. Note this data is from 2013. So let's look at each plane's age as of 2013.
+
+```{r step-2}
+```
+
+- Step #3: Finally, create an effective visualization of the data.
+
+```{r step-3}
+```
+
+### Additional Resources
+
+- https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf

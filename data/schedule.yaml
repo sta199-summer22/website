@@ -50,6 +50,7 @@ lessons:
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d07-single-df/u2-d07-single-df.html#1"
   - date: "Thu, Sep 09"
     title: "Working with multiple data frames"
+    ae: "ae-class-06.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
     prepare: "week-03.html"
   - date: "Fri, Sep 10"
