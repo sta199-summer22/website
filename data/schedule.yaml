@@ -51,16 +51,20 @@ lessons:
   - date: "Thu, Sep 09"
     title: "Working with multiple data frames"
     ae: "ae-class-06.html"
+    hw: "hw-01.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
     prepare: "week-03.html"
   - date: "Fri, Sep 10"
     title: "Lab 03"
-
+    lab: "lab03-data-wrangling.html"
+    
   - week: "Week 04"
     date: "Tue, Sep 14"
-    title: "Visualzing spatial data"
+    title: "Multiple data frames continued"
+    prepare: "week-04.html"
   - date: "Thu, Sep 16"
-    title: "Strings"
+    title: "Visualizing spatial data"
+    prepare: "week-04.html"
   - date: "Fri, Sep 17"
     title: "Lab 04"
 

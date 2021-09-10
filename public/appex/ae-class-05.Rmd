@@ -2,24 +2,32 @@
 title: "Data Wrangling I"
 output: html_document
 author: "STA199"
-date: "9-7-2021"
+date: "9.7.2021"
 editor_options: 
   chunk_output_type: console
 ---
 
+# Application exercise \#5
+
+# Bulletin
+
+- Quiz 2 due next Tuesday (The 14th)
+- HW \#1 will be released Thursday
+- Due today:
+  - Lab 2
+- Due Thursday:
+  - prep videos
+- Last time: visualizing data with `ggplot2`
+
 # Main Ideas
 
-- Organizing our data according to a consistent set of "tidy" principles makes data easy to work with and leverages the ways `R` is effective.
-- Often we need to wrangle our data in order to extract meaning (including
+- Git pull
+- Working with data frames
+  - Organizing our data according to a consistent set of "tidy" principles makes data easy to work with and leverages the ways `R` is effective.
+  - Often we need to wrangle our data in order to extract meaning (including
 creating new variables, calculating summary statistics, subsetting data, etc).
-- Using only **seven key verbs** we can accomplish a wide variety of data 
+  - Using only **seven key verbs** we can accomplish a wide variety of data 
 wrangling tasks.
-
-# Coming Up
-
-- Homework #01 assigned on Wednesday
-- Lab #02 due on Tuesday
-- Lab #03 on Friday
 
 "Happy families are all alike; every unhappy family is unhappy in its own way"
 - Leo Tolstoy
@@ -35,6 +43,7 @@ use_git_config(user.name= "your github username", user.email="your email")
 
 ```{r load-package, message = FALSE}
 library(tidyverse)
+options(max.print=500)
 ```
 
 ## Tidy Principles
@@ -62,12 +71,16 @@ We can accomplish a great deal of wrangling by learning just
 - summarize
 - group_by
 
-To demonstrate data wrangling we will use a dataset of characteristics of all flights departing from New York City (JFK, LGA, EWR) in 2013. If the library command does not work, you may need to install the package first using the commented line of code (note you only need to do this once, only do it if the library command does not work).
+To demonstrate data wrangling we will use a dataset of characteristics of flights departing from New York City (JFK, LGA, EWR) in 2013. 
 
-```{r load-flights-data}
-#install.packages(nycflights13)
-library(nycflights13)  
+We'll work with a small smaple (5000 flights) by loading in a CSV file of the data.
+
+Feel free to play with the full dataset `flights` found within the `nycflights13` package outside of class.
+
+```{r}
+flights <- read.csv("flights.csv")
 ```
+
 
 We first explore the data a bit. Examine the documentation as well.
 
@@ -84,7 +97,7 @@ There are a few differences a `tidyverse` tibble and an `R` data frame. Two of t
 
 First, it provides more information than a data frame. When you print a tibble, it will show the first ten rows and all of the columns that fit on the screen, along with the type of each column. Try this with the `flights` data. You can modify the number of rows and columns shown using the `print()` function.
 
-**Question:** Can you print the first three rows and all columns of the 
+**Question:** Can you print the first five rows and all columns of the 
 `flights` data? Check the documentation!
 
 ```{r print}
@@ -160,6 +173,8 @@ When reading code "in English", say "and then" whenever you see a pipe.
 
 **Question:** How would you read the code chunk above in English? What is it accomplishing?
 
+**Question:** Does pipe order matter?
+
 ### `slice()`
 
 Slice selects rows based on their position.
@@ -176,6 +191,8 @@ We can also slice the last two rows.
 ```{r last-two}
 flights %>%
   slice((n()-1):n())
+# flights %>%
+#   slice_tail(n = 2)
 ```
 
 **Question:** What is the code chunk below accomplishing? Guess before running the code.

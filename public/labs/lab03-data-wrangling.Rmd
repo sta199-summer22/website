@@ -27,7 +27,7 @@ editor_options:
 
 # NOTICE
 
-When submitting your lab in gradescope, connect each question with **exactly all** pages the question appears on. **WARNING**: failure to do so will result in loss of points.
+When submitting your lab in gradescope, connect each question with **all** pages the question appears on. **WARNING**: failure to do so will result in loss of points.
 
 # Getting started
 
@@ -56,7 +56,7 @@ More information on the variables is available at this link [this link](https://
 
 2. Who are the newest Classic Avengers? Create a new variable called `years_served` that represents the number of years avengers served **as of 2021.** (Hint: you can use either the `year` variable or `years_since_joining` variables to do this.) Then arrange the dataset in *ascending* order of `years_served`, select the `name` and `years_served` variables and print the first three rows. Report in words the names of the three newest Classic Avengers and how long they have served. Please do this using a single pipeline.
 
-3. Has the percentage of female Avengers changed over time? Find the percentage of female Avengers in the `classic_avengers` dataset (hint: could create a new numeric variable e.g. 0 for male, 1 for female). Next find the percentage of female Avengers in the original, complete dataset. Has the addition of new avengers since 1970 changed the proportion of female avengers? Please describe in words what you observe.
+3. Has the percentage of female Avengers changed over time? Find the percentage of female Avengers in the `classic_avengers` dataset (hint: could create a new numeric variable e.g. 0 for male, 1 for female). Next find the percentage of all female Avengers. Has the addition of new avengers since 1970 changed the proportion of female avengers? Please describe in words what you observe.
 
 *Now might be a good time for another knit, commit, and push.*
 
@@ -66,14 +66,14 @@ More information on the variables is available at this link [this link](https://
 
 *One more exercise, but first, knit, commit, and push!*
 
-6. Are newer or older Avengers more popular? Create a scatterplot of the mean appearances by year of introduction for Avengers. For this question, please do not include observations for whether year is equal to 1900, as this appears to be a placeholder for missing values. Add `geom_smooth()` with the argument `se = FALSE`. Please include informative axis labels and an informative title. Can you observe any trends in the data? Which years tend to have the Avengers with the most appearances? Briefly explain whether you need to use any caution in interpreting any portions of this graph.
+6. Are newer or older Avengers more popular? Create a scatterplot of the mean appearances by year of introduction for Avengers. Add `geom_smooth()` with the argument `se = FALSE`. Please include informative axes labels and an informative title. Can you observe any trends in the data? Which years tend to have the Avengers with the most appearances? Briefly explain whether you need to use any caution in interpreting any portions of this graph.
 
 Once you are fully satisfied with your lab, **Knit to PDF** to create a PDF 
 document.
 
 Follow the instructions in previous labs to submit your PDF to Gradescope.
 
-When submitting your lab to gradescope, connect each question with **exactly all** pages the question appears on. **WARNING**: failure to do so will result in loss of points.
+When submitting your lab to gradescope, connect each question with **all** pages the question appears on. **WARNING**: failure to do so will result in loss of points!
 
 ### Grading
 

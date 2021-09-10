@@ -1,114 +1,166 @@
 ---
-title: "HW 01 - Data wrangling and visualization"
-subtitle: "due Wed, Sep 16 at 11:59p"
+title: "Homework 01: Data Visualization"
+subtitle: "due Thursday, September 16 at 11:59p "
 output: 
   tufte::tufte_html:
+    css: "sta199-hw.css"
     tufte_variant: "envisioned"
     highlight: pygments
-    css: "sta199-hw.css"
+    toc: true
+    toc_depth: 1
 link-citations: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
-```{r include=FALSE}
-knitr::opts_chunk$set(eval = FALSE, comment = "#>")
-```
 
-```{r grassmarket, fig.margin = TRUE, echo = FALSE, fig.width=3, fig.cap="Photo by Daniel Cheung on Unsplash"}
-knitr::include_graphics("img/daniel-cheung-ZqqlOZyGG7g-unsplash.jpg")
-```
-
-The goal of this homework assignment is to apply everything you've learned over the past few weeks. The exercises in this homework are intentionally more open-ended than ones you've
-seen previously in the course. They are similar to the types of exercises you may see in the exam in that they require you to think holistically about all that you've learned. Please refer to previous labs and lectures, and application exercises for code examples as you complete the assignment.
-
-**Make sure to have at least three (3) commits for this homework assignment, and don't forget to give your code chunks meaningful names!**
+# Goals
 
 
-# Clone assignment repo + start new project
+In this homework assignment, you will...
 
+- gain proficiency in data visualization
+- be able to apply principles of effective data visualization to a real dataset
+- practice data science workflow using git and GitHub
 
-- Go to [course organization](https://www.github.com/sta199-fa20-002) on GitHub.
+# Getting started
 
-- In addition to your private individual repositories, you should now see a repo named **hw-01-lego-[github_username_name]**. Go to that repository.
-  
-- Clone the repo and start a new project in RStudio. See [Lab 01](https://sta199-fa20-002.netlify.app/labs/lab-01-hello-r.html) for more details about how to clone a repo and start a new project.
+- Go to the [GitHub](https://github.com/sta199-f21) organization and copy the SSH URL to your `hw01-username` repo.
+- Open RStudio
+- Select new project > version control > paste the link to clone your repo
 
 # Packages
 
-In this assignment we will work with the `tidyverse` package as usual.
+We will use the **tidyverse** package for this assignment. If you wish to use the viridis color palettes, you will need the **viridis** package as well. 
 
-```{r load-package, eval=FALSE}
+```{r load-package, eval = FALSE}
 library(tidyverse)
+library(ggridges)
+library(viridis) #optional
 ```
 
-# Lego sales
+# Data: The NC Courage
 
-We have (simulated) data from Lego sales in 2018 for a sample of customers who bought Legos in the US.  The dataset is called `lego_sales` and can be found in the data folder in your repo. **You can find descriptions of each of each of the variables in the data set [here](https://rstudio-education.github.io/dsbox/reference/lego_sales.html).**
+Today, we will be working with National Women's Soccer League (NWSL) team data from the first three full seasons of  [NC Courage](https://www.nccourage.com/), located near Duke in Cary, NC. The Courage moved to the Triangle from Western New York in 2017 and had three very successful first seasons, culminating in [winning](https://www.nccourage.com/news_article/show/1060350) the NWSL championship game that was held at their home stadium in Cary in 2019! (Data for this lab was sourced from the [nwslR package](https://github.com/adror1/nwslR), and verified with the NC Courage website by Meredith Brown in a previous semester.)
 
-
-
-```{r eval = FALSE}
-lego_sales <- read_csv("data/lego_sales.csv")
+```{r read-in-data, eval= FALSE}
+courage <- read_csv("data/courage.csv")
 ```
 
-Answer the following questions using pipes (`%>%`) and the `tidyverse` functions we've discussed. For each question, show your code and output and state your answer in a sentence, e.g. "The first three common names of customers are ...".
+The variables in the dataset are as follows:
 
-1. What are the three most common first names of customers?
+- `game_id`: an ID for the game that identifies the teams and the date.
+- `game_date`: the date of the game
+- `game_number`: the order of the game in the season (i.e., 1st, 2nd, etc.)
+- `home_team`: the name of the home team
+- `away_team`: the name of the away team
+- `opponent`: the name of the Courage's opponent
+- `home_pts`: the number of points scored by the home team
+- `away_pts`: the number of points scored by the away team
+- `result`: the outcome of the game from the Courage's perspective
+- `season`: the season the game took place in (i.e., 2017, 2018, 2019)
 
-2. What are the three most common themes of lego sets purchased?
+# Exercises 
 
-3. Among the most common theme of lego sets purchased, what is the most common subtheme?
+As we’ve discussed in lecture, your plots should include an informative title, axes should be labeled, and careful consideration should be given to aesthetic choices.
 
+In addition, the code should not exceed the 80 character limit, so that all the code can be read when you knit to PDF. See the [Lab 02 instructions](https://sta199-f21-001.netlify.app/labs/lab02-data-viz.html) for instructions to add a margin line at column 80.
+
+Remember that continuing to develop a sound workflow for reproducible data analysis is important as you complete work in this course and beyond. This assignment contains reminders to knit, commit, and push your changes to GithHub. You should have at least 3 commits with meaningful commit messages by the end of the assignment.
+
+1. How many rows are in the `courage` dataset? How many columns? Include the code and resulting output used to support your answer.
+
+2. Create a bar chart to visualize the distribution of the `result` of the games with count on the `y-axis`. Include a clear title and axis labels. What outcome occurred most frequently?
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now is a good time to knit, commit, and push.
+:::
+
+3. Now, let's examine how the Courage performed in each individual season. Create a stacked bar plot, showing one bar for each season, with the number of games on the y-axis going from 0-26, and the fill determined by result. You are encouraged (but not required) to use the viridis color palette. Include a clear title and axis labels. What do you observe from the plot?
+
+
+4. Now let's consider the distribution of points scored by the Courage in a game for all seasons. Make a histogram of the total number of points scored by Courage in a game. Use the histogram to describe the distribution of points scored by Courage.
+
+    To get started use the code below to create two new columns: 
+  
+    - `courage_points`: the number of points scored by Courage in a game
+    - `courage_home`: whether or not Courage was the home team (you will use this variable later on). 
+
+```{r start-code, eval =  FALSE}
+courage <- courage %>% 
+  mutate(courage_points = if_else(home_team == "NC", home_pts, away_pts), 
+         courage_home = if_else(home_team == "NC", "Home", "Away"))
+```
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now is another good time to knit, commit, and push.
+:::
+
+5. *Does Courage have a home field advantage?* To explore this question, 
+
+
+
+    - Create side-by-side box plots of the number of points scored by the Courage based on whether or not they were the home team.  
 ```{marginfigure}
-*Hint:* Use the `case_when()` function.
+See the [lecture notes](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d04-viz-cat/u2-d04-viz-cat.html#14) and the [ggridges vignette](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) for more information and example code.
 ```
+    - Then create a ridge plot using `geom_density_ridges()`. [here](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
+    - What do the ridge plots reveal that boxplots do not? What do box plots reveal that ridge plots do not? 
 
-4. Create a new variable called `age_group` and group the ages into the 
-following categories: "18 and under", "19 - 25", "26 - 35", "36 - 50", "51 and over". *Be sure to save the updated data set so you can use the new variable in other questions.*
+6. Each of Courage's seasons had 26 games, including playoff games. Do the total number of points scored in a game change over the course of a season? For example, do the total number of points decrease, perhaps due to fatigue, or do they increase over a season as teams get into a groove? To explore this question: 
 
-5. What is the probability a randomly selected customer 
-   - is in the 19 - 25 age group? 
-   - is in the 19 - 25 age group **<u>and</u>** purchased a Duplo theme set? 
-   - is in the 19 - 25 age group **<u>given</u>** they purchased a Duplo theme set? 
-   
+    - Create a new variable for the total number of points scored by both teams in a game, and call it `total_points`. 
+    - Then use `geom_jitter()` to create a scatterplot of the total points versus game number. The function `geom_jitter()` adds some random noise to the points so they don't overlap each other.
+    - Based on this plot, does there appear to be a general change in total number of points scored over the course of the season? Briefly explain your response. 
 
-```{marginfigure}
-*Hint:* You will need to consider quantity of purchases.
-```
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now is another good time to knit, commit, and push.
+:::
 
+7. Let's explore if the observations from the previous exercise differ by season. Create a new plot that builds upon the plot from the previous exercise by coloring the points by `season` and using `geom_smooth()` to show the general trend for each season. Include the argument `se = FALSE` to omit the bands around the smoothed curves. 
+    
+    - Does there seem to be a difference in the pattern by season? Briefly explain your response. 
 
-6. Which age group has purchased the largest number of lego sets? How many did they purchase?
+8. Now, let's focus just on points scored by Courage. when looking *only at the Courage*. Make a scatter plot to visualize the relationship between `game_number` and `courage_points`, faceted by `season`. 
 
-```{marginfigure}
-*Hint:* You will need to consider quantity of purchases as well as price of 
-lego sets.
-```
+    - What are 2 observations you have from the plot? 
 
-7. Which age group has spent the most money on legos? How much did they spend?
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now is another good time to knit, commit, and push.
+:::
 
-8. Come up with a question you want to answer using these data, and write it down. 
-Then, create a data visualization that answers the question, and briefly explain how 
-your visualization answers the question.
+# Submission 
 
-```{marginfigure}
-For inspiration, check out [The Evolution of a ggplot, Ep(1)](The Evolution of a ggplot (Ep. 1)) by Cédric Scherer.
-```
+Once you are finished with the assignment, you will submit the PDF document produced from your final *knit, commit, and push* to Gradescope.
 
-9. Add one element to the plot from the previous exercise to change the look of the plot without changing the underlying data. For example, you can change the theme, background color, add annotations, etc. State the change you're making and display the updated visualization. We encourage you to be creative!
+**Before you wrap up the assignment, make sure all documents are updated on your GitHub repo. We will be checking these to make sure you have been practicing how to commit and push changes.** **Remember -- you must turn in a .pdf file to the Gradescope page by the submission deadline to be considered "on time".**
 
-# Submission
+To submit your assignment:
 
-Knit to PDF to create a PDF document. Commit all remaining changes, 
-and push your work to GitHub. Make sure all files are updated on your GitHub 
-repo.
+-   Go to <http://www.gradescope.com> and click *Log in* in the top right corner.
+-   Click *School Credentials* $\rightarrow$ *Duke NetID* and log in using your NetID credentials.
+-   Click on your *STA 199* course.
+-   Click on the assignment, and you'll be prompted to submit it.
+-   Mark all the pages associated with each exercise. All the pages of your assignment should be associated with at least one question (i.e., should be "checked").
+-   Select the first page of your .pdf submission to be associated with the *"Workflow & formatting"* question.
 
-Please only upload your PDF document to Gradescope. Before you submit the 
-uploaded document, mark where each answer is to the exercises. If any answer 
-spans multiple pages, then mark all pages. Make sure to associate the
-"Overall" section with the first page.
+# Grading (50 pts)
 
-<br> 
+<br>
 
-<hr> 
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 2      |
+| Ex 2      | 6    |
+| Ex 3      | 6   |
+| Ex 4      | 4   |
+| Ex 5      | 6      |
+| Ex 6      | 8    |
+| Ex 7      | 6   |
+| Ex 8      | 6    |
+| Workflow & formatting   | 6      |
 
+**Grading notes**:
 
-*This lab was adapted from [Data Science in a Box](https://datasciencebox.org).*
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating your name at the top of the assignment, having at least 3 commits with informative commit messages, labeling the code chunks, and having readable code using the tidyverse syntax that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)
