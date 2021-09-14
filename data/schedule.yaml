@@ -62,9 +62,11 @@ lessons:
     date: "Tue, Sep 14"
     title: "Multiple data frames continued"
     prepare: "week-04.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
   - date: "Thu, Sep 16"
     title: "Visualizing spatial data"
     prepare: "week-04.html"
+    slides: "https://sta199-f21-001.netlify.app/slides/spatial.html#1"
   - date: "Fri, Sep 17"
     title: "Lab 04"
 
