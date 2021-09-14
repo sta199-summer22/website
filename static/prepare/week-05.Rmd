@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Required 
 
-`r emo::ji("memo")` Complete Prep Quiz 02 by 1:45p
+`r emo::ji("memo")` Complete Prep Quiz 03 by 3:30p
 
 `r emo::ji("movie_camera")` Watch [Misrepresentation](https://youtu.be/C_-rTKfswUI)
 
