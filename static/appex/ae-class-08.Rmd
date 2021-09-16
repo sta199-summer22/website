@@ -1,0 +1,65 @@
+---
+title: "The Four Nations"
+author: "STA199"
+date: "9.16.2021"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+### Bulletin
+-   finish ae07 then ae08
+-   on your radar:
+    -   hw 02 released today
+    -   quiz 03 released today
+    -   group lab tomorrow
+    -   exam next week
+-   due today
+    -   hw 01 due tonight at 11:59pm
+-   due Tuesday
+    -   prep
+    -   lab 04
+    -   quiz 03
+
+### Practice
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+Load in the data
+
+```{r}
+class = read_csv("data/classData.csv")
+```
+
+Take a look at the data
+
+```{r look-at-data}
+glimpse(class)
+```
+
+1. Which nation is the most represented? Least represented? Make a visualization to illustrate.
+```{r plot-1}
+```
+
+
+2. Are any lab sections predicted to do better than others on an airbender test? Is there a correlation between lab section and predicted score?
+
+```{r}
+```
+
+3. Why?
+
+```{r}
+
+```
+
+4. How could you see this on the plot above?
+
+```{r}
+
+```
+

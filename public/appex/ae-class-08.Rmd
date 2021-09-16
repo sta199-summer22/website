@@ -1,0 +1,49 @@
+---
+title: "The Four Nations"
+author: "STA199"
+date: "9.16.2021"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+### Bulletin
+-   finish ae07 then ae08
+-   on your radar:
+    -   hw 02 released today
+    -   quiz 03 released today
+    -   group lab tomorrow
+    -   exam next week
+-   due today
+    -   hw 01 due tonight at 11:59pm
+-   due Tuesday
+    -   prep
+    -   lab 04
+    -   quiz 03
+
+### Practice
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+Load in the data
+
+```{r}
+bender = read_csv("data/benderData.csv")
+```
+
+Take a look at the data
+
+```{r look-at-data}
+glimpse(bender)
+```
+
+Which nation was quickest to fill out the survey? Did this trend continue? Make a visualization to support your claim.
+```{r plot-1}
+bender %>%
+  arrange(by = as.Date(time))
+```
+

@@ -68,6 +68,8 @@ lessons:
     title: "Visualizing spatial data"
     prepare: "week-04.html"
     slides: "https://sta199-f21-001.netlify.app/slides/spatial.html#1"
+    ae: "ae-class-08.html"
+    hw: "hw-02.html"
   - date: "Fri, Sep 17"
     title: "Lab 04"
 

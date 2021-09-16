@@ -28,10 +28,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## For September 16
 
-`r emo::ji("movie_camera")` Watch "Visualizing Spatial Data" 
+`r emo::ji("movie_camera")` Watch [Visualizing Spatial Data](https://warpwire.duke.edu/w/Yw4GAA/)
 
-- Check back soon for link to video and slides.
-
+- [Click here](https://sta199-f21-001.netlify.app/slides/spatial.html#1) for slides
 
 
 

@@ -81,7 +81,8 @@ The `caucus` dataset contains three variables:
 
 - First, join the `district_info` to the `ideologies` data frame. The goal is to keep all of the rows and columns in the `ideologies` data frame. Call this new data set `full_data`.
 
-- Next, use a join to add columns from the `caucus` data frame to `full_data`.
+- Next, use a join to add columns from the `caucus` data frame to `full_data`. Hint: when matches may be ambiguous, you can join by more than one variable. e.g.
+`blank_join(caucus, by = c("variable1, "variable2))`.
 
 - Lastly, we need to add information to the data about the region a state is located in. We will use the region in later exercises. To do so, we will use information from two data sets that are already loaded as part of R - state.region and state.abb. Use the code below to create a tibble called `states` that includes the state abbreviation and the region. Then, use an appropriate join to add the region from `states` to `full_data`.
 

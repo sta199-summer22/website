@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <ul>
 <li><p>First, join the <code>district_info</code> to the <code>ideologies</code> data frame. The goal is to keep all of the rows and columns in the <code>ideologies</code> data frame. Call this new data set <code>full_data</code>.</p></li>
-<li><p>Next, use a join to add columns from the <code>caucus</code> data frame to <code>full_data</code>.</p></li>
+<li><p>Next, use a join to add columns from the <code>caucus</code> data frame to <code>full_data</code>. Hint: when matches may be ambiguous, you can join by more than one variable. e.g. <code>blank_join(caucus, by = c(&quot;variable1, &quot;variable2))</code>.</p></li>
 <li><p>Lastly, we need to add information to the data about the region a state is located in. We will use the region in later exercises. To do so, we will use information from two data sets that are already loaded as part of R - state.region and state.abb. Use the code below to create a tibble called <code>states</code> that includes the state abbreviation and the region. Then, use an appropriate join to add the region from <code>states</code> to <code>full_data</code>.</p></li>
 </ul>
 <p><code>states &lt;- as_tibble(cbind(state.abb, state.region))</code></p>
