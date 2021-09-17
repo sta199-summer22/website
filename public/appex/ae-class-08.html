@@ -200,33 +200,31 @@ pre code {
 <h3>Practice</h3>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <p>Load in the data</p>
-<pre class="r"><code>bender = read_csv(&quot;data/benderData.csv&quot;)</code></pre>
+<pre class="r"><code>class = read_csv(&quot;data/classData.csv&quot;)</code></pre>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
-##   time = col_character(),
 ##   lab_section = col_double(),
 ##   local_R = col_logical(),
 ##   work_with = col_double(),
-##   bender = col_character()
+##   bender = col_character(),
+##   predicted_score = col_double()
 ## )</code></pre>
 <p>Take a look at the data</p>
-<pre class="r"><code>glimpse(bender)</code></pre>
-<pre><code>## Rows: 76
+<pre class="r"><code>glimpse(class)</code></pre>
+<pre><code>## Rows: 88
 ## Columns: 5
-## $ time        &lt;chr&gt; &quot;9/9/2021 16:04:28&quot;, &quot;9/9/2021 22:29:15&quot;, &quot;9/9/2021 15:39:…
-## $ lab_section &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-## $ local_R     &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE,…
-## $ work_with   &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0…
-## $ bender      &lt;chr&gt; &quot;Airbender&quot;, &quot;Firebender&quot;, &quot;Firebender&quot;, &quot;Waterbender&quot;, &quot;W…</code></pre>
-<p>Which nation was quickest to fill out the survey? Did this trend continue? Make a visualization to support your claim.</p>
-<pre class="r"><code>bender %&gt;%
-  arrange(by = as.Date(time))</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["time"],"name":[1],"type":["chr"],"align":["left"]},{"label":["lab_section"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["local_R"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["work_with"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bender"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"9/8/2021 23:51:56","2":"1","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/8/2021 22:57:58","2":"1","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/8/2021 20:40:04","2":"1","3":"FALSE","4":"0","5":"Earthbender"},{"1":"9/8/2021 20:25:30","2":"1","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/8/2021 21:43:26","2":"1","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/8/2021 21:05:37","2":"1","3":"FALSE","4":"1","5":"Firebender"},{"1":"9/8/2021 20:56:01","2":"1","3":"FALSE","4":"0","5":"Earthbender"},{"1":"9/8/2021 21:00:38","2":"1","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/8/2021 23:10:25","2":"1","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/8/2021 22:05:16","2":"2","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/8/2021 22:00:17","2":"2","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/8/2021 23:19:50","2":"2","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/8/2021 21:57:28","2":"2","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/8/2021 22:03:19","2":"2","3":"FALSE","4":"1","5":"Earthbender"},{"1":"9/8/2021 20:16:58","2":"2","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/8/2021 22:26:04","2":"2","3":"TRUE","4":"0","5":"Firebender"},{"1":"9/8/2021 22:27:26","2":"2","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/8/2021 20:43:18","2":"2","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/8/2021 21:14:53","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/8/2021 21:40:08","2":"3","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/8/2021 20:58:59","2":"3","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/8/2021 20:48:20","2":"3","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/8/2021 20:23:16","2":"3","3":"FALSE","4":"1","5":"Earthbender"},{"1":"9/8/2021 20:17:33","2":"3","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/8/2021 20:22:27","2":"3","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/9/2021 16:04:28","2":"1","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/9/2021 22:29:15","2":"1","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:39:53","2":"1","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:40:35","2":"1","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/9/2021 20:13:00","2":"1","3":"TRUE","4":"0","5":"Earthbender"},{"1":"9/9/2021 18:15:52","2":"1","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/9/2021 15:37:57","2":"1","3":"TRUE","4":"1","5":"Airbender"},{"1":"9/9/2021 15:39:27","2":"1","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/9/2021 15:37:19","2":"1","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/9/2021 5:27:13","2":"1","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:59:46","2":"1","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/9/2021 17:06:58","2":"1","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/9/2021 15:39:15","2":"1","3":"FALSE","4":"1","5":"Earthbender"},{"1":"9/9/2021 15:38:32","2":"2","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/9/2021 0:07:24","2":"2","3":"TRUE","4":"0","5":"Waterbender"},{"1":"9/9/2021 10:42:56","2":"2","3":"FALSE","4":"0","5":"Earthbender"},{"1":"9/9/2021 15:40:03","2":"2","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/9/2021 15:37:58","2":"2","3":"FALSE","4":"0","5":"Earthbender"},{"1":"9/9/2021 15:38:28","2":"2","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/9/2021 15:09:42","2":"2","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/9/2021 9:48:41","2":"2","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/9/2021 15:45:52","2":"2","3":"FALSE","4":"1","5":"Firebender"},{"1":"9/9/2021 15:39:51","2":"2","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/9/2021 16:35:01","2":"3","3":"TRUE","4":"0","5":"Firebender"},{"1":"9/9/2021 8:38:56","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:35:57","2":"3","3":"TRUE","4":"0","5":"Waterbender"},{"1":"9/9/2021 15:42:26","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:25:21","2":"3","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/9/2021 15:46:58","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/9/2021 15:46:01","2":"3","3":"TRUE","4":"0","5":"Earthbender"},{"1":"9/9/2021 15:39:11","2":"3","3":"TRUE","4":"1","5":"Airbender"},{"1":"9/9/2021 15:39:07","2":"3","3":"FALSE","4":"1","5":"Firebender"},{"1":"9/9/2021 12:41:58","2":"3","3":"FALSE","4":"1","5":"Airbender"},{"1":"9/10/2021 10:10:40","2":"1","3":"TRUE","4":"0","5":"Waterbender"},{"1":"9/10/2021 11:31:28","2":"1","3":"TRUE","4":"0","5":"Waterbender"},{"1":"9/10/2021 11:32:18","2":"1","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/10/2021 13:03:46","2":"2","3":"TRUE","4":"0","5":"Firebender"},{"1":"9/10/2021 15:14:28","2":"2","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/10/2021 12:25:13","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/10/2021 14:42:54","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/10/2021 16:30:54","2":"3","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/11/2021 10:55:18","2":"1","3":"TRUE","4":"0","5":"Airbender"},{"1":"9/11/2021 11:41:41","2":"1","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/11/2021 16:09:09","2":"2","3":"FALSE","4":"0","5":"Airbender"},{"1":"9/11/2021 23:48:35","2":"3","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/12/2021 21:18:14","2":"2","3":"FALSE","4":"1","5":"Waterbender"},{"1":"9/12/2021 23:51:05","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/12/2021 16:48:33","2":"3","3":"FALSE","4":"0","5":"Firebender"},{"1":"9/14/2021 11:46:13","2":"2","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/13/2021 0:02:15","2":"3","3":"FALSE","4":"0","5":"Waterbender"},{"1":"9/14/2021 23:06:28","2":"3","3":"TRUE","4":"1","5":"Firebender"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+## $ lab_section     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ local_R         &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FA…
+## $ work_with       &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, NA, 1, 1, 1,…
+## $ bender          &lt;chr&gt; &quot;Airbender&quot;, &quot;Firebender&quot;, &quot;Firebender&quot;, &quot;Waterbender&quot;…
+## $ predicted_score &lt;dbl&gt; 89.43310, 74.27888, 71.08258, 54.80504, 59.83693, 82.3…</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Which nation is the most represented? Least represented? Make a visualization to illustrate.</p></li>
+<li><p>Are any lab sections predicted to do better than others on an airbender test? Is there a correlation between lab section and predicted score?</p></li>
+<li><p>Why?</p></li>
+<li><p>How could you see this on the plot above?</p></li>
+</ol>
 </div>
 
 

@@ -12,7 +12,7 @@
 
 
 
-<title>Homework #02: Data Wrangling and Joins</title>
+<title>Lab #04: Team Workflow &amp; Spatial Data</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 <link href="data:text/css,%0A%40charset%20%22UTF%2D8%22%3B%0A%0Ahtml%20%7B%20font%2Dsize%3A%2015px%3B%20%7D%0Abody%20%7B%20width%3A%2087%2E5%25%3B%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Apadding%2Dleft%3A%2012%2E5%25%3B%0Acolor%3A%20%23111%3B%0Amax%2Dwidth%3A%201400px%3B%0Acounter%2Dreset%3A%20sidenote%2Dcounter%3B%20%7D%0Ah1%2Etitle%20%7B%20font%2Dweight%3A%20400%3B%0Afont%2Dstyle%3A%20normal%3B%0Amargin%2Dtop%3A%204rem%3B%0Amargin%2Dbottom%3A%201%2E5rem%3B%0Afont%2Dsize%3A%203%2E2rem%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah1%20%7B%0Afont%2Dweight%3A%20400%3B%0Amargin%2Dtop%3A%202%2E1rem%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%2Dsize%3A%202%2E2rem%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah2%20%7B%0Afont%2Dweight%3A%20400%3B%0Afont%2Dsize%3A%201%2E7rem%3B%0Amargin%2Dtop%3A%202rem%3B%0Amargin%2Dbottom%3A%200%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah3%2Esubtitle%20%7B%0Afont%2Dweight%3A%20400%3B%0Amargin%2Dtop%3A%201rem%3B%0Amargin%2Dbottom%3A%201rem%3B%0Afont%2Dsize%3A%201%2E8rem%3B%0Adisplay%3A%20block%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah4%2Eauthor%2C%20h4%2Edate%20%7B%0Afont%2Dsize%3A%201%2E4rem%3B%0Afont%2Dweight%3A%20400%3B%0Amargin%3A%201rem%20auto%3B%0Aline%2Dheight%3A%201%3B%0A%7D%0A%2Edanger%20%7B%20color%3A%20red%3B%20%7D%0Aarticle%20%7B%20position%3A%20relative%3B%0Apadding%3A%205rem%200rem%3B%20%7D%0Asection%20%7B%20padding%2Dtop%3A%201rem%3B%0Apadding%2Dbottom%3A%201rem%3B%20%7D%0Ap%2C%20ol%2C%20ul%20%7B%20font%2Dsize%3A%201%2E4rem%3B%20%7D%0Ap%20%7B%20line%2Dheight%3A%202rem%3B%0Amargin%2Dtop%3A%201%2E4rem%3B%0Amargin%2Dbottom%3A%201%2E4rem%3B%0Apadding%2Dright%3A%200%3B%0Avertical%2Dalign%3A%20baseline%3B%20%7D%0Ablockquote%20%7B%20font%2Dsize%3A%201%2E4rem%3B%20%7D%0Ablockquote%20p%20%7B%20width%3A%2050%25%3B%20%7D%0Ablockquote%20footer%20%7B%20width%3A%2050%25%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0Atext%2Dalign%3A%20right%3B%20%7D%0Aol%2C%20ul%20%7B%20width%3A%2045%25%3B%0A%2Dwebkit%2Dpadding%2Dstart%3A%205%25%3B%0A%2Dwebkit%2Dpadding%2Dend%3A%205%25%3B%20%7D%0Ali%20%7B%20padding%3A%200%2E5rem%200%3B%20%7D%0Atable%20%7B%0Aborder%2Dtop%3A%202px%20solid%20%23111%3B%0Aborder%2Dbottom%3A%202px%20solid%20%23111%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0A%7D%0Ath%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23111%3B%0A%7D%0Adiv%2Efigure%20%7B%0Apadding%3A%200%3B%0Aborder%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Afont%3A%20inherit%3B%0Avertical%2Dalign%3A%20baseline%3B%0Amax%2Dwidth%3A%2055%25%3B%0A%2Dwebkit%2Dmargin%2Dstart%3A%200%3B%0A%2Dwebkit%2Dmargin%2Dend%3A%200%3B%0Amargin%3A%200%200%203em%200%3B%0A%7D%0A%0Aa%3Alink%2C%20a%3Avisited%20%7B%20color%3A%20inherit%3B%20%7D%0Aa%3Alink%20%7B%20text%2Ddecoration%3A%20none%3B%0Abackground%3A%20%2Dwebkit%2Dlinear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20%2Dwebkit%2Dlinear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20%2Dwebkit%2Dlinear%2Dgradient%28%23333%2C%20%23333%29%3B%0Abackground%3A%20linear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20linear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20linear%2Dgradient%28%23333%2C%20%23333%29%3B%0A%2Dwebkit%2Dbackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0A%2Dmoz%2Dbackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0Abackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0Abackground%2Drepeat%3A%20no%2Drepeat%2C%20no%2Drepeat%2C%20repeat%2Dx%3B%0Atext%2Dshadow%3A%200%2E03em%200%20%23fffff8%2C%20%2D0%2E03em%200%20%23fffff8%2C%200%200%2E03em%20%23fffff8%2C%200%20%2D0%2E03em%20%23fffff8%2C%200%2E06em%200%20%23fffff8%2C%20%2D0%2E06em%200%20%23fffff8%2C%200%2E09em%200%20%23fffff8%2C%20%2D0%2E09em%200%20%23fffff8%2C%200%2E12em%200%20%23fffff8%2C%20%2D0%2E12em%200%20%23fffff8%2C%200%2E15em%200%20%23fffff8%2C%20%2D0%2E15em%200%20%23fffff8%3B%0Abackground%2Dposition%3A%200%25%2093%25%2C%20100%25%2093%25%2C%200%25%2093%25%3B%20%7D%0A%40media%20screen%20and%20%28%2Dwebkit%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%200%29%20%7B%20a%3Alink%20%7B%20background%2Dposition%2Dy%3A%2087%25%2C%2087%25%2C%2087%25%3B%20%7D%20%7D%0Aa%3Alink%3A%3Aselection%20%7B%20text%2Dshadow%3A%200%2E03em%200%20%23b4d5fe%2C%20%2D0%2E03em%200%20%23b4d5fe%2C%200%200%2E03em%20%23b4d5fe%2C%200%20%2D0%2E03em%20%23b4d5fe%2C%200%2E06em%200%20%23b4d5fe%2C%20%2D0%2E06em%200%20%23b4d5fe%2C%200%2E09em%200%20%23b4d5fe%2C%20%2D0%2E09em%200%20%23b4d5fe%2C%200%2E12em%200%20%23b4d5fe%2C%20%2D0%2E12em%200%20%23b4d5fe%2C%200%2E15em%200%20%23b4d5fe%2C%20%2D0%2E15em%200%20%23b4d5fe%3B%0Abackground%3A%20%23b4d5fe%3B%20%7D%0Aa%3Alink%3A%3A%2Dmoz%2Dselection%20%7B%20text%2Dshadow%3A%200%2E03em%200%20%23b4d5fe%2C%20%2D0%2E03em%200%20%23b4d5fe%2C%200%200%2E03em%20%23b4d5fe%2C%200%20%2D0%2E03em%20%23b4d5fe%2C%200%2E06em%200%20%23b4d5fe%2C%20%2D0%2E06em%200%20%23b4d5fe%2C%200%2E09em%200%20%23b4d5fe%2C%20%2D0%2E09em%200%20%23b4d5fe%2C%200%2E12em%200%20%23b4d5fe%2C%20%2D0%2E12em%200%20%23b4d5fe%2C%200%2E15em%200%20%23b4d5fe%2C%20%2D0%2E15em%200%20%23b4d5fe%3B%0Abackground%3A%20%23b4d5fe%3B%20%7D%0A%0Aimg%20%7Bmax%2Dwidth%3A%20100%25%3B%7D%0A%2Emarginnote%20img%20%7B%20display%3A%20block%3B%20%7D%0A%2Esidenote%2C%20%2Emarginnote%20%7B%20float%3A%20right%3B%0Aclear%3A%20right%3B%0Amargin%2Dright%3A%20%2D60%25%3B%0Awidth%3A%2050%25%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%201rem%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0Aline%2Dheight%3A%201%2E3%3B%0Avertical%2Dalign%3A%20baseline%3B%0Aposition%3A%20relative%3B%20%7D%0A%2Esidenote%2Dnumber%20%7B%0Aposition%3A%20relative%3B%0Avertical%2Dalign%3A%20baseline%3B%20%7D%0A%2Esidenote%2Dnumber%20%7B%20font%2Dsize%3A%201rem%3B%0Atop%3A%20%2D0%2E5rem%3B%0Aleft%3A%200%2E1rem%3B%20%7D%0Ap%2C%20footer%2C%20table%2C%20hr%20%7B%20width%3A%2055%25%3B%20%7D%0Ahr%20%7B%20margin%2Dleft%3A%200%3B%20%7D%0Atable%20table%2C%20li%20p%2C%20li%20pre%20%7B%20width%3A%20auto%3B%20%7D%0Ali%20p%2C%20li%20pre%20%7Bmargin%2Dtop%3A%20auto%3B%20%7D%0Adiv%2Efullwidth%2C%20table%2Efullwidth%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Adiv%2Efullwidth%20%3E%20%2A%20%7B%20width%3A%20auto%3B%20%7D%0A%23TOC%2C%20h1%2Etitle%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0A%23TOC%20ol%2C%20%23TOC%20ul%20%7B%20width%3A%20auto%3B%20%7D%0Adiv%2Efullwidth%20p%2Ecaption%20%7B%0Amargin%2Dright%3A%200%3B%0Amax%2Dwidth%3A%2033%25%3B%0A%7D%0Ap%2Ecaption%20%7B%20text%2Dalign%3A%20left%3B%20%7D%0A%40media%20screen%20and%20%28max%2Dwidth%3A%20760px%29%20%7B%20p%2C%20footer%2C%20ol%2C%20ul%2C%20table%2C%20hr%20%7B%20width%3A%2090%25%3B%20%7D%0Apre%20%7B%20width%3A%2087%2E5%25%3B%20%7D%0Aul%20%7B%20width%3A%2085%25%3B%20%7D%0Afigure%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Adiv%2Efullwidth%20p%2Ecaption%20%7B%20max%2Dwidth%3A%20none%3B%20%7D%0Ablockquote%20p%2C%20blockquote%20footer%20%7B%20width%3A%2090%25%3B%20%7D%7D%0A%2Esans%20%7B%20font%2Dfamily%3A%20%22Gill%20Sans%22%2C%20%22Gill%20Sans%20MT%22%2C%20Calibri%2C%20sans%2Dserif%3B%0Aletter%2Dspacing%3A%20%2E03em%3B%20%7D%0Acode%20%7B%20font%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%201%2E125rem%3B%0Aline%2Dheight%3A%201%2E6%3B%20%7D%0Apre%20code%20%7B%20font%2Dsize%3A%201rem%3B%20%7D%0Ap%20code%20%7B%20white%2Dspace%3A%20inherit%3B%20%7D%0Ah1%20code%2C%20h2%20code%2C%20h3%20code%20%7B%20font%2Dsize%3A%200%2E80em%3B%20%7D%0A%2Emarginnote%20code%2C%20%2Esidenote%20code%20%7B%20font%2Dsize%3A%201rem%3B%20%7D%0Apre%20%7B%20width%3A%2052%2E5%25%3B%0Aoverflow%2Dx%3A%20auto%3B%20%7D%0A%2Efullwidth%20%7B%20max%2Dwidth%3A%2090%25%3B%0Aclear%3Aboth%3B%20%7D%0Aspan%2Enewthought%20%7B%20font%2Dvariant%3A%20small%2Dcaps%3B%0Afont%2Dsize%3A%201%2E2em%3B%20%7D%0Ainput%2Emargin%2Dtoggle%20%7B%20display%3A%20none%3B%20%7D%0Alabel%2Esidenote%2Dnumber%20%7B%20display%3A%20inline%3B%20%7D%0Alabel%2Emargin%2Dtoggle%3Anot%28%2Esidenote%2Dnumber%29%20%7B%20display%3A%20none%3B%20%7D%0A%40media%20%28max%2Dwidth%3A%20760px%29%20%7B%20label%2Emargin%2Dtoggle%3Anot%28%2Esidenote%2Dnumber%29%20%7B%20display%3A%20inline%3B%20%7D%0A%2Esidenote%2C%20%2Emarginnote%20%7B%20display%3A%20none%3B%20%7D%0A%2Eshownote%2C%0A%2Emargin%2Dtoggle%3Achecked%20%2B%20%2Esidenote%2C%0A%2Emargin%2Dtoggle%3Achecked%20%2B%20%2Emarginnote%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20left%3B%0Aleft%3A%201rem%3B%0Aclear%3A%20both%3B%0Awidth%3A%2095%25%3B%0Amargin%3A%201rem%202%2E5%25%3B%0Avertical%2Dalign%3A%20baseline%3B%0Aposition%3A%20relative%3B%0A%7D%0Alabel%20%7B%20cursor%3A%20pointer%3B%20%7D%0Adiv%2Efigure%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Apre%20%7B%20width%3A%2090%25%3B%0Apadding%3A%200%3B%20%7D%0A%7D%0A" rel="stylesheet" />
@@ -28,101 +28,6 @@
     </style>
 
 
-<style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
 
 
@@ -138,130 +43,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">Homework #02: Data Wrangling and Joins</h1>
-<h3 class="subtitle">due Thu September 23 at 11:59 PM</h3>
+<h1 class="title toc-ignore">Lab #04: Team Workflow &amp; Spatial Data</h1>
+<h3 class="subtitle">due Tue September 21 at 11:59 PM</h3>
 
 
 
 <div id="goals" class="section level2">
 <h2>Goals</h2>
 <ul>
-<li>Develop proficiency with data-wrangling functions</li>
-<li>Answer real research questions using related datasets</li>
-</ul>
-<p>For this assignment you must have at least three meaningful commits and all of your code chunks must have informative names.</p>
-<p>For your first commit, update your author name in the YAML header of the template R Markdown file.</p>
-<p>All plots should follow the best visualization practices discussed in lecture, including an informative title, labeled axes, and careful consideration of aesthetic choices.</p>
-<p>All code should follow the tidyverse style guidelines, including not exceeding the 80 character limit.</p>
-<p><strong>For every <code>join</code> function you should explicitly specify the <code>by</code> argument</strong></p>
-</div>
-<div id="setup" class="section level1">
-<h1>Setup</h1>
-<ul>
-<li>Go to the <a href="https://github.com/sta199-f21">organization GitHub page</a> and copy the SSH link to repository <code>hw02-username</code>, open a new project in RStudio and clone the project.</li>
+<li>Practice collaboration using the data science workflow</li>
+<li>Develop effective spatial visualizations to answer research questions</li>
 </ul>
 </div>
-<div id="the-class-of-2018" class="section level1">
-<h1>The Class of 2018</h1>
-<p>We will work with the <code>tidyverse</code> package as usual. You may also want to use <code>viridis.</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code></pre></div>
-<p>In 2018, Democrats won the majority in Congress for the first time since the Tea Party wave in 2010. Yet within the Democratic Party, a wide variety of ideologies and perspectives exist. This dataset works with three related datasets to answer questions about Democratic members of Congress who served in the 116th Congress (2017-2019).</p>
-<p>One ideology measure we will work with are <em>DW-Nominate</em> scores. These are created using advanced statistical methods. For the purpose of this assignment, we will be focusing on 1st Dimension DW-Nominate scores. These scores generally vary from -1 (most liberal) to 1 (most conservative). Since we are working with Democrats, all scores will be negative. If you are interested in learning more about this measure, <a href="https://www-cambridge-org.proxy.lib.duke.edu/core/journals/studies-in-american-political-development/article/nominate-and-american-political-development-a-primer/DC642ACEB095605E82EEF7EEC4AA9E01">this article</a> provides a primer about it. (Reading it is not required for this assignment.)</p>
-<p>A brief description of the datasets and how they are related to each other is provided below.</p>
-<p>The <code>ideologies</code> dataset contains information on Democratic representatives’ ideologies. Observations are uniquely identified by <code>bioname</code> and <code>icpsr</code>.</p>
-<p>The variables in this dataset are:</p>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<p>Check the announcement on Sakai or slack to determine your team number and members.</p>
+<p>Before getting started on the lab, take a few minutes to develop a plan for working as a team for the rest of the semester.</p>
+<p>Put your plan into writing here. Include:</p>
 <ul>
-<li><code>bioname</code>: The name of the reprentative.</li>
-<li><code>icpsr</code>: the <a href="https://www.icpsr.umich.edu/web/pages/">ICPSR</a> code given to the representative.</li>
-<li><code>state_icpsr</code>: The ICPSR number given to the representative’s state.</li>
-<li><code>district_code</code>: A code for the representative’s district.</li>
-<li><code>nominate_dim</code>: The representatives’ first dimension DW-Nominate Score.</li>
+<li><p>a time you can all meet each week. Find a one hour block of time outside of class that you can use to work on the lab / project if needed. You won’t <em>need</em> to use this, but it is good to have it in reserve. Tools like <a href="https://doodle.com/en/">Doodle</a> and <a href="https://www.when2meet.com/">When2Meet</a> are helpful.</p></li>
+<li><p>how your group will communicate (email, text, slack, discord, etc).</p></li>
+<li><p>any other useful commitments you want to put into writing as a team</p></li>
 </ul>
-<p>The <code>district_info</code> dataset contains information about the representatives’ district. Observations are uniquely identified by <code>bioname</code> and <code>bioguide_id</code>.</p>
-<p>The variables in this dataset are:</p>
+<p>Every team member should now go to the course GitHub organization and locate your lab04 repository, which should have the prefix <strong>lab04</strong>. Copy the URL of the repository and clone in RStudio. If you have trouble, see the first lab and lecture for step-by-step instructions or ask a teammate for help.</p>
+<p><strong>Do not edit the <code>.Rmd</code> file until explicitly asked to do so in the instructions.</strong></p>
+</div>
+<div id="north-carolina-congressional-districts-and-redistricting." class="section level1">
+<h1>North Carolina Congressional Districts and Redistricting.</h1>
+<p>In this lab you will use the <code>sf</code> package to visualize district-level congressional district data in the most recent congressional and presidential elections in North Carolina. Also, given the upcoming redistricting following the 2020 census, we will consider which districts may be overpopulated and thus may need to shrink.</p>
+<p>The variables in the <code>nc_dists</code> dataset are as follows:</p>
 <ul>
-<li><code>bioname</code>: The name of the reprentative.</li>
-<li><code>bioguide_id</code>: the id number in the <a href="https://www.congress.gov/help/field-values/member-bioguide-ids">Congressional Biogrphical Directory</a>.</li>
-<li><code>state_abbrev</code>: The state abbreviation for the state that the member represents.</li>
-<li><code>trump16</code>: The percentage of the vote that Donald Trump received in the representatives district in 2016 (in theory, from 0 to 100). <code>born</code>: The year the representative was born.</li>
+<li><code>DISTRICT</code>: The district number</li>
+<li><code>POPULATION</code>: District population as of 2010</li>
+<li><code>geometry</code>: <code>sf</code> geometry</li>
 </ul>
-<p>Members of Congress typically join a series of caucuses with representatives who have similar interests, districts, or ideologies. Within the Democratic Party, two prominent caucuses are the <a href="https://bluedogcaucus-costa.house.gov/">Blue Dog Coalition</a>, a group of more moderate Democrats, and the <a href="https://progressives.house.gov/caucus-members">Congressional Progressive Caucus</a>, which is made up of more progressive Democrats.</p>
-<p>The <code>caucus</code> dataset contains three variables:</p>
+<p>The variables in the <code>nc_newdata</code> file are as follows:</p>
 <ul>
-<li><code>state_icpsr</code>: The ICPSR number given to the representative’s state.</li>
-<li><code>district_code</code>: A code for the representative’s district.</li>
-<li><code>caucus</code>: The caucus the representative is a member of. There are three options for this variable: Blue Dog, Progressive, or Neither.</li>
+<li><code>District</code>: The district number</li>
+<li><code>trump_pct_2020</code>: The two-party Republican presidential vote in 2020. (Calculated as Republican vote/Republican + Democratic vote)</li>
+<li><code>trump_pct_2016</code>: The two-party Republican presidential vote in 2016.</li>
+<li><code>house_gop_pct_2020</code>: The two-party Republican U.S. House vote in 2020.</li>
+<li><code>population_2020</code>: The old/current district population in 2020 .</li>
 </ul>
-<div id="looking-at-democrats-in-the-116th-congress" class="section level2">
-<h2>Looking at Democrats in the 116th Congress</h2>
+<p>The presidential election data is from <a href="https://www.dailykos.com/stories/2020/11/19/1163009/-Daily-Kos-Elections-presidential-results-by-congressional-district-for-2020-2016-and-2012">DailyKos Elections</a> and the House election data is from the The CQ Voting and Elections Collection, accessed through Duke Libraries. The population data is from the 2020 census and has been compiled by <a href="https://docs.google.com/spreadsheets/d/1Q62LAntj9AV4uRmzvp66-UA7oZ2HY91K1vosh8Y8mVg/edit#gid=853297232">Daily Kos Elections</a>.</p>
 <ol style="list-style-type: decimal">
-<li>Let’s start by creating an analysis data set that includes information from all three data sets.</li>
+<li>Before getting started, please write a group contract on how you will work together as a team this semester…</li>
 </ol>
-<ul>
-<li><p>First, join the <code>district_info</code> to the <code>ideologies</code> data frame. The goal is to keep all of the rows and columns in the <code>ideologies</code> data frame. Call this new data set <code>full_data</code>.</p></li>
-<li><p>Next, use a join to add columns from the <code>caucus</code> data frame to <code>full_data</code>. Hint: when matches may be ambiguous, you can join by more than one variable. e.g. <code>blank_join(caucus, by = c(&quot;variable1, &quot;variable2))</code>.</p></li>
-<li><p>Lastly, we need to add information to the data about the region a state is located in. We will use the region in later exercises. To do so, we will use information from two data sets that are already loaded as part of R - state.region and state.abb. Use the code below to create a tibble called <code>states</code> that includes the state abbreviation and the region. Then, use an appropriate join to add the region from <code>states</code> to <code>full_data</code>.</p></li>
-</ul>
-<p><code>states &lt;- as_tibble(cbind(state.abb, state.region))</code></p>
-<p><strong>The final full_data data frame should have 238 observations and 11 variables.</strong></p>
-<p>We will use <code>full_data</code> for the remainder of the assignment.</p>
+</div>
+<div id="team-workflow" class="section level1">
+<h1>Team workflow</h1>
+<p>Assign each team member a number 1 through 3 (or 4) and write your number down on a piece of paper. This lab will walk you through the basics of team workflow step-by-step.</p>
+<p><strong>Do the following exercises in order, following each step carefully.</strong></p>
+<p><strong>Only one person at a time should type in the <code>.Rmd</code> file and push updates.</strong></p>
+<p><strong>If you are working on any portion of the lab virtually, the person working should share their screen and the others should follow along.</strong></p>
+<p><span style="color: red;"><strong>Team member 1:</strong></span> Open the <code>lab04.Rmd</code> file and change the author of the YAML header to the following “Team Number: Member 1, Member 2, Member 3” with your team number (for example 05-1) and the first and last names of all team members.</p>
+<p><span style="color: red;"><strong>Team member 1:</strong></span> Run the <code>load-data</code> code chunk to read in the data and print the first six rows. Share the results with your team members. Then, answer the questions below.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>We can see which states have the most progressive and most moderate Democratic delegations. Find the mean ideology by state and display the most progressive two states and most moderate two states. The ideology is measured by <code>nominate_dim1</code>. Show all code and output.</li>
+<li>Join the <code>nc</code> and <code>nc_newdata</code> datasets to form a dataset called <code>nc_data</code>. (Hint: the <a href="https://www.rdocumentation.org/packages/fingerprint/versions/3.5.7/topics/as.character">as.character</a> command may be useful here.)</li>
 </ol>
-<ul>
-<li><p>Which two states have the most progressive Democratic delegations? Which have the most moderate?</p></li>
-<li><p>Are there any concerns you have with using these values to represent the mean ideology for a state’s delegation? Briefly explain.</p></li>
-</ul>
+<p><span style="color: red;"><strong>Team member 1:</strong></span> When you have finished, knit to PDF, then stage, commit, and push your <code>.Rmd</code> and PDF to GitHub with an appropriate commit message.</p>
+<p><span style="color: red;"><strong>All other team members:</strong></span> Once your team member has pushed the work, pull to get the updated documents from GitHub. Click on the <code>.Rmd</code> file and you should see the responses to the second exercise. Run the code chunks for #2 to update the file in your environment.</p>
+<p><span style="color: red;"><strong>Team member 2:</strong></span> It’s your turn. Answer the questions below.</p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Which 9 states do not have a Democratic representative? Use the states data frame and an appropriate join to help answer this question. Show all code and output, and report the names of the states in your narrative.</p></li>
-<li><p>Is there a relationship between the percentage of the vote Donald Trump received in a district in 2016 and the DW-Nominate score for the district’s representative? to answer this question:</p></li>
+<li>Modify the <code>nc-plot-1</code> code chunk to create a plot of the 2020 presidential election in North Carolina by congressional District. Use informative colors with the <code>scale_fill_gradient2</code> function. The colors “#DE0100” and “#0015BC” look good for Republicans and Democrats, respectively, but the choice is yours. Please set a midpoint at 50% of the vote. Give the plot an informative title, subtitle, and legend title. When you are finished, remove <code>eval = FALSE</code>.</li>
 </ol>
-<ul>
-<li><p>Find the correlation between these two variables.</p></li>
-<li><p>Make a visualization showing the relationship between trump_16 and nominate_dim1. Include an informative title and axis labels.</p></li>
-<li><p>Interpret the plot.</p></li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>Now let’s look at data for caucus. Calculate the mean and standard deviation of ideology and the number of representatives for each caucus.</li>
+<p><span style="color: red;"><strong>Team member 2:</strong></span> Knit to PDF, then stage, commit, and push your <code>.Rmd</code> and PDF to GitHub with an appropriate commit message.</p>
+<p><span style="color: red;"><strong>All other team members:</strong></span> Once your team member has pushed the work, pull to get the updated documents from GitHub. Click on the <code>.Rmd</code> file and you should see the responses to the first three exercises. Run the code chunks for #2 and #3 to update the file in your environment.</p>
+<p><span style="color: red;"><strong>Team member 3:</strong></span> It’s your turn. Complete the exercises below. (If you have four team members, you could have person 3 do #4 and person 4 do #5. The main point is to make sure everyone is contributing!)</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create a new variable using <code>mutate()</code> in the <code>gop-change</code> code chunk. Overwrite the nc_data dataset to add a variable that measures the <em>change</em> in Republican vote share from 2020 in 2016 called <code>trump_change</code>. This variable should represent how much better (or worse) Trump did in a district in 2020 comprared to 2016. When you are finished, remove <code>eval = FALSE</code>.</p></li>
+<li><p>Modify the <code>nc-plot-2</code> code chunk to create a plot of the Trump vote share <em>change</em> from 2016 to 2020, with districts colored according to <code>trump_change</code>. When making the scale, use informative colors, and set a midpoint at 0 (thus representing <strong>no change</strong> from 2016 to 2020.) When you are finished, remove <code>eval = FALSE</code>. Please describe what you observe. Did Trump improve anywhere in the state in 2020 compared to 2016?</p></li>
 </ol>
-<ul>
-<li><p>Which caucus is the most progressive?</p></li>
-<li><p>Which group has the most variability in ideology?</p></li>
-<li><p>Which is the largest group?</p></li>
-</ul>
+<p><span style="color: red;"><strong>Team member 3:</strong></span> Knit to PDF, then stage, commit, and push your <code>.Rmd</code> and PDF to GitHub with an appropriate commit message.</p>
+<p><span style="color: red;"><strong>All other team members:</strong></span> Once your team member has pushed the work, pull to get the updated documents from GitHub. Click on the <code>.Rmd</code> file and you should see the responses to the first five exercises. Run the code chunks for #1 - #4 to update the file in your environment.</p>
+<p><span style="color: red;"><strong>Team member 1:</strong></span> It’s your turn. Complete the exercise below.</p>
 <ol start="6" style="list-style-type: decimal">
-<li>Let’s examine how caucus membership differs by region. Create a plot of the number of representatives in each caucus faceted by region. Include an informative title and axis labels.</li>
+<li>Now, we are going to compare the Republican presidential performance in 2020 to the Republican <em>congressional</em> performance at the district level. The variable <code>house_gop_pct_2020</code> represents the two-party Republican percentage of the U.S. House vote in 2020. First, I would like you to create a new variable called <code>gop_house_overperformance</code> that measures the difference between the percentage of the vote received by the U.S. House candidate and the percentage received by the Republican presidential candidate in 2020. Modify the <code>nc-plot-3</code> code chunk to create a plot of the House Republican overperformance in 2020, with districts colored according to <code>gop_house_overperformance</code>. When making the scale, use informative colors, and set a midpoint at 0 (thus representing <strong>no difference</strong> between the House Republican candidate and Trump’s vote percentage). When you are finished, remove <code>eval = FALSE</code>.</li>
 </ol>
-<ul>
-<li>How does caucus membership compare across region? Write two observations from the graph to support your response.</li>
-</ul>
+<p>Is this visualization informative? Why or why not? (You may need to do some research on the 2020 NC US House elections to answer this question- any major news website that has NC US House election results may be useful here).</p>
+<p><span style="color: red;"><strong>Team member 1:</strong></span> Knit to PDF, then stage, commit, and push your <code>.Rmd</code> and PDF to GitHub with an appropriate commit message.</p>
+<p><span style="color: red;"><strong>All other team members:</strong></span> Once your team member has pushed the work, pull to get the updated documents from GitHub. Click on the <code>.Rmd</code> file and you should see the responses to the first five exercises. Run the code chunks for #1 - #4 to update the file in your environment.</p>
+<p><span style="color: red;"><strong>Team member 2:</strong></span> Almost done! Just one more question…</p>
 <ol start="7" style="list-style-type: decimal">
-<li><em>Are younger Democrats more likely to be in the Progressive Caucus than older Democrats?</em> To answer this question, create a new variable indicating whether the Democrat was born in the 1980’s (there has yet not been a Democrat elected to Congress who was born in the 1990s). Then, find the percentage of Democrats in each group (pre-1980 and 1980 or later) who are in the Progressive Caucus. <em>Hint: As a step along the way, you will also want to create a variable indicating if they are a Progressive Caucus member using <code>if_else</code> or <code>case_when</code>.</em></li>
+<li>North Carolina is going to have to draw new congressional districts for 2022, following the 2020 Census and they will have to all have an equal population. North Carolina will now have a 14th Congressional District for the first time in its history! You will notice if you look at the <code>POPULATION</code> variable that, in 2010, there was a deviation of no more than 1 person in each district. Once again North Carolina will have to draw districts that have equal population. The variable <code>population_2020</code> contains a variable measuring the population of the current (2010 census) districts.</li>
 </ol>
+<p>In the <code>nc_plot-4</code> chunk, please make a map of each district’s population as of 2020, with districts colored based upon the district’s estimated population in 2020. When making the scale use informative colors; you do not have to set a midpoint. When you are finished, remove <code>eval = FALSE</code>. What do you observe? Which regions of the state have the most overpopulated districts?</p>
+<p><span style="color: red;"><strong>Team member 2:</strong></span> Check to confirm all code chunks are named, code does not exceed the 80 character limit and all code follows the tidyverse style guidelines. Make changes as necessary.</p>
+<p><span style="color: red;"><strong>Team member 2:</strong></span> When you have finished, knit to PDF, then stage, commit, and push your <code>.Rmd</code> and PDF to GitHub with an appropriate commit message.</p>
+<p><span style="color: red;"><strong>All other team members:</strong></span> Once your team member has pushed the work, pull to get the updated documents from GitHub. Click on the <code>.Rmd</code> file to see your final version of the lab.</p>
+<p><span style="color: red;"><strong>Team member 3:</strong></span> Upload your team’s PDF to Gradescope. Include every team member’s name in the Gradescope submission and identify which problems are on each in Gradescope. Associate the “Overall” section with the first page of your PDF.</p>
+<p>There should only be <strong>one submission per team</strong> on Gradescope.</p>
+<p>Rubric:</p>
 <ul>
-<li>State your response to the question based on your output.</li>
-</ul>
-</div>
-</div>
-<div id="submission" class="section level1">
-<h1>Submission</h1>
-<p>Knit to PDF to create a PDF document. Stage and commit all remaining changes, and push your work to GitHub. Make sure all files are updated on your GitHub repo.</p>
-<p>Only upload your PDF document to Gradescope. Before you submit the uploaded document, mark where each answer is to the exercises. If any answer spans multiple pages, then mark all pages. Associate the “Overall” section with the first page.</p>
-<div id="rubric" class="section level2">
-<h2>Rubric</h2>
+<li>Ex 1: 4 pts</li>
+<li>Ex 2: 6 pts</li>
+<li>Ex 3: 8 pts</li>
+<li>Ex 4: 2 pts</li>
+<li>Ex 5: 8 pts</li>
+<li>Ex 6: 8 pts</li>
+<li>Ex 7: 8 pts</li>
+<li>Workflow and formatting: 6 pts
 <ul>
-<li><p>Ex 1: 8 pts.</p></li>
-<li><p>Ex 2: 6 pts.</p></li>
-<li><p>Ex 3: 4 pts.</p></li>
-<li><p>Ex 4: 8 pts.</p></li>
-<li><p>Ex 5: 6 pts.</p></li>
-<li><p>Ex 6: 6 pts.</p></li>
-<li><p>Ex 7: 6 pts.</p></li>
-<li><p>Workflow and formatting - 6 pts</p></li>
-<li><p>This includes having three meaningful commits, updating name, using tidyverse style and naming all code chunks.</p></li>
+<li>Workflow and formatting includes the number of commits made, naming chunks, updating the name on the assignment to your name, and following tidyverse style (see: <a href="https://style.tidyverse.org/" class="uri">https://style.tidyverse.org/</a>).</li>
+</ul></li>
 </ul>
-</div>
 </div>
 
 

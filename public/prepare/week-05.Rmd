@@ -34,10 +34,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("movie_camera")` [Joy Buolamwini - How I’m fighting bias in algorithms](https://youtu.be/UG_X_7g63rY)
 
-`r emo::ji("movie_camera")` [Cathy O’Neil - Weapons of Math Destruction](https://youtu.be/TQHs8SA1qpk)
-
-`r emo::ji("movie_camera")` [Safiya Umoja Noble - Imagining a Future Free from the Algorithms of Oppression](https://youtu.be/tNi_U1Bb1S0)
-
 `r emo::ji("movie_camera")` [Kristian Lum - What’s An Algorithm Got To Do With It](https://youtu.be/5zxDwA99soA)
 
 
