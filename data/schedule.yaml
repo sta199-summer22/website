@@ -78,6 +78,7 @@ lessons:
     date: "Tue, Sep 21"
     title: "Data science ethics"
     prepare: "week-05.html"
+    ae: "ae-009.html"
   - date: "Thu, Sep 23"
     title: "Troubleshooting / Asking for help"
     prepare: "week-05.html"
