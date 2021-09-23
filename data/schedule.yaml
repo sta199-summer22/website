@@ -82,6 +82,7 @@ lessons:
   - date: "Thu, Sep 23"
     title: "Troubleshooting / Asking for help"
     prepare: "week-05.html"
+    ae: "ae-010.html"
   - date: "Fri, Sep 24"
     title: "NO LAB: Work on Exam 01"
     exam: "exam01_instructions.html"
