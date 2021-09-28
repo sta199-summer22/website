@@ -92,6 +92,7 @@ lessons:
     title: "Probability"
     prepare: "week-06.html"
     slides: "https://sta198f2021.github.io/website/slides/week-02/w2-l03-prob.html"
+    ae: "ae-11.html"
   - title: "Exam 01 due"
   - date: "Thu, Sep 30"
     title: "Conditional probability"
