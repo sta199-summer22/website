@@ -49,6 +49,8 @@ For this Application Exercise, we will look at the year in school and majors for
 
 - A **set** is a collection of elements. A set may be empty.
 
+- A **function** is a consistent rule that maps each element of one (input) set to exactly one element of a second (output) set.
+
 - The **probability** of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as  
   - the proportion of times the event would occur if it could be observed an infinite number of times (frequentist paradigm)
   - our degree of belief an event will happen (Bayesian paradigm)
