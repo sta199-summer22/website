@@ -97,6 +97,7 @@ lessons:
   - date: "Thu, Sep 30"
     title: "Conditional probability"
     prepare: "week-06.html"
+    ae: "ae-12.html"
     slides: "https://sta198f2021.github.io/website/slides/week-02/w2-l04-condprob.html"
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d16-simpsons-paradox/u2-d16-simpsons-paradox.html#1"
   - date: "Fri, Sep 31"
