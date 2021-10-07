@@ -110,6 +110,7 @@ lessons:
   - date: "Thu, Oct 07"
     title: "Foundations of inference"
     prepare: "week-07.html"
+    hw: "hw-03.html"
   - date: "Fri, Oct 08"
     title: "Lab: Project"
 
