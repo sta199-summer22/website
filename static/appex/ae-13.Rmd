@@ -1,0 +1,134 @@
+---
+title: "AE 13: Foundations of Inference"
+author: "Your Name"
+date: "10.07.2021"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+```{r load-packages}
+library(tidyverse)
+library(knitr)
+library(infer)
+```
+
+## Bulletin
+
+-   Due tomorrow:
+
+    -   lab 05
+
+-   Upcoming:
+
+    - [project](https://sta199-f21-001.netlify.app/project/project.html) proposal (work on in lab tomorrow)
+    - `hw03` released today, due next Thursday
+    
+- Misc:
+
+    - Exam 01 grades are out (check gradescope for feedback)
+    - 1 week from yesterday for regrade requests
+    - make sure you make three commits per application exercise
+
+## Midterm grade calculation
+
+Your midterm grade is computed using the assignment grades reported on sakai but according to the weight scale described on the [syllabus](https://sta199-f21-001.netlify.app/syllabus/syllabus.pdf)
+
+For purposes of the midterm grade, no lowest assignment scores were dropped.
+
+```
+mean ae score (as %) * 2.5
++ mean quiz score (as %) * 5
++ mean lab score (as %) * 15
++ exam 01 score (as %) * 17.5
++ hw score (as %) * 25
+
+all divided by 65.
+```
+
+## Learning goals
+
+- Understand how statistical inference is used to draw conclusions from sample data 
+- Define and understand sampling variability
+- Introduce bootstrapping 
+
+
+## Vocabulary activity
+
+What's the difference between a parameter and a statistic?
+
+
+Is a parameter "random" or "fixed"? Typically "Unknown" or "known"? Why?
+
+
+## Bootstrapping activity: Rent in Manhattan 
+
+On a given day in 2018, twenty one-bedroom apartments were randomly selected on Craigslist Manhattan from apartments listed as "by owner". The data are in the `manhattan` data frame.  We will use this sample to conduct inference on the typical rent of 1 bedroom apartments in Manhattan. 
+
+```{r load-data}
+manhattan <- read_csv("data/manhattan.csv")
+```
+
+### Exercise 1
+
+Visualize the distribution of `rent`. Is the mean or the median a better measure of typical rent of one-bedroom apartments in Manhattan?
+
+
+### Exercise 2
+
+What is a point estimate of the typical rent? 
+
+
+### Exercise 3
+
+Let's bootstrap! 
+
+- To bootstrap we will sample with replacement by drawing a value from the bowl. 
+- How many draws do we need for our bootstrap sample? 
+
+Fill in  the values from the bootstrap sample conducted in class. Once the values are filled in, uncomment the code. 
+```{r boot-sample}
+# class_bootstrap <- c()
+
+```
+
+
+## Exercise 4
+
+- About what value do you expect the bootstrap statistic to take? 
+- Calculate the statistic from the bootstrap sample. 
+
+```{r calc-boot-stat}
+# add code
+```
+
+Does this statistic align with your expectations? 
+
+<hr> 
+
+Here we've take one bootstrap sample, but in practice we will need about 10,000 - 15,000! In the next lecture we will discuss how we can calculate bootstrap samples using the `infer` package in R. 
+
+**Sneak peek!**
+```{r}
+boot_dist = manhattan %>%
+  # specify the variable of interest
+  specify(response = rent) %>% 
+  # generate 15000 bootstrap samples
+  generate(reps = 15000, type = "bootstrap") %>% 
+  # calculate the statistic of each bootstrap sample
+  calculate(stat = "mean")
+
+boot_dist %>%
+  ggplot(aes(x = stat)) +
+  geom_histogram() + 
+  labs(x = "mean rent")
+  
+```
+

@@ -111,6 +111,8 @@ lessons:
     title: "Foundations of inference"
     prepare: "week-07.html"
     hw: "hw-03.html"
+    ae: "ae-13.html"
+    slides: "/slides/14-bootstrap.html"
   - date: "Fri, Oct 08"
     title: "Lab: Project"
 
