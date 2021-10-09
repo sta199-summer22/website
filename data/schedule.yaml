@@ -118,9 +118,13 @@ lessons:
 
   - week: "Week 08"
     date: "Tue, Oct 12"
-    title: "Simulation-based inference"
+    title: "The bootstrap"
+    prepare: "week-08.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1"
   - date: "Thu, Oct 14"
-    title: "Simulation-based inference cont'd"
+    title: "Hypothesis Testing"
+    prepare: "week-08.html"
+    slides: "/slides/16-hypothesis-test.html"
   - date: "Fri, Oct 15"
     title: "Lab 06"
 
