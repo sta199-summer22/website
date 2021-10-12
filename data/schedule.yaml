@@ -121,6 +121,8 @@ lessons:
     title: "The bootstrap"
     prepare: "week-08.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1"
+    ae: "ae-15.html"
+    hw: "stats-experience.html"
   - date: "Thu, Oct 14"
     title: "Hypothesis Testing"
     prepare: "week-08.html"
@@ -185,5 +187,7 @@ lessons:
   - date: "Thu, Dec 02"
     title: "Special topics"
   - date: "Fri, Dec 03"
+    hw: "stats-experience.html"
     title: "Project"
+    
   
