@@ -127,6 +127,7 @@ lessons:
     title: "Hypothesis Testing"
     prepare: "week-08.html"
     slides: "/slides/16-hypothesis-test.html"
+    ae: "ae-16.html"
   - date: "Fri, Oct 15"
     title: "Lab 06"
 
