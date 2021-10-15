@@ -130,6 +130,7 @@ lessons:
     ae: "ae-16.html"
   - date: "Fri, Oct 15"
     title: "Lab 06"
+    lab: "lab-06-sim-inference.html"
 
   - week: "Week 09"
     date: "Tue, Oct 19"
