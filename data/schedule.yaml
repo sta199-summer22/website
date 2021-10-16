@@ -134,9 +134,11 @@ lessons:
 
   - week: "Week 09"
     date: "Tue, Oct 19"
-    title: "Central Limit Theorem (CLT)"
+    title: "Hypothesis testing continued"
+    prepare: "week-09.html"
   - date: "Thu, Oct 21"
-    title: "Inference using CLT"
+    title: "Central Limit Theorem (CLT)"
+    prepare: "week-09.html"
   - date: "Fri, Oct 22"
     title: "Lab 07"
     
