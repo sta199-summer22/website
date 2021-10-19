@@ -136,6 +136,7 @@ lessons:
     date: "Tue, Oct 19"
     title: "Hypothesis testing continued"
     prepare: "week-09.html"
+    ae: "ae-17.html"
   - date: "Thu, Oct 21"
     title: "Central Limit Theorem (CLT)"
     prepare: "week-09.html"
