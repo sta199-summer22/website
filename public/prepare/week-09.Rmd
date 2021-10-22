@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Required
 
-`r emo::ji("memo")` Take Prep Quiz 06 on Sakai 
+`r emo::ji("memo")` Take Prep Quiz 06 on Sakai -- now due next tuesday October 26
 
 `r emo::ji("movie_camera")` Watch [Central limit theorem](https://warpwire.duke.edu/w/Vw4GAA/)
 
