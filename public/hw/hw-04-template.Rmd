@@ -1,6 +1,6 @@
 ---
 title: "Homework 04: Simulation-based inference"
-subtitle: "due Wed, Oct 27 at 11:59p "
+subtitle: "due Sat, Oct 30 at 11:59p "
 author: "[INSERT NAME]"
 date: "[INSERT DATE]"
 output: 
@@ -31,6 +31,24 @@ knitr::opts_chunk$set(warning = FALSE,
 
 
 ## Exercise 4
+
+
+## Exercise 5
+
+
+## Exercise 6
+
+
+## Exercise 7
+
+
+## Exercise 8
+
+
+## Exercise 9
+
+
+## Exercise 10
 
 
 ...
