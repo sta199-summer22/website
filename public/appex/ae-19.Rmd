@@ -1,0 +1,98 @@
+---
+title: 'AE 18: Sampling distributions & the Central Limit Theorem'
+author: "YOUR NAME GOES HERE"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+# Bulletin
+
+- Due today:
+  - quiz 06 on sakai (now)
+  - lab 07 by 11:59pm
+
+- Misc
+  - Hw 04 due Saturday by 11:59pm
+  - Proposal feedback on gradescope, be sure to read the notes
+  - If you haven't, check out AE17 solutions and additional example on sakai
+  
+
+# Learning goals 
+
+- Recap simulation-based methods and `infer`
+- Use Central Limit Theorem to define distribution of sample means
+- Calculate probabilities from the normal distribution 
+
+```{r load-package, message=F}
+library(tidyverse)
+```
+
+
+# Recap of simulation-based methods and `infer`
+
+
+# Practice using CLT & Normal distribution
+
+Suppose the bone density for 65-year-old women is normally 
+distributed with mean $809 mg/cm^3$ and standard deviation of $140 mg/cm^3$.
+
+Let $x$ be the bone density of 65-year-old women. We can write this distribution of $x$ in mathematical notation as 
+
+$$x \sim N(809, 140)$$
+## Visualize the population distribution
+
+```{r visualize-normal}
+ggplot(data = data.frame(x = c(809 - 140*3, 809 + 140*3)), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140),
+                color = "black") +
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140/sqrt(10)),
+                color = "red",lty = 2) + theme_bw() +
+  labs(title = "Black solid line = population dist., Red dotted line = sampling dist.")
+```
+
+
+
+## Exercise 1
+
+Before typing any code, based on what you know about the normal distribution, what do you expect the median bone density to be?
+
+What bone densities correspond to $Q_1$ (25th percentile), $Q_2$ (50th percentile), and $Q_3$ (the 75th percentile) of this distribution? Use the `qnorm()` function to calculate these values. 
+
+## Exercise 2
+
+The densities of three woods are below:
+
+- Plywood: 540 mg/cubic centimeter
+- Pine: 600 mg/cubic centimeter
+- Mahogany: 710 mg/cubic centimeter
+
+- What is the probability that a randomly selected 65-year-old woman has bones less dense than Pine?
+
+- Would you be surprised if a randomly selected 65-year-old  woman had bone density less than Mahogany? What if she had bone density less than Plywood? Use the respective probabilities to support your response. 
+
+## Exercise 3
+
+Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women. 
+
+- Are the conditions met use the Central Limit Theorem to define the distribution of $\bar{x}$, the mean density of 10 randomly selected 65-year-old women? 
+  - Independence? 
+  - Sample size/distribution? 
+  
+- What is the shape, center, and spread of the distribution of $\bar{x}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
+
+- Write the distribution of $\bar{x}$ using mathematical notation. 
+
+## Exercise 4
+
+- What is the probability that the mean bone density for the group of 10 randomly-selected 65-year-old women is less dense than Pine?
+
+- Would you be surprised if a group of 10 randomly-selected 65-year old women had a mean bone density less than Mahogany? What the group had a mean bone density less than Plywood? Use the respective probabilities to support your response. 
+
+## Exercise 5
+
+Explain how your answers differ in Exercises 2 and 4.
