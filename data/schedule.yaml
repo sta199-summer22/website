@@ -153,6 +153,7 @@ lessons:
     title: "Central Limit Theorem"
   - date: "Thu, Oct 28"
     prepare: "week-10.html"
+    ae: "ae-20.html"
     slides: "/slides/clt-inference.html"
     title: "Inference wrap-up"
   - date: "Fri, Oct 29"

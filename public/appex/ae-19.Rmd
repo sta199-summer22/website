@@ -35,7 +35,6 @@ library(tidyverse)
 
 # Recap of simulation-based methods and `infer`
 
-
 # Practice using CLT & Normal distribution
 
 Suppose the bone density for 65-year-old women is normally 
