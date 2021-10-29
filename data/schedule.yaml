@@ -157,6 +157,7 @@ lessons:
     slides: "/slides/clt-inference.html"
     title: "Inference wrap-up"
   - date: "Fri, Oct 29"
+    lab: "lab-08-clt-inference.html"
     title: "Lab 08"
     
   - week: "Week 11"

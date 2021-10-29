@@ -175,7 +175,6 @@ We already know $\bar{x}$ and $s/\sqrt{n}$, so let's talk about $t_{n-1}$. This 
 
 ```{r conf-int}
 # add code
-
 ```
 
 -   Interpret the interval in the context of the data.
