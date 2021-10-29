@@ -138,7 +138,7 @@ Before conducting inference, we need to check the conditions to make sure the Ce
 6. Next, use R as a "calculator" to calculate the test statistic, $T$. Recall the formula for the test statistic: 
 
 $$T = \frac{\bar{x}- \mu_{0}}{s/\sqrt{n}}$$
-where $\bar{x}$ is the sample mean, $\mu_0$ is the mean under the null, $s$ is the sample variance and $n$ is the sample size.
+where $\bar{x}$ is the sample mean, $\mu_0$ is the mean under the null, $s$ is the sample s.d. and $n$ is the sample size.
 
   - Explain what this value means in the context of this analysis. Refer to [sliders here](https://sta199-f21-001.netlify.app/slides/clt-inference.html#32) from the preparation for last class if necessary.
   
