@@ -162,9 +162,13 @@ lessons:
     
   - week: "Week 11"
     date: "Tue, Nov 02"
-    title: "Linear regression"
+    prepare: "week-11.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1"
+    title: "Finish CLT / Linear modeling"
   - date: "Thu, Nov 04"
-    title: "Linear regression cont'd"
+    prepare: "week-11.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1"
+    title: "Linear regression"
   - date: "Fri, Nov 05"
     title: "Lab 09"
 
