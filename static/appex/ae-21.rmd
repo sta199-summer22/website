@@ -15,11 +15,10 @@ library(scatterplot3d)
 
 # Bulletin
 
-- Due today 
-  - [todo]
-  
 - Upcoming
-  - [todo]
+  - prep quiz due Thursday
+  - lab 08 due Friday
+  - Exam 02 next Friday through Tuesday. Exam 02 will cover topics up until Tues Nov. 9th.
 
 
 # Learning goals
