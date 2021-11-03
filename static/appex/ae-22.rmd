@@ -1,0 +1,142 @@
+---
+title: "AE 21: Regression pt. 2 and multiple regression"
+author: "YOUR NAME GOES HERE"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, warning = FALSE, message  = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(scatterplot3d)
+```
+
+# Bulletin
+
+- Due today
+  - [todo]
+
+- Upcoming
+  - [todo]
+
+
+# Learning goals
+
+- Gain proficiency with multiple linear regression
+- Understand what a dummy variable is
+
+To begin, we'll work with a new set of pokemon data.
+
+```{r load-pokemon}
+pokemon <- read_csv("data/pokemon150.csv")
+# set.seed(28)
+# pokemon <- read_csv("data/pokedex.csv")
+# pokemon = pokemon[c("pokedex_number", "name", "generation", "is_legendary", "type_1", "height_m", "weight_kg", "total_points", "hp", "attack", "defense", "sp_attack", "sp_defense", "speed")]
+# 
+# pokemon = pokemon %>%
+#   drop_na()
+# 
+# new_pokemon = sample_n(pokemon, 150)
+# new_pokemon
+# write_csv(new_pokemon, "pokemon150.csv")
+# # pokemon2
+```
+
+## Exercise 1) 
+
+Previously we looked at building a model to predict a pokemon's hit points using height.
+
+Last time we noticed *both* height *and* weight are correlated with a pokemon's hit points.
+
+Other variables may be correlated with `hp`, e.g. a pokemon's legendary status. 
+
+Do legendary pokemon have higher `hp` than non-legendary pokemon? Compare mean `hp` between groups to support your answer.
+
+```{r hp-vs-legendary}
+pokemon %>%
+  group_by(is_legendary) %>%
+  summarize(mean_hp = mean(hp), n = n())
+```
+
+
+Write down a model to predict a pokemon's hitpoints based on their height, weight, legendary status (use $x$, $y$, $\beta$ notation). Define each variable.
+
+$y$: hit points, (`hp`)
+$x_1$: height, (`height_m`)
+$x_2$: weight, (`weight_kg`)
+$x_3$: legendary, (`is_legendary`)
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3$
+
+## Exercise 2) 
+
+Use `tidymodel` syntax to build a linear model and estimate each $\beta$.
+
+```{r hp-lm}
+# code here
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(hp ~ height_m + weight_kg + is_legendary, data = pokemon) %>%
+  tidy()
+```
+Interpret the meaning of your estimates and write a brief description below.
+
+The intercept tells us the approximate hp of a pokemon with no height, no weight and no legendary status This is meaningless in context.
+
+**All else held constant**
+
+- the `height_m` coefficient tells us the that pokemon 1 m taller have on average 5.1 more hp.
+
+- the `weight_kg` coefficient tells us that a pokemon gains on average .08 hp per additional kg they weigh.
+
+- the `is_legendary` coefficient tells us that legendary pokemon has on average 5.3 more hp than a non-legendary pokemon.
+
+## Exercise 3)
+
+Do the coefficients match your expectations for the previous exercise? Why or why not? Write code to explore any oddities further.
+
+At first glance, it is strange that the coefficient of `is_legendary` is only 5.3 considering the difference in means between groups is 42.
+
+To explain this
+
+```{r explain-legendary-coefficient}
+# code here
+pokemon %>%
+  group_by(is_legendary) %>%
+  summarize(mean_weight = mean(weight_kg),
+            mean_height = mean(height_m),
+            mean_hp = mean(hp))
+```
+
+we see that legendary pokemon also weigh more and are taller on average than non-legnedaries, helping explain the weaker contribution conferred by legendary status.
+
+## Exercise 4)
+
+Some think that certain pokemon types have higher `hp` than others.
+
+```{r hp-vs-type}
+pokemon %>%
+  group_by(type_1) %>%
+  summarize(mean_hp = mean(hp), n = n())
+```
+Construct a linear model in `R` to determine the effect of pokemon type on `hp`. 
+
+```{r hp-type-lm}
+# code here
+
+```
+
+
+Interpret the meaning of your estimates and write a brief description below.
+
+- the intercept tells us the approximate hp of a pokemon with no type. This is meaningless in context.
+
+- the `type_1` coefficients tell us the relative average contribution of that pokemon's type on hp.
+
+Because the category `type_1` has many levels, it is encoded as several dummy variables. The idea is that each type is now yes/no for each pokemon.
+
+Given the output of your code, write down the linear model (use $x$, $y$, $\beta$ notation). Define each variable.
+
+
