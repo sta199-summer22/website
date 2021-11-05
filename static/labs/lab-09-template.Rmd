@@ -1,0 +1,36 @@
+---
+title: "Lab 09: Linear Regression"
+author: "Team Name: Team member 1, Team member 2, Team member 3, Team member 4"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+### Load packages
+
+```{r load-packages, message=FALSE}
+# load packages
+```
+
+```{r load-data, message  = FALSE}
+# load data
+```
+
+## Exercise 0
+
+
+## Exercise 1
+
+
+## Exercise 2
+
+
+## Exercise 3
+
+
+## Exercise 4
+
+
+## Exercise 5
+
+
+

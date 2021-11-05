@@ -1,0 +1,113 @@
+---
+title: 'Lab 09: Linear Regression Solutions'
+author: 'Team Name: Team member 1, Team member 2, Team member 3, Team member 4'
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+### Load packages
+
+```{r load-packages, message=FALSE}
+library(tidymodels)
+library(tidyverse)
+```
+
+## Exercise 0
+```{r load-data, message  = FALSE}
+parasites = read_csv("data/parasites.csv")
+parasites
+
+```
+
+## Exercise 1
+
+The outcome variable is `parsim`, parasite similarity.
+
+```{r plot-1}
+parasites %>%
+  ggplot(aes(x = divergence_time, y = parsim)) + 
+  geom_point() +
+  labs(title = "Parasite similarity vs divergence time", x = "Divergence time", y = "Parasite similarity") +
+  theme_minimal()
+```
+As divergence time increases, parasite similarity appears to decrease.
+
+## Exercise 2
+```{r}
+parasites %>%
+  ggplot(aes(x = divergence_time, y = parsim)) + 
+  geom_point() +
+  geom_smooth(method="lm") +
+  labs(title = "Parasite similarity vs divergence time", x = "Divergence time", y = "Parasite similarity") +
+  theme_minimal()
+```
+Model: $y = \beta_0 + x\beta_1$
+
+$y$: parasite similarity
+
+$x$: divergence time
+
+$\beta_0$: intercept (i.e. if no divergence time)
+
+$\beta_1$: effect of $x_1$, divergence time on parasite similarity
+
+The regression line predicts negative parasite similarity for very large divergence times.
+
+Also, (bonus): we would expect the intercept to be 1 if the species had spent 0 time diverging.
+
+## Exercise 3
+
+```{r transformed-parsim}
+parasites = parasites %>%
+  mutate(transformed_parsim = log(parsim/(1-parsim)))
+```
+
+```{r transformed-visualization}
+parasites %>%
+  ggplot(aes(x = divergence_time, y = transformed_parsim)) + 
+  geom_point() +
+  geom_smooth(method="lm") +
+  labs(title = "Transformed parasite similarity vs divergence time", x = "Divergence time", y = "Transformed parasite similarity") +
+  theme_minimal()
+```
+It looks the same, but now the Parasite similarity values are not nonsensical and could be transformed back to meaningful numbers.
+
+## Exercise 4
+```{r many-tidy-models}
+dt_model = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(transformed_parsim ~ divergence_time, data = parasites)
+
+dist_model = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(transformed_parsim ~ distance, data = parasites)
+
+BM_model = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(transformed_parsim ~ BMdiff, data = parasites)
+
+prec_model = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(transformed_parsim ~ precdiff, data = parasites)
+
+```
+
+Intercept represents estimated parasite similarity with 0 divergence time, geographic distance, body mass difference and precipitation difference respectively. In divergence time case the slopes show the parasite similarity if the two species were the same. (It's actually troublesome from a practical view that the intercept is not 1 in exercise 1)
+
+The second estimate is the effect of each explanatory variable on the outcome parasite similarity. Specifically, it describes how much moving one unit in explanatory variable space affects moving one unit in outcome space.
+
+It is not useful to compare estimates between models because the variables are on different scales.
+
+## Exercise 5
+```{r glance-around}
+glance(dt_model)
+glance(dist_model)
+glance(BM_model)
+glance(prec_model)
+```
+
+Divergence time is the strongest observed predictor of parasite similarity because it has the highest $R^2$.
+

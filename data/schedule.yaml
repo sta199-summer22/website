@@ -171,6 +171,7 @@ lessons:
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1"
     title: "Linear regression"
   - date: "Fri, Nov 05"
+    lab: "lab-09-intro-regression.html"
     title: "Lab 09"
 
   - week: "Week 12"
