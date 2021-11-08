@@ -1,5 +1,5 @@
 ---
-title: "Prepare: Week 11"
+title: "Prepare: Week 12"
 output: 
   html_document:
     css: "prepare.css"
@@ -24,7 +24,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Required
 
-- Check back for info soon
+- Watch [Models with multiple predictors pt2](https://www.youtube.com/watch?v=nJAYRnLPb10)
+
+- [Click here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#1) for slides
 
 
 
