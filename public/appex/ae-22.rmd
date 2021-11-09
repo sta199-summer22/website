@@ -1,5 +1,5 @@
 ---
-title: "AE 21: Regression pt. 2 and multiple regression"
+title: "AE 21: Multiple regression"
 author: "YOUR NAME GOES HERE"
 date: "`r Sys.Date()`"
 output:
@@ -16,11 +16,11 @@ library(scatterplot3d)
 # Bulletin
 
 - Due today
-  - [todo]
+  - Lab09 at 11:59p
 
 - Upcoming
-  - [todo]
-
+  - No lab this week, exam 02 released Friday
+  - Office hours during next Tuesday class time (11/16).
 
 # Learning goals
 
