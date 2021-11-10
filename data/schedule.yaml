@@ -195,9 +195,9 @@ lessons:
   - title: "Exam 02 due"
   - date: "Thu, Nov 18"
     prepare: "week-13.html"
-    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d06-logistic-reg/u4-d06-logistic-reg.html#1"
-    slides: "https://sta199-f21-001.netlify.app/slides/strings.html#1"
     title: "Logistic Regression"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d06-logistic-reg/u4-d06-logistic-reg.html#1"
+  - slides: "https://sta199-f21-001.netlify.app/slides/strings.html#1"
   - date: "Fri, Nov 19"
     title: "Project"
   
