@@ -28,8 +28,8 @@ library(viridis)
 By the end of today, you will be able to...
 
 - use and understand the $R^2$ statistic
-- conduct a hypothesis test about a particular $\beta_i$
 - model interactions between variables
+- conduct a hypothesis test about a particular $\beta_i$
 
 To begin, we'll work with a dataset on iris flowers contained with base `R`. This dataset comes from an old statisical analysis paper aptly titled *The use of multiple measurements in taxonomic problems*
 
@@ -87,10 +87,11 @@ To do this, we will setup three linear models:
 
 - Why is it useful to investigate each of these models?
 
-[answer here]
+We investigate each model so that we can compare their fit and figure out the best combination of sepal measurement predictors.
 
 - Before writing any code, how do you think $R^2$ will vary between models 1, 2 and 3? Why?
 
+Model 3 contains multiple predictors, so it should have the highest $R^2$.
 
 ### Exercise 4
 
@@ -98,17 +99,41 @@ To do this, we will setup three linear models:
 
 ```{r ex-r-squared}
 # code here
+fit1 = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Petal.Length ~ Sepal.Length, data = iris)
+
+fit2 = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Petal.Length ~ Sepal.Width, data = iris)
+
+fit3 = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Petal.Length ~ Sepal.Length + Sepal.Width, data = iris)
+
+glance(fit1)$r.squared
+
+glance(fit2)$r.squared
+
+glance(fit3)$r.squared
+
 ```
 
 - Do your results match your expectations? Which model offers the best fit? Why?
 
+The third model indeed has the highest $R^2$ since it has the most explanatory variables.
 [answer here]
 
 - Now compare 'adjusted' $R^2$ between models. Which model offers the best fit? Why? See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#21) for details on finding adjusted $R^2$.
 
 ```{r ex-adj-r-squared}
 # code here 
+glance(fit1)$adj.r.squared
+glance(fit2)$adj.r.squared
+glance(fit3)$adj.r.squared
 ```
+
+Model 3 continues to offer the best fit here.
 
 ## Hypothesis testing in a regression framework
 
@@ -120,7 +145,7 @@ $$
 \text{petal length} = \beta_0 + \beta_{\text{sepal width}} \cdot \text{sepal width} + \beta_{\text{sepal length}} \cdot \text{sepal length}
 $$
 
-Does our data offer sufficient evidence that `Sepal.Width` is actualy associated with (and therefore might help us predict) `Petal.Length`?
+Does our data offer sufficient evidence that `Sepal.Width` actually helps predict `Petal.Length`?
 
 ```{r plot-iris-2}
 iris %>%
@@ -129,11 +154,13 @@ iris %>%
   theme_minimal()
 ```
 
-Let's conduct a hypothesis test in a regression framework to find out.
+To answer this, let's conduct a hypothesis test in a regression framework to find out.
 
-If `Sepal.Width` does not help explain `Petal.Length`, $\beta_{\text{sepal width}} = 0$, this is our null hypothesis.
+If `Sepal.Width` does not predict predict `Petal.Length`, $\beta_{\text{sepal width}} = 0$, this is our null hypothesis.
 
 - What is the alternative?
+
+$H_A$: $\beta_{\text{sepal width}} \neq 0$
 
 For OLS regression, our test statistic is 
 
@@ -148,9 +175,16 @@ Fit the regression model and display the tidy output below.
 
 ```{r tidy-regression}
 # code here
+fit3 %>%
+  tidy()
 ```
 
 Is $\beta_{\text{sepal width}}$ significant?
+
+$\beta_{\text{sepal width}}$ is statistically significant with a p-value less than $5.8 \times 10^{-21}$, wow!
+
+Also we can calculate this by hand above using `pt`.
+
 
 ## Interactions
 
@@ -169,8 +203,25 @@ In the plot above, it appears the relationship between sepal length and petal le
 
 ```{r interaction-effect}
 # code here
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Petal.Length ~ Sepal.Length * Species, data = iris) %>%
+  tidy()
 ```
 
 - Write the fitted linear model below (using $x$, $y$ notation) but replacing $\beta$s with their fitted values.
 
-[write here]
+$$
+y = 0.8 + 0.1 \cdot x_1 - 0.6 x_2 - .2 x_3 +.55 x_1 x_2  + .61 x_1 x_3
+$$
+
+$y$: petal length
+
+$x_1$: sepal length
+
+$x_2$: is versicolor species? 1 if yes,  0 if not.
+
+$x_3$: is virginica species? 1 if yes,  0 if not.
+
+
+

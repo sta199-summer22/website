@@ -11,6 +11,7 @@ output:
 library(tidyverse)
 library(tidymodels)
 library(scatterplot3d)
+library(viridis)
 ```
 
 # Bulletin
@@ -27,8 +28,8 @@ library(scatterplot3d)
 By the end of today, you will be able to...
 
 - use and understand the $R^2$ statistic
-- model interactions between variables
 - conduct a hypothesis test about a particular $\beta_i$
+- model interactions between variables
 
 To begin, we'll work with a dataset on iris flowers contained with base `R`. This dataset comes from an old statisical analysis paper aptly titled *The use of multiple measurements in taxonomic problems*
 
@@ -105,16 +106,71 @@ To do this, we will setup three linear models:
 
 - Now compare 'adjusted' $R^2$ between models. Which model offers the best fit? Why? See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#21) for details on finding adjusted $R^2$.
 
-```{r ex-r-squared}
+```{r ex-adj-r-squared}
 # code here 
 ```
 
+## Hypothesis testing in a regression framework
 
-## Hypothesis testing?
+### Exercise 5
 
-```{r}
+Returning to previous joint model,
+
+$$
+\text{petal length} = \beta_0 + \beta_{\text{sepal width}} \cdot \text{sepal width} + \beta_{\text{sepal length}} \cdot \text{sepal length}
+$$
+
+Does our data offer sufficient evidence that `Sepal.Width` is actualy associated with (and therefore might help us predict) `Petal.Length`?
+
+```{r plot-iris-2}
 iris %>%
-  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
-  geom_point()
+  ggplot(aes(x = Sepal.Width, y = Petal.Length)) + 
+  geom_point() +
+  theme_minimal()
 ```
 
+Let's conduct a hypothesis test in a regression framework to find out.
+
+If `Sepal.Width` does not help explain `Petal.Length`, $\beta_{\text{sepal width}} = 0$, this is our null hypothesis.
+
+- What is the alternative?
+
+For OLS regression, our test statistic is 
+
+$$
+T = \frac{\hat{\beta} - 0}{\text{SE}_{\hat{\beta}}} \sim t_{n - 2}
+$$
+We want to see if our observed statistic, $\hat{T}$, falls far in the tail under the null.
+
+`R` takes care of much of this behind the scenes with the tidy output and reports a p-value for each $\beta$ by default.
+
+Fit the regression model and display the tidy output below.
+
+```{r tidy-regression}
+# code here
+```
+
+Is $\beta_{\text{sepal width}}$ significant?
+
+## Interactions
+
+### Exercise 6
+
+```{r plot-iris-1}
+iris %>%
+  ggplot(aes(x = Sepal.Length, y = Petal.Length, color = Species)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+In the plot above, it appears the relationship between sepal length and petal length, i.e. the slope of `Petal.Length ~ Sepal.Length` varies drastically from one species of iris to another.
+
+- Fit a model with predictors `Sepal.Length`, `Species` and an interaction effect between `Sepal.Length` and `Species`. See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#23) for example from the prep.
+
+```{r interaction-effect}
+# code here
+```
+
+- Write the fitted linear model below (using $x$, $y$ notation) but replacing $\beta$s with their fitted values.
+
+[write here]
