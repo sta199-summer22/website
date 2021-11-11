@@ -183,6 +183,7 @@ lessons:
   - date: "Thu, Nov 11"
     prepare: "week-12.html"
     title: "Linear regression hypothesis testing"
+    ae: "ae-23.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#1"
   - date: "Fri, Nov 12"
     title: "NO LAB: Work on Exam 02"

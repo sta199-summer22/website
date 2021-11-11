@@ -16,11 +16,10 @@ library(viridis)
 
 # Bulletin
 
-- Due today
-  - [todo]
-
 - Upcoming
-  - [todo]
+  - Exam 02 releases tomorrow, Nov 12. Due Tues, Nov 16
+  - No lecture Tuesday, online office hours instead at the usual link
+  - Draft report due in your GitHub project repo next Thursday 
 
 
 # Learning goals
@@ -120,7 +119,7 @@ $$
 \text{petal length} = \beta_0 + \beta_{\text{sepal width}} \cdot \text{sepal width} + \beta_{\text{sepal length}} \cdot \text{sepal length}
 $$
 
-Does our data offer sufficient evidence that `Sepal.Width` is actualy associated with (and therefore might help us predict) `Petal.Length`?
+Does our data offer sufficient evidence that `Sepal.Width` is actually associated with (and therefore might help us predict) `Petal.Length`?
 
 ```{r plot-iris-2}
 iris %>%

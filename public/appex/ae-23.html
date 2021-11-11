@@ -11,7 +11,7 @@
 
 <meta name="author" content="YOUR NAME GOES HERE" />
 
-<meta name="date" content="2021-11-09" />
+<meta name="date" content="2021-11-11" />
 
 <title>AE 22: Multiple regression pt 2</title>
 
@@ -169,7 +169,7 @@ pre code {
 
 <h1 class="title toc-ignore">AE 22: Multiple regression pt 2</h1>
 <h4 class="author">YOUR NAME GOES HERE</h4>
-<h4 class="date">2021-11-09</h4>
+<h4 class="date">2021-11-11</h4>
 
 </div>
 
@@ -181,13 +181,11 @@ library(viridis)</code></pre>
 <div id="bulletin" class="section level1">
 <h1>Bulletin</h1>
 <ul>
-<li>Due today
-<ul>
-<li>[todo]</li>
-</ul></li>
 <li>Upcoming
 <ul>
-<li>[todo]</li>
+<li>Exam 02 releases tomorrow, Nov 12. Due Tues, Nov 16</li>
+<li>No lecture Tuesday, online office hours instead at the usual link</li>
+<li>Draft report due in your GitHub project repo next Thursday</li>
 </ul></li>
 </ul>
 </div>
@@ -281,7 +279,7 @@ R^2 = 1 - \frac{\text{sum of squared error}}{\text{sum of square distance from m
 <p><span class="math display">\[
 \text{petal length} = \beta_0 + \beta_{\text{sepal width}} \cdot \text{sepal width} + \beta_{\text{sepal length}} \cdot \text{sepal length}
 \]</span></p>
-<p>Does our data offer sufficient evidence that <code>Sepal.Width</code> is actualy associated with (and therefore might help us predict) <code>Petal.Length</code>?</p>
+<p>Does our data offer sufficient evidence that <code>Sepal.Width</code> is actually associated with (and therefore might help us predict) <code>Petal.Length</code>?</p>
 <pre class="r"><code>iris %&gt;%
   ggplot(aes(x = Sepal.Width, y = Petal.Length)) + 
   geom_point() +
