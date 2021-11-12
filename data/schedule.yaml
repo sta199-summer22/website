@@ -187,7 +187,7 @@ lessons:
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#1"
   - date: "Fri, Nov 12"
     title: "NO LAB: Work on Exam 02"
-  - title: "Exam 02 released"
+    exam: "exam02_instructions.html"
  
   - week: "Week 13"
     date: "Tue, Nov 16"

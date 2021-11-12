@@ -1,8 +1,9 @@
 ---
-title: "AE 22: Multiple regression pt 2"
+title: 'AE 22: Multiple regression pt 2'
 author: "YOUR NAME GOES HERE"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -13,14 +14,6 @@ library(tidymodels)
 library(scatterplot3d)
 library(viridis)
 ```
-
-# Bulletin
-
-- Due today
-  - [todo]
-
-- Upcoming
-  - [todo]
 
 
 # Learning goals
@@ -122,7 +115,6 @@ glance(fit3)$r.squared
 - Do your results match your expectations? Which model offers the best fit? Why?
 
 The third model indeed has the highest $R^2$ since it has the most explanatory variables.
-[answer here]
 
 - Now compare 'adjusted' $R^2$ between models. Which model offers the best fit? Why? See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#21) for details on finding adjusted $R^2$.
 
