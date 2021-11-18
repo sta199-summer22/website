@@ -1,5 +1,5 @@
 ---
-title: "AE 23: Logistic regression"
+title: "AE 24: Logistic regression"
 author: "YOUR NAME GOES HERE"
 date: "`r Sys.Date()`"
 output:
@@ -55,8 +55,14 @@ Start by examining 1 predictor.
 - Discuss your visualization with your neighbor. Is this a good model? Why or why not?
 
 ```{r bad-model}
-# code here
+spam %>%
+  ggplot(aes(x = george, y = type)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", color = 'steelblue', se = F)
 ```
+
+The regression predicts outcome values that extend over the entire real line, but our outcome is simply 0 (non-spam) or 1 (spam).
+
 
 
 # Logistic regression
@@ -93,10 +99,12 @@ The first will be the word `you` and the second will be `capitalTotal` (the tota
 Create a visualization with `you` on the x-axis and `capitalTotal` on the y-axis. Color data points by whether or not they are spam.
 
 ```{r two-explanatory-plot}
-# code here
+spam %>%
+  ggplot(aes(x = you, y = capitalTotal, color = as.factor(type))) + 
+  geom_point(alpha = 0.3) +
+  scale_colour_manual(values = c("orange", "steelblue")) +
+  theme_minimal()
 ```
-
-Let's fit the model!
 ```{r logistic-fit-1}
 fit_1 = logistic_reg() %>%
   set_engine("glm") %>%
@@ -109,6 +117,9 @@ fit_1 %>%
 
 - What is different in the code above from previous linear models we fit? 
 
+`logistic_reg()`, engine `glm`, family `binomial` (really this family binomial bit is optional)
+
+
 ## Exercise 4 
 
 - What is the probability the email is spam if the frequency of `you` is 5% in the email and there are 2500 capital letters. Use the model equation above.
@@ -118,6 +129,11 @@ fit_1 %>%
 newdata = data.frame(you = 5, capitalTotal = 2500)
 
 # code here
+linearPart =  -1.502575519 + (.361040108 * 5) + (0.001732204 * 2500)
+p = 1 / (1 + exp(-1*linearPart))
+p
+manualLogOdds = log(p / (1 - p))
+manualLogOdds
 
 # check work
 checkLogOdds = predict(fit_1$fit, newdata)
@@ -190,4 +206,14 @@ inv.logit(logOdds)
 - Do you believe the predicted odds of the email being spam? Why or why not?
 
 - What is the **probability** the test email is spam?
+
+
+solutions
+
+- no it also counts "your"
+
+- Yes, the email seems to be spam and the odds are $e^{\text{log-odds}} = 38:1$
+
+- the probability is 0.97 or 97% probability.
+
 
