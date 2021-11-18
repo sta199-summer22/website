@@ -1,0 +1,16 @@
+---
+title: 'Prepare: Week 14'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## November 23
+
+- No prepare required!
+
+## November 25
+
+- Happy Thanksgiving!

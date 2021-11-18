@@ -206,6 +206,7 @@ lessons:
   
   - week: "Week 14"
     date: "Tue, Nov 23"
+    prepare: "week-14.html"
     title: "Special topics"
   - date: "Thu, Nov 25"
     title: "NO LECTURE: Thanksgiving break"

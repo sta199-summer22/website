@@ -230,7 +230,7 @@ Lab on November 19, 2021 will be devoted to allowing your group to write your pe
 
 ## Presentation Slides
 
-In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted to Gradescope. The slides are due on Tuesday, November 17.
+In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted to Gradescope. The slides are due on Wednesday, December 8.
 
 The slide deck should have no more than 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the slide deck.
 

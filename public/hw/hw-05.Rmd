@@ -1,6 +1,6 @@
 ---
 title: 'HW 05: Paint a plot, pick a package'
-subtitle: 'due November 25 11:59 PM '
+subtitle: 'due Tuesday November 30 11:59 PM '
 output:
   tufte::tufte_html:
     tufte_variant: envisioned
