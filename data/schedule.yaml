@@ -202,6 +202,7 @@ lessons:
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d06-logistic-reg/u4-d06-logistic-reg.html#1"
   - slides: "https://sta199-f21-001.netlify.app/slides/strings.html#1"
   - date: "Fri, Nov 19"
+    lab: "peer-review.html"
     title: "Project"
   
   - week: "Week 14"
