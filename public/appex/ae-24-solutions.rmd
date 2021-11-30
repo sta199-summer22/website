@@ -1,8 +1,9 @@
 ---
-title: "AE 24: Logistic regression"
-author: "YOUR NAME GOES HERE"
+title: 'AE 23: Logistic regression'
+author: "Nico Robin"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---

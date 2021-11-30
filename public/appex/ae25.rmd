@@ -1,0 +1,26 @@
+---
+title: "AE 25: Apps with Shiny"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+# Bulletin
+
+- Due today
+  - homework 05
+  
+- Upcoming
+  - Statistics Experience due Friday
+  - Final Report due Friday (gradescope)
+  - Slides (gradescope) and Video (warpwire sakai) may be turned in until Wednesday December 8
+  - Watch project presentations and post questions (sakai) -- announcement next week
+  
+- Reminder
+  - Project workday this Friday in lab
+  - Fill out evaluations (**Extra credit** if > 90% total evaluations filled out)
+  - (optional) make up quiz Thursday
+  - complete application exercises
+
