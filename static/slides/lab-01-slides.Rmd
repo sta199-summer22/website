@@ -1,6 +1,6 @@
 ---
 title: "Welcome to STA 199 Labs!"
-date: "08.26.2021"
+date: "January 11, 2022"
 output:
   xaringan::moon_reader:
     css: ["xaringan-themer.css", "slides.css"]
@@ -33,9 +33,9 @@ library(rvest)
 
 - Work on the lab assignment (individual today, but generally done in teams)
 
-- Lab instructions posted in the [schedule](https://sta199-fa21-003.netlify.app/schedule/) on the course website.
+- Lab instructions posted in the [schedule](https://sta199-sp22-003.netlify.app/schedule/) on the course website.
 
-- Start each lab by finding your assignment repo in the [GitHub course organization](https://github.com/sta199-fa21-003)
+- Start each lab by finding your assignment repo in the [GitHub course organization](https://github.com/sta199-s22)
   - This is where you will find the R Markdown document and data to get started
   
 ---
@@ -50,9 +50,9 @@ library(rvest)
 
 ## Check: Do you have the lab-01 repo?
 
-- Go to the GitHub course organization: https://github.com/sta199-fa21-003
+- Go to the GitHub course organization: https://github.com/sta199-s22
 
-- You should see a repo with the prefix **lab-01-**
+- You should see a repo with the prefix **lab01-**
 
 - If you do not have this repo, please let your TAs know! 
 
