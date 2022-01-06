@@ -10,7 +10,7 @@
 [[main]]
     name = "Office hours"
  #    pre = "<i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>"
-    url = "https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing"
+    url = "https://docs.google.com/spreadsheets/d/1fL9oSymmDKIOsW9_8I8NTgAutjiE0HnO6VkAMw2FBtE/edit?usp=sharing"
     weight = 15
 
 [[main]]
@@ -53,13 +53,13 @@
     weight = 70
     
 [[main]]
-    url = "https://github.com/sta199-f21"
+    url = "https://github.com/sta199-s22"
     # pre = "<i class='fab fa-github fa-lg'></i>"
     name  = "<i class='fab fa-github fa-lg'></i>"
     weight = 80
     
 [[main]]
-    url = "https://sta199-001-f21.slack.com"
+    url = "https://sta199-003-sp22.slack.com"
     name = "<i class='fab fa-slack fa-lg'></i>"
     #name  = "<i class=\"ai ai-piazza ai-lg\"></i>"
     weight = 90

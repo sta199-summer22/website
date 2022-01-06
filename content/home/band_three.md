@@ -24,9 +24,11 @@ title: Teaching team and office hours
 |            |                     |     |
 |------------|---------------------|-----|
 | Instructor | [Prof. Alexander Fisher](mailto:alexander.fisher@duke.edu) | Tue, Thu 5-6p |
-| TAs         | [Christine Shen](mailto:yueming.shen@duke.edu) | Mon  5-7p |
-|       | [Zoey Liu](mailto:zheyuan.liu@duke.edu)     | Wed 12-1p, Thu 2-3p |
-|         | [Michael Sarkis](mailto:michael.sarkis@duke.edu)         | Tue, Thu 12-1p |
-|          | [Blossom Mojekwu](mailto:blossom.mojekwu@duke.edu)    | Tue, Thu 1-2p |
-|          | [Sara Mehta](mailto:sara.mehta@duke.edu)       | Mon 9-10a, Thu 9:30-10:30a |
-|          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | Wed 6-8p |
+| TAs         | [Steven Winter](mailto:steven.winter@duke.edu) | TBD |
+|       | [Camilla Yu](mailto:yue.yu652@duke.edu)     | TBD |
+|         | [Rob Kravec](mailto:robert.kravec@duke.edu)         | TBD |
+|          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | TBD |
+|          | [Shannon	Houser](mailto:shannon.houser@duke.edu)     | TBD |
+|          | [Evan Dragich](mailto:evan.dragich@duke.edu)       | TBD |
+|          | [Margaret Reed](mailto:margaret.reed@duke.edu )       | TBD |
+|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | TBD |

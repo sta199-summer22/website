@@ -15,7 +15,7 @@
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
       <guid>https://sta199-fa20-002.netlify.app/home/band_two/</guid>
-      <description> .column { width: 100%; } table { width: 100%; font-size: 20px; font-weight: 400; }     Lecture All Students Tuesday and Thursday 3:30 - 4:45pm   Labs Lab 1 Friday 10:15 - 11:30am    Lab 2 Friday 12:00 - 1:15pm    Lab 3 Friday 1:45 - 3:00pm     </description>
+      <description> .column { width: 100%; } table { width: 100%; font-size: 20px; font-weight: 400; }     Lecture All Students Wednesday and Friday 10:15 - 11:30am   Labs Lab 7 Tuesday 1:45 - 3:00pm    Lab 8 Tuesday 3:30 - 4:45pm    Lab 9 Tuesday 5:15 - 6:30pm     </description>
       <content>&lt;style&gt;
   .column {
   width: 100%;
@@ -34,22 +34,22 @@
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Lecture&lt;/td&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;All Students&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Tuesday and Thursday 3:30 - 4:45pm&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Wednesday and Friday 10:15 - 11:30am&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Labs&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 1&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Friday 10:15 - 11:30am&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 7&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Tuesday 1:45 - 3:00pm&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 2&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Friday 12:00 - 1:15pm&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 8&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Tuesday 3:30 - 4:45pm&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 3&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Friday 1:45 - 3:00pm&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Lab 9&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Tuesday 5:15 - 6:30pm&lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -160,7 +160,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
       
       <guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
       <description>Click here for an updated spreadsheet of office hours with locations and links.
- .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Tue, Thu 5-6p   TAs Christine Shen Mon 5-7p    Zoey Liu Wed 12-1p, Thu 2-3p    Michael Sarkis Tue, Thu 12-1p    Blossom Mojekwu Tue, Thu 1-2p    Sara Mehta Mon 9-10a, Thu 9:30-10:30a    Mariana Izon Wed 6-8p    </description>
+ .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Tue, Thu 5-6p   TAs Steven Winter TBD    Camilla Yu TBD    Rob Kravec TBD    Mariana Izon TBD    Shannon	Houser TBD    Evan Dragich TBD    Margaret Reed TBD    Shirley Mathur TBD    </description>
       <content>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing&#34;&gt;Click here&lt;/a&gt; for an updated spreadsheet of office hours with locations and links.&lt;/p&gt;
 &lt;style&gt;
   .column {
@@ -193,33 +193,43 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;TAs&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:yueming.shen@duke.edu&#34;&gt;Christine Shen&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Mon  5-7p&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:steven.winter@duke.edu&#34;&gt;Steven Winter&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:zheyuan.liu@duke.edu&#34;&gt;Zoey Liu&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Wed 12-1p, Thu 2-3p&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:yue.yu652@duke.edu&#34;&gt;Camilla Yu&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:michael.sarkis@duke.edu&#34;&gt;Michael Sarkis&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Tue, Thu 12-1p&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:blossom.mojekwu@duke.edu&#34;&gt;Blossom Mojekwu&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Tue, Thu 1-2p&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:sara.mehta@duke.edu&#34;&gt;Sara Mehta&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Mon 9-10a, Thu 9:30-10:30a&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:robert.kravec@duke.edu&#34;&gt;Rob Kravec&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:mariana.izon@duke.edu&#34;&gt;Mariana Izon&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Wed 6-8p&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:shannon.houser@duke.edu&#34;&gt;Shannon	Houser&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:evan.dragich@duke.edu&#34;&gt;Evan Dragich&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:margaret.reed@duke.edu&#34;&gt;Margaret Reed&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:shirley.mathur@duke.edu&#34;&gt;Shirley Mathur&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;TBD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
