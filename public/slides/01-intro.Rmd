@@ -325,9 +325,13 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 ---
 
-# Let's look at some data!
+# Let's look an example!
 
-- Let's take a look at the [UN Votes](https://sta199-fa21-003.netlify.app/appex/appex01-unvotes.html) analysis.
+- Let's look at a [sample roster data exercise](https://sta199-sp22-003.netlify.app/appex/ae01.html).
+
+- After setting up Git in RStudio (either today or in lab next week) you can clone the repo "ae01" here: [https://github.com/sta199-s22](https://github.com/sta199-s22)
+
+- Note: This application exercise does *NOT* need to be turned in!
 
 ```{r echo = F}
 countdown::countdown(minutes = 5, seconds = 0)

@@ -1,17 +1,26 @@
 ---
-title: "AE 01: Welcome"
-output: pdf_document
+title: 'AE 01: Welcome'
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r load-libraries}
+# Welcome + course info
+
+Click [here](https://sta199-sp22-003.netlify.app/slides/01-intro.html#1) for slides!
+
+Load libraries:
+```{r load-libraries, message=F}
 library(tidyverse)
 ```
 
-```{r load-data}
+Load data:
+```{r load-data, message=F}
 roster = read_csv("data/sample_roster.csv")
 form_output = read_csv("data/githubUsernames.csv")
 ```
 
+Join:
 ```{r join-frames}
 roster %>% 
   left_join(form_output, by = "net-id-email")
