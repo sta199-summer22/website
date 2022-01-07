@@ -27,7 +27,7 @@ library(pdftools)
 ## Meet the teaching team: Instructor 
 
 
-### Prof. Alexander Fisher
+### Alexander Fisher
 
 .pull-left[
 ```{r, echo=FALSE,out.width = '75%'} 
@@ -50,17 +50,21 @@ knitr::include_graphics("img/01/basic_tree_xar.png")
 
 ## Meet the teaching team: TAs
 
-- Christine Shen
+- Steven	Winter
 
-- Zoey Liu
+- Camilla Yu
 
-- Michael Sarkis
+- Robert	Kravec
 
-- Blossom Mojekwu
+- Shirley Mathur
 
-- Sara Mehta
+- Margaret Reed
 
-- Mariana Izon
+- Mariana	Izon
+
+- Shannon	Houser
+
+- Evan Dragich
 
 ---
 
@@ -74,9 +78,9 @@ class: middle, center
 
 --
 
-- Data science is using data in a principled way to gain understanding, insight, and knowledge.
+- Data science is using data to understand the world.
 
-- We're going to learn to do this in a `tidy` way -- more on that later!
+- We're going to learn to do this in a principled and `tidy` way -- more on that later!
 
 - This is a course on introduction to data science, with an emphasis on statistical thinking.
 
@@ -90,7 +94,7 @@ A - None.
 <br>
 
 **Q - Is this an intro stat course?**
-A - While statistics $\neq$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics. However this course is not your typical high school statistics course.
+A - Not a traditional one. While statistics $\neq$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics.
 
 <br>
 
@@ -105,9 +109,9 @@ A - Yes. We will use the computing language R.
 
 - Gain experience in data wrangling, exploratory data analysis, predictive modeling, and data visualization
 
-- Work on problems and case studies inspired by and based on *real-world questions* and data
+- develop your own question(s) about a data set of your choosing and use statistical techniques to answer the question(s)
 
-- Learn to effectively communicate results through written assignments and final project presentation
+- effectively communicate results through written assignments and final project presentation
 
 ---
 
@@ -117,8 +121,6 @@ A - Yes. We will use the computing language R.
 - Fundamentals of `R`
 
 - Data visualization and wrangling with `ggplot2` and `dplyr` from the `tidyverse`
-
-- Web scraping
 
 - Web based applications with `RShiny`
 
@@ -148,7 +150,7 @@ A - Yes. We will use the computing language R.
 
 - [Tracking their life via Fitbit](https://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/)
 
-- [US Spread of COVID-19 maps and analytics](https://www.sharedgeo.org/COVID-19/)
+- [Infectious disease tracker](https://nextstrain.org)
 
 ---
 ## Examples continued
@@ -174,17 +176,17 @@ class: middle, center
 
 ## Course Toolkit
 
-**Course Website:** [sta199-f21-001.netlify.app](https://sta199-f21-001.netlify.app/)
+**Course Website:** [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
   - Central hub for the course!
   - Quick tour of the website
 
 **Sakai** [sakai.duke.edu](https://sakai.duke.edu)
   - Gradebook, quizzes
   
-**Slack**: [https://sta199-001-f21.slack.com/](https://sta199-001-f21.slack.com/)
+**Slack**: [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
   - Questions and general discussion
 
-**GitHub:** [https://github.com/sta199-f21](https://github.com/sta199-f21)
+**GitHub:** [https://github.com/sta199-s22](https://github.com/sta199-s22)
   - Distribute & work on assignments -- more on this later!
 
 ---
@@ -219,8 +221,8 @@ class: middle, center
 
 - Attend .vocab[Office hours] to meet with a member of the teaching team.
 
-  - 10a-12p this Friday via zoom
-  - Full office hours begin the week of August 30
+  - Find office hour sheet on website: [sta199-sp22-003.netlify.app](https://sta199-sp22-003.netlify.app/)
+  - Full office hours begin next week
 
 --
 
@@ -304,7 +306,7 @@ class: middle, center
 
 Go to https://github.com/, and create an account (unless you already have one). 
 
-After you create your account, go to [https://forms.gle/t4Z6jadPmyZhHDvq6](https://forms.gle/t4Z6jadPmyZhHDvq6) and enter your Duke email address (NETID@duke.edu) and GitHub username. 
+After you create your account, go to [https://forms.gle/iYLiid39R3ujMbmWA](https://forms.gle/iYLiid39R3ujMbmWA) and enter your Duke email address (NETID@duke.edu) and GitHub username. 
 
 <small>
 Some tips from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
@@ -333,21 +335,19 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 ---
 
-## For Thursday
+## For Next Tuesday
 
-- We'll start talking about the computing toolkit
-
-- Watch videos for [Prepare: Week 01](https://sta199-f21-001.netlify.app/prepare/week-01.html)
+- Watch videos for [Prepare: Week 02](https://sta199-sp22-003.netlify.app//prepare/week-02-sp22.html)
 
 -  Reserve an **STA198-199 RStudio container**. 
   - Go to https://vm-manage.oit.duke.edu/containers
   - Click **Reserve Container** for the STA198-199 container
 
-- Submit your [GitHub username](https://forms.gle/t4Z6jadPmyZhHDvq6)
+- Submit your [GitHub username](https://forms.gle/iYLiid39R3ujMbmWA)
 
 - Bring laptop/tablet/Chromebook to class 
 
-- Join slack
+- Join slack [https://sta199-003-sp22.slack.com/](https://sta199-003-sp22.slack.com/)
 
 
 

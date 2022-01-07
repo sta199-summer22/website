@@ -1,0 +1,20 @@
+---
+title: "AE 01: Welcome"
+output: pdf_document
+---
+
+```{r load-libraries}
+library(tidyverse)
+```
+
+```{r load-data}
+roster = read_csv("data/sample_roster.csv")
+form_output = read_csv("data/githubUsernames.csv")
+```
+
+```{r join-frames}
+roster %>% 
+  left_join(form_output, by = "net-id-email")
+```
+
+
