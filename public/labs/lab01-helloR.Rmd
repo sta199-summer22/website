@@ -1,6 +1,6 @@
 ---
 title: "Lab #01: Hello R!"
-subtitle: "due Tuesday August 31 at 11:59 PM "
+subtitle: "due Monday January 17 at 11:59 PM "
 output: 
   tufte::tufte_html:
    #css: "./sta199-labs.css"
@@ -14,12 +14,12 @@ editor_options:
     wrap: sentence
 ---
 
-This lab will go through the same workflow we demonstrated in class.
-We will continue our work with R / RStudio and git / GitHub.
+This lab will go through the same workflow as class with R / RStudio and git / GitHub.
 
 Remember, git is a version control system (like "Track Changes" from Microsoft Word but more powerful) and GitHub is the home for your Git-based projects on the internet (like DropBox but much better).
 
 In future labs, you will be encouraged to explore independently.
+
 But first, you need to build basic fluency in R.
 
 **Your lab TA will lead you through the Getting Started section**
@@ -28,28 +28,28 @@ But first, you need to build basic fluency in R.
 
 ## Configuring SSH and GitHub
 
-For a video tutorial [click here](https://duke.zoom.us/rec/play/aa379oLE9dM5yX9OUGGiXaVg_t_QlQGSFgAYYJ8iUxgF8kuIXvPKRIBJ-scv6cN66-RU3bxkBoaHLbHR.KFw1ngJk__NeTr0_?continueMode=true&_x_zm_rtaid=vdVKVhosQNyjyeIbXQdWpw.1629405700233.b0a8bd562b29781bbbc03b3885637bc0&_x_zm_rhtaid=321)
-
 Until recently, you could use a user name and password to log into GitHub.
 GitHub has deprecated using a password in that way.
 Instead, we will be authenticating GitHub using public/private based keys.
-This is a short overview for how to do authenticate in this way.
+This is a short overview for how to authenticate in this way.
 
 1.  First, type `credentials::ssh_setup_github()` into your console.
-2.  Second, R will ask "No SSH key found. Generate one now?" You should click 1 for yes.
-3.  Third, you will generate a key. It will begin with "ssh-rsa...." R will then ask "Would you like to open a browser now?" You should click 1 for yes.
-4.  Fourth, you may be asked to provide your username and password to log into GitHub. This would be the ones associated with your account that you set up. After entering this information, you should paste the key in and give it a name.
+2.  R will ask "No SSH key found. Generate one now?" You should click 1 for yes.
+3.  You will generate a key. It will begin with "ssh-rsa...." R will then ask "Would you like to open a browser now?" You should click 1 for yes.
+4.  You may be asked to provide your username and password to log into GitHub. This would be the ones associated with your account that you set up. After entering this information, you should paste the key in and give it a name.
 
 ## Clone the repo & start new RStudio project
 
--   Go to the STA199-001 organization on GitHub [link here](https://github.com/sta199-f21). Click on the repo with the prefix **lab01**. It contains the starter documents you need to complete the lab.
+- Click to go to the [course GitHub organization page](https://github.com/sta199-s22).
+
+- Select the repository entitled "lab01-GitHubUsername"
 
 ```{r clone-repo-link, echo = FALSE, fig.width = 5}
 ```
 
 -   Click on the green **CODE** button, select **Use SSH** (this might already be selected by default, and if it is, you'll see the text **Clone with SSH**). Click on the clipboard icon to copy the repo URL.
 
-![How to Clone using SSH in GitHub](GitHub%20Example.png)
+![How to Clone using SSH in GitHub](img/GitHub1.png)
 
 -   Go to <https://vm-manage.oit.duke.edu/containers> and login with your Duke NetID and Password.
 
@@ -60,7 +60,8 @@ This is a short overview for how to do authenticate in this way.
 
 -   Copy and paste the URL of your assignment repo into the dialog box *Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
 
-![Version Control and Cloning Repo](GitHub%20Example2.png)
+![Version Control and Cloning Repo](img/Clone1.png)
+
 
 -   Click *Create Project*, and the files from your GitHub repo will be displayed in the *Files* pane in RStudio.
 
@@ -69,7 +70,7 @@ This is a short overview for how to do authenticate in this way.
 ## Possible Error Message
 
 If you get an error message that begins with *WARNING: UNPROTECTED PRIVATE KEY FILE!* then this can be fixed by clicking on "Terminal" (the tab next to the console) and pasting in `chmod 400 ~/.ssh/id_rsa` and hitting enter.
-Then, try to create a projet again and it should work.
+Then, try to create a project again and it should work.
 
 ## Configure git
 
@@ -77,26 +78,28 @@ There is one more piece of housekeeping we need to take care of before we get st
 We need to configure git so that RStudio can communicate with GitHub.
 This requires two pieces of information: your name and email address.
 
-To do so, you will use the `use_git_config` function from the `usethis` package.
-Type the following lines of code in the **console** in RStudio filling in your name and the email address associated with your GitHub account.
+To do so, you will use the **terminal**, which you can find right next to the console.
 
 ```{r use-this, eval=FALSE}
-library(usethis)
-use_git_config(user.name = "GitHub username", user.email="your email")
+git config —global user.name 'username'
+git config --global user.email ‘useremail’
 ```
 
 For example, mine would be
 
 ```{r name, eval=FALSE}
-library(usethis)
-use_git_config(user.name="athos00", user.email="alexander.fisher@duke.edu")
+git config —global user.name 'athos00'
+git config --global user.email ‘alexander.fisher@duke.edu’
 ```
+
+- Note: you will need to enter the quotes manually around the email (copy and pasting won't work)
 
 ## R and R Studio
 
-![These are the general components of a R Markdown File](R%20Example%201.png)
+![These are the general components of a R Markdown File](img/Rstudio1.png)
 
-![These are the general components of a R Project](VisualEditor.png)
+
+![These are the general components of a R Project](img/Rstudio2.png)
 
 ## Warm up
 
@@ -118,7 +121,7 @@ Examine the knitted document.
 Now, go to the Git pane in your RStudio instance.
 This will be in the top right hand corner in a separate tab.
 
-If you have made changes to your Rmd file, you should see it listed here.
+If you have made changes to your Rmd file (and saved those changes), you should see it listed here.
 Click on it to select it in this list and then click on **Diff**.
 This shows you the *diff*erence between the last committed state of the document and its current state including changes.
 You should see deletions in red and additions in green.
@@ -132,7 +135,7 @@ Note that every commit needs to have a commit message associated with it.
 You don't have to commit after every change, as this would get quite tedious.
 You should commit states that are *meaningful to you* for inspection, comparison, or restoration.
 In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use.
-As the semester progresses we will let you make these decisions.
+As the semester progresses, you will make these decisions on your own.
 
 ## Pushing changes
 
@@ -234,7 +237,7 @@ dino_data %>%
 Now pause, knit and <b>commit changes</b> with the commit message "added answer for exercise 2" Push these changes when you're done.
 :::
 
-3.  Plot `y` vs. `x` for the `circle` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?
+3.  Plot `y` vs. `x` for the `star` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?
 
 ::: {.commit}
 Now pause, knit, commit changes with the commit message "Added answer for Ex 3", and push.
@@ -277,7 +280,7 @@ For Exercises 2 and 3, we want square figures.
 We can use `fig.height` and `fig.width` in the options to adjust the height and width of figures.
 Modify the chunks in Exercises 2 and 3 to be as follows:
 
-```` ```{r ex2-chunk-name, fig.height = 3, fig.width = 3} ````
+```` ```{r ex2-chunk-name, fig.height = 4, fig.width = 4} ````
 
 ```{r, eval = FALSE}
 Your code that created the figure
