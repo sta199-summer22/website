@@ -23,12 +23,12 @@ title: Teaching team and office hours
   
 |            |                     |     |
 |------------|---------------------|-----|
-| Instructor | [Prof. Alexander Fisher](mailto:alexander.fisher@duke.edu) | Tue, Thu 5-6p |
-| TAs         | [Steven Winter](mailto:steven.winter@duke.edu) | TBD |
-|       | [Camilla Yu](mailto:yue.yu652@duke.edu)     | TBD |
-|         | [Rob Kravec](mailto:robert.kravec@duke.edu)         | TBD |
+| Instructor | [Prof. Alexander Fisher](mailto:alexander.fisher@duke.edu) | Mon, Thu 4-5p |
+| TAs         | [Steven Winter](mailto:steven.winter@duke.edu) | Fri 9-11a |
+|       | [Camilla Yu](mailto:yue.yu652@duke.edu)     | Tue 4-6p |
+|         | [Rob Kravec](mailto:robert.kravec@duke.edu)         | Mon 5-7p |
 |          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | TBD |
-|          | [Shannon	Houser](mailto:shannon.houser@duke.edu)     | TBD |
-|          | [Evan Dragich](mailto:evan.dragich@duke.edu)       | TBD |
-|          | [Margaret Reed](mailto:margaret.reed@duke.edu )       | TBD |
-|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | TBD |
+|          | [Shannon	Houser](mailto:shannon.houser@duke.edu)     | Mon, Wed 12-1p |
+|          | [Evan Dragich](mailto:evan.dragich@duke.edu)       | Thu 10-12p |
+|          | [Margaret Reed](mailto:margaret.reed@duke.edu )       | Wed 2-4p |
+|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | Tue 6-8p |
