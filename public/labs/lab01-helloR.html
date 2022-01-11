@@ -202,15 +202,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="configure-git" class="section level2">
 <h2>Configure git</h2>
-<p>There is one more piece of housekeeping we need to take care of before we get started. We need to configure git so that RStudio can communicate with GitHub. This requires two pieces of information: your name and email address.</p>
+<p>There is one more piece of housekeeping we need to take care of before we get started. We need to configure git so that RStudio can communicate with GitHub. This requires two pieces of information: your name and the email address associated with your GitHub account.</p>
 <p>To do so, you will use the <strong>terminal</strong>, which you can find right next to the console.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git config —global user.name <span class="st">&#39;username&#39;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.email ‘useremail’</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">&#39;username&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.email <span class="st">&#39;useremail&#39;</span></span></code></pre></div>
 <p>For example, mine would be</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git config —global user.name <span class="st">&#39;athos00&#39;</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.name <span class="st">&#39;athos00&#39;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git config <span class="sc">--</span>global user.email ‘alexander.fisher<span class="sc">@</span>duke.edu’</span></code></pre></div>
 <ul>
-<li>Note: you will need to enter the quotes manually around the email (copy and pasting won’t work)</li>
+<li>Note: you will need to enter the quotes manually around the email (copy and pasting the code chunk directly above won’t work)</li>
 </ul>
 </div>
 <div id="r-and-r-studio" class="section level2">

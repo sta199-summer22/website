@@ -78,23 +78,23 @@ Then, try to create a project again and it should work.
 
 There is one more piece of housekeeping we need to take care of before we get started.
 We need to configure git so that RStudio can communicate with GitHub.
-This requires two pieces of information: your name and email address.
+This requires two pieces of information: your name and the email address associated with your GitHub account.
 
 To do so, you will use the **terminal**, which you can find right next to the console.
 
 ```{r use-this, eval=FALSE}
-git config —global user.name 'username'
-git config --global user.email ‘useremail’
+git config --global user.name 'username'
+git config --global user.email 'useremail'
 ```
 
 For example, mine would be
 
 ```{r name, eval=FALSE}
-git config —global user.name 'athos00'
+git config --global user.name 'athos00'
 git config --global user.email ‘alexander.fisher@duke.edu’
 ```
 
-- Note: you will need to enter the quotes manually around the email (copy and pasting won't work)
+- Note: you will need to enter the quotes manually around the email (copy and pasting the code chunk directly above won't work)
 
 ## R and R Studio
 
