@@ -40,6 +40,8 @@ This is a short overview for how to authenticate in this way.
 
 ## Clone the repo & start new RStudio project
 
+- For this first lab, click [here](https://classroom.github.com/a/Febrwd1b) to create your `lab01` repository.
+
 - Click to go to the [course GitHub organization page](https://github.com/sta199-s22).
 
 - Select the repository entitled "lab01-GitHubUsername"
