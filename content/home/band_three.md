@@ -2,7 +2,7 @@
 title: Teaching team and office hours
 ---
 
-[Click here](https://docs.google.com/spreadsheets/d/1M_E0l5iXmQVkqoCeeM7XpyCo4_oQAirCe860SUjjgII/edit?usp=sharing) for an updated spreadsheet of office hours with locations and links.
+[Click here](https://docs.google.com/spreadsheets/d/1fL9oSymmDKIOsW9_8I8NTgAutjiE0HnO6VkAMw2FBtE/edit?usp=sharing) for an updated spreadsheet of office hours with locations and links.
 
 <style>
   .column {
