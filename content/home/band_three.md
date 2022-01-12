@@ -31,4 +31,4 @@ title: Teaching team and office hours
 |          | [Shannon	Houser](mailto:shannon.houser@duke.edu)     | Mon, Wed 12-1p |
 |          | [Evan Dragich](mailto:evan.dragich@duke.edu)       | Thu 10-12p |
 |          | [Margaret Reed](mailto:margaret.reed@duke.edu )       | Wed 2-4p |
-|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | Tue 6-8p |
+|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | Thu 6-8p |

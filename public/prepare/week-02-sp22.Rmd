@@ -48,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
 
-`r emo::ji("memo")` Take Quiz 1 under Tests & Quizzes in Sakai.
+`r emo::ji("memo")` Take Quiz 1 under Tests & Quizzes in Sakai -- **extended**: now due Wednesday Jan 17.
 
 - Going forward, prepare quizzes will be required. This quiz is optional to give you an opportunity to practice using Sakai quizzes. 
 

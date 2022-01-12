@@ -15,6 +15,7 @@ lessons:
     lab: "lab01-helloR.html" 
   - date: "Wed, Jan 12"
     prepare: "week-02-sp22.html"
+    ae: "lecturenotes02.html"
     slides: "https://dukestatsci.github.io/introds/slides/02-meet-toolkit-r/02-meet-toolkit-r.html#1"
     title: "Meet the toolkit"
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d03-toolkit-git/u1-d03-toolkit-git.html#1"

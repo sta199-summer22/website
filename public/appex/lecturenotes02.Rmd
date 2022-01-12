@@ -1,0 +1,117 @@
+---
+title: "Tour of RStudio, R Markdown, and GitHub + Practice"
+output: html_document
+date: "01.12.2022"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Bulletin
+- Misc logistics
+  - Emails: include in title 'STA 199'
+  - Office hours this week, [see website](https://sta199-sp22-003.netlify.app/)
+- Prep quiz 01 due Wednesday Jan 19 (take in sakai) under "Tests & Quizzes" on the left hand side. (quiz 01 will not be graded)
+- Lab 01 due Monday, January 17 at 11:59pm to Gradescope.
+  - link relevant pages for each question and link all pages for "Workflow and formatting"
+
+# Questions?
+- logistics
+- lab
+- prep material
+
+# Optional aside: downloading local R
+
+In this course you can always access the R containers: [https://vm-manage.oit.duke.edu/containers](https://vm-manage.oit.duke.edu/containers)
+
+But for those of you who wish to, you can download `R` and `RStudio` "locally" to your own computer. Below are some resources to do this.
+
+There are 3 things to download: (1) the R programming language, (2) the RStudio integrated development environment (IDE) and (3) Git
+
+- [download and install R](https://cran.r-project.org/)
+- [download and install RStudio IDE](https://www.rstudio.com/products/rstudio/download/#download)
+- [resource: install R, RStudio instructions sheet](https://rstudio-education.github.io/hopr/starting.html)
+- [install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+# Today
+
+By the end of today you will...
+
+- comfortably navigate RStudio fundamentals
+- be able to define common terms including: **data frame**, **function**, **variable**, **package**
+- interact with Git from RStudio (committing and pushing)
+- use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
+- create a reproducible report via today's application exercise using R Markdown
+
+
+## Loading and working in today's application exercise
+
+- Open RStudio: [https://vm-manage.oit.duke.edu/containers](https://vm-manage.oit.duke.edu/containers)
+
+- Console: Use `R` as a calculator by typing the following in the console:
+
+```
+3 * 5 + 10
+```
+
+```
+x <- 3
+x + x^2
+```
+
+
+```
+x <- 1:10
+x*7
+```
+  
+- GitHub demo
+  - configure git using SSH (instructions from lab reproduced below)
+  - [click here](https://classroom.github.com/a/KLUWRY5l) to clone a GitHub repo and make a new RStudio project
+  - Visit [course organization page](https://github.com/sta199-s22) and navigate to your ae02 repository
+
+Click on the green CODE button, select SSH (this might already be selected by default). Click on the clipboard/square icon to copy the repo URL. Next, in RStudio, navigate `File` > `New Project` > `Version Control` > `Git` > paste the SSH URL > `Create Project`
+
+- Github demo cont.
+  - update document
+  - knit, commit and push
+  - check change in GitHub repo
+  - see commit history
+  
+- RStudio tour
+  - Environment
+  - R functions
+  - Loading and viewing a data frame
+  - Accessing a variable in a data frame
+
+## Configuring SSH and GitHub (instructions)
+
+**Note: if you have already done this, you do NOT need to do this again**
+
+### configure ssh
+
+1. First, type `credentials::ssh_setup_github()` into your console.
+2. Second, R will ask "No SSH key found. Generate one now?" You should click 1 for yes.
+3. Third, you will generate a key. It will begin with "ssh-rsa...." R will then ask "Would you like to open a browser now?" You should click 1 for yes.
+4. Fourth, you may be asked to provide your username and password to log into GitHub. This would be the ones associated with your account that you set up. After entering this information, you should paste the key in and give it a name.
+
+### configure git
+
+Configure git by running the following code in the **terminal**. Fill in your GitHub username and the email address associated with your GitHub account.
+
+```{r, eval = FALSE}
+git config --global user.name 'username'
+git config --global user.email 'emailaddress'
+```
+*You should not have to do this every time.*
+
+## Submitting application exercises
+- Once you have completed the activity, push your final changes to your GitHub repo. Make sure you committed at least *three* times. Check that  your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+- `ae02` will *not* be graded.
+
+
+### Additional Resources
+
+- https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf
+- https://www.tidyverse.org/
+- https://happygitwithr.com/
+- https://style.tidyverse.org/ 
