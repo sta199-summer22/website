@@ -21,6 +21,7 @@ lessons:
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d03-toolkit-git/u1-d03-toolkit-git.html#1"
     title: "Meet the Toolkit - Version Control"
   - date: "Fri, Jan 14"
+    ae: "lecturenotes03.html"
     prepare: "week-02-sp22.html"
     title: "Data and visualization 1"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1"

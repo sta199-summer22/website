@@ -1,0 +1,54 @@
+---
+title: "Data Visualization I"
+output: html_document
+date: "01.14.2021"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Bulletin
+
+- Next week in-person
+- Go to [https://github.com/sta199-s22](https://github.com/sta199-s22) and accept invitation.
+- Prep quiz 01 due Wednesday Jan 19 (quiz 01 will not be graded)
+- Lab 01 due Monday, January 17 at 11:59pm to Gradescope.
+   - link each question in gradescope with the relevant pages
+   - [tidyverse styling](https://style.tidyverse.org/)
+   - at least 3 commits
+- If you still have trouble cloning/committing/pushing come to office hours ASAP
+
+# Today
+
+By the end of today you will…
+
+- Be able to define a pipe `%>%`
+- Build up an effective visualization systematically layer by layer with `ggplot2`
+
+"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
+
+# Let's get started
+
+First we will finish `ae02`. 
+
+- Open RStudio, either locally or [in the online container](https://vm-manage.oit.duke.edu/containers).
+- Next, make sure `ae02` is your open project (check the upper right). If it is not, go to `File` $\rightarrow$ `Open Project` and select the `ae02-username.Rproj` file.
+- If you did not create/open `ae02` in the last class, you will need to follow instructions to create the repo [here](https://sta199-sp22-003.netlify.app/appex/lecturenotes02.html) by finding the text that says "click here to clone a GitHub repo and make a new RStudio project" and then clone the project from the course GitHub page.
+
+Next we will begin `ae03`. [Click here to create ae03](https://classroom.github.com/a/BwEOHRqy)
+
+- Next, go to the course GitHub page and find `ae03-username` 
+- Click the green "code" button and copy the `SSH` URL
+- Go to RStudio, select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL
+- Open the `.Rmd` file
+
+
+### Additional Resources
+
+- https://ggplot2.tidyverse.org/
+- https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf
+- http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+- https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535
+- https://ggplot2-book.org/
+- https://ggplot2.tidyverse.org/reference/geom_histogram.html
+- https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+- https://github.com/GraphicsPrinciples/CheatSheet/blob/master/NVSCheatSheet.pdf
