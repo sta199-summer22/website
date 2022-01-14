@@ -3,6 +3,12 @@
 
 [[main]]
    # pre = "<i class=\"fa fa-info-circle\"></i>"
+    name = "FAQ"
+    url = "/faq/faq.html"
+    weight = 5
+
+[[main]]
+   # pre = "<i class=\"fa fa-info-circle\"></i>"
     name = "Syllabus"
     url = "/syllabus/syllabus.pdf"
     weight = 10
