@@ -160,7 +160,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
       
       <guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
       <description>Click here for an updated spreadsheet of office hours with locations and links.
- .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Mon, Thu 4-5p   TAs Steven Winter Fri 9-11a    Camilla Yu Tue 4-6p    Rob Kravec Mon 5-7p    Mariana Izon TBD    Shannon	Houser Mon, Wed 12-1p    Evan Dragich Thu 10-12p    Margaret Reed Wed 2-4p    Shirley Mathur Thu 6-8p    </description>
+ .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Mon, Thu 4-5p   TAs Steven Winter Fri 9-11a    Camilla Yu Tue 4-6p    Rob Kravec Mon 5-7p    Mariana Izon Tue 6-8p    Shannon	Houser Mon, Wed 12-1p    Evan Dragich Thu 10-12p    Margaret Reed Wed 2-4p    Shirley Mathur Thu, Fri 6-7p    </description>
       <content>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1fL9oSymmDKIOsW9_8I8NTgAutjiE0HnO6VkAMw2FBtE/edit?usp=sharing&#34;&gt;Click here&lt;/a&gt; for an updated spreadsheet of office hours with locations and links.&lt;/p&gt;
 &lt;style&gt;
   .column {
@@ -209,7 +209,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:mariana.izon@duke.edu&#34;&gt;Mariana Izon&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;TBD&lt;/td&gt;
+&lt;td&gt;Tue 6-8p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -229,7 +229,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:shirley.mathur@duke.edu&#34;&gt;Shirley Mathur&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Thu 6-8p&lt;/td&gt;
+&lt;td&gt;Thu, Fri 6-7p&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
