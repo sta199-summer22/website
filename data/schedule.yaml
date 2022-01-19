@@ -35,6 +35,7 @@ lessons:
   - date: "Wed, Jan 19"
     prepare: "week-03-sp22.html"
     title: "Visualizing numerical data"
+    ae: "ae04.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d03-viz-num/u2-d03-viz-num.html#1"
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d04-viz-cat/u2-d04-viz-cat.html#1"
     title: "Visualizing categorical data"
