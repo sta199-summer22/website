@@ -2,13 +2,13 @@ lessons:
   - title: '<span class="fake-header-table"></span>'
     header: True
     
-  - week: "Week 01"
+  - week: "Week 1"
     date: "Fri, Jan 7"
     title: "Welcome to STA 199!"
     slides: "/slides/01-intro.html#1l"
     ae: "ae01.html" 
    
-  - week:  "Week 02"
+  - week:  "Week 2"
     date:  "Tue, Jan 11"
     title: "Lab 01: Hello R!"
     slides: "/slides/lab-01-slides.html"
@@ -41,6 +41,7 @@ lessons:
     title: "Visualizing categorical data"
   - date: "Fri, Jan 21"
     title: "Tidy data"
+    hw: "hw01.html"
     prepare: "week-03-sp22.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d05-tidy-data/u2-d05-tidy-data.html#1"
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d06-grammar-wrangle/u2-d06-grammar-wrangle.html#1"
@@ -53,8 +54,12 @@ lessons:
     title: "Lab 03: Data wrangling"
   - date: "Wed, Jan 26"
     title: "Data wrangling 2"
+    prepare: "week-04-sp22.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
   - date: "Fri, Jan 28"
     title: "Spatial data"
+    prepare: "week-04-sp22.html"
+    slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
 
   - week: "Week 5"
     date: "Tue, Feb 01"
