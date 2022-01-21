@@ -42,6 +42,7 @@ lessons:
   - date: "Fri, Jan 21"
     title: "Tidy data"
     hw: "hw01.html"
+    ae: "ae05.html"
     prepare: "week-03-sp22.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d05-tidy-data/u2-d05-tidy-data.html#1"
   - slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d06-grammar-wrangle/u2-d06-grammar-wrangle.html#1"
