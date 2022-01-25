@@ -53,6 +53,7 @@ lessons:
   - week: "Week 4"
     date: "Tue, Jan 25"
     title: "Lab 03: Data wrangling"
+    lab: "lab03.html" 
     slides: "/slides/if_else.html#1"
   - date: "Wed, Jan 26"
     title: "Data wrangling 2"
