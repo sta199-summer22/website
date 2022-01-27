@@ -35,9 +35,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 `r emo::ji("memo")`Homework 01 due.
 
-`r emo::ji("movie_camera")` Video will be posted soon.
-
-- Slides will be posted soon.
+No prepare required.
 
 ### Optional 
 
