@@ -140,7 +140,7 @@ This code takes a random subset of the dataset-- including `set.seed` makes sure
 Make a scatterplot using this subset and facet by whether the person hunted or fished in the past year. Include labels in words identifying which group the subplot represents.
 
 
-Next add a `geom_smooth()` layer with `method = lm` for each season and add the argument `se = FALSE` to omit the bands surrounding the line. Describe what you observe. 
+Next add a `geom_smooth()` layer with `method = lm` for each plot and add the argument `se = FALSE` to omit the bands surrounding the line. Describe what you observe. 
 
 # Submission
 
