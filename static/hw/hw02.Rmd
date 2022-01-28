@@ -10,7 +10,7 @@ link-citations: yes
 editor_options:
   chunk_output_type: inline
   markdown: 
-    wrap: 80
+    wrap: 85
 ---
 
 ## Goals
@@ -43,6 +43,13 @@ We will work with the `tidyverse` package as usual. You may also want to use `vi
 library(tidyverse)
 library(viridis)
 ```
+```{r load-data, echo = FALSE, message = FALSE, warning = FALSE}
+natunivs <- read_csv("data/NatUnivs.csv")
+slacs <- read_csv("data/SLACs.csv")
+state_data <- read_csv("data/state_data.csv")
+
+```
+
 
 The U.S. News rankings are an [influential, but controversial](https://www.vox.com/2014/9/5/6106807/college-rankings-us-news-boston-clemson-problems) metric that influences the college application process.
 
@@ -60,7 +67,7 @@ The variables in this data set are:
 
 The `slacs` data set contains contains all schools in the National Liberal Arts Colleges category ranked 50 or above in the current (2022) rankings. Data on school rankings comes from [Andy Reiter](https://andyreiter.com/datasets/). Observations are uniquely identified by `school.`
 
-The variables in this data set are:
+The variables in this data set are the same as above:
 
 - `school`: The name of the college or university.
 - `state`: The state in which the college or university is located.
@@ -78,13 +85,19 @@ State economic outlook scores come from [richstatespoorstates](https://www.richs
 
 ## Looking at this data
 
-1. Let’s start by creating an analysis data set that includes information from all three data sets.
+1. Let’s start by creating a data set that includes information from all three data sets.
 
 - First, join the `slacs` data set to the `natunivs` data set. The goal is to combine these data sets in such as a way so that the new data set has the same number of rows and unique columns as each of the individual data sets. Call this new data set `full_data`.
 
 - Next, use a join to add the columns from the `state_data` data set to `full_data`.
 
-**The final full_data data frame should have 107 observations and 8 variables.**
+**The final full_data data frame should have 107 observations and 7 variables.**
+
+```{r full-data, message = F, echo = F, output = F, warning = F}
+full_data = natunivs %>%
+  full_join(slacs, by = c("school", "state", "rank_2021", "rank_2022", "natuniv_slac")) %>%
+  left_join(state_data, by = c("state" = "abbrev"))
+```
 
 We will use `full_data` for the remainder of the assignment. (Note that there are more than 100 observations total due to ties at 50.)
 
@@ -92,28 +105,44 @@ We will use `full_data` for the remainder of the assignment. (Note that there ar
 
 3. Which states do *not* have a school in the `full_data` data set? Use the `state_data` data set and an appropriate join to help answer this question. Return a data set with two variables, state abbreviations and state population, in order from greatest population to least. Show all code and output, and print the state abbreviation and populations. What is the state with the largest population that does not have a school in the `full_data` data set?
 
-4. Recreate the below plot. Use a `dplyr` command to create the variable. After recreating the plot, discuss what patterns you observe.
+Hint: to grab a column name that begins with a number, you need to put the column name in appropriate dashes, e.g. 
+
+```{r example, eval = F}
+data %>%
+select(`2020pop`)
+```
+
+
+4. Recreate the below plot. Use a `dplyr` command to create the variable. After recreating the plot, discuss what patterns you observe. Hint: create a new variable to determine if a state is in the top 25 or bottom 25 of economic outlook in 2020. Note that 1-25 is the top ranking while 26-50 is the bottom ranking.
 
 ```{r ex-4, echo = FALSE, message = FALSE, warning = FALSE}
-natunivs <- read_csv("data/NatUnivs.csv")
-slacs <- read_csv("data/SLACs.csv")
-state_data <- read_csv("data/state_data.csv")
+full_data %>%
+  mutate(top25 = ifelse(`2020economicoutlook` <= 25, "Top 25", "Bottom 25")) %>%
+  drop_na(`2020economicoutlook`) %>%
+  ggplot(aes(x = top25, fill = natuniv_slac)) + 
+  geom_bar() + 
+  labs(title = "Economic outlook of states with top ranked schools",
+       x = "School Ranking",
+       y = "Number of Schools",
+       fill = "Type of Institution") +
+  scale_fill_viridis_d()
 
 ```
 
-5. Is there a relationship between the population of a state and the number of schools it has in the `full_data` data set. To answer this question, first use the code from exercise 2 to create a data set called `counts` with the counts of the number of schools by state for the 31 states with at least one school in the `full data` data set.
+5. Is there a relationship between state population and the number of schools it has in the `full_data` data set? To answer this question, first use the code from exercise 2 to create a new data set called `counts` with the the number of schools by state as a column.
 
-- Then, use a join to add `counts` to the `full_data` data set and make a scatter plot with a state's 2020 population as the x-axis variable and the number of schools as the y-axis variable. Add a line of best fit using the `method = lm` option. Include an informative title and axis labels.
+- Then, use a join to add `counts` to the `full_data` data set and make a scatter plot with a state's 2020 population as the x-axis variable and the number of schools as the y-axis variable. Add a line of best fit using the `method = lm` option. Include an informative title and axes labels.
 
 - Finally, describe what you observe. Is there a positive or negative relationship? Do most points fall near the line?
 
-6. Let's now focus on North Carolina schools in the `full_data` data set. For these schools, create a new variable that indicates the change in ranking in 2022 compared to 2021, where a positive value indicates an *increased* ranking (e.g., if a school went from 21 to 20, you would want this variable to have a value of 1.) Finally, return a tibble that shows the name of the NC schools and the new variable you created. Discuss what you observe.
+6. Let's now focus on North Carolina schools in the `full_data` data set. For these schools, create a new variable that indicates the change in ranking from 2021 to 2022, where a positive value indicates an *increased* ranking (e.g., if a school went from 11 to 10, you would want this variable to have a value of positive 1.) Finally, return a tibble that shows the name of the NC schools and the new variable you created. Discuss what you observe.
 
 7. Does the economic outlook and populations of states where national universities are located differ from those where national liberal arts colleges are located?
 
-- Using the `full_data` data set, create a new variable determining whether a state is in the top 25 or bottom 25 of economic outlook.
+- Using the `full_data` data set, find the mean population and mean *economic outlook ranking* for national universities vs national liberal arts colleges.
 
-- Create a bar chart showing the number of top schools in the top 25 economic outlook states and the bottom 25.
+- Report your results in a 2x3 tibble and discuss.
+
 
 # Submission
 Knit to PDF to create a PDF document. Stage and commit all remaining changes, 

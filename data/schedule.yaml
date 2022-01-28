@@ -64,6 +64,7 @@ lessons:
     title: "Spatial data"
     ae: "ae07.html"
     prepare: "week-04-sp22.html"
+    hw: "hw02.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1"
 
   - week: "Week 5"
