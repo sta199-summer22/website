@@ -71,8 +71,10 @@ lessons:
     date: "Tue, Feb 01"
     title: "Lab 04: Spatial data"
   - date: "Wed, Feb 02"
+    prepare: "week-05-sp22.html"
     title: "Data science ethics"
   - date: "Fri, Feb 04"
+    prepare: "week-05-sp22.html"
     title: "Troubleshooting"
   - title: "Exam 01 released"
 
