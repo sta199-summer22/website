@@ -5,6 +5,9 @@ output: html_document
 
 
 - [My push was rejected, what do I do?](#my-push-was-rejected-what-do-i-do)
+- [Error: `/bin/sh: 1`?](#error-bin-sh)
+
+---
 
 ## My push was rejected, what do I do?
 
@@ -21,5 +24,21 @@ Now you should be able to push.
 **Why did this error occur?** 
 
 This error occurs when the repository is changed *remotely*. In other words, the GitHub repostiory contains content that you do not have on your local file system. For example, if you go to the repository and change the README file and commit your changes, you will receive this error and need to *pull* the remote changes before you can *push* your local changes again.
+
+---
+
+## Error bin sh
+
+This question is relevant if you received an error message like the one below:
+
+![](img/r-shebang.png)
+
+**Solution: **
+
+Change the top of the code chunk to: `{r county-most-nativeam}`. Notice the space between `r` and the chunk-name.
+
+**Why did this error occur?**
+
+Code chunks in RStudio need to be explicitly told what language of code to run. In other programming contexts this information is sometimes referred to as a "shebang". This is why code chunks begin with `{r chunk-name}`. It is important for there to be a space after the `r`. If the chunk deviates from this format, you may encounter `/bin/sh : 1` error.
 
 ---
