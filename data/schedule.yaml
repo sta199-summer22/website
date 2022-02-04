@@ -78,7 +78,9 @@ lessons:
   - date: "Fri, Feb 04"
     prepare: "week-05-sp22.html"
     title: "Troubleshooting"
+    ae: "ae09.html"
   - title: "Exam 01 released"
+    exam: "exam01_instructions.html"
 
   - week: "Week 6"
     date: "Tue, Feb 08"

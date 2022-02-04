@@ -2,11 +2,11 @@
 
 # Instructions
 
-The exam questions are in the README portion of your repository on [the GitHub course organization page](https://github.com/sta199-f21).
+The exam questions are in the README portion of your repository on [the GitHub course organization page](https://github.com/sta199-s22).
 
 ### Deadline
 
-This exam is due Tuesday September 28th by 11:59 PM.
+This exam is due Tuesday February 8th by 11:59 PM.
 
 You must submit a PDF document to Gradescope that corresponds to an
 `.Rmd` file on your GitHub repository in order to receive credit for
@@ -45,7 +45,7 @@ be based on quality of commit history.
     ask questions on any topics from past assignments or material
     related to the exam.
 -   The instructor will provide code debugging if needed, but this will
-    result in a **grade penalty** if needed.
+    result in a **grade penalty** if needed. Note: questions asked between 6:00pm and 11:59pm Tuesday the 8th may not be answered. 
 
 ### Academic Integrity
 
