@@ -3,7 +3,7 @@ title: "Data Wrangling I"
 output: html_document
 date: "01.21.2022"
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 # Bulletin
