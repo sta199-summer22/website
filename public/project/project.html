@@ -244,9 +244,152 @@ div.tocify {
 </div>
 
 
-<div id="final-project" class="section level1">
-<h1>Final project</h1>
-<p>Project details will be posted here throughout the semester.</p>
+<p>Project proposal due <strong>Friday February 25</strong></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The goal of this project is to demonstrate proficiency in data science techniques by conducting a novel analysis of a dataset of your own choosing or creation. The dataset may already exist, or you may collect your own data using a survey or by scraping the web.You will also get practice presenting your results.</p>
+</div>
+<div id="brief-project-logistics" class="section level1">
+<h1>Brief project logistics</h1>
+<p>The final project will be done with your lab groups.</p>
+<p>The five deliverables for the final project are</p>
+<ul>
+<li>A project proposal describing three datasets of interest</li>
+<li>A written, reproducible report using R Markdown detailing your analysis</li>
+<li>A GitHub repository corresponding to your report</li>
+<li>Slides + a group video presentation</li>
+<li>A formal peer review of another team’s project</li>
+</ul>
+<p><strong>Late projects will not be accepted without prior approval</strong> As per the syllabus, you and your team must complete all components of the final project to pass the course.</p>
+<p>The grade breakdown is as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Total</th>
+<th>100 pts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Project proposal</strong></td>
+<td>5 pts</td>
+</tr>
+<tr class="even">
+<td><strong>Written report</strong></td>
+<td>50 pts</td>
+</tr>
+<tr class="odd">
+<td><strong>Slides</strong></td>
+<td>10 pts</td>
+</tr>
+<tr class="even">
+<td><strong>Repository</strong></td>
+<td>5 pts</td>
+</tr>
+<tr class="odd">
+<td><strong>Peer feedback</strong></td>
+<td>10 pts</td>
+</tr>
+<tr class="even">
+<td><strong>Video Presentation</strong></td>
+<td>20 pts</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data-sources" class="section level1">
+<h1>Data Sources</h1>
+<p>To perform a successful analysis it is imperative that you choose a manageable dataset that can be analyzed using the tools we have learned in STA 199. This means that the data should be readily accessible, not contain too many missing values, and be large enough so that multiple relationships can be explored. Your dataset must have at <strong>least 500 observations and at least ten variables (or has been approved by Prof. Fisher)</strong>. The dataset should include a rich mix of categorical, discrete numeric, and continuous numeric data. If you have any doubts or are having trouble please reach out to me.</p>
+<p>All analyses must be done in RStudio and your final written report and analysis must be reproducible. This means that you must create an R Markdown document attached to a GitHub repository that will create your written report exactly upon knitting.</p>
+<p>If you are using a dataset that comes in a format that we haven’t encountered in class (for instance, a .DAT file), make sure that you are able to load it into RStudio as this can be tricky depending on the source. If you are having trouble, google first, then ask for help.</p>
+<p>Data sets that <strong>cannot</strong> be used:</p>
+<ul>
+<li><p>Data sets used as examples/homework in this class</p></li>
+<li><p>Data that has been analyzed in another class</p></li>
+<li><p>Kaggle</p></li>
+</ul>
+<p>The resources below may be helpful for finding an interesting dataset but feel free to explore on your own.</p>
+<ul>
+<li><a href="https://rfun.library.duke.edu/blog/data-sources-for-regression-analysis/">R Data Sources for Regression Analysis</a></li>
+<li><a href="https://data.fivethirtyeight.com/">FiveThirtyEight data</a></li>
+<li><a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a></li>
+<li><a href="https://www.who.int/gho/database/en/">World Health Organization</a></li>
+<li><a href="https://data.nber.org/data/">The National Bureau of Economic Research</a></li>
+<li><a href="https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&amp;sId=1479329328660">International Monetary Fund</a></li>
+<li><a href="http://gss.norc.org/">General Social Survey</a></li>
+<li><a href="http://data.un.org/">United Nations Data</a></li>
+<li><a href="https://unstats.un.org/home/">United Nations Statistics Division</a></li>
+<li><a href="https://data.gov.uk/">U.K. Data</a></li>
+<li><a href="https://www.data.gov/">U.S. Data</a></li>
+<li><a href="https://www.census.gov/data.html">U.S. Census Data</a></li>
+<li><a href="https://ec.europa.eu/eurostat/">European Statistics</a></li>
+<li><a href="https://www.statcan.gc.ca/eng/start">Statistics Canada</a></li>
+<li><a href="https://www.pewresearch.org/download-datasets/">Pew Research</a></li>
+<li><a href="https://data.unicef.org/">UNICEF</a></li>
+<li><a href="https://www.cdc.gov/datastatistics/index.html">CDC</a></li>
+<li><a href="https://datacatalog.worldbank.org/">World Bank</a></li>
+<li><a href="https://electionstudies.org//">Election Studies</a></li>
+</ul>
+</div>
+<div id="project-components" class="section level1">
+<h1>Project components</h1>
+<div id="project-proposal" class="section level2">
+<h2>Project Proposal</h2>
+<p>The first stage of the final project is the project proposal.</p>
+<p>The proposal serves two purposes:</p>
+<ul>
+<li><p>to get you started early with reading and thinking about a dataset and the questions you want to answer</p></li>
+<li><p>to ensure that the data you wish to analyze, methods you plan to use, and the scope of your analyses are feasible and have maximize your chance of success</p></li>
+</ul>
+<p>Choose <strong>three</strong> substantially different datasets you are interested in analyzing. For each, identify the components below.</p>
+<div id="introduction-and-data" class="section level3">
+<h3>Introduction and Data</h3>
+<ul>
+<li><p>Identify the source of the data</p></li>
+<li><p>When and how it was originally collected (by the curator, not necessarily how you found the data)</p></li>
+<li><p>A brief description of the observations</p></li>
+</ul>
+</div>
+<div id="research-question" class="section level3">
+<h3>Research question</h3>
+<ul>
+<li>Describe the research topic along with a concise statement of the research question and hypotheses.</li>
+</ul>
+</div>
+<div id="data-set" class="section level3">
+<h3>Data set</h3>
+<p>Use the <code>glimpse()</code> function to glimpse your data and include the output at the end of your proposal.</p>
+<p>Place the file containing your data in the <code>data</code> folder of your project repo</p>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission</h3>
+<p>Order your proposals from first choice to third choice.</p>
+<p>Submit the PDF of your proposal to Gradescope by <strong>Friday February 25 at 11:59 PM</strong>. I will provide feedback on your proposal and help you decide which dataset you should use for your final project. Project proposals should have no more than one page of <strong>text.</strong> (With the <code>glimpse</code> data it is likely to go beyond a page total.)</p>
+<p>The project proposal will be graded as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Total</th>
+<th>5 pts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Introduction/data</strong></td>
+<td>2 pts</td>
+</tr>
+<tr class="even">
+<td><strong>Research questions</strong></td>
+<td>2 pts</td>
+</tr>
+<tr class="odd">
+<td><strong>Results</strong></td>
+<td>1 pts</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 

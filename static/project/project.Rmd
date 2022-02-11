@@ -8,6 +8,133 @@ output:
      fig_caption: false
 ---
 
-# Final project
+Project proposal due **Friday February 25**
 
-Project details will be posted here throughout the semester.
+# Introduction
+
+The goal of this project is to demonstrate proficiency in data science 
+techniques by conducting a novel analysis of a dataset of your own choosing
+or creation. The dataset may already exist, or you may collect your own data 
+using a survey or by scraping the web.You will also get practice presenting your results.
+
+# Brief project logistics
+
+The final project will be done with your lab groups.
+
+The five deliverables for the final project are
+
+- A project proposal describing three datasets of interest
+- A written, reproducible report using R Markdown detailing your analysis
+- A GitHub repository corresponding to your report
+- Slides + a group video presentation
+- A formal peer review of another team's project
+
+**Late projects will not be accepted without prior approval** As per the syllabus, you and your team must complete all components of the final project to pass the course.
+
+The grade breakdown is as follows:
+
+Total                                                   | 100 pts
+--------------------------------------------------------|--------
+**Project proposal**                                    | 5 pts
+**Written report**                                      | 50 pts
+**Slides**                                              | 10 pts
+**Repository**                                          | 5 pts
+**Peer feedback**                                       | 10 pts
+**Video Presentation**                                  | 20 pts
+
+# Data Sources
+
+To perform a successful analysis it is imperative that you choose a manageable
+dataset that can be analyzed using the tools we have learned in STA 199. This 
+means that the data should be readily accessible, not contain too many missing values, and be large enough so that multiple relationships can be explored.
+Your dataset must have at **least 500 observations and at least ten variables 
+(or has been approved by Prof. Fisher)**. The dataset should include a rich mix of categorical,
+discrete numeric, and continuous numeric data. If you have any doubts or are
+having trouble please reach out to me.
+
+All analyses must be done in RStudio and your final written report and analysis must be reproducible. This means that you must create an R Markdown document attached to a GitHub repository that will create your written report exactly upon knitting.
+
+If you are using a dataset that comes in a format that we haven’t encountered 
+in class (for instance, a .DAT file), make sure that you are able to load it 
+into RStudio as this can be tricky depending on the source. If you are 
+having trouble, google first, then ask for help.
+
+Data sets that **cannot** be used:
+
+- Data sets used as examples/homework in this class
+
+- Data that has been analyzed in another class
+
+- Kaggle
+
+The resources below may be helpful for finding an interesting dataset but feel
+free to explore on your own.
+
+- [R Data Sources for Regression Analysis](https://rfun.library.duke.edu/blog/data-sources-for-regression-analysis/)
+- [FiveThirtyEight data](https://data.fivethirtyeight.com/)
+- [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+- [World Health Organization](https://www.who.int/gho/database/en/)
+- [The National Bureau of Economic Research](https://data.nber.org/data/)
+- [International Monetary Fund](https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&sId=1479329328660)
+- [General Social Survey](http://gss.norc.org/)
+- [United Nations Data](http://data.un.org/)
+- [United Nations Statistics Division](https://unstats.un.org/home/)
+- [U.K. Data](https://data.gov.uk/)
+- [U.S. Data](https://www.data.gov/)
+- [U.S. Census Data](https://www.census.gov/data.html)
+- [European Statistics](https://ec.europa.eu/eurostat/)
+- [Statistics Canada](https://www.statcan.gc.ca/eng/start)
+- [Pew Research](https://www.pewresearch.org/download-datasets/)
+- [UNICEF](https://data.unicef.org/)
+- [CDC](https://www.cdc.gov/datastatistics/index.html)
+- [World Bank](https://datacatalog.worldbank.org/)
+- [Election Studies](https://electionstudies.org//)
+
+
+# Project components
+
+## Project Proposal
+
+The first stage of the final project is the project proposal. 
+
+The proposal serves two purposes:
+
+- to get you started early with reading and thinking about a dataset and the questions you want to answer
+
+- to ensure that the data you wish to analyze, methods you plan to use, and the scope of your analyses are feasible and have maximize your chance of success
+
+Choose **three** substantially different datasets you are interested in analyzing. For each, identify the components below.
+
+### Introduction and Data
+
+- Identify the source of the data
+
+- When and how it was originally collected (by the curator, not necessarily how you found the data) 
+
+- A brief description of the observations
+
+### Research question
+
+- Describe the research topic along with a concise statement of the research question and hypotheses.
+
+
+### Data set
+
+Use the `glimpse()` function to glimpse your data and include the output at the end of your proposal.
+
+Place the file containing your data in the `data` folder of your project repo
+
+
+### Submission
+
+Order your proposals from first choice to third choice.
+
+Submit the PDF of your proposal to Gradescope by **Friday February 25 at 11:59 PM**. I will provide feedback on your proposal and help you decide which dataset you should use for your final project.  Project proposals should have no more than one page of **text.** (With the `glimpse` data it is likely to go beyond a page total.)
+
+The project proposal will be graded as follows:
+
+Total                                                   | 5 pts
+--------------------------------------------------------|-------
+**Introduction/data**                                   | 2 pts
+**Research questions**                                  | 2 pts
+**Results**                                             | 1 pts
