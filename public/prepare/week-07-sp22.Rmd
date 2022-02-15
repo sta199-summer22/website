@@ -1,0 +1,25 @@
+---
+title: "Prepare: Week 07"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Readings this week are from chapter 11 "Hypothesis testing with randomization" from [*Introduction to Modern Statistics*](https://openintro-ims.netlify.app/index.html)
+
+## For Wednesday, Feb 16
+
+Suggested reading.
+
+- [Read 11.1 and 11.2](https://openintro-ims.netlify.app/foundations-randomization.html#foundations-randomization)
+
+
+## For Friday, Feb 18
+
+Suggested reading:
+
+- [Read 11.3 and 11.4](https://openintro-ims.netlify.app/foundations-randomization.html#foundations-randomization)

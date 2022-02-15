@@ -103,8 +103,10 @@ lessons:
     title: "Lab 05: Probability"
   - date: "Wed, Feb 16"
     title: "Foundations of inference"
+    prepare: "week-07-sp22.html"
   - date: "Fri, Feb 18"
     title: "Intro to simulation-based inference"
+    prepare: "week-07-sp22.html"
 
   - week: "Week 8"
     date: "Tue, Feb 22"
