@@ -101,6 +101,7 @@ lessons:
   - week: "Week 7"
     date: "Tue, Feb 15"
     title: "Lab 05: Probability"
+    lab: "lab05.html"
   - date: "Wed, Feb 16"
     title: "Foundations of inference"
     prepare: "week-07-sp22.html"
