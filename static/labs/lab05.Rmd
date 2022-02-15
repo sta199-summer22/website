@@ -1,5 +1,6 @@
 ---
 title: "Lab #05: Probability and NC Courage"
+subtitle: "Due Monday February 21 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "./sta199-labs.css"
