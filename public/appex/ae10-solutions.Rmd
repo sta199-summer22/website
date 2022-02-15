@@ -1,6 +1,7 @@
 ---
-title: 'Probability'
+title: "Probability"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 date: "02.09.2022"
@@ -11,8 +12,7 @@ editor_options:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, 
-                      message = FALSE,
-                      eval = FALSE)
+                      message = FALSE)
 ```
 
 ## [Click here while you wait](https://forms.gle/iwb6QSA6nDMj5vWU9)
@@ -158,8 +158,8 @@ sta199 %>%
 Now let's make at table looking at the relationship between year and favorite tv.
 
 ```{r count-yr-major}
-# sta199 %>%
-#   count(year, tv)
+sta199 %>%
+  count(year, tv)
 ```
 
 We'll reformat the data into a **contingency table**, a table frequently used to study the association between two categorical variables. In this contingency table, each row will represent a year, each column will represent a tv show, and each cell is the number of students have a particular combination of year and major. 
@@ -169,13 +169,13 @@ To make the contingency table, we will use a new function in `dplry` called `piv
 We will also use the `kable()` function in the `knitr` package to neatly format our new table.
 
 ```{r pivot-wider}
-# sta199 %>%
-#   count(year, tv) %>%
-#   pivot_wider(id_cols = c(year, tv),#how we identify unique obs
-#               names_from = tv, #how we will name the columns
-#               values_from = n, #values used for each cell
-#               values_fill = 0) %>% #how to fill cells with 0 observations
-#   kable() # neatly display the results
+sta199 %>%
+  count(year, tv) %>%
+  pivot_wider(id_cols = c(year, tv),#how we identify unique obs
+              names_from = tv, #how we will name the columns
+              values_from = n, #values used for each cell
+              values_fill = 0) %>% #how to fill cells with 0 observations
+  kable() # neatly display the results
 
 ```
 - How many students in STA 199 are juniors and like dramas?
@@ -192,14 +192,20 @@ For each of the following exercises:
 
 ```{r 7-1}
 # code here
+9/44
 
+count(sta199, year) %>%
+  filter(year == "Sophomore") %>%
+  pull(n) / nrow(sta199)
 ```
 
 - What is the probability that a randomly selected STA 199 student is a statistics major? 
 
 ```{r 7-2}
 # code here
-
+sta199 %>%
+  count(major) %>%
+  mutate(prob = n / sum(n))
 ```
 
 
@@ -207,14 +213,24 @@ For each of the following exercises:
 
 ```{r 7-3}
 # code here
+total_obs = nrow(sta199)
 
+sta199 %>%
+  mutate( A =  (major == "Statistical Science" | year == "Sophomore")) %>%
+  summarize(mean(A))
+
+sta199 %>%
+  filter( (major == "Statistical Science" | year == "Sophomore")) %>%
+   nrow() / total_obs
 ```
 
 - What is the probability that a randomly selected STA 199 student is a sophomore **and** and a statistics major?
 
 ```{r 7-4}
 # code here
-
+sta199 %>%
+  filter((major == "Statistical Science" & year == "Sophomore")) %>%
+  nrow() / nrow(sta199)
 ```
 
 ## More definitions

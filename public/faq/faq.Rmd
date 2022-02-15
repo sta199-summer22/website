@@ -4,12 +4,18 @@ output: html_document
 ---
 
 
-- [My push was rejected, what do I do?](#my-push-was-rejected-what-do-i-do)
-- [Error: `/bin/sh: 1`?](#error-bin-sh)
+<!-- - [My push was rejected, what do I do?](#my-push-was-rejected-what-do-i-do) -->
+<!-- - [Error: `/bin/sh: 1`?](#error-bin-sh) -->
+<!-- - [Merge Conflict](#merge-conflict) -->
 
----
+<!-- --- -->
 
-## My push was rejected, what do I do?
+## RStudio and Git troubleshooting
+
+<details><summary>My push was rejected, what do I do?</summary>
+<p>
+
+<h2>My push was rejected, what do I do?</h2>
 
 This question is relevant if you received an error message like the one below:
 
@@ -25,9 +31,15 @@ Now you should be able to push.
 
 This error occurs when the repository is changed *remotely*. In other words, the GitHub repostiory contains content that you do not have on your local file system. For example, if you go to the repository and change the README file and commit your changes, you will receive this error and need to *pull* the remote changes before you can *push* your local changes again.
 
----
 
-## Error bin sh
+</p>
+</details>
+
+
+<details><summary>Error /bin/sh</summary>
+<p>
+
+<h2>Error /bin/sh</h2>
 
 This question is relevant if you received an error message like the one below:
 
@@ -41,4 +53,85 @@ Change the top of the code chunk to: `{r county-most-nativeam}`. Notice the spac
 
 Code chunks in RStudio need to be explicitly told what language of code to run. In other programming contexts this information is sometimes referred to as a "shebang". This is why code chunks begin with `{r chunk-name}`. It is important for there to be a space after the `r`. If the chunk deviates from this format, you may encounter `/bin/sh : 1` error.
 
----
+</p>
+</details>
+
+<details><summary>Merge conflict</summary>
+<p>
+<h2>Merge Conflict</h2>
+
+This question is relevant if you received the following error when you tried to push:
+
+![](img/mc1.png)
+
+Next, you git pull (the down arrow in the upper right) and receive the following error: "Automatic merge failed"
+
+![](img/mc2.png)
+When you look at your `.Rmd`, the following lines show up:
+
+```
+<<<<<<<< (HEAD)
+
+# YOUR CODE
+============
+# REMOTE CHANGES TO CODE
+
+>>>>>>>>>> Commit Hash
+```
+
+like in the image below.
+
+![](img/mc3.png)
+
+The solution is:
+
+- fix the `.Rmd` to look like you want it to
+- Go to the terminal tab in the bottom right and type `git commit -m "merge fixed"` and press enter
+- Push as normal pressing the arrow in the upper right
+
+See the picture below for details.
+
+![](img/mc-fix.png)
+
+</p>
+</details>
+
+## Course logistics
+
+<details><summary>How do regrade requests work?</summary>
+<p>
+
+<h2>How do regrade requests work?</h2>
+- After grades are released, there's a 48 hour period before regrade requests open up. This is to ensure people check the solutions on sakai / think about their regrade request before just auto posting a regrade request when points are taken off.
+- Regrade requests serve the purpose of:
+   - finding errors in grading, e.g. you have the correct answer but were incorrectly deducted points
+   - explaining you found the correct answer (possibly using unconventional methods)
+
+- Regrade requests are not for:
+  - challenging the fairness of a question, please submit those comments directly to me via email and I'll follow-up
+- After a regrade request is submitted, the problem goes back to the TA that graded the question. If they are confused and forward the question to me OR if you are unsatisfied with the response from a regrade request and send a message, I will regrade the whole problem personally (and this may result in gain or loss of points)
+</p>
+</details>
+
+<details><summary>How do I receive maximum workflow points? Re: What are tidyverse style guidelines?</summary>
+<p>
+
+<h2>How do I receive maximum workflow points? Re: What are tidyverse style guidelines?</h2>
+
+Checklist:
+
+0. Are all pages appropriately linked on Gradescope?
+
+1. Is your name (and your team's name) on your document?
+2. Did you commit >3 times? (Check your repo on GitHub)
+3. Did every team member commit? (Also check on GitHub)
+4. Is every code chunk named?
+
+For tidyverse style guidelines: 
+
+5. Are you under the 80 character code limit? (You shouldn't have to scroll to see all your code).
+
+[Click here](https://style.tidyverse.org/) for a full list of tidyverse style guidelines.
+
+</p>
+</details>
