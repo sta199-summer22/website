@@ -104,6 +104,7 @@ lessons:
     lab: "lab05.html"
   - date: "Wed, Feb 16"
     title: "Foundations of inference"
+    ae: "ae12.html"
     prepare: "week-07-sp22.html"
   - date: "Fri, Feb 18"
     title: "Intro to simulation-based inference"
