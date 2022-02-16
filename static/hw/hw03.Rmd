@@ -1,0 +1,61 @@
+---
+title: 'Homework #03: Probability'
+subtitle: 'due February 25th 11:59 PM '
+output:
+  tufte::tufte_html:
+    tufte_variant: "envisioned"
+    highlight: pygments
+    # css: "sta199-hw.css"
+link-citations: yes
+editor_options:
+  chunk_output_type: inline
+  markdown: 
+    wrap: 85
+---
+
+## Goals
+
+- Gain proficiency calculating marginal, joint, and conditional probabilities
+- Use visualizations and probabilities to analyze multivariate associations between categorical variables
+
+# Setup
+
+- Go to the [Github Organization page](https://github.com/sta199-s22) and open your `hw03-username` repo
+  
+- Clone the repository, open a new project in RStudio.
+
+# Data name
+
+We will work with the `tidyverse` package as usual. You may also want to use `viridis.`
+
+```{r load-package, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(viridis)
+```
+
+
+# Submission
+Knit to PDF to create a PDF document. Stage and commit all remaining changes, 
+and push your work to GitHub. Make sure all files are updated on your GitHub 
+repo.
+Only upload your PDF document to Gradescope. Before you submit the 
+uploaded document, mark where each answer is to the exercises. If any answer 
+spans multiple pages, then mark all corresponding pages. Associate the "Overall" section with 
+the first page.
+
+## Reminder:
+- All plots should follow the best visualization practices: include an informed title, label axes, and carefully consider aesthetic choices.
+- All code should follow the tidyverse style guidelines, including not exceeding the 80 character limit.
+
+## Rubric
+- Ex 1: 6 pts.
+- Ex 2: 6 pts.
+- Ex 3: 8 pts.
+- Ex 4: 6 pts.
+- Ex 5: 8 pts.
+- Ex 6: 4 pts.
+- Ex 7: 6 pts.
+- Workflow and formatting - 6 pts
+ - This includes having three meaningful commits, updating name, using
+ tidyverse style and naming all code chunks.
+
