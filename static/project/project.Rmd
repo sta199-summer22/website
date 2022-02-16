@@ -137,4 +137,4 @@ Total                                                   | 5 pts
 --------------------------------------------------------|-------
 **Introduction/data**                                   | 2 pts
 **Research questions**                                  | 2 pts
-**Results**                                             | 1 pts
+**Data glimpses**                                       | 1 pts
