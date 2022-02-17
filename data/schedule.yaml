@@ -112,6 +112,7 @@ lessons:
 
   - week: "Week 8"
     date: "Tue, Feb 22"
+    slides: "/slides/lab-project-proposal.html"
     title: "Project workday"
   - date: "Wed, Feb 23"
     title: "Simulation-based inference - confidence intervals"
