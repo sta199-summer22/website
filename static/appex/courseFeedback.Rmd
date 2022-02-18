@@ -1,0 +1,37 @@
+---
+title: 'Course feedback'
+output:
+  html_document:
+    df_print: paged
+date: "02.18.2022"
+editor_options:
+  chunk_output_type: inline
+---
+
+### The pace of the course is...
+![](img/q3.png){width=100%}
+
+### How have you learned the best so far in the class?
+![](img/q2.png){width=100%}
+
+
+### Do you have suggestions for how the lecture time should be split between different activities?
+![](img/q1.png){width=100%}
+
+### How many hours per week do you spend working on this class?
+
+```{r hours-per-week, message=F, echo=F}
+library(tidyverse)
+feedback = read_csv("data/mid_feedback.csv")
+feedback %>%
+  ggplot(aes(x = hours_per_week)) + 
+  geom_histogram(bins = 14) +
+  theme_bw()
+```
+
+
+### Additional notes...
+
+- more clear tidyverse style guidelines: [FAQ](https://sta199-sp22-003.netlify.app/faq/faq.html)
+- `join` confusion
+- ae hover

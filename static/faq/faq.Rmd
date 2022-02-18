@@ -130,6 +130,7 @@ Checklist:
 For tidyverse style guidelines: 
 
 5. Are you under the 80 character code limit? (You shouldn't have to scroll to see all your code).
+6. pipes `%>%` and ggplot layers `+` should be followed by a new line
 
 [Click here](https://style.tidyverse.org/) for a full list of tidyverse style guidelines.
 

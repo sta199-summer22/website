@@ -1,0 +1,145 @@
+---
+title: 'Intro to simulation based inference'
+output:
+  html_document:
+    df_print: paged
+date: "02.16.2022"
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+# Bulletin
+- [Homework 03](https://sta199-sp22-003.netlify.app/hw/hw03.html) released today
+- [Course feedback](https://sta199-sp22-003.netlify.app/appex/courseFeedback.html)
+- Next week's lab is to work on project proposal
+- Quiz 04 due next week
+
+# Today
+
+By the end of today you will
+
+- understand the difference between a **population parameter** and a **statistic**
+- use hypothesis testing to draw conclusions about the fairness of the coin and the results of a survey
+
+
+```{r load-packages}
+library(tidyverse)
+```
+
+
+## Last time
+
+- We flipped a coin 12 times and observed 11 tails and 1 head.
+
+```{r coin-flips}
+outcome = c(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+flips = data.frame(outcome)
+cat(flips$outcome)
+```
+- This looked suspicious, we thought: "what's the probability of 11T and 1H if the coin is fair?"
+
+Without realizing it, we setup a null hypothesis:
+
+- $H_0$: The coin is fair. 
+
+Mathematically we state this null hypothesis in terms of $p$ (the probability of the coin landing heads)
+
+- What should $p$ equal if the coin is fair?
+
+- $H_0$: $p = ?$
+
+This is a hypothesis about "truth". The "true" parameter $p$ that belongs to this particular coin when flipped infinitely many times. We don't know the true $p$, we make an assumption about it.
+
+All we have is a **sample** of coin flips. We know that in our sample we see that the proportion of heads is 1/12. We call this a **statistic**. A statistic is just a function of the data. Mathematically we write
+
+$\hat{p} = 1/12$
+
+In words, our "sample-p", often called "p-hat" ( $\hat{p}$) is 1/12.
+
+Now we ask ourselves: "Is $\hat{p}$ so different from our assumption that we have to reject our assumption as true?
+
+## Simulation
+
+First, we need to know what 12 coin flips would have looked like "under the null". In other words, "if the null was actually true".
+
+```{r, null-flips}
+set.seed(1)
+null_heads = rbinom(10000, 12, 0.5)
+null = as.data.frame(null_heads)
+```
+**Exercise 1:** create a new column `p` that is the proportion of heads in each row and create a histogram with `bins = 10`
+
+## Is the coin actually fair?
+
+To answer this, the alternative hypothesis matters. Our options are:
+
+- $H_A: p < 0.5$, the coin is biased to land tails
+- $H_A: p > 0.5$, the coin is biased to land heads
+- $H_A: p \neq 0.5$, the coin is biased
+
+As we'll see in a minute, choice of hypothesis affects our conclusions. For this reason, one should choose an alternative hypothesis before looking at the data.
+
+- whiteboard
+
+**Exercise 2:** Find three p-values corresponding to each alternative:
+
+1. What's the probability of observing a p-hat less than or equal to 1/12 if the null is true?
+2. What's the probability of observing a p-hat greater than or equal to 1/12 if the null is true?
+3. What's the probability of observing a p-hat less than or equal to 1/12 **or** greater than or equal to 1/12 if the null is true?
+
+```{r alternatives}
+# code here
+```
+## Practice
+
+According to [a National Geographic poll](https://www.nationalgeographic.com/animals/article/130619-pets-poll-animals-united-states-nation-dogs-cats)
+
+Fifty-two percent of Americans prefer dogs, 21 percent prefer cats, and 27 percent aren't sure which species they like better.
+
+For the following practice exercises, let's making the horribly simplifying assumption that the 27 percent that could not decide are evenly split. In other words, assume 
+
+- 65.5 percent prefer dogs and
+- 34.5 percent prefer cats
+
+Last week you completed a survey on whether you prefer cats or dogs (but you could only pick one). Let's load that survey data in below:
+
+```{r load-survey}
+survey = read_csv("https://sta199-sp22-003.netlify.app/class_data/sta199-sp22-form.csv")
+```
+Let's see if we believe that 65.5% of Americans prefer dogs to cats.
+
+**Exercise 3:** 
+To begin, write down a null and alternative hypothesis. (You can choose the alternative)
+
+
+Next, find the proportion of people that prefer dogs in our data set.
+
+```{r prefer-dogs}
+# code here
+```
+
+**Exercise 4**
+
+Simulate, using `rbinom`, 10 thousand datasets (of equal size) under the null, i.e. assuming the null is true. Save your result inside a data frame.
+
+```{r catdog-under-null}
+set.seed(4)
+# code here
+```
+
+Is a dog outcome a "success" (1) or "failure" (0) based on how you set up your simulation?
+
+
+**Exercise 5**
+
+Find the p-value using your observed statistic and the null distribution above. Do you reject or fail to reject the null?
+
+```{r find-p}
+# code here
+```
+
