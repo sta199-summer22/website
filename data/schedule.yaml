@@ -117,6 +117,7 @@ lessons:
     slides: "/slides/lab-project-proposal.html"
     title: "Project workday"
   - date: "Wed, Feb 23"
+    ae: "ae14.html"
     prepare: "week-08-sp22.html"
     slides: "https://sta199-f21-001.netlify.app/slides/16-hypothesis-test.html#1"
     title: "Simulation-based inference - hypothesis testing"
