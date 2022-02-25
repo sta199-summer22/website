@@ -1,0 +1,172 @@
+---
+title: 'Homework #04: Bass Mercury'
+subtitle: 'due February 25th 11:59 PM '
+output:
+  tufte::tufte_html:
+    tufte_variant: "envisioned"
+    highlight: pygments
+    css: "sta199-hw.css"
+link-citations: yes
+editor_options:
+  chunk_output_type: inline
+  markdown: 
+    wrap: 85
+---
+
+## Goals
+
+- Use simulation-based inference to draw conclusions about a population parameter
+- Use simulation-based inference to draw conclusions about the association between two variables
+- Assess inferential conclusions made
+
+# Setup
+
+- Go to the [Github Organization page](https://github.com/sta199-s22) and open your `hw04-username` repo
+  
+- Clone the repository, open a new project in RStudio.
+
+# Mercury in Local Bass
+
+Mercury, is a naturally occurring element that can have toxic effects on the nervous, digestive and immune systems of humans [(see WHO for more details)](https://www.who.int/news-room/fact-sheets/detail/mercury-and-health).
+
+In local rivers (and other bodies of water), microbes transform mercury into the highly toxic methyl mercury. Fish accumulate methyl mercury (since they are unable to excrete it) in their tissue over the course of their life. 
+
+Bass from the Waccamaw and Lumber Rivers were caught, weighed, and measured. In addition, a filet from each fish caught was sent to the lab so that the tissue concentration of mercury could be determined for each fish. Each fish caught corresponds to a single row of the data frame.
+
+A code book is provided below ([copied from here](https://stat.duke.edu/datasets/mercury-in-bass)).
+
+- `river`: 0=Lumber, 1=Waccamaw
+- `station` that the fish was collected at
+- `length` of the fish in centimeters
+- `weight` of the fish in grams
+- `mercury`: concentration of mercury in parts per million (ppm)
+
+The data come from Craig Stowe, Nicholas School of the Environment circa 1990s
+
+## Beginning
+
+We will work with the `tidyverse` and `tidymodels` package. Optionally, you might choose to use `viridis` color palettes.
+
+```{r load-package, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(viridis)
+```
+
+```{r load-data, message = FALSE}
+mercury_bass = read_csv("data/mercury.csv")
+mercury_bass
+```
+## Exercises 
+
+- Use a small number of reps (about 100) as you write and test out your code. Once you have finalized all of your code, increase the number of reps to 10000 to produce your final results.
+- Write your code and narrative in a reproducible way, so you can easily change the number of reps. For example, consider ways you can write your narrative using inline code, so the relevant values update when you change the number of reps.
+- Make sure we see all relevant code and output in the knitted PDF. If you use inline code, make sure we can still see the code used to derive that answer.
+- For each simulation exercise, use the seed specified in the exercise instructions.
+
+
+## Exercise 1 
+
+The Environmental Protection Agency (EPA) recommends [children and pregnant/breastfeeding women avoid eating fish with mercury ppm greater than 0.46 ppm](https://www.epa.gov/fish-tech/epa-fda-fish-advice-technical-information) due to adverse neuro-developmental effects that result from mercury exposure.
+
+We are concerned that the average mercury level in local bass may be too high for this subset of the population to eat. 
+
+Let $\mu$ be the mean mercury (ppm) found in a local bass fish. State the null and alternative hypothesis in words and mathematical notation.
+
+## Exercise 2
+
+Next, we want to simulate data under the null hypothesis, i.e. assuming the null hypothesis is true. 
+
+Hint: the null is a statement about the **true population mean** of mercury ppm.
+
+- Fill in the code below, uncomment and run. Start with 100 reps but use 10000 for your final turn in.
+
+```{r bass-fish-simulate}
+set.seed(2)
+
+# null_dist <- mercury_bass %>%
+# specify(response = ____) %>%
+# hypothesize(null = "____", __ = ____) %>%
+# generate(reps = __, type = "bootstrap") %>%
+# calculate(stat = "____")
+
+```
+## Exercise 3
+
+- First, compute the **observed statistic** from your data. 
+
+- Next, use the observed statistic to compute 
+  - the p-value associated with the alternative hypothesis
+  - `visualize` the null distribution, shade the p-value and add appropriate title and axes
+  
+- Assuming $\alpha = 0.05$, do you accept or reject the null hypothesis? What does this mean in context?
+  
+
+## Exercise 4
+
+Calculate a 95% bootstrap confidence interval for the mean mercury (ppm) in North Carolina bass. Use `set.seed(4)`.
+
+- Interpret the interval in the context of the data.
+- Which hypothesis (null or alternative) in Exercise 1 is our confidence interval most consistent with? Briefly explain your response.
+
+
+## Exercise 5
+
+Does the average mercury content differ significantly between bass caught in Waccamaw and bass caught in Lumber river?
+
+Let $\mu_W$ be the mean mercury in Waccamaw bass and $\mu_L$ be the mean mercury in Lumber bass.
+
+- Again, set up a null and alternative hypothesis in words and mathematically.
+
+- Next, add a variable `riverName` to take values "Lumber" and "Waccamaw" instead of 0 and 1 respectively. Save your data frame (you will use this variable in the next part.)
+
+## Exercise 6
+
+Construct the null distribution to exercise 5 using `set.seed(6)`.
+
+- Next, compute the observed statistic.
+- Then, visualize the distribution and the shaded region corresponding to the p-value.
+- Calculate the p-value and state your conclusion in the context of the data, using a significance level of 0.05.
+
+
+## Exercise 7
+
+- Why is it important to specify the null and alternative hypotheses before looking at the data? 
+
+- Compute the p-value for a different alternative hypothesis in exercise 6 to explain.
+
+
+## Exercise 8
+
+
+**Your turn**
+
+Come up with 1 additional question you could answer with this data set via hypothesis testing.
+
+- Create a visualization to begin investigating your question and describe what you observe.
+
+# Submission
+Knit to PDF to create a PDF document. Stage and commit all remaining changes, 
+and push your work to GitHub. Make sure all files are updated on your GitHub 
+repo.
+Only upload your PDF document to Gradescope. Before you submit the 
+uploaded document, mark where each answer is to the exercises. If any answer 
+spans multiple pages, then mark all corresponding pages. Associate the "Overall" section with the first page.
+
+## Reminder:
+- All plots should follow the best visualization practices: include an informed title, label axes, and carefully consider aesthetic choices.
+- All code should follow the tidyverse style guidelines, including not exceeding the 80 character limit.
+
+## Rubric
+- Ex 1: 4 pts.
+- Ex 2: 6 pts.
+- Ex 3: 8 pts.
+- Ex 4: 4 pts.
+- Ex 5: 5 pts.
+- Ex 6: 12 pts.
+- Ex 7: 3 pts.
+- Ex 8: 4 pts
+- Workflow and formatting - 4 pts
+ - This includes having three meaningful commits, updating name, using
+ tidyverse style and naming all code chunks.
+
