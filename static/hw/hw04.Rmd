@@ -1,6 +1,6 @@
 ---
 title: 'Homework #04: Bass Mercury'
-subtitle: 'due February 25th 11:59 PM '
+subtitle: 'due March 04 11:59 PM '
 output:
   tufte::tufte_html:
     tufte_variant: "envisioned"
