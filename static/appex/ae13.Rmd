@@ -61,7 +61,7 @@ $\hat{p} = 1/12$
 
 In words, our "sample-p", often called "p-hat" ( $\hat{p}$) is 1/12.
 
-Now we ask ourselves: "Is $\hat{p}$ so different from our assumption that we have to reject our assumption as true?
+Now we ask ourselves: "Is $\hat{p}$ so different from our assumption that we have to reject our assumption as true?"
 
 ## Simulation
 
@@ -90,7 +90,7 @@ As we'll see in a minute, choice of hypothesis affects our conclusions. For this
 
 1. What's the probability of observing a p-hat less than or equal to 1/12 if the null is true?
 2. What's the probability of observing a p-hat greater than or equal to 1/12 if the null is true?
-3. What's the probability of observing a p-hat less than or equal to 1/12 **or** greater than or equal to 1/12 if the null is true?
+3. What's the probability of observing a p-hat less than or equal to 1/12 **or** greater than or equal to 11/12 if the null is true?
 
 ```{r alternatives}
 # code here
