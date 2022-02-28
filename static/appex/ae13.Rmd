@@ -3,7 +3,7 @@ title: 'Intro to simulation based inference'
 output:
   html_document:
     df_print: paged
-date: "02.16.2022"
+date: "02.18.2022"
 editor_options:
   chunk_output_type: inline
 ---
