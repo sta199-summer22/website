@@ -1,0 +1,274 @@
+---
+title: "Lab #06: Duke Lemurs and Inference"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+
+# Learning Goals
+
+In this lab you will...
+
+-   Learn how to identify and handle merge conflicts
+-   Use simulation-based inference to draw conclusions about population
+    parameters
+
+# Getting started
+
+-   A repository has already been created for you and your teammates.
+    Everyone in your team has access to the same repo.
+
+-   Go to the [course organization](https://github.com/sta199-s22) on GitHub.
+
+-   You should see a repo with the **lab-06** prefix.
+
+-   Each person on the team should clone the repository and open a new
+    project in RStudio. Do not make any changes to the .Rmd file until
+    the instructions tell you do to so.
+
+# Merge Conflicts (uh oh)
+ 
+**Ultimately, the goal is to avoid merge conflicts.**
+
+Some times merge conflicts still happen. To prepare for this scenario, let's practice creating and resolving a merge conflict.
+
+In general, see [the FAQ](https://sta199-sp22-003.netlify.app/faq/faq.html) for step-by-step instructions on troubleshooting a merge conflict.
+ 
+![](img/merge-no-conflict.png)
+
+You may have seen this already through the course of your collaboration
+in the past few weeks. When two collaborators make changes to a file and
+push the file to their repository, git merges these two files.
+
+![](img/merge-conflict.png)
+
+If these two files have conflicting content on the same line, git will
+produce a **merge conflict**. Merge conflicts need to be resolved
+manually, as they require a human intervention:
+
+![](img/merge-conflict-identifiers.png)
+
+To resolve the merge conflict, decide if you want to keep only your
+text, the text on GitHub, or incorporate changes from both texts. Delete
+the conflict markers `<<<<<<<`, `=======`, `>>>>>>>` and make the
+changes you want in the final merge.
+
+**Assign numbers 1, 2, 3, and 4 to each of your team members** (if only
+3 team members, just number 1 through 3). Go through the following steps
+in detail, which simulate a merge conflict. Completing this exercise
+will be part of the lab grade.
+
+## Resolving a merge conflict
+
+**Step 1: Everyone** Clone the repo with the prefix **merge-conflict**
+and open the .Rmd file.
+
+**Team Member 4** should look at the group's repo on GitHub.com to
+ensure that the other members' files are pushed to GitHub after every
+step.
+
+**Step 2: Team Member 1** Change the team name to your team name. *Knit,
+commit, and push*.
+
+**Step 3: Member 2** Change the team name to something different (i.e.,
+not your team name). *Knit, commit, and push*.
+
+You should get an error.
+
+**Pull** and review the document with the merge conflict. Read the error
+to your teammates. You can also show them the error by sharing your
+screen. A merge conflict occurred because you edited the same part of
+the document as Member 1. Resolve the conflict with whichever name you
+want to keep, then knit, commit manually (see FAQ) and push again.
+
+**Step 4: Member 3** Write some narrative in the space provided. You
+should get an error.
+
+This time, no merge conflicts should occur, since you edited a different
+part of the document from Members 1 and 2. Read the error to your
+teammates. You can also show them the error by sharing your screen.
+
+Click to pull. *Then, knit, commit, and push.* All merge conflicts
+should be resolved and all documents updated in the GitHub repo.
+
+<u> You do not need to submit anything on Gradescope for the merge
+conflict activity.</u>
+
+## Workflow: Using git and GitHub as a team
+
+- The following exercises must be done in order. Only one person
+    should type in the .Rmd file and push updates at a time. When it is
+    not your turn to type, you should still share ideas and contribute
+    to the team's discussion.
+
+- Be sure to list your team name and team members in YAML at the top.
+
+- Be sure to commit, push and pull frequently. There will no longer be prompts to do so.
+
+## Packages 
+
+We will use the **tidyverse** and **tidymodels** packages in this lab.
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Data 
+
+Today's data comes from the Duke Lemur center. We will examine a subset of the data and specifically focus on the following variables
+
+- `taxon`: the specific lemur taxon
+- `age_at_death_y`: age of lemur at death
+- `birth_month`: month the lemur was born
+- `sex`: whether the lemur is male or female
+
+[Click here for more info on the dataset](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-08-24/readme.md) including a codebook of variable names and taxonomic codes.
+
+```{r load-lemur-data}
+lemurs = read_csv("data/lemur_subset.csv")
+```
+
+# Exercises 
+
+**For each exercise:**
+
+- show all relevant code and output used to obtain your response.
+
+- Write all narrative in complete sentences, and use clear axis labels and titles on visualizations.
+
+- Use a small number of reps (about 100) as you write and test out
+    your code. Once you have finalized all of your code, increase the
+    number of reps to 10,000 to produce your final results.
+    
+- For each simulation exercise, use the seed specified in the exercise instructions.
+
+
+## Hypothesis testing for difference between two groups (i.e. independence).
+
+- one numerical, one categorical variable
+
+The idea is that you want to test whether or not one variable affects another. E.g. does lemur taxonomy affect life-span?
+
+### Exercise 1
+
+Hypothesis: mongoose lemurs have a greater median life-span than the red-bellied lemurs.
+
+Construct a hypothesis test to investigate the difference in **median age of death** between the two groups using `age_at_death_y`.
+
+- To begin, state the null and alternative hypothesis mathematically and in words.
+
+- Next, compute the sample statistic (what is the observed difference between the two groups)? Save this quantity as `diff_med`. Check the codebook to decode taxon names. You can ignore NA observations.
+
+
+### Exercise 2
+
+- Filter your data frame to contain only the two taxa of lemurs you care about. Save this new data frame as `lemurs2`. Simulate under the null using the template code below. 
+
+Hint: `reponse` is the dependent variable while explanatory is the independent variable. Think about the prompt above: "does lemur taxonomy affect life-span?"
+
+```{r null-diff-life}
+# null_diff_life = lemurs2 %>%
+#   specify(response = ___, explanatory = ___) %>%
+#   hypothesize(null = "___") %>%
+#   generate(reps = 100, type = "___") %>%
+#   calculate(stat = "___", order = c("EMON", "ERUB")) # specifies order
+```
+
+Hint: there are three types of `generate`.
+
+- bootstrap: A bootstrap sample will be drawn for each replicate, where a sample of size equal to the input sample size is drawn (with replacement) from the input sample data. **Use when you want to resample the data while changing one aspect. e.g. resample data with a  different mean**
+
+- permute: For each replicate, each input value will be randomly reassigned (without replacement) to a new output value in the sample. **This is a good option for randomizing categorical labels, e.g. if the null assumes group membership does not affect another variable.**
+
+- draw: A value will be sampled from a theoretical distribution with parameters specified in hypothesize() for each replicate. This option is currently only applicable for testing point estimates. **This is a good option (although not limited to) simulating coin flips with a specified probability `p`. e.g. if the null assumes something about a fixed proportion of hte population**.
+
+- Compute the p-value and use $\alpha = 0.05$ to make a conclusion. Be sure to state your conclusion in context.
+
+## Hypothesis testing about a proportion
+
+### Exercise 3
+
+According to [Duke's lemur center](https://lemur.duke.edu/ring-tailed-lemur-scent-marking-and-breeding-season/) 75% of breeding occurs during October and November. Since gestation lasts about 4.5 months, one might expect 75% of births to occur in March and April. Do you believe the proportion of births in these two months is significantly different?
+
+As above, setup a hypothesis test to investigate, following each step below.
+
+- State the null and alternative hypothesis
+
+- Compute the observed statistic. Hint: first mutate a new variable `birth_march_april` to be `TRUE` if birth month is 3 or 4 and `FALSE` otherwise. Save your mutated variable in `lemurs3`
+
+### Exercise 4 (continuation of 3)
+
+- Simulate the null distribution, specify the `response` to be the mutated variable you created in part 3 and `success = TRUE`.
+
+- Compute p-value and compare to $\alpha = 0.05$. Write your conclusion in context.
+
+
+## Bootstrapping confidence interval
+
+## Exercise 5
+
+Report the median lifespan of both male and female lemurs (separately) and an associated 90% confidence interval with each estimate.
+
+- Do the confidence intervals overlap? 
+
+- Does this support or dispute the notion that [female lemurs live longer](https://news.arizona.edu/story/female-lemurs-play-it-safe-live-longer-study-suggests)?
+
+# Optional Bonus
+
+## Hypothesis testing about a specific point estimate
+
+According to [the Smithsonian's National Zoo](https://nationalzoo.si.edu/animals/ring-tailed-lemur), the average weight of an **adult male ring-tailed lemur** is about 3 kilograms. 
+
+Does **adult, male, ring-tailed lemur** weight differ significantly from 3 kg (3000 g)? Setup a hypothesis test to investigate, following each step below.
+
+- State the null and alternative hypothesis
+
+- Compute the observed statistic
+
+- Simulate the null distribution
+
+- Compute p-value and compare to $\alpha = 0.05$. Write your conclusion.
+
+# Wrapping up
+
+Go back through your write up to make sure you followed the coding style guidelines we discussed in class (e.g. no long lines of code).
+
+
+# Submission
+
+- **Select <u>one</u> team member to upload the team's PDF submission to Gradescope.** 
+- Be sure to select every team member's name in the Gradescope. 
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all pages.
+
+**There should only be <u>one</u> submission per team on Gradescope.**
+
+
+# Grading 
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1     | 8   |
+| Ex 2      | 10 |
+| Ex 3      | 6   |
+| Ex 4      | 10   |
+| Ex 5     | 10  |
+| Bonus    | 3  |
+| Workflow & formatting   | 6      |
+
+- Part of workflow and formatting is the merge-conflict activity (should be completed in GitHub commit history).
+
+- The "Workflow & formatting" grade is to assess the reproducible workflow. This includes having at least one informative commit by each team member,  labeling the code chunks, and having readable code in the tidyverse syntax that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)
