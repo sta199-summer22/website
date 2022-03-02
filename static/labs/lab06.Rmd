@@ -73,8 +73,7 @@ will be part of the lab grade.
 
 ## Resolving a merge conflict
 
-**Step 1: Everyone** Clone the repo with the prefix **merge-conflict**
-and open the .Rmd file.
+**Step 1: Everyone** Clone the **lab-06** repo and open the .Rmd file.
 
 **Team Member 4** should look at the group's repo on GitHub.com to
 ensure that the other members' files are pushed to GitHub after every

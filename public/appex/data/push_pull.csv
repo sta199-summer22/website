@@ -1,4 +1,4 @@
-participant_id,Age,Push1,Push2,pull1,pull2,group
+participant_id,age,push1,push2,pull1,pull2,training
 1,41,41,45,16,17,density
 2,32,35,44,9,11,density
 3,44,33,38,10,11,density

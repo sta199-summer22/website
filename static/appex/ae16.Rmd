@@ -1,9 +1,9 @@
 ---
-title: 'Hypothesis testing for independence and summary'
+title: 'Review: using generate with tidymodels'
 output:
   html_document:
     df_print: paged
-date: "03.04.2022"
+date: "03.02.2022"
 editor_options:
   chunk_output_type: inline
 ---
@@ -22,155 +22,181 @@ knitr::opts_chunk$set(warning = FALSE,
     
 - Other:
   
-    - Lab hopefully short enough to finish in section (still due Monday)
-    - Project report
+    - Lab hopefully short enough to finish in section
     
 # Today
 
 By the end of today you will
 
 - finish bootstrapping confidence intervals practice from last time (AE15)
-- understand the three `generate` options: `bootstrap`, `draw` and `permute`
-- practice hypothesis testing for independence
+- practice the three `generate` options: `permute`, `draw`, and `bootstrap`
 
 ```{r load-packages}
 library(tidyverse)
 library(tidymodels)
 ```
 
+
+# Data
+
 ```{r load-bass}
-bass_mercury = read_csv("data/mercury.csv")
+push_pull = read_csv("data/push_pull.csv")
+```
+
+```{r peak-at-data}
+push_pull %>%
+  slice(1:3, 24:26)
+```
+
+
+The `push_pull` dataset comes from a "mini study" by [mountain tactical institute](https://mtntactical.com/knowledge/mini-study-grease-the-groove-beats-density-for-push-up-pull-up-improvement/). 
+
+26 individuals completed 1 of 2 exercise regiments for 3.5 weeks to increase their pushups and pullups. Codebook below:
+
+- `participant_id`: unique identifier for each participant
+- `age`: age of participant
+- `push1/2`: push-ups at beginning and end of program respectively
+- `pull1/2`: pull-ups at beginning and end of program respectively
+- `training`: which training protocol the individual participated in
+
+```{r pct-increase-column, results = 'hide'}
+push_pull = push_pull %>%
+  mutate(
+    pct_push_inc = (push2 / push1 ) - 1,
+    pct_pull_inc = (pull2 / pull1) - 1)
 ```
 
 
 # The three generate functions
 
-`permute`
+## 1. `permute`
 
-- null: an observation's group membership does not matter
-- typical example: no difference in the mean/median between groups
-- idea:
+- description: permutes variables
+- typical case: is there a difference in the outcome between groups?
+- associated null: group membership does not matter i.e. group A and group B have the same outcome
+- Example (test for independence):
 
+Two exercise regimes:
 
+- "density" training
+- "grease-the-groove" (gtg)
 
-# Rent in Manhattan 
+We want to know, is the average pull-up percent increase of a gtg trainee significantly greater than a density trainee?
 
-On a given day in 2018, twenty one-bedroom apartments were randomly selected on Craigslist Manhattan from apartments listed as "by owner". The data are in the `manhattan` data frame.  We will use this sample to conduct inference on the typical rent of 1 bedroom apartments in Manhattan. 
+Fundamentally, does the categorical variable `training` affect the average percentage increase in pull-ups?
 
-# Part 1: Drawing a bootstrap sample
+**State the null hypothesis**
 
-Let's start by using bootstrapping to estimate the **mean** rent of one-bedroom apartments in Manhattan. 
+What we want to do to simulate data under this null:
 
-## Exercise 1
+```{r conceptual-permute, results = 'hide'}
+random_training = sample(push_pull$training, replace = FALSE)
 
-What is the point estimate of the typical rent? 
-
-## Exercise 2
-
-Let's bootstrap! 
-
-- To bootstrap we will sample with replacement by drawing a value from the bowl. 
-- How many draws do we need for our bootstrap sample? 
-
-Fill in  the values from the bootstrap sample conducted in class. Once the values are filled in, uncomment the code. 
-
-```{r boot-sample}
-# class_bootstrap <- c()
-
+push_pull %>%
+  select(pct_pull_inc) %>%
+  mutate(random_training = random_training)
 ```
 
-## Exercise 3
 
-- About what value do you expect the bootstrap statistic to take? 
-- Calculate the statistic from the bootstrap sample. 
 
-```{r calc-boot-stat}
-# add code
+### Exercise 1:
 
+- Complete the hypothesis specification above by stating the alternative.
+- Perform a hypothesis test, compute the p-value and state your conclusion with $\alpha = 0.05$.
+
+
+```{r ex-1}
+set.seed(1)
+# code here
 ```
 
-# Part 2: Bootstrap confidence interval
+--- 
 
-**We will use the `infer` package, included as part of `tidymodels` to calculate a 95% confidence interval for the mean rent of one-bedroom apartments in Manhattan.**
+## 2. `draw`
 
-We start by setting a seed to ensure our analysis is reproducible. 
+- description: flip a coin with probability p, or roll a die with probabilities associated with each side. [See here](https://cran.r-project.org/web/packages/infer/vignettes/observed_stat_examples.html#one-categorical-2-level---gof) for reference to the multinomial setting.
+- typical case: test the proportion of a binary outcome
+- null: proportion $p$ is some fixed number
+- Example (hypothesis test for a single proportion):
 
-## Generating the bootstrap distribution
+"Most people who train consistently will see at least a 15% increase in push-ups over an 3.5 week training period."
 
-We can use R to take many bootstrap samples and generate a bootstrap distribution
+Breaking it down:
 
-Uncomment the lines and fill in the blanks to create the bootstrap distribution of sample means and save the results in the data frame `boot_dist`.    
+- "Most" i.e. "greater than 50%". This indicates we should examine a proportion.
 
-Use **100 reps** for the in-class activity. (You will use about 15,000 reps for assignments outsdie of class.)
+**What's the null?**
 
-```{r create-bootstrap-dist}
-set.seed(2252022)
+- "will see at least a 15% increase". Each person either increases by 15% over 3.5 weeks or does not. This is our binary outcome.
 
-boot_dist <- manhattan #%>%
-  #specify(______) %>%
-  #generate(______) %>%
-  #calculate(______)
+```{r binary-outcome, results = 'hide'}
+push_up = push_pull %>%
+  select(pct_push_inc) %>%
+  mutate(over15pct =
+           pct_push_inc > 0.15)
+
+push_up
 ```
 
-- How many rows are in `boot_dist`? 
-- What does each row represent? 
-- What are the variables in `boot_dist`? What do they mean?
+- Our "NULL" means that the TRUE and FALSE in the `over15pct` column are equally likely.
 
-## Visualize the bootstrap distribution 
+### Exercise 2
 
-Visualize the bootstrap distribution using a histogram. Describe the shape, center, and spread of this distribution. 
+- Complete the hypothesis specification above by stating the alternative.
+- Perform a hypothesis test, compute the p-value and state your conclusion with $\alpha = 0.01$.
 
-```{r viz-bootstrap}
-# add code
-
+```{r ex-2}
+set.seed(2)
+# code here
 ```
 
-## Calculate the confidence interval
+---
 
-Uncomment the lines and fill in the blanks to construct the 95% bootstrap confidence interval for the mean rent of one-bedroom apartments in Manhattan. 
+## 3. `bootstrap`
 
-```{r confidence-interval-95}
-#___ %>%
-#  summarize(lower = quantile(______),
-  #          upper = quantile(______))
+- description: re-sample your data with replacement
+- typical case (in hypothesis testing): does the mean equal a specific value? Does the median equal a specific value?
+- null: what would the data have looked like if nothing but the point estimate changed?
+- Example:
+
+"The mean age of push-up/pull-up training partcipants is greater than 30".
+
+**What's the null?**
+
+Bootstrapping does the following...
+
+```{r test-mean, results = 'hide'}
+
+# find observed statistic
+obs_mean_age = push_pull %>%
+  drop_na(age) %>%
+  summarize(meanAge = mean(age)) %>%
+  pull()
+
+# subtract observed_mean - desired_mean from age
+age_and_null = push_pull %>% 
+  select(age) %>%
+  drop_na(age) %>%
+  mutate(nullAge = age - (obs_mean_age - 30))
+
+# show data frame
+age_and_null
+
+# show the means of each column
+age_and_null %>%
+  summarize(meanAge = mean(age),
+            mean_nullAge = mean(nullAge))
+```
+If we take bootstrap samples from this new `nullAge` column, we are sampling from data with the **same variability** as our original data, but a different mean. This is a nice way to explore the null!
+
+### Exercise 3
+
+- Complete the hypothesis specification above by stating the alternative.
+- Perform a hypothesis test, compute the p-value and state your conclusion with $\alpha = 0.05$.
+
+
+```{r ex-3}
+set.seed(3)
+# code here
 ```
 
-## Interpret the interval
-
-Write the interpretation for the interval calculated above. 
-
-# Part 3: Changing the confidence level 
-
-- Modify the code used to calculate a 95% confidence interval to calculate a **90% confidence interval** for the mean rent of one-bedroom apartments in Manhattan. How does the width of this interval compare to the width of the 95% confidence interval? 
-
-```{r confidence-interval-90}
-#calculate a 90% confidence interval
-```
-
-- Now let's calculate a 99% confidence interval for the mean rent of one-bedroom apartments in Manhattan. How does the width of this interval compare to the width of the 95% confidence interval? 
-
-```{r confidence-interval-99}
-#calculate a 99% confidence interval
-```
-
-- Question: Does a confidence interval have to be symmetric?
-
-- What is one advantage to using a 90% confidence interval instead of a 95% confidence interval to estimate a parameter? - What is one advantage to using a 99% confidence interval instead of a 95% confidence interval to estimate a parameter? 
-
-# Part 4: Additional practice
-
-Next, use bootstrapping to estimate the median rent for one-bedroom apartments in Manhattan. 
-- Generate the bootstrap distribution of the sample medians. Use 100 reps. Save the results in `boot_dist_median`.
-
-```{r boot-dist-median}
-set.seed(100)
-## add code
-```
-
-- Calculate a 92% confidence interval. 
-
-```{r confidence-interval-92}
-## add code
-```
-
-- Interpret the 92% confidence interval. 

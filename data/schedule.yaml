@@ -134,6 +134,7 @@ lessons:
     lab: "lab06.html"
   - date: "Wed, Mar 02"
     prepare: "week-09-sp22.html"
+    ae: "ae16.html"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d12-hypothesis-testing/u4-d12-hypothesis-testing.html#33"
     title: "Inference continued"
   - date: "Fri, Mar 04"
