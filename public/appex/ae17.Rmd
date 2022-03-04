@@ -56,9 +56,11 @@ and
 
 then 
 
-$\bar{x} \sim N(\mu, \sigma)$
+$\bar{x} \sim N(\mu, \sigma / \sqrt{n})$
 
-i.e. xbar is normally distributed (unimodal and symmetric with bell shape) with mean mu and standard deviation sigma.
+i.e. $\bar{x}$ is normally distributed (unimodal and symmetric with bell shape) with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
+
+Note the standard deviation depends on the number of samples, $n$.
 
 # Practice using CLT & Normal distribution
 
