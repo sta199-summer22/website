@@ -10,6 +10,8 @@ output:
 
 Project proposal due **Friday February 25**
 
+Draft report due **Monday, March 28**
+
 # Introduction
 
 The goal of this project is to demonstrate proficiency in data science 
@@ -138,3 +140,73 @@ Total                                                   | 5 pts
 **Introduction/data**                                   | 2 pts
 **Research questions**                                  | 2 pts
 **Data glimpses**                                       | 1 pts
+
+## Written report
+
+Your final report must be written using R Markdown. All team members must contribute to the GitHub repository, with regular meaningful commits / pushes. Before you finalize your report, make sure the printing of code chunks is turned off with the option echo = FALSE.
+
+Your final report must match your GitHub repository exactly. The mandatory components of the report are as follows, but feel free to expand with additional sections as necessary. Your final written report should not exceed ten pages inclusive of all
+tables and figures.
+
+The written report is worth 80 points, broken down as follows:
+
+Total                                                   | 50 pts
+--------------------------------------------------------|-------
+**Introduction/data**                                   | 5 pts
+**Methodology**                                         | 10 pts
+**Results**                                             | 20 pts
+**Discussion**                                          | 10 pts
+**Formatting**                                          | 5 pts
+
+#### Introduction and data
+
+The introduction provides motivation and context for your research. Describe
+your topic (citing sources) and provide a concise, clear statement of your 
+research question and hypotheses.
+
+Then identify the source of the data, when and how it was collected, the cases,
+a general description of relevant variables.
+
+#### Methodology 
+
+The methodology section should include justification of the choice of 
+statistical method(s) used to answer your research question. You can also include summary statistics relevant to preliminary analysis of your research question (if relevant).
+
+#### Results 
+
+Place figure(s) here to illustrate the main results from your analysis. 1 beautiful figure is worth more than several poorly formatted figures. You should **not** use the default gray background `ggplot` theme.
+
+Showcase how you arrived at answers to your research question using the
+techniques we have learned in class (and beyond, if you’re feeling adventurous).
+
+Provide only the main results from your analysis. The goal is not to do an 
+exhaustive data analysis (calculate every possible statistic and perform every possible procedure for all variables). Rather, you should demonstrate that you are proficient at asking meaningful questions and answering them using data, 
+that you are skilled in interpreting and presenting results, and that you can 
+accomplish these tasks using R. More is not better.
+
+#### Discussion
+
+This section is a conclusion and discussion. This will require a summary of
+what you have learned about your research question along with statistical
+arguments supporting your conclusions. You should critique your own methods 
+and provide suggestions for improving your analysis and future work. Issues 
+pertaining to the reliability and validity of your data and the appropriateness of the statistical analyses should also be discussed. Also include a brief paragraph on what you would do differently if you were able to start over with 
+the project.
+
+### Formatting
+
+Your project should be professionally formatted. For example, this means labeling graphs and figures, turning off code chunks, and using tidyverse style.
+
+## Repository
+
+In addition to your Gradescope submissions, we will be checking your GitHub
+repository. The repos should be formatted in the same manner as labs with a data folder. This repository should have equal contribution by all team members and should include
+
+- RMarkdown file (formatted to clearly present all of your code and results)
+that will output the proposal and write-up in one document
+- Meaningful README file on the GitHub repository that contains a *codebook*
+for relevant variables
+- Dataset(s) (in csv or RData format, in a `/data` folder)
+
+Style and format does count for this assignment, so please take the time to make sure everything looks good and your data and code are properly formatted.
+

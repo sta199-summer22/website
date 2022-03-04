@@ -1,6 +1,6 @@
 ---
 title: "Statistics Experience"
-subtitle: "due Friday, December 3 at 11:59pm"
+subtitle: "due Friday, April 15 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "sta199-hw.css"
@@ -54,7 +54,7 @@ This list is not exhaustive. You may listen to other podcasts or watch other sta
 
 Participate in a statistics or data science competition. You can participate individually or with a team. Information for an upcoming data challenge is linked below.
 
-- [This is Statistics: Fall Data Challenge](https://thisisstatistics.org/falldatachallenge/) due November 7.
+- [This is Statistics: Spring Challenge](https://thisisstatistics.org/dataviz-headline-challenge/) due March 9/16/23/30.
 
 
 ### Category 5: Read a book on statistics/data science
