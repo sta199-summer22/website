@@ -170,7 +170,7 @@ a general description of relevant variables.
 #### Methodology 
 
 The methodology section should include justification of the choice of 
-statistical method(s) used to answer your research question. You can also include summary statistics relevant to preliminary analysis of your research question (if relevant).
+statistical method(s) used to answer your research question. You can also include summary statistics or figures used in exploratory data analysis to investigate your research question.
 
 #### Results 
 

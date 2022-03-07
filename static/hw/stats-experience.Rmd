@@ -13,7 +13,7 @@ link-citations: yes
 
 The world of statistics and data science is vast and continually growing! The goal of the statistics experience assignments is to help you engage with the statistics and data science communities outside of the classroom.
 
-There will be one statistics experience assignment that will count as a homework grade. **The submission for the statistics experience is due on Friday, December 3 at 11:59pm on Gradescope. No late work will be accepted for the statistics experience.** You may submit the statistics experience assignment anytime between now and the deadline. 
+There will be one statistics experience assignment that will count as a homework grade. **The submission for the statistics experience is due on Friday, April 15 at 11:59pm on Gradescope. No late work will be accepted for the statistics experience.** You may submit the statistics experience assignment anytime between now and the deadline. 
 
 Each experience has two parts:
 
@@ -93,9 +93,9 @@ Include the following on your slide:
 - How the event/podcast/competition/etc. connects to something we've done in class.
 - Citation or link to web page for event/competition/etc.
 
-[Click here](https://docs.google.com/presentation/d/1Ua7rmAQn8FaRLxJpxaRvOZfBLIlEjYVxugEaaTcIjMQ/edit?usp=sharing) to see a template to help you get started on your slide. Your slide does not have to follow this exact format; it just needs to include the information mentioned above and be easily readable (i.e. use a reasonable font size!). Creativity is encouraged!
+[Click here](https://docs.google.com/presentation/d/1O4McwUlZLJCKeDgEr1ek79kscGnjEeUW85Y4HCTI_No/edit?usp=sharing) to see a template to help you get started on your slide. Your slide does not have to follow this exact format; it just needs to include the information mentioned above and be easily readable (i.e. use a reasonable font size!). Creativity is encouraged!
 
 
 ## Submission 
 
-Submit the reflection as a PDF under the  **Statistics Experience** assignment on Gradescope by **Friday, December 3 at 11:59pm.** It must be submitted by the deadline on Gradescope to be considered for grading.
+Submit the reflection as a PDF under the  **Statistics Experience** assignment on Gradescope by **Friday, April 15 at 11:59pm.** It must be submitted by the deadline on Gradescope to be considered for grading.
