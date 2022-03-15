@@ -157,6 +157,7 @@ lessons:
     lab: "lab07-clt.html"
     title: "Lab 07: CLT based inference"
   - date: "Wed, Mar 16"
+    ae: "ae18.html"
     prepare: "week-10.html"
     title: "Central limit theorem 2"
   - date: "Fri, Mar 18"
