@@ -59,6 +59,10 @@ pantheria = read_csv("data/pantheria_subset.csv")
 
 ## Instructions
 
+```{r echo=FALSE, out.width='100%', fig.margin = TRUE, fig.cap = "Soricidae aka 'shrews'. Image from [wikipedia](https://en.wikipedia.org/wiki/Shrew)"}
+knitr::include_graphics('img/shrew.jpg')
+```
+
 - Make sure we see all relevant code and output in the knitted PDF. If you use inline code, make sure we can still see the code used to derive that answer.
 
 - Write a narrative for each exercise.
@@ -68,6 +72,10 @@ pantheria = read_csv("data/pantheria_subset.csv")
 - The goal of this analysis is to analyze the mean adult body mass of various animal families.
 
 ## Exercise 1
+
+```{r echo=FALSE, out.width='100%', fig.margin = TRUE, fig.cap = "The yellow bat, an example of Vespertilionidae, aka 'microbats'. Image from [wikipedia](https://en.wikipedia.org/wiki/Scotophilus)"}
+knitr::include_graphics('img/microbat.jpg')
+```
 
 To begin, let's clean the data. Values of `-999` should in fact be `NA`. To convert these to NA, use the code chunk below as a template, replacing the question mark with the appropriate value.
 
@@ -79,7 +87,6 @@ pantheria[pantheria == ?] = NA
 
 ## Exercise 2
 
-
 - Visualize the distribution of Vespertilionidae and Soricidae adult body mass (abm) using a histogram with binwidth of 5 and faceting.
 
 - Do the distributions look "normal"? Comment on the shape of the distributions.
@@ -90,17 +97,17 @@ pantheria[pantheria == ?] = NA
 
 ## Exercise 3
 
+<span class="marginnote">
+Ex 3 Hint: we only observe each species in a family once. You should search in your favorite browser of choice: "how many species in vespertilionidae family?" and "how many species in soricidae family?")
+</span>
+
 The goal of this analysis is to use CLT-based inference to understand the distribution of body mass. The idea is that if CLT holds, we can assume the distribution of the sample mean is normal and thus easily generate a normal null distribution to test hypotheses.
 
 Before we use CLT, let's check to see if the necessary criteria are satisfied. For each condition, indicate whether it is satisfied and provide a brief explanation supporting your response. Be sure to check for both families of interest.
 
  - Independence? 
  - Sample size / distribution? 
-
-<span class="marginnote">
-Ex 3 Hint: we only observe each species in a family once. You should search in your favorite browser of choice: "how many species in vespertilionidae family?" and "how many species in soricidae family?")
-</span>
-
+ 
 ## Exercise 4
 
 ## Is the mean adult body mass (abm) of Soricidae significantly greater than 10 g?
@@ -108,6 +115,10 @@ Ex 3 Hint: we only observe each species in a family once. You should search in y
 State the null and alternative hypothesis. Write your hypotheses in words and mathematical notation.
 
 ## Exercise 5
+
+<span class="marginnote">
+Ex 5 Hint: Use `\sim` to create the mathematical tilde. This statements reads: "x bar is normally distributed"
+</span>
 
 Let $\bar{x}_s$ be the sample mean of Soricidae.
 
@@ -118,10 +129,6 @@ Given the Central Limit Theorem and the hypotheses from the previous exercise,
 - What is the standard error of the sampling distribution of $\bar{x}_s$? Assume the true $\sigma$ is 15.
 
 - Write the distribution of the null concisely in math notation, i.e. $\bar{x} \sim N()$ notation. 
-
-<span class="marginnote">
-Ex 5 Hint: Use `\sim` to create the mathematical tilde. This statements reads: "x bar is normally distributed"
-</span>
 
 ## Exercise 6
 
