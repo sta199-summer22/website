@@ -9,22 +9,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## November 02
-
-**Note:** All required prepare activities are due **<u>by the beginning of class</u>** on the specified date
+## March 23
 
 ### Required
 
-`r emo::ji("movie_camera")` Watch [The language of models](https://youtu.be/MWkkvDopBKc)
-
-- [Click here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) for slides
-
-
-## For November 04
-
-### Required
-
-`r emo::ji("memo")` Take Prep Quiz 07 on sakai
+`r emo::ji("memo")` Take Prep Quiz 06 on sakai
 
 `r emo::ji("movie_camera")` Watch [Fitting and interpreting models](https://youtu.be/69U92Q3pwnA)
 
@@ -36,5 +25,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [IMS: Chapter 7 - Linear regression with a single predictor](https://openintro-ims.netlify.app/model-slr.html) 
 
+## March 25
+
+### Required
+
+`r emo::ji("movie_camera")` Watch [Models with multiple predictors](https://www.youtube.com/watch?v=mjkNabD4oi4)
+
+- [Click here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#1) for slides
 
 
