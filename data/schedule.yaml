@@ -162,6 +162,7 @@ lessons:
     title: "Central limit theorem 2"
   - date: "Fri, Mar 18"
     prepare: "week-10.html"
+    ae: "ae19.html"
     title: "Language of models"
 
   - week: "Week 12"
