@@ -170,6 +170,7 @@ lessons:
     title: "Lab 08: Regression"
     lab: "lab08.html"
   - date: "Wed, Mar 23"
+    ae: "ae20.html"
     prepare: "week-11.html"
     title: "Foundations of Regression"
   - date: "Fri, Mar 25"
