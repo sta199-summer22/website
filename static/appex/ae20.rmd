@@ -57,7 +57,7 @@ where $\hat{\beta}$ are the fitted estimates of the true parameters $\beta$ that
 We used the function `linear_reg` with the `lm` engine to fit the model. From the documentation, the 'lm' engine "uses **ordinary least squares** to fit models with numeric outcomes."
 
 
-## Ordinary Least Squares
+# Ordinary Least Squares
 
 The objective of ordinary least squares regression is to find the $\hat{\beta}$ that minimize the sum of square residuals,
 
@@ -70,6 +70,8 @@ $$
 \epsilon_i = y_i - \hat{y_i}
 $$
 
+Side note: one can show that minimizing the sum of square residuals yields the best possible $\hat{\beta}$s when certain assumptions are made, e.g. when $\epsilon_i \sim Normal$
+
 ## Exercise 1
 
 [Click here to play with the interactive example](https://seeing-theory.brown.edu/regression-analysis/index.html#section1)
@@ -78,12 +80,12 @@ Describe what you see.
 
 
 
-## $R^2$ 
+# $R^2$ 
 
 Once we fit a model according to the least squares criteria above, how do we assess how well our predictors explain the outcome? We can use a statistic called $R^2$
 
 
-### Conceptualize $R^2$
+## Conceptualize $R^2$
 
 Math definition:
 
@@ -109,66 +111,63 @@ If the sum of squared error is 0, then the model explains all variability and $R
 
 If the proportion of error not explained is $1$, i.e. the sum of squared error is the same as all the variability in the data, then model does not explain any variability and $R^2 = 1 - 1 = 0$.
 
-Final take-away: $R^2$ of 0 is a poor fit and $R^2$ of 1 is a perfect fit.
+Final take-away: $R^2$ is a measure of the proportion of variability the model explains. An $R^2$ of 0 is a poor fit and $R^2$ of 1 is a perfect fit.
 
 ## Example: $R^2$
 
-The single predictor model from last time: bill length explains body mass.
+A single predictor model: flipper length explains body mass.
 
 ```{r r2-1}
-bm_bill_fit = linear_reg() %>%
+bm_flipper_fit = linear_reg() %>%
 set_engine("lm") %>%
-fit(body_mass_g ~ bill_length_mm, data = penguins)
+fit(body_mass_g ~ flipper_length_mm, data = penguins)
 
-glance(bm_bill_fit) %>%
+glance(bm_flipper_fit) %>%
   select(r.squared)
 ```
 
 
 ## Exercise 2
 
-Next, build a multiple regression model with two predictors of body mass: bill length and flipper length. 
-
-- Before writing any code, do you think $R^2$ will increase, decrease or stay the same? Why?
-
+Next, build a single predictor model with bill length as the predictor of body mass. Compare the $R^2$ to the model above. 
 
 ```{r r2-2}
 # code here
 ```
 
 
-## Exercise 3 
+## Exercise 3
 
-- Now compare 'adjusted' $R^2$ between models. Which model offers the best fit? Why? See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#21) for details on finding adjusted $R^2$.
+Next, build a multiple regression model with two predictors of body mass: bill length and flipper length. 
 
-```{r ex-adj-r-squared}
-# code here 
+- Before writing any code, do you think $R^2$ will increase, decrease or stay the same? Why?
+
+
+```{r r2-3}
+# code here
 ```
 
-## Hypothesis testing in a regression framework
+- Report $R^2$ and discuss
 
-### Exercise 5
+# Hypothesis testing in a regression framework
 
-Returning to previous joint model,
+This is the model from the previous exercise:
 
 $$
-\text{petal length} = \beta_0 + \beta_{\text{sepal width}} \cdot \text{sepal width} + \beta_{\text{sepal length}} \cdot \text{sepal length}
+y = \beta_0 + x_1 \beta_1 + x_2 \beta_2
 $$
 
-Does our data offer sufficient evidence that `Sepal.Width` is actualy associated with (and therefore might help us predict) `Petal.Length`?
+$y$: body mass (g)
+$x_1$: flipper length (mm)
+$x_2$: bill length (mm)
 
-```{r plot-iris-2}
-iris %>%
-  ggplot(aes(x = Sepal.Width, y = Petal.Length)) + 
-  geom_point() +
-  theme_minimal()
-```
+We didn't see a big increase in $R^2$ when adding bill length as a second predictor of body mass.
 
-Let's conduct a hypothesis test in a regression framework to find out.
+Let's conduct a hypothesis test in a regression framework. If bill length does not help us explain body mass, then $\beta_2$ might as well be 0. Within the framework of hypothesis testing:
 
-If `Sepal.Width` does not help explain `Petal.Length`, $\beta_{\text{sepal width}} = 0$, this is our null hypothesis.
+$H_0$: $\beta_2 = 0$
 
-- What is the alternative?
+$H_A:$ $\beta_2 \neq 0$
 
 For OLS regression, our test statistic is 
 
@@ -179,13 +178,20 @@ We want to see if our observed statistic, $\hat{T}$, falls far in the tail under
 
 `R` takes care of much of this behind the scenes with the tidy output and reports a p-value for each $\beta$ by default.
 
-Fit the regression model and display the tidy output below.
+## Exercise 4
 
+Display your model below in tidy format. Compare the p-value to one you calculate manually using the equation above.
 ```{r tidy-regression}
 # code here
 ```
 
-Is $\beta_{\text{sepal width}}$ significant?
+```{r manual-p-value}
+# code here
+```
+
+Is $\beta_{\text{bill length}}$ significant at the $\alpha = 0.05$ level? State your conclusion.
+
+# Next time
 
 ## Interactions
 
@@ -193,27 +199,9 @@ Is $\beta_{\text{sepal width}}$ significant?
 penguins %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
   geom_point() + 
-  theme_bw()
+  theme_bw() + 
+  geom_smooth(method = 'lm', se = F) + 
+  labs(x = "Bill length (mm)", y = "Body mass (g)", title = "Body mass vs bill length by island", color = "Island")
 ```
 
-
-### Exercise 6
-
-```{r plot-iris-1}
-iris %>%
-  ggplot(aes(x = Sepal.Length, y = Petal.Length, color = Species)) + 
-  geom_point() +
-  scale_color_viridis_d()
-```
-
-In the plot above, it appears the relationship between sepal length and petal length, i.e. the slope of `Petal.Length ~ Sepal.Length` varies drastically from one species of iris to another.
-
-- Fit a model with predictors `Sepal.Length`, `Species` and an interaction effect between `Sepal.Length` and `Species`. See [here](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#23) for example from the prep.
-
-```{r interaction-effect}
-# code here
-```
-
-- Write the fitted linear model below (using $x$, $y$ notation) but replacing $\beta$s with their fitted values.
-
-[write here]
+- What's going on in the figure above?
