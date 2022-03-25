@@ -1,0 +1,181 @@
+---
+title: "Regression 3: Interactions, model selection and transformations"
+date: "March 25 2022"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, warning = FALSE, message  = FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+# Bulletin
+
+- Due Monday
+  - Lab 08
+  - Draft project report
+    - make sure your GitHub repo contains `report.rmd` and `report.pdf`
+
+# Today
+
+By the end of today, you will...
+
+- model interactions between predictors
+- understand what's linear about linear regression
+- report and explain adjusted $R^2$
+
+We'll continue examining the Palmer penguin dataset.
+
+```{r load-penguins, warning = F, message = F}
+data(penguins)
+```
+
+Use `?penguins` or [click here](https://github.com/allisonhorst/palmerpenguins) for more info about the dataset.
+
+# Interactions
+
+```{r interaction-plot-1, warning=F, message = F}
+penguins %>%
+  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
+  geom_point() + 
+  theme_bw() + 
+  geom_smooth(method = 'lm', se = F) + 
+  labs(x = "Bill length (mm)", y = "Body mass (g)", title = "Body mass vs bill length by island", color = "Island")
+```
+
+- What's going on in the figure above?
+
+
+## The main effects model
+
+
+### Introducing categorical predictors
+
+```{r main-effect}
+main_fit = linear_reg() %>%
+set_engine("lm") %>%
+fit(body_mass_g ~ bill_length_mm + island, data = penguins)
+
+main_fit %>%
+  tidy()
+```
+
+The associated linear model:
+
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3
+$$
+
+- $y$: body mass (g)
+- $x_1$: bill length (mm)
+- $x_2$: whether or not the penguin is from the Dream island, binary (0 or 1)
+- $x_3$: whether or not the penguin is from the Torgersen island, binary (0 or 1)
+
+What about Biscoe island?
+
+## The interaction effects model
+
+```{r interaction-effect}
+interaction_fit = linear_reg() %>%
+set_engine("lm") %>%
+fit(body_mass_g ~ bill_length_mm * island, data = penguins)
+
+interaction_fit %>%
+  tidy()
+```
+
+## Exercise 1
+
+- What changed in the code?
+
+- What does the full model look like?
+
+- Interpret the `bill_length_mm:islandDream` slope.
+
+## Exercise 2
+
+- Before examining the numeric value, which model do you think has the larger $R^2$? Why?
+
+- Compare **adjusted** $R^2$ between models. Which model do you prefer?
+
+
+```{r compare-adj-r2}
+# code here
+```
+
+
+# Adjusted $R^2$
+
+More predictors, means higher $R^2$. For this reason, use adjusted $R^2$ when comparing models with variable number of predictors.
+
+Adjusted $R^2$ penalizes the number of predictors in the model. Therefore, adjusted $R^2$ decreases unless the new variable helps explain the response.
+
+Adjusted $R^2$:
+
+$$
+1 - (1 - R^2) \frac{n-1}{n - k - 1}
+$$
+
+where $n$ is the number of observations (in the data) and $k$ is the number of predictors (in the model).
+
+
+# Linearity in linear regression
+
+- Is the model from exercise 1 a linear model?
+
+What's linear about linear regression? The coefficients. We can transform the data in any way we like.
+
+## Example
+
+```{r load-example-data, warning = F, message = F}
+example = read_csv("data/example.csv")
+```
+
+
+```{r ex-linear, warning = F, message = F}
+example %>%
+  ggplot(aes(x = x, y = y)) + 
+  geom_point() +
+  theme_bw() + 
+  geom_smooth(method = 'lm', se = FALSE, color = 'steelblue') +
+  labs(x = "X", y = "Y", title = "Naive linear model is a bad fit")
+```
+
+## Exercise 3
+
+- Write the equation of the line above (by finding the fitted model). What is the $R^2$ associated with the line above?
+
+```{r bad-fit}
+# code here
+```
+
+
+## Exercise 4
+
+- What function better describes the relationship between $x$ and $y$ above?
+
+- Transform the predictor $x$ and plot y versus the transformed predictor below.
+
+```{r transformed-plot}
+# code here
+```
+
+- Fit a linear model for the transformed $x$. Find $R^2$ of the new model and compare.
+
+# Practice
+
+
+## Exercise 5
+
+Is the relationship between Body mass (g) and Bill depth (mm) positive or negative? Create a convincing argument from the data.
+
+
+## Exercise 6
+- Create a linear model of body mass using bill depth and one other predictor of your choosing.
+
+- Do you prefer this model to the interaction effects model from exercise 2? Why?
+
+
+
