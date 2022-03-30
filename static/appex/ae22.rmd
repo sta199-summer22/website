@@ -1,0 +1,170 @@
+---
+title: "Regression 4: Review"
+date: "March 30 2022"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, warning = FALSE, message  = FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+# Bulletin
+
+- Friday
+  - peer reviews due
+  - exam 02 released
+
+# Today
+
+Today we review and practice linear modeling concepts with the Palmer penguins data.
+
+```{r load-penguins, warning = F, message = F}
+data(penguins)
+```
+
+Use `?penguins` or [click here](https://github.com/allisonhorst/palmerpenguins) for more info about the dataset.
+
+# Main vs interaction effects
+
+$y$: body mass (g)
+
+$x_1$: bill length
+
+$x_2$: island Dream
+
+$x_3$: island Torgersen
+
+$$
+\hat{y} = \hat{\beta_0} + \hat{\beta_1} x_1 + \hat{\beta_2} x_2 + \hat{\beta_3} x_3
+$$
+
+Bill length only impacts body mass via the term $\beta_1 x_1$. $x_2$ and $x_3$ can be thought of as turning on or off a constant.
+
+## Main
+
+```{r main, echo = F, message = F, warning = F}
+main_fit = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_g ~ bill_length_mm + island, data = penguins)
+  main_fit %>%
+  tidy()
+
+b0 = 1225.79107
+bD = -919.07448
+bT = -523.29201
+bBill = 77.11933
+
+# show_col(hue_pal()(3))  
+
+penguins %>%
+ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
+  geom_point() +
+  theme_bw() +
+  geom_abline(intercept = b0, slope = 77.11933, color = "#F8766D", lwd = 1) +
+  geom_abline(intercept = b0 + bD, slope = 77.11933, color = "#00BA38", lwd = 1) +
+  geom_abline(intercept = b0 + bT, slope = 77.11933, color = "#619CFF", lwd = 1) +
+  labs(x = "Bill length (mm)",
+       y = "Body mass (g)",
+       title = "Island main effect")
+```
+
+
+## Interaction
+
+$$
+\hat{y} = \hat{\beta_0} + \hat{\beta_1} x_1 + \hat{\beta_2} x_2 + \hat{\beta_3} x_3 + \hat{\beta_4} x_1 x_2 + \hat{\beta_5} x_1 x_3
+$$
+
+What's different? The interaction terms ($\beta_4 x_1 x_2$ and $\beta_5 x_1 x_3$). 
+
+```{r interaction, echo = F, warning = F, message = F}
+
+interaction_fit = linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_g ~ bill_length_mm * island, data = penguins)
+
+  interaction_fit %>%
+  tidy()
+
+penguins %>%
+ggplot(aes(x = bill_length_mm, y = body_mass_g, color = island)) +
+geom_point() +
+theme_bw() +
+geom_smooth(method = 'lm', se = F) +
+labs(x = "Bill length (mm)",
+     y = "Body mass (g)",
+     title = "Island interaction effect")
+```
+
+Interpreting interactions can be difficult, especially without writing things down. To make it easier, we will compare the implied linear models:
+
+Plug in 0 for `islandDream` ($x_2$) and 0 for `islandTorgersen` ($x_3$) to get the linear model for `islandBiscoe` penguins
+
+Plug in 1 for `islandDream` ($x_2$) and 0 for `islandTorgersen` ($x_3$) to get the linear model for `islandDream` penguins
+
+Plug in 0 for `islandDream` ($x_2$) and 1 for `islandTorgersen` ($x_3$) to get the linear model for `islandTorgersen` penguins
+
+- Biscoe fitted model:
+
+$$
+\hat{y} = -1726.0+ 142.3 x_1
+$$
+
+- Dream fitted model:
+
+$$
+\hat{y} = -1726.0 + 142.3 x_1 + 4478.7 -120.6 x_1
+$$
+
+Combine terms:
+
+$$
+\hat{y} = 2752.7 + 21.7 x_1 
+$$
+
+## Exercise 1 
+
+Write out the fitted model for Torgersen island below.
+
+- Torgersen model:
+$$
+\hat{y} = [\text{write here}]
+$$
+
+# Interpreting
+
+Now we can interpret the interaction model by comparing bill length slopes between islands.
+
+- For a unit increase in bill length of a penguin from the island Dream, how much do we expect the body mass to increase?
+
+## Exercise 2
+
+- You measured the bill length of a penguin from island Biscoe and a penguin from island Torgersen a year ago. You re-measure them today and find the bill length of each one grew by exactly 2 mm. How much mass do you expect each penguin to have gained?
+
+## Exercise 3
+
+Are the intercepts meaningful?
+
+# Practice
+
+## Exercise 4
+
+Is the relationship between Body mass (g) and Bill depth (mm) positive or negative? Create a convincing argument from the data.
+
+## Exercise 5
+
+Let's build a linear model of body mass using bill depth and one other predictor of your choosing (hint: see previous exercise!)
+
+- Write out a linear model with both predictors and fit the model.
+
+- Fit the linear model
+
+- Are any of the predictors insignificant at the $\alpha = 0.05$ level? If so, state the null and alternative hypothesis, p-value and conclusion in context.
+
+- Do you prefer this model to the interaction effects model from above? Why?
+
+
+
