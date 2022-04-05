@@ -12,6 +12,14 @@ Project proposal due **Friday February 25**
 
 Draft report due **Monday, March 28**
 
+Peer review due **Friday, April 1**
+
+Final report due **Wednesday April 20**
+
+Repo, slides, and video due **Monday April 24**
+
+Comments and group evaluation due **Friday April 28**
+
 # Introduction
 
 The goal of this project is to demonstrate proficiency in data science 
@@ -210,3 +218,149 @@ for relevant variables
 
 Style and format does count for this assignment, so please take the time to make sure everything looks good and your data and code are properly formatted.
 
+## Peer feedback
+
+Critically reviewing others’ work is a crucial part of the scientific process, and STA 199 is no exception. You will be assigned a team to review. As part of the review process, you must provide your partner team a copy of your current report by **Monday, March 28**. After giving the report to your partner team, they will have until **Friday, April 1** to provide a detailed critique about the written report and data analysis. This feedback is intended to help you create a high quality final project, as well as give you experience reading and constructively critiquing the work of others.
+
+During the peer feedback process, you will be provided read-only access to your partner team’s GitHub repo. Provide your feedback in the form of GitHub issues to your partner team’s GitHub repo.
+
+Peer feedback will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team’s report: the research context and motivation, exploratory data analysis, and any inference, modeling, or conclusions. As you work on the draft, the focus should be on the analysis and less on crafting the final report. Your draft must include a reasonable attempt at each analysis component - exploratory data analysis, inference or modeling, and drawing initial conclusions.
+
+Lab on November **Tuesday March 29** will be devoted to allowing your group to write your peer review.
+
+## Presentation Slides
+
+In addition to the write-up, your team must also create presentation slides that summarize and showcase your project. Introduce your research question and dataset, showcase visualizations, and provide some conclusions. These slides should serve as a brief visual accompaniment to your write-up and will be graded for content and quality. For submission, convert these slides to a .pdf document to be submitted to Gradescope. The slides are due with the presentation.
+
+The slide deck should have no more than 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the slide deck.
+
+- Title Slide
+
+- Slide 1: Introduce the topic and motivation
+
+- Slide 2: Introduce the data
+
+- Slide 3 - 4: Highlights from exploratory data analysis
+
+- Slide 4 - 5: Inference / modeling
+
+- Slide 6: Conclusions + future work
+
+- Video presentation
+
+- Sometime by [Exam Time], you/your group will upload a video presentation of your project to Warpwire. Note that all members must present, and that a ten-minute time limit is strictly enforced.
+
+For the presentation, you can speak over your slide deck, similar to the lecture content videos. I recommend using Zoom to record your presentation; however, you can use whatever platform works best for your group. Below are a few resources to help you record video presentations:
+
+- [Recording presentations in Zoom](https://kb.siue.edu/61721)
+
+- [Apple Quicktime for screen recording](https://support.apple.com/en-gb/guide/quicktime-player/qtp97b08e666/mac)
+
+- [Windows 10 built-in screen recording functionality](https://www.youtube.com/watch?v=OfPbr1mRDuo)
+
+- [Kap for screen recording](https://getkap.co/)
+
+You will post the presentation video in Warpwire, which is accessible from the the course Sakai site (bottom of the left-hand tool bar).
+
+**To upload your video to Warpwire:**
+
+- Click the Warpwire tab in the course Sakai site.
+
+- Click the “+” and select “Upload files”.
+
+- Locate the video on your computer and click to upload.
+
+- Once you’ve uploaded the video to Warpwire, click to share the video and make a copy of the video’s URL. You will need this when you post the video in the discussion forum.
+
+**To post the video to the discussion forum:**
+
+- Click the Presentations tab in the course Sakai site.
+
+- Click the Presentations topic.
+
+- Click “Start New Presentation”.
+
+- Make the title “Your Team Name: Project Title”. For example, “Teaching Team: Analysis of Cars in the US”.
+
+- Click the Warpwire icon (between the flag and shopping cart icons).
+
+- Select your video, then click “Insert 1 item.” This will embed your video in the conversation.
+
+- Under the video, paste the URL to your video.
+
+- You’re done!
+
+You can see the Teaching team example in Sakai.
+
+**Presentation comments**
+
+Each student will be assigned 2 presentations to watch.
+
+Watch the group’s video, then click “Reply” to post a question for the group. You may not post a question that’s already been asked on the discussion thread. Additionally, the question should be (i) substantive (i.e. it shouldn’t be “Why did you use a bar plot instead of a pie chart”?), (ii) demonstrate your understanding of the content from the course, and (iii) relevant to that group’s specific presentation, i.e demonstrating that you’ve watched the presentation.
+
+You may start posting questions and comments on **Tuesday April 25**. All questions must be posted by **Friday April 28**.
+
+This portion of the project will be assessed individually
+
+# Tips
+
+- Ask questions if any of the expectations are 
+unclear.
+
+- *Code*: In your write up your code should be hidden (`echo = FALSE`) so that your document is neat and easy to read. However your document should include 
+all your code such that if I re-knit your Rmd file I should be able to obtain 
+the results you presented. **Exception:** If you want to highlight something 
+specific about a piece of code, you're welcome to show that portion. 
+
+- Merge conflicts will  happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.
+
+- The project is very open ended. For instance, in creating compelling 
+visualization of your data in R, there is no limit on what tools or 
+packages you may use. You do not need to visualize all of the data at once. A 
+single high quality visualization will receive a much higher grade than a large number of poor quality visualizations.
+
+- Make sure each team member is contributing, both in terms of quality and 
+quantity of contribution (we will be reviewing commits from different team 
+members).
+
+- All team members are expected to contribute equally to the completion of this assignment and group  assessments will be given at its completion - anyone judged to not have  sufficient contributed to the final product will have their grade penalized. 
+
+While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code 
+and approaches in the assignment works.
+
+- Before you finalize your write up, make sure the printing of code chunks is 
+turned off with the option `echo = FALSE`. 
+
+- Pay attention to details in your write-up. Neatness, coherency, and 
+clarity will count.
+
+- Write all R code according to the style guidelines discussed in class. 
+
+# Grading
+
+Grading of the project will take into account the following:
+
+- Content - What is the quality of research and/or policy question and relevancy of data to those questions?
+- Correctness - Are statistical procedures carried out and explained correctly?
+- Writing - What is the quality of the statistical presentation, writing, and 
+explanations?
+- Creativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?
+
+A general breakdown of scoring is as follows:
+
+- *90%-100%*: Outstanding effort. Student understands how to apply all statistical concepts, can put the results into a cogent argument, can identify weaknesses in the argument, and can clearly communicate the results to others.
+- *80%-89%*: Good effort. Student understands most of the concepts, puts together an adequate argument, identifies some weaknesses of their argument, and communicates most results clearly to others.
+- *70%-79%*: Passing effort. Student has misunderstanding of concepts in several areas, has some trouble putting results together in a cogent argument, and communication of results is sometimes unclear.
+- *60%-69%*: Struggling effort. Student is making some effort, but has misunderstanding of many concepts and is unable to put together a cogent argument. Communication of results is unclear.
+- *Below 60%*: Student is not making a sufficient effort.
+
+# Peer evaluation
+
+You will be asked to fill out a survey where you rate the contribution and 
+teamwork of each team member by assigning a contribution percentage for each 
+team member with justification. This will contribute to your final project 
+grade. Final survey evaluations will be due ****Friday April 28**.
+
+# Late work policy
+
+**There is no late work accepted on this project** Be sure to turn in your work early to avoid any technological mishaps.
