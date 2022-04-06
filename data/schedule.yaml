@@ -197,6 +197,8 @@ lessons:
     date: "Tue, Apr 05"
     title: "No lab: Exam due"
   - date: "Wed, Apr 06"
+    ae: "ae24.html"
+    project: "project.html"
     title: "Project info and tips"
   - date: "Fri, Apr 08"
     title: "Special topic: Code breaking"
