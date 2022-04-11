@@ -12,7 +12,7 @@
 
 
 
-<title>Lab #08: CLT and Intro to Regression</title>
+<title>Lab #09: Logistic regression</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 <link href="data:text/css,%0A%40charset%20%22UTF%2D8%22%3B%0A%0Ahtml%20%7B%20font%2Dsize%3A%2015px%3B%20%7D%0Abody%20%7B%20width%3A%2087%2E5%25%3B%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Apadding%2Dleft%3A%2012%2E5%25%3B%0Acolor%3A%20%23111%3B%0Amax%2Dwidth%3A%201400px%3B%0Acounter%2Dreset%3A%20sidenote%2Dcounter%3B%20%7D%0Ah1%2Etitle%20%7B%20font%2Dweight%3A%20400%3B%0Afont%2Dstyle%3A%20normal%3B%0Amargin%2Dtop%3A%204rem%3B%0Amargin%2Dbottom%3A%201%2E5rem%3B%0Afont%2Dsize%3A%203%2E2rem%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah1%20%7B%0Afont%2Dweight%3A%20400%3B%0Amargin%2Dtop%3A%202%2E1rem%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%2Dsize%3A%202%2E2rem%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah2%20%7B%0Afont%2Dweight%3A%20400%3B%0Afont%2Dsize%3A%201%2E7rem%3B%0Amargin%2Dtop%3A%202rem%3B%0Amargin%2Dbottom%3A%200%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah3%2Esubtitle%20%7B%0Afont%2Dweight%3A%20400%3B%0Amargin%2Dtop%3A%201rem%3B%0Amargin%2Dbottom%3A%201rem%3B%0Afont%2Dsize%3A%201%2E8rem%3B%0Adisplay%3A%20block%3B%0Aline%2Dheight%3A%201%3B%20%7D%0Ah4%2Eauthor%2C%20h4%2Edate%20%7B%0Afont%2Dsize%3A%201%2E4rem%3B%0Afont%2Dweight%3A%20400%3B%0Amargin%3A%201rem%20auto%3B%0Aline%2Dheight%3A%201%3B%0A%7D%0A%2Edanger%20%7B%20color%3A%20red%3B%20%7D%0Aarticle%20%7B%20position%3A%20relative%3B%0Apadding%3A%205rem%200rem%3B%20%7D%0Asection%20%7B%20padding%2Dtop%3A%201rem%3B%0Apadding%2Dbottom%3A%201rem%3B%20%7D%0Ap%2C%20ol%2C%20ul%20%7B%20font%2Dsize%3A%201%2E4rem%3B%20%7D%0Ap%20%7B%20line%2Dheight%3A%202rem%3B%0Amargin%2Dtop%3A%201%2E4rem%3B%0Amargin%2Dbottom%3A%201%2E4rem%3B%0Apadding%2Dright%3A%200%3B%0Avertical%2Dalign%3A%20baseline%3B%20%7D%0Ablockquote%20%7B%20font%2Dsize%3A%201%2E4rem%3B%20%7D%0Ablockquote%20p%20%7B%20width%3A%2050%25%3B%20%7D%0Ablockquote%20footer%20%7B%20width%3A%2050%25%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0Atext%2Dalign%3A%20right%3B%20%7D%0Aol%2C%20ul%20%7B%20width%3A%2045%25%3B%0A%2Dwebkit%2Dpadding%2Dstart%3A%205%25%3B%0A%2Dwebkit%2Dpadding%2Dend%3A%205%25%3B%20%7D%0Ali%20%7B%20padding%3A%200%2E5rem%200%3B%20%7D%0Atable%20%7B%0Aborder%2Dtop%3A%202px%20solid%20%23111%3B%0Aborder%2Dbottom%3A%202px%20solid%20%23111%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0A%7D%0Ath%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23111%3B%0A%7D%0Adiv%2Efigure%20%7B%0Apadding%3A%200%3B%0Aborder%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Afont%3A%20inherit%3B%0Avertical%2Dalign%3A%20baseline%3B%0Amax%2Dwidth%3A%2055%25%3B%0A%2Dwebkit%2Dmargin%2Dstart%3A%200%3B%0A%2Dwebkit%2Dmargin%2Dend%3A%200%3B%0Amargin%3A%200%200%203em%200%3B%0A%7D%0A%0Aa%3Alink%2C%20a%3Avisited%20%7B%20color%3A%20inherit%3B%20%7D%0Aa%3Alink%20%7B%20text%2Ddecoration%3A%20none%3B%0Abackground%3A%20%2Dwebkit%2Dlinear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20%2Dwebkit%2Dlinear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20%2Dwebkit%2Dlinear%2Dgradient%28%23333%2C%20%23333%29%3B%0Abackground%3A%20linear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20linear%2Dgradient%28%23fffff8%2C%20%23fffff8%29%2C%20linear%2Dgradient%28%23333%2C%20%23333%29%3B%0A%2Dwebkit%2Dbackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0A%2Dmoz%2Dbackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0Abackground%2Dsize%3A%200%2E05em%201px%2C%200%2E05em%201px%2C%201px%201px%3B%0Abackground%2Drepeat%3A%20no%2Drepeat%2C%20no%2Drepeat%2C%20repeat%2Dx%3B%0Atext%2Dshadow%3A%200%2E03em%200%20%23fffff8%2C%20%2D0%2E03em%200%20%23fffff8%2C%200%200%2E03em%20%23fffff8%2C%200%20%2D0%2E03em%20%23fffff8%2C%200%2E06em%200%20%23fffff8%2C%20%2D0%2E06em%200%20%23fffff8%2C%200%2E09em%200%20%23fffff8%2C%20%2D0%2E09em%200%20%23fffff8%2C%200%2E12em%200%20%23fffff8%2C%20%2D0%2E12em%200%20%23fffff8%2C%200%2E15em%200%20%23fffff8%2C%20%2D0%2E15em%200%20%23fffff8%3B%0Abackground%2Dposition%3A%200%25%2093%25%2C%20100%25%2093%25%2C%200%25%2093%25%3B%20%7D%0A%40media%20screen%20and%20%28%2Dwebkit%2Dmin%2Ddevice%2Dpixel%2Dratio%3A%200%29%20%7B%20a%3Alink%20%7B%20background%2Dposition%2Dy%3A%2087%25%2C%2087%25%2C%2087%25%3B%20%7D%20%7D%0Aa%3Alink%3A%3Aselection%20%7B%20text%2Dshadow%3A%200%2E03em%200%20%23b4d5fe%2C%20%2D0%2E03em%200%20%23b4d5fe%2C%200%200%2E03em%20%23b4d5fe%2C%200%20%2D0%2E03em%20%23b4d5fe%2C%200%2E06em%200%20%23b4d5fe%2C%20%2D0%2E06em%200%20%23b4d5fe%2C%200%2E09em%200%20%23b4d5fe%2C%20%2D0%2E09em%200%20%23b4d5fe%2C%200%2E12em%200%20%23b4d5fe%2C%20%2D0%2E12em%200%20%23b4d5fe%2C%200%2E15em%200%20%23b4d5fe%2C%20%2D0%2E15em%200%20%23b4d5fe%3B%0Abackground%3A%20%23b4d5fe%3B%20%7D%0Aa%3Alink%3A%3A%2Dmoz%2Dselection%20%7B%20text%2Dshadow%3A%200%2E03em%200%20%23b4d5fe%2C%20%2D0%2E03em%200%20%23b4d5fe%2C%200%200%2E03em%20%23b4d5fe%2C%200%20%2D0%2E03em%20%23b4d5fe%2C%200%2E06em%200%20%23b4d5fe%2C%20%2D0%2E06em%200%20%23b4d5fe%2C%200%2E09em%200%20%23b4d5fe%2C%20%2D0%2E09em%200%20%23b4d5fe%2C%200%2E12em%200%20%23b4d5fe%2C%20%2D0%2E12em%200%20%23b4d5fe%2C%200%2E15em%200%20%23b4d5fe%2C%20%2D0%2E15em%200%20%23b4d5fe%3B%0Abackground%3A%20%23b4d5fe%3B%20%7D%0A%0Aimg%20%7Bmax%2Dwidth%3A%20100%25%3B%7D%0A%2Emarginnote%20img%20%7B%20display%3A%20block%3B%20%7D%0A%2Esidenote%2C%20%2Emarginnote%20%7B%20float%3A%20right%3B%0Aclear%3A%20right%3B%0Amargin%2Dright%3A%20%2D60%25%3B%0Awidth%3A%2050%25%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%201rem%3B%0Afont%2Dsize%3A%201%2E1rem%3B%0Aline%2Dheight%3A%201%2E3%3B%0Avertical%2Dalign%3A%20baseline%3B%0Aposition%3A%20relative%3B%20%7D%0A%2Esidenote%2Dnumber%20%7B%0Aposition%3A%20relative%3B%0Avertical%2Dalign%3A%20baseline%3B%20%7D%0A%2Esidenote%2Dnumber%20%7B%20font%2Dsize%3A%201rem%3B%0Atop%3A%20%2D0%2E5rem%3B%0Aleft%3A%200%2E1rem%3B%20%7D%0Ap%2C%20footer%2C%20table%2C%20hr%20%7B%20width%3A%2055%25%3B%20%7D%0Ahr%20%7B%20margin%2Dleft%3A%200%3B%20%7D%0Atable%20table%2C%20li%20p%2C%20li%20pre%20%7B%20width%3A%20auto%3B%20%7D%0Ali%20p%2C%20li%20pre%20%7Bmargin%2Dtop%3A%20auto%3B%20%7D%0Adiv%2Efullwidth%2C%20table%2Efullwidth%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Adiv%2Efullwidth%20%3E%20%2A%20%7B%20width%3A%20auto%3B%20%7D%0A%23TOC%2C%20h1%2Etitle%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0A%23TOC%20ol%2C%20%23TOC%20ul%20%7B%20width%3A%20auto%3B%20%7D%0Adiv%2Efullwidth%20p%2Ecaption%20%7B%0Amargin%2Dright%3A%200%3B%0Amax%2Dwidth%3A%2033%25%3B%0A%7D%0Ap%2Ecaption%20%7B%20text%2Dalign%3A%20left%3B%20%7D%0A%40media%20screen%20and%20%28max%2Dwidth%3A%20760px%29%20%7B%20p%2C%20footer%2C%20ol%2C%20ul%2C%20table%2C%20hr%20%7B%20width%3A%2090%25%3B%20%7D%0Apre%20%7B%20width%3A%2087%2E5%25%3B%20%7D%0Aul%20%7B%20width%3A%2085%25%3B%20%7D%0Afigure%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Adiv%2Efullwidth%20p%2Ecaption%20%7B%20max%2Dwidth%3A%20none%3B%20%7D%0Ablockquote%20p%2C%20blockquote%20footer%20%7B%20width%3A%2090%25%3B%20%7D%7D%0A%2Esans%20%7B%20font%2Dfamily%3A%20%22Gill%20Sans%22%2C%20%22Gill%20Sans%20MT%22%2C%20Calibri%2C%20sans%2Dserif%3B%0Aletter%2Dspacing%3A%20%2E03em%3B%20%7D%0Acode%20%7B%20font%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%201%2E125rem%3B%0Aline%2Dheight%3A%201%2E6%3B%20%7D%0Apre%20code%20%7B%20font%2Dsize%3A%201rem%3B%20%7D%0Ap%20code%20%7B%20white%2Dspace%3A%20inherit%3B%20%7D%0Ah1%20code%2C%20h2%20code%2C%20h3%20code%20%7B%20font%2Dsize%3A%200%2E80em%3B%20%7D%0A%2Emarginnote%20code%2C%20%2Esidenote%20code%20%7B%20font%2Dsize%3A%201rem%3B%20%7D%0Apre%20%7B%20width%3A%2052%2E5%25%3B%0Aoverflow%2Dx%3A%20auto%3B%20%7D%0A%2Efullwidth%20%7B%20max%2Dwidth%3A%2090%25%3B%0Aclear%3Aboth%3B%20%7D%0Aspan%2Enewthought%20%7B%20font%2Dvariant%3A%20small%2Dcaps%3B%0Afont%2Dsize%3A%201%2E2em%3B%20%7D%0Ainput%2Emargin%2Dtoggle%20%7B%20display%3A%20none%3B%20%7D%0Alabel%2Esidenote%2Dnumber%20%7B%20display%3A%20inline%3B%20%7D%0Alabel%2Emargin%2Dtoggle%3Anot%28%2Esidenote%2Dnumber%29%20%7B%20display%3A%20none%3B%20%7D%0A%40media%20%28max%2Dwidth%3A%20760px%29%20%7B%20label%2Emargin%2Dtoggle%3Anot%28%2Esidenote%2Dnumber%29%20%7B%20display%3A%20inline%3B%20%7D%0A%2Esidenote%2C%20%2Emarginnote%20%7B%20display%3A%20none%3B%20%7D%0A%2Eshownote%2C%0A%2Emargin%2Dtoggle%3Achecked%20%2B%20%2Esidenote%2C%0A%2Emargin%2Dtoggle%3Achecked%20%2B%20%2Emarginnote%20%7B%0Adisplay%3A%20block%3B%0Afloat%3A%20left%3B%0Aleft%3A%201rem%3B%0Aclear%3A%20both%3B%0Awidth%3A%2095%25%3B%0Amargin%3A%201rem%202%2E5%25%3B%0Avertical%2Dalign%3A%20baseline%3B%0Aposition%3A%20relative%3B%0A%7D%0Alabel%20%7B%20cursor%3A%20pointer%3B%20%7D%0Adiv%2Efigure%20%7B%20max%2Dwidth%3A%2090%25%3B%20%7D%0Apre%20%7B%20width%3A%2090%25%3B%0Apadding%3A%200%3B%20%7D%0A%7D%0A" rel="stylesheet" />
@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">Lab #08: CLT and Intro to Regression</h1>
+<h1 class="title toc-ignore">Lab #09: Logistic regression</h1>
 
 
 
@@ -147,8 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Learning Goals</h1>
 <p>In this lab you will…</p>
 <ul>
-<li>Estimate the population mean and construct confidence intervals using CLT</li>
-<li>Build a simple and multiple regression model</li>
+<li>build a logistic regression model and assess its performance</li>
 </ul>
 </div>
 <div id="getting-started" class="section level1">
@@ -156,21 +155,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>A repository has already been created for you and your teammates. Everyone in your team has access to the same repo.</p></li>
 <li><p>Go to the <a href="https://github.com/sta199-s22">course organization</a> on GitHub.</p></li>
-<li><p>You should see a repo with the prefix <strong>lab08</strong>.</p></li>
+<li><p>You should see a repo with the prefix <strong>lab09</strong>.</p></li>
 <li><p>Each person on the team should clone the repository and open a new project in RStudio.</p></li>
 </ul>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
-<p>We will use the <strong>tidyverse</strong> and <strong>tidymodels</strong> packages in this lab.</p>
+<p>We will use the following packages in this lab:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>The data for this lab is from the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-10-26/readme.md">Ultra Trail Running data set featured in Tidy Tuesday</a> You can find the codebook with variable definitions in the Tidy Tuesday repo.</p>
+<p>This dataset comes from <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/">Little et al. (2008)</a>. The data includes various measurements of dysphonia from 32 people, 24 with Parkinson’s disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include:</p>
+<ul>
+<li><code>name</code>: patient ID</li>
+<li><code>jitter</code>: a measure of relative variation in fundamental frequency</li>
+<li><code>shimmer</code>: a measure of variation in amplitude (dB)</li>
+<li><code>PPE</code>: pitch period entropy</li>
+<li><code>HNR</code>: a ratio of total components vs. noise in the voice recording</li>
+<li><code>status</code>: health status (1 for PD, 0 for healthy)</li>
+</ul>
 <p>Use the code below to load the data sets into R.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ultra_rankings <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/ultra_rankings.csv&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>race <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/race.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>parkinsons <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/parkinsons.csv&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="exercises" class="section level1">
@@ -185,80 +192,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="exercise-1" class="section level2">
 <h2>Exercise 1</h2>
-<p>To begin, join the data frames. Save your result as <code>ultra</code>.</p>
-<ul>
-<li><p>Next, clean your data frames by removing observations with duplicate runners (hint: use <code>distinct</code>).</p></li>
-<li><p>Finally, drop all rows without an observed race <code>time</code>.</p></li>
-</ul>
-<p>Your final result should have 60924 observations and 20 variables.</p>
+<p>For each individual, multiple repeated measurements were taken. For example, for individual S01, six repeated measurements were taken: <code>_1</code>, <code>_2</code>, etc.</p>
+<p>Use the code below to remove the characters after the final underscore, i.e the individual measurement number for each individual. This will let you to group by participants.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>park <span class="ot">=</span> parkinsons <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">str_remove_all</span>(name, <span class="st">&quot;_[^_]+$&quot;</span>))</span></code></pre></div>
+<p>What are the identification codes (<code>names</code>) of healthy individuals in the data set? Print your output as a nice <code>kable</code> table.</p>
 </div>
-<div id="exercise-2" class="section level2">
-<h2>Exercise 2</h2>
-<p>Next we will examine races that are 170 km.</p>
-<ul>
-<li><p>Create a histogram of race times (in seconds) using <code>bins = 30</code>.</p></li>
-<li><p>Next, find the mean race time (in seconds) for all races that are 170 km.</p></li>
-<li><p>Construct and report a 90% bootstrap confidence interval using <code>set.seed = 2</code> in the code chunk and 10000 reps.</p></li>
-</ul>
 </div>
-<div id="exercise-3" class="section level2">
-<h2>Exercise 3</h2>
-<p>Assuming the 170 km race times are randomly sampled, does the central limit theorem hold?</p>
-<p>Use CLT to construct a 90% confidence interval. You can manually compute</p>
-<p><span class="math display">\[
-\bar{x} \pm t^{*}_{n-1} \times \frac{s}{\sqrt{n}}
-\]</span> or using the <code>infer</code> framework.</p>
-<ul>
-<li>Interpret the interval in the context of the data</li>
-<li>Compare your result to the confidence interval from the previous exercise.</li>
-</ul>
+<div id="exercise-2" class="section level1">
+<h1>Exercise 2</h1>
+<p>Let’s split the data into two disjoint sets: a training set and a test set. From the original data frame, remove 4 PD and 4 healthy individuals to be in your test set. For consistency, choose the 4 healthy individuals with the lowest ID number of their respective category, e.g. <code>phon_R01_S07</code> ends with <code>07</code> (the lowest number of the healthy group) so they should be placed in the test data frame. Similarly, the lowest ID number for an individual with PD is <code>S01</code> so <code>phon_R01_S01</code> should also be placed in the test data frame.</p>
+<p>Your train data frame should contain 147 rows and your test data frame should contain 48. In your code chunk, print the number of rows of each data frame.</p>
 </div>
-<div id="exercise-4" class="section level2">
-<h2>Exercise 4</h2>
-<p>Let’s return to examining all the races from <code>ultra</code> in question 1.</p>
-<p>To begin, create a new data frame, removing all observations with a <code>distance</code> of 0, call this new dataframe <code>ultra_r0</code>.</p>
-<p>It’s plausible that races with more elevation gain will take longer to complete. Let’s investigate the relationship between elevation gain and race time.</p>
-<ul>
-<li><p>Create a scatterplot of race time vs elevation gain.</p></li>
-<li><p>Add a linear trendline and remove the error interval with <code>se = FALSE</code></p></li>
-<li><p>Write the equation of the linear model in <span class="math inline">\(x\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(y\)</span> notation and identify <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
-</ul>
+<div id="exercise-3" class="section level1">
+<h1>Exercise 3</h1>
+<p>Create a scatterplot of <code>HNR</code> vs <code>shimmer</code>. Color points by PD status. Make all labels informative. Comment on what you observe. Reminder: use all standard best plotting practices.</p>
 </div>
-<div id="exercise-5" class="section level2">
-<h2>Exercise 5</h2>
-<p>Fit the linear model from the previous exercise. Write the linear model out in <span class="math inline">\(x\)</span>, <span class="math inline">\(\hat{y}\)</span> notation, replacing <span class="math inline">\(\hat{\beta}\)</span> with the fitted constants you found from the previous exercise.</p>
-<p>Use the equation above (and R as a calculator) to predict race time of a race with an elevation gain of 2000 meters.</p>
-<p>Would this equation be appropriate to predict a race with an elevation gain of 20km?</p>
+<div id="exercise-4" class="section level1">
+<h1>Exercise 4</h1>
+<p>Build a main effects logistic regression model that predicts prob(PD) status from <code>HNR</code>, <code>PPE</code>, <code>jitter</code> and <code>shimmer</code>. Print your model <code>tidy</code>.</p>
+<p>Which predictors are significant at the <code>alpha = 0.05</code> level?</p>
 </div>
-<div id="exercise-6" class="section level2">
-<h2>Exercise 6</h2>
-<p>Elevation gain is only one predictor of race time. One might also consider runner age a useful predictor of race time.</p>
-<ul>
-<li><p>First, look at the range of ages and remove any observations from <code>ultra_r0</code> that are impossible.</p></li>
-<li><p>Next, create a new variable called <code>age_cat</code> that categorizes runners based on whether they are below 65 years old or not.</p></li>
-<li><p>Copy your plot from exercise 4, coloring the points by your new age category. Be sure to clean up the legend labels.</p></li>
-<li><p>What do you notice?</p></li>
-</ul>
-</div>
-<div id="exercise-7" class="section level2">
-<h2>Exercise 7</h2>
-<p>Create a model with two predictors for race time, namely elevation gain and age category (above or below 65).</p>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
-\]</span></p>
-<ul>
-<li><p>Label <span class="math inline">\(y\)</span>, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in context.</p></li>
-<li><p>Fit the regression model, using the code below as a template.</p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example code</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># race_fit = linear_reg() %&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   set_engine(&quot;__&quot;) %&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   fit(outcome ~ predictor1 + predictor2, data = __)</span></span></code></pre></div>
-<ul>
-<li><p>Interpret the meaning of the age category slope.</p></li>
-<li><p>Did the slope of elevation gain change with the addition of age as a covariate? What might this mean?</p></li>
-</ul>
-</div>
+<div id="exercise-5" class="section level1">
+<h1>Exercise 5</h1>
+<p>Edit the code chunk below, specifically renaming <code>model_fit</code> and <code>test_data</code> where appropriate. Uncomment and run to find the predicted probabilities of Parkinson’s disease in the test data frame.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prediction = predict(model_fit, test_data, type = &quot;prob&quot;)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test_result = test_data %&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(predicted_prob_pd = prediction$.pred_1)</span></span></code></pre></div>
+<p>Next, create a new column that classifies an individual as having PD if the predicted probability is above 50%. Repeat with a decision boundary of 75% and 90%.</p>
+<p>How many false positives do you have in each case? False negatives? If you were to use your model as a diagnostic tool for PD to decide if someone should undergo subsequent testing, which decision boundary would you prefer and why?</p>
+<p>Note: your narrative should read, e.g.: “With a decision boundary of 50%, our model yields X false positives and Y false negatives. With a decision boundary of 75%…” etc.</p>
 </div>
 <div id="submission" class="section level1">
 <h1>Submission</h1>
@@ -281,35 +245,27 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
 <tbody>
 <tr class="odd">
 <td align="left">Ex 1</td>
-<td align="left">4</td>
+<td align="left">6</td>
 </tr>
 <tr class="even">
 <td align="left">Ex 2</td>
-<td align="left">6</td>
+<td align="left">10</td>
 </tr>
 <tr class="odd">
 <td align="left">Ex 3</td>
-<td align="left">6</td>
+<td align="left">7</td>
 </tr>
 <tr class="even">
 <td align="left">Ex 4</td>
-<td align="left">8</td>
+<td align="left">9</td>
 </tr>
 <tr class="odd">
 <td align="left">Ex 5</td>
-<td align="left">8</td>
-</tr>
-<tr class="even">
-<td align="left">Ex 6</td>
-<td align="left">7</td>
-</tr>
-<tr class="odd">
-<td align="left">Ex 7</td>
-<td align="left">6</td>
+<td align="left">12</td>
 </tr>
 <tr class="even">
 <td align="left">Workflow &amp; formatting</td>
-<td align="left">5</td>
+<td align="left">6</td>
 </tr>
 </tbody>
 </table>
