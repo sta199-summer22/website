@@ -215,6 +215,7 @@ lessons:
   - date: "Wed, Apr 13"
     prepare: "week-15.html"
     title: "Special topic: code breaking"
+    ae: "ae26.html"
   - date: "Fri, Apr 15"
     title: "Special topic"
     
@@ -222,6 +223,6 @@ lessons:
     date: "Tue, Apr 19"
     title: "Project workday"
   - date: "Wed, Apr 20"
-    title: "Special topic"
+    title: "Class office hours"
   
   
