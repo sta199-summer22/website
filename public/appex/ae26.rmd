@@ -122,7 +122,7 @@ The `letter` column denotes the first character in a 2 character sequence while 
 ```
 
 
-Create a [heatmap](https://ggplot2.tidyverse.org/reference/geom_bin_2d.html?q=heat#arguments) of character frequency, where the x-axis is the first letter and the y-axis is the second letter in a two letter chain. 
+Create a [heatmap](https://ggplot2.tidyverse.org/reference/geom_bin_2d.html?q=heat#arguments) of character frequency, where the y-axis is the first letter and the x-axis is the second letter in a two letter chain. 
 
 - Uncomment and complete the code below.
 
