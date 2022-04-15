@@ -172,7 +172,7 @@ The introduction provides motivation and context for your research. Describe
 your topic (citing sources) and provide a concise, clear statement of your 
 research question and hypotheses.
 
-Then identify the source of the data, when and how it was collected, the cases,
+Then identify the source of the data, when and how it was collected, relevant context and
 a general description of relevant variables.
 
 #### Methodology 
@@ -211,7 +211,7 @@ In addition to your Gradescope submissions, we will be checking your GitHub
 repository. The repos should be formatted in the same manner as labs with a data folder. This repository should have equal contribution by all team members and should include
 
 - RMarkdown file (formatted to clearly present all of your code and results)
-that will output the proposal and write-up in one document
+that will output the final report in one document.
 - Meaningful README file on the GitHub repository that contains a *codebook*
 for relevant variables
 - Dataset(s) (in csv or RData format, in a `/data` folder)
