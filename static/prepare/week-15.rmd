@@ -20,3 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Optional
 
 - Watch [Enigma Machine](https://www.youtube.com/watch?v=G2_Q9FoD-oQ)
+
+## April 15
+
+- nothing to prepare

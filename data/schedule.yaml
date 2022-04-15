@@ -217,7 +217,10 @@ lessons:
     title: "Special topic: code breaking"
     ae: "ae26.html"
   - date: "Fri, Apr 15"
-    title: "Special topic"
+    title: "Special topic: xaringan"
+    slides: "/slides/xaringan-presentation.html"
+    ae: "ae27.html"
+    prepare: "week-15.html"
     
   - week: "Week 16"
     date: "Tue, Apr 19"
