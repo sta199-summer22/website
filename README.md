@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/693f955b-f5f1-4612-8442-1ca235dc02a7/deploy-status)](https://app.netlify.com/sites/sta199-summer22/deploys)
 
-:link: [sta199-sp22-003.netlify.app/](https://sta199-summer22.netlify.app/)
+:link: [https://sta199-summer22.netlify.app/](https://sta199-summer22.netlify.app/)
 
 ## Attribution
 
