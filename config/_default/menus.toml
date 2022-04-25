@@ -13,51 +13,48 @@
     url = "/schedule/"
     weight = 20
 
-[[main]]
+#[[main]]
    # pre = "<i class=\"fa fa-info-circle\"></i>"
-    name = "Project"
-    url = "/project/project.html"
+#    name = "Project"
+#    url = "/project/project.html"
+#    weight = 30
+
+
+[[main]]
+    pre = "<i class=\"fa fa-graduation-cap\" aria-hidden=\"true\"></i>"
+    url = "https://sakai.duke.edu"
+    name = "Sakai"
     weight = 30
 
-
 [[main]]
-    # pre = "<i class=\"fa fa-graduation-cap\" aria-hidden=\"true\"></i>"
-    url = "https://sakai.duke.edu"
-    name = " Sakai"
-    weight = 40
-
-[[main]]
-    # pre = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
+    pre = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
     url = "https://www.gradescope.com"
     name = "Gradescope"
-    weight = 50
+    weight = 40
 
-
-#[[main]]
-   # pre = "<i class=\"fa fa-question-circle\" aria-hidden=\"true\"></i>"
-  #  name = "Help"
-   # url = "/help/"
-    #weight = 60
-[[main]]
-       # pre = "<i class=\"fa fa-info-circle\"></i>"
-        name = "FAQ"
-        url = "/faq/faq.html"
-        weight = 60
 
 [[main]]
     url = "https://vm-manage.oit.duke.edu/containers"
    # pre = "<i class=\"fa fa-code\" aria-hidden\"true\"></i>"
     name = "<i class=\"fab fa-r-project\"></i>"
-    weight = 70
+    #name = "R Studio"
+    weight = 50
 
 [[main]]
     url = "https://github.com/sta199-summer22"
     # pre = "<i class='fab fa-github fa-lg'></i>"
     name  = "<i class='fab fa-github fa-lg'></i>"
-    weight = 80
+    #name = "GitHub"
+    weight = 60
 
 [[main]]
     url = "https://sta199-summer22.slack.com"
     name = "<i class='fab fa-slack fa-lg'></i>"
-    #name  = "<i class=\"ai ai-piazza ai-lg\"></i>"
-    weight = 90
+    #name  = "Slack"
+    weight = 70
+
+[[main]]
+    # pre = "<i class=\"fa fa-info-circle\"></i>"
+    name = "FAQ"
+    url = "/faq/faq.html"
+    weight = 80
