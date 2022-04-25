@@ -51,13 +51,13 @@
     weight = 70
 
 [[main]]
-    url = "https://github.com/sta199-summer2022"
+    url = "https://github.com/sta199-summer22"
     # pre = "<i class='fab fa-github fa-lg'></i>"
     name  = "<i class='fab fa-github fa-lg'></i>"
     weight = 80
 
 [[main]]
-    url = "https://sta199-summer2022.slack.com"
+    url = "https://sta199-summer22.slack.com"
     name = "<i class='fab fa-slack fa-lg'></i>"
     #name  = "<i class=\"ai ai-piazza ai-lg\"></i>"
     weight = 90

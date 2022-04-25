@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Schedule on STA 199</title>
-    <link>https://sta199-fa20-002.netlify.app/schedule/</link>
+    <link>https://sta199-summer22.netlify.app/schedule/</link>
     <description>Recent content in Schedule on STA 199</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>en-us</copyright>
     
-        <atom:link href="https://sta199-fa20-002.netlify.app/schedule/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://sta199-summer22.netlify.app/schedule/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Course info</title>
-      <link>https://sta199-fa20-002.netlify.app/home/band_two/</link>
+      <link>https://sta199-summer22.netlify.app/home/band_two/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/home/band_two/</guid>
+      <guid>https://sta199-summer22.netlify.app/home/band_two/</guid>
       <description> .column { width: 100%; } table { width: 100%; font-size: 20px; font-weight: 400; }     Lecture All Students Wednesday and Friday 10:15 - 11:30am   Labs Lab 7 Tuesday 1:45 - 3:00pm    Lab 8 Tuesday 3:30 - 4:45pm    Lab 9 Tuesday 5:15 - 6:30pm     </description>
       <content>&lt;style&gt;
   .column {
@@ -59,10 +59,10 @@
     
     <item>
       <title>Help</title>
-      <link>https://sta199-fa20-002.netlify.app/help/</link>
+      <link>https://sta199-summer22.netlify.app/help/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/help/</guid>
+      <guid>https://sta199-summer22.netlify.app/help/</guid>
       <description></description>
       <content>&lt;!---
 ## Getting help in the course
@@ -121,10 +121,10 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
     
     <item>
       <title>STA 199 Final Project</title>
-      <link>https://sta199-fa20-002.netlify.app/project/</link>
+      <link>https://sta199-summer22.netlify.app/project/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/project/</guid>
+      <guid>https://sta199-summer22.netlify.app/project/</guid>
       <description>Details will be added when the project is assigned.</description>
       <content>&lt;p&gt;Details will be added when the project is assigned.&lt;/p&gt;
 </content>
@@ -132,10 +132,10 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
     
     <item>
       <title>STA 199: Intro to Data Science</title>
-      <link>https://sta199-fa20-002.netlify.app/home/band_one/</link>
+      <link>https://sta199-summer22.netlify.app/home/band_one/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/home/band_one/</guid>
+      <guid>https://sta199-summer22.netlify.app/home/band_one/</guid>
       <description>Intro to data science and statistical thinking. Learn to explore, visualize,and analyze data to understand natural phenomena, investigate patterns, model outcomes,and make predictions, and do so in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effectively communicating results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language.</description>
       <content>&lt;p&gt;Intro to data science and statistical thinking. Learn to explore, visualize,and analyze data to understand natural phenomena, investigate patterns, model outcomes,and make predictions, and do so in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effectively communicating results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language.&lt;/p&gt;
 </content>
@@ -143,10 +143,10 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
     
     <item>
       <title>Syllabus</title>
-      <link>https://sta199-fa20-002.netlify.app/syllabus/</link>
+      <link>https://sta199-summer22.netlify.app/syllabus/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/syllabus/</guid>
+      <guid>https://sta199-summer22.netlify.app/syllabus/</guid>
       <description>Click here to download a printable PDF. </description>
       <content>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;syllabus.pdf&#34;&gt;Click here&lt;/a&gt; to download a printable PDF.&lt;/strong&gt;
 &lt;embed src=&#34;./syllabus.pdf&#34; style=&#34;width:100%;height:100vh;&#34;&gt;&lt;/p&gt;
@@ -155,10 +155,10 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
     
     <item>
       <title>Teaching team and office hours</title>
-      <link>https://sta199-fa20-002.netlify.app/home/band_three/</link>
+      <link>https://sta199-summer22.netlify.app/home/band_three/</link>
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
-      <guid>https://sta199-fa20-002.netlify.app/home/band_three/</guid>
+      <guid>https://sta199-summer22.netlify.app/home/band_three/</guid>
       <description>Click here for an updated spreadsheet of office hours with locations and links.
  .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Prof. Alexander Fisher Mon, Thu 4-5p   TAs Steven Winter Fri 9-11a    Camilla Yu Tue 4-6p    Rob Kravec Mon 5-7p    Mariana Izon Tue 6-8p    Shannon	Houser Mon, Wed 12-1p    Evan Dragich Thu 10-12p    Margaret Reed Wed 2-4p    Shirley Mathur Thu, Fri 6-7p    </description>
       <content>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1fL9oSymmDKIOsW9_8I8NTgAutjiE0HnO6VkAMw2FBtE/edit?usp=sharing&#34;&gt;Click here&lt;/a&gt; for an updated spreadsheet of office hours with locations and links.&lt;/p&gt;
