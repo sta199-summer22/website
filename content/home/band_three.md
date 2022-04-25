@@ -2,8 +2,6 @@
 title: Teaching team and office hours
 ---
 
-[Click here](https://docs.google.com/spreadsheets/d/1fL9oSymmDKIOsW9_8I8NTgAutjiE0HnO6VkAMw2FBtE/edit?usp=sharing) for an updated spreadsheet of office hours with locations and links.
-
 <style>
   .column {
   width: 100%;
@@ -23,12 +21,6 @@ title: Teaching team and office hours
   
 |            |                     |     |
 |------------|---------------------|-----|
-| Instructor | [Prof. Alexander Fisher](mailto:alexander.fisher@duke.edu) | Mon, Thu 4-5p |
-| TAs         | [Steven Winter](mailto:steven.winter@duke.edu) | Fri 9-11a |
-|       | [Camilla Yu](mailto:yue.yu652@duke.edu)     | Tue 4-6p |
-|         | [Rob Kravec](mailto:robert.kravec@duke.edu)         | Mon 5-7p |
-|          | [Mariana Izon](mailto:mariana.izon@duke.edu)       | Tue 6-8p |
-|          | [Shannon	Houser](mailto:shannon.houser@duke.edu)     | Mon, Wed 12-1p |
-|          | [Evan Dragich](mailto:evan.dragich@duke.edu)       | Thu 10-12p |
-|          | [Margaret Reed](mailto:margaret.reed@duke.edu )       | Wed 2-4p |
-|          | [Shirley Mathur](mailto:shirley.mathur@duke.edu)       | Thu, Fri 6-7p |
+| Instructor | [Bora Jin](mailto:bora.jin@duke.edu) | Mon, Wed, Thu 11am - 12:15pm, Old Chem 003 |
+| TAs         | [TA1](mailto:ta1@duke.edu) | time, location |
+|       | [TA2](mailto:ta2@duke.edu) | time, location |
