@@ -13,7 +13,7 @@ custom_js = ["sta199.js"]
 # Define base hex url for index page (where the stickers link out to)
 hex_base_url = ""
 hex_ext = ""
-    
+
 # Define "news" as both articles and events
 mainSections = ["articles", "events"]
 
@@ -28,7 +28,7 @@ MathJaxCDN = "//cdn.bootcss.com"
 MathJaxVersion = "2.7.1"
 
 [footer]
-    github_url = "https://github.com/sta199-fa20-002/website"
+    github_url = "https://github.com/sta199-summer22/website"
     twitter_url = ""
     support = "This website was derived from [tidymodels.org](https://tidymodels.org) with inspiration from [datavizm20](https://datavizm20.classes.andrewheiss.com/) and [introds.org](https://introds.org/)."
 
@@ -56,22 +56,22 @@ MathJaxVersion = "2.7.1"
     link_hover = "#404040" #lighter
     # Footer
     footer_primary = "#2774AE"
-    footer_text = "#ffffff" 
+    footer_text = "#ffffff"
     # Backgrounds
-    background = "#ffffff" 
+    background = "#ffffff"
     home_section_odd = "#ffffff"
-    home_section_even = "#fcfcfc" 
+    home_section_even = "#fcfcfc"
     # Menu
     menu_primary = "#2774AE"
     menu_text = "#ffffff"
     menu_text_active = "#404040"
     menu_text_current = "#404040"
     menu_decorate_current = "none"
-    menu_title = "#ffffff" 
-    menu_title_active = "#404040" 
-    menu_box_hover = "#fcfcfc" 
-    menu_box_active = "#fcfcfc" 
-    
+    menu_title = "#ffffff"
+    menu_title_active = "#404040"
+    menu_box_hover = "#fcfcfc"
+    menu_box_active = "#fcfcfc"
+
     # Tables
     header_background = "#404040"
     table_row_even = "#fcfcfc"
