@@ -96,6 +96,7 @@ See the picture below for details.
 </p>
 </details>
 
+<!--
 ## Course logistics
 
 <details><summary>How do regrade requests work?</summary>
@@ -136,3 +137,4 @@ For tidyverse style guidelines:
 
 </p>
 </details>
+-->
