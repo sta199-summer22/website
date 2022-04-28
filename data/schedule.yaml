@@ -11,7 +11,7 @@ lessons:
     title: "Meet the toolkit"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d02-toolkit-r/u1-d02-toolkit-r.html#1"
 #    ae: "lecturenotes02.html"
-    prepare: "day02_BJ.html"
+    prepare: "week01_may12_BJ.html"
   - title: "Meet the Toolkit - Version Control"
     slides: "https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d03-toolkit-git/u1-d03-toolkit-git.html#1"
 #  - date: "Fri, May 13"

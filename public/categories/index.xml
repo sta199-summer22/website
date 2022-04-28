@@ -10,7 +10,7 @@
 
 
 <item>
-  <title>Course info</title>
+  <title>Course Info</title>
   <link>https://sta199-summer22.netlify.app/home/band_two/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
@@ -33,12 +33,12 @@
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Lecture&lt;/td&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Old Chem 003&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Monday to Friday 9:30 - 10:45am&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Mon - Fri 9:30 - 10:45am&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Labs&lt;/td&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Old Chem 003&lt;/td&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Tuesday  and Friday 11am - 12:15pm&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Tue/Fri 11am - 12:15pm&lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -139,7 +139,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
   </item>
   
 <item>
-  <title>Teaching team and office hours</title>
+  <title>Teaching Team and Office Hours</title>
   <link>https://sta199-summer22.netlify.app/home/band_three/</link>
   <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
   
@@ -171,7 +171,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;tr&gt;
 &lt;td&gt;Instructor&lt;/td&gt;
 &lt;td&gt;&lt;a href=&#34;mailto:bora.jin@duke.edu&#34;&gt;Bora Jin&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Mon, Wed, Thu 11am - 12:15pm, Old Chem 003&lt;/td&gt;
+&lt;td&gt;Mon/Wed/Thu 11am - 12:15pm, Old Chem 003&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;TAs&lt;/td&gt;

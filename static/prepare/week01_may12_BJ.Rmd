@@ -1,5 +1,5 @@
 ---
-title: "Prepare: Day 02"
+title: "Prepare: Week 01"
 output: 
   html_document:
     css: "prepare.css"
@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Required 
 
 `r emo::ji("movie_camera")` Watch [Meet the Toolkit - Programming](https://youtu.be/Q2QN1RpvLq8) 
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d02-toolkit-r/u1-d02-toolkit-r.html#1)
 
 `r emo::ji("movie_camera")` Watch [Meet the Toolkit - Version Control and Collaboration](https://youtu.be/124DQasLyNQ)  
 

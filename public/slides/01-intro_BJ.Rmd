@@ -335,7 +335,7 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 # For Tomorrow
 
-- Watch videos for [Prepare: Day 02](https://sta199-summer22.netlify.app/prepare/day02_BJ.html)
+- Watch videos for [Prepare: Week 01](https://sta199-summer22.netlify.app/prepare/week01_may12_BJ.html)
 
 - Make sure you have access to Sakai and Gradescope.
 
