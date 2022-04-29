@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Meet the toolkit</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Meet the toolkit
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+
+## Today's Goal 
+
+- Comfortably navigate RStudio fundamentals
+- Be able to define common terms including: **data frame**, **function**, **variable**, **package**
+- Interact with Git from RStudio (committing and pushing)
+- Use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
+- Create a reproducible report via today's AE using R Markdown
+
+---
+
+## Quiz
+
+**Q - What is a reproducible data analysis?** &lt;br&gt;
+
+--
+
+Near-term goals:
+
+- Exact/similar tables and figures can be generated from the code and data
+- The code performs an intended task
+- Purpose of the analysis is clear
+
+Long-term goals:
+
+- The code can be used for other data
+- The code can be extended to do other things
+
+---
+
+## Quiz
+
+**Q - What is difference between R vs. RStudio?** &lt;br&gt;
+
+--
+
+ R:
+- Open-source statistical programming language 
+- Easily extensible with **packages**, collections of reproducible R code
+
+RStudio: 
+- Convenient interface for R called Integrated development environment (IDE)
+
+---
+
+## Quiz
+
+**Q - How do I install a package called** `unvotes` **and load it?** 
+
+--
+
+
+```r
+install.packages("unvotes")
+library(unvotes)
+```
+
+--
+
+**Q - What am I doing with** `un_votes$country`**?** &lt;br&gt;
+
+--
+
+Accessing a column `country` in the data `un_vote`
+
+--
+
+**Q - How do I see a help page of a function** `sum`**?** 
+
+--
+
+
+```r
+?sum
+```
+
+---
+
+## Quiz
+
+**Q - What can you do with R Markdown?** &lt;br&gt;
+
+--
+
+- Create fully reproducible reports with code for analysis and text for narrative 
+- Every assignment as an R Markdown document (with `.Rmd` extension)
+- R Markdown document should be complete in itself. *The environment of your R Markdown document is separate from the R Console!*
+
+--
+
+**Q - How do I create a code chunk in an R Markdowm document?** &lt;br&gt;
+
+--
+
+Three backticks
+
+&lt;img src="img/02/Rmdcodechunk.png" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+## Quiz
+
+**Q - What is difference between Git vs. GitHub?** &lt;br&gt;
+
+--
+
+- Git: Version control system 
+- GitHub: Home for Git-based projects on the internet 
+
+--
+
+**Q - What is version control?** &lt;br&gt;
+
+--
+
+Tracking changes (potentially with human readable messages) 
+
+--
+
+**Q - Why is it important?** &lt;br&gt;
+
+--
+
+- Otherwise you lose track of your work and become clueless where to go back when you need to fix things! e.g. final.docx, final2.docx, final_final.docx, final_final_XXXX.docx, ...
+- At each version, important to leave an informative tag
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 02: Tour of RStudio + R Markdown + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
+
+---
+
+## For Tomorrow 
+
+- Watch videos for [Prepare: May 13](https://sta199-summer22.netlify.app/prepare/week01_may13_BJ.html)
+
+- Submit your `AE02`
+
+---
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

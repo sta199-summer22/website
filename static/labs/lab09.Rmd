@@ -1,0 +1,144 @@
+---
+title: "Lab #09: Logistic regression"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+
+# Learning Goals
+
+In this lab you will...
+
+- build a logistic regression model and assess its performance
+
+# Getting started
+
+-   A repository has already been created for you and your teammates.
+    Everyone in your team has access to the same repo.
+
+-   Go to the [course organization](https://github.com/sta199-s22) on GitHub.
+
+-   You should see a repo with the prefix **lab09**.
+
+-   Each person on the team should clone the repository and open a new
+    project in RStudio.
+
+## Packages 
+
+We will use the following packages in this lab:
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+```
+
+## Data 
+
+This dataset comes from [Little et al. (2008)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3051371/). The data includes various measurements of dysphonia from 32 people, 24 with Parkinson's disease (PD). Multiple measurements were taken per individual. The measurements we examine in this subset of the data include: 
+
+- `name`: patient ID
+- `jitter`: a measure of relative variation in fundamental frequency
+- `shimmer`: a measure of variation in amplitude (dB)
+- `PPE`: pitch period entropy
+- `HNR`: a ratio of total components vs. noise in the voice recording
+- `status`: health status (1 for PD, 0 for healthy)
+
+
+Use the code below to load the data sets into R.
+```{r load-data}
+parkinsons = read_csv("data/parkinsons.csv")
+```
+
+# Exercises 
+
+## Instructions
+
+- Make sure we see all relevant code and output in the knitted PDF. If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write a narrative for each exercise.
+
+- All narrative should be written in full sentences, and visualizations should have clear title and axis labels.
+
+## Exercise 1
+
+For each individual, multiple repeated measurements were taken. For example, for individual S01, six repeated measurements were taken: `_1`, `_2`, etc.
+
+Use the code below to remove the characters after the final underscore, i.e the individual measurement number for each individual. This will let you to group by participants.
+
+```{r rm-underscore}
+park = parkinsons %>%
+  mutate(name = str_remove_all(name, "_[^_]+$"))
+```
+
+What are the identification codes (`names`) of healthy individuals in the data set? Print your output as a nice `kable` table.
+
+# Exercise 2
+
+Let's split the data into two disjoint sets: a training set and a test set. From the original data frame, remove 4 PD and 4 healthy individuals to be in your test set. For consistency, choose the 4 healthy individuals with the lowest ID number of their respective category, e.g. `phon_R01_S07` ends with `07` (the lowest number of the healthy group) so they should be placed in the test data frame. Similarly, the lowest ID number for an individual with PD is `S01` so `phon_R01_S01` should also be placed in the test data frame.
+
+Your train data frame should contain 147 rows and your test data frame should contain 48. In your code chunk, print the number of rows of each data frame.
+
+
+# Exercise 3
+
+Create a scatterplot of `HNR` vs `shimmer`. Color points by PD status. Make all labels informative. Comment on what you observe. Reminder: use all standard best plotting practices.
+
+
+# Exercise 4
+
+Build a main effects logistic regression model that predicts prob(PD) status from `HNR`, `PPE`, `jitter` and `shimmer`. Print your model `tidy`.
+
+Which predictors are significant at the `alpha = 0.05` level?
+
+
+# Exercise 5
+
+Edit the code chunk below, specifically renaming `model_fit` and `test_data` where appropriate. Uncomment and run to find the predicted probabilities of Parkinson's disease in the test data frame.
+
+```{r test-predictions}
+# prediction = predict(model_fit, test_data, type = "prob")
+
+# test_result = test_data %>%
+#   mutate(predicted_prob_pd = prediction$.pred_1)
+```
+
+Next, create a new column that classifies an individual as having PD if the predicted probability is above 50%. Repeat with a decision boundary of 75% and 90%. 
+
+How many false positives do you have in each case? False negatives? If you were to use your model as a diagnostic tool for PD to decide if someone should undergo subsequent testing, which decision boundary would you prefer and why?
+
+Note: your narrative should read, e.g.: "With a decision boundary of 50%, our model yields X false positives and Y false negatives. With a decision boundary of 75%..." etc.
+
+
+# Submission
+
+- **Select <u>one</u> team member to upload the team's PDF submission to Gradescope.** 
+- Be sure to select every team member's name in the Gradescope. 
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all relevant pages.
+
+**There should only be <u>one</u> submission per team on Gradescope.**
+
+
+# Grading 
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1     | 6   |
+| Ex 2      | 10 |
+| Ex 3      | 7   |
+| Ex 4      | 9  |
+| Ex 5     |  12 |
+| Workflow & formatting   | 6      |

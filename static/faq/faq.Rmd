@@ -1,5 +1,5 @@
 ---
-title: "Frequently asked questions"
+title: "Frequently Asked Questions"
 output: html_document
 ---
 
@@ -96,23 +96,7 @@ See the picture below for details.
 </p>
 </details>
 
-<!--
 ## Course logistics
-
-<details><summary>How do regrade requests work?</summary>
-<p>
-
-<h2>How do regrade requests work?</h2>
-- After grades are released, there's a 48 hour period before regrade requests open up. This is to ensure people check the solutions on sakai / think about their regrade request before just auto posting a regrade request when points are taken off.
-- Regrade requests serve the purpose of:
-   - finding errors in grading, e.g. you have the correct answer but were incorrectly deducted points
-   - explaining you found the correct answer (possibly using unconventional methods)
-
-- Regrade requests are not for:
-  - challenging the fairness of a question, please submit those comments directly to me via email and I'll follow-up
-- After a regrade request is submitted, the problem goes back to the TA that graded the question. If they are confused and forward the question to me OR if you are unsatisfied with the response from a regrade request and send a message, I will regrade the whole problem personally (and this may result in gain or loss of points)
-</p>
-</details>
 
 <details><summary>How do I receive maximum workflow points? Re: What are tidyverse style guidelines?</summary>
 <p>
@@ -135,6 +119,23 @@ For tidyverse style guidelines:
 
 [Click here](https://style.tidyverse.org/) for a full list of tidyverse style guidelines.
 
+</p>
+</details>
+
+<!--
+
+<details><summary>How do regrade requests work?</summary>
+<p>
+
+<h2>How do regrade requests work?</h2>
+- After grades are released, there's a 48 hour period before regrade requests open up. This is to ensure people check the solutions on sakai / think about their regrade request before just auto posting a regrade request when points are taken off.
+- Regrade requests serve the purpose of:
+   - finding errors in grading, e.g. you have the correct answer but were incorrectly deducted points
+   - explaining you found the correct answer (possibly using unconventional methods)
+
+- Regrade requests are not for:
+  - challenging the fairness of a question, please submit those comments directly to me via email and I'll follow-up
+- After a regrade request is submitted, the problem goes back to the TA that graded the question. If they are confused and forward the question to me OR if you are unsatisfied with the response from a regrade request and send a message, I will regrade the whole problem personally (and this may result in gain or loss of points)
 </p>
 </details>
 -->

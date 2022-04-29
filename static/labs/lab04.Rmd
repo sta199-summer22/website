@@ -1,0 +1,166 @@
+---
+title: "Lab #04: Team Workflow & Spatial Data"
+subtitle: "due Friday February 11 11:59 PM"
+output: 
+  tufte::tufte_html:
+    #css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+## Goals
+
+- Practice collaboration using the data science workflow
+- Develop effective spatial visualizations to answer research questions
+
+# Getting started
+
+[Check the spreadsheet](https://duke.box.com/s/qlx0x1vvxmevxvk2gxaok38yg3u2jp84) to find your team number and members.
+
+Before getting started on the lab, take a few minutes to develop a plan for 
+working as a team for the rest of the semester.
+
+- Introduce yourself.
+- Find a one hour block of time outside of class that you can use to work on the lab / project if needed. You may not need to use this, but it is good to have it in reserve. Tools like [Doodle](https://doodle.com/en/)
+and [When2Meet](https://www.when2meet.com/) are helpful.
+- Determine how your group will communicate (email, text, slack, discord, etc).
+
+Every team member should now go to the course GitHub organization and locate your lab04 repository, which should have the prefix **lab04**. Copy the URL of the repository and clone in RStudio. If you have trouble, see the first lab and lecture for step-by-step instructions or ask a teammate for help.
+
+You all will work in the same `.Rmd` document and submit one pdf to gradescope.
+
+**Do not edit the `.Rmd` file until explicitly asked to do so in the instructions.**
+
+# 2020 Census and Reapportionment
+
+In this lab you will use the `sf` package to visualize data related to the 2020 census and the reapportionment process.
+
+The variables in the `census` file are as follows:
+
+- `state`: The state abbreviation.
+- `pop_2020`: The population of the state in 2020. 
+- `pop_2010`: The population of the state in 2010.
+- `seats_2020`: The number of seats apportioned to the state in 2020.
+- `seats_2010`: The number of seats apportioned to the state in 2010.
+- `seats_1910`: The number of seats apportioned to the state in 1910.
+
+There are a series of variables in the `nc_dists` data set, but the most important are follows:
+
+- `STUSPS `: The state abbreviation.
+- `geometry`: `sf` geometry
+
+The Census data comes from the [US Census](https://www.census.gov/data/tables/2020/dec/2020-apportionment-data.html).
+
+The shapefile and other spatial analysis files also come from the [US Census](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html).
+
+Exercise 1. Before getting started, write a group contract on how you will work together as a team this semester...
+
+# Team workflow
+
+Assign each team member a number 1 through 3 (or 4) and write your number down on a piece of paper. This lab will walk you through the basics of team workflow step-by-step.
+
+**Do the following exercises in order, following each step carefully.**
+
+**Only one person at a time should type in the `.Rmd` file and push updates.**
+
+**If you are working on any portion of the lab virtually, one person may code and share their screen and the others should follow along.**
+
+<span style="color: red;">**Team member 1:**</span> Open the `lab04-template.Rmd` file 
+and change the author of the YAML header to the following "Team Number:
+Member 1, Member 2, Member 3" with your team number (for example 05-1) and the
+first and last names of all team members.
+
+<span style="color: red;">**Team member 1:**</span> Run the `load-data` code 
+chunk to read in the data and print the first six rows. Share the results with 
+your team members. Then, answer the questions below.
+
+2. Join the `states` and `census` data sets to form a dataset called `census_data`. Then, for simplicity in this lab, filter out Alaska, Hawaii, and Puerto Rico.
+
+<span style="color: red;">**Team member 1:**</span> When you have finished,
+knit to PDF, then stage, commit, and push your `.Rmd` and PDF to GitHub with an appropriate commit message.
+
+<span style="color: red;">**All other team members:**</span> Once your team 
+member has pushed the work, pull to get the updated documents from GitHub. Click on the `.Rmd` file and you should see the responses to the second exercise. Run the code chunks for #2 to update the file in your environment.
+
+<span style="color: red;">**Team member 2:**</span> It's your turn. Answer the questions below.
+
+3. Modify the `us-plot-1` code chunk to create a plot of the 2020 Census population data by state. Give the plot an informative title, subtitle, and legend title. When you are finished, remove `eval = FALSE`.
+
+<span style="color: red;">**Team member 2:**</span> Knit to PDF, then stage, commit, and push your `.Rmd` and PDF to GitHub with an appropriate commit 
+message.
+
+<span style="color: red;">**All other team members:**</span> Once your team 
+member has pushed the work, pull to get the updated documents from GitHub. Click on the `.Rmd` file and you should see the responses to the first three exercises.
+Run the code chunks for #2 and #3 to update the file in your environment. 
+
+<span style="color: red;">**Team member 3:**</span> It's your turn. Complete the exercises below. (If you have four team members, you could have person 3 do #4 and person 4 do #5. The main point is to make sure everyone is contributing!)
+
+4. Create a new variable using `mutate()` in the `ex-4` code chunk. 
+
+Overwrite the `census_data` data set to add a  variable that measures the *change* in population from 2020 in 2016 called `pop_change`. This variable should represent the *percentage* change in population in 2020 compared to 2010. When you are finished, remove `eval = FALSE`.
+
+5. Modify the `us-plot-2` code chunk to create a plot of the population percentage *change* from 2010 to 2020, with districts colored according to `pop_change`. Use informative colors with the `scale_fill_gradient2` function.  Set a midpoint at 0% population change. When making the scale, use informative colors, and set a midpoint at 0 (thus representing **no change** from 2010 to 2020.) When you are finished, remove `eval = FALSE`. Please describe what you observe. What regional patterns are present? Did some states lose population?
+
+<span style="color: red;">**Team member 3:**</span> Knit to PDF, then stage,
+commit, and push your `.Rmd` and PDF to GitHub with an appropriate commit
+message.
+
+<span style="color: red;">**All other team members:**</span> Once your team 
+member has pushed the work, pull to get the updated documents from GitHub. Click on the `.Rmd` file and you should see the responses to the first five exercises. Run the code chunks for #1 - #4 to update the file in your environment.
+
+<span style="color: red;">**Team member 1:**</span> It's your turn. Complete the exercise below. 
+
+6. Now, we are going to compare the change in **seats** apportioned to each state from 2010 to 2020. First, create a new variable called `seat_change_2010` that measures the increase in seats apportioned to a state in 2010 compared to 2010 (a negative value would indicate seats lost).
+
+- Modify the `us-plot-3` code chunk to create a plot of the seat change from 2010 to 2020, with districts colored according to `seat_change_2010`. When making the scale, use informative colors, and set a midpoint at 0 (thus representing **no change** in the number of seats apportioned in each Census. When you are finished, remove `eval = FALSE`.
+
+- Finally, describe what patterns you observe in terms of which states gained and lost seats.
+
+<span style="color: red;">**Team member 1:**</span> Knit to PDF, then stage, 
+commit, and push your `.Rmd` and PDF to GitHub with an appropriate commit 
+message.
+
+<span style="color: red;">**All other team members:**</span> Once your team 
+member has pushed the work, pull to get the updated documents from GitHub. Click  on the `.Rmd` file and you should see the responses to the first five  exercises. Run the code chunks for #1 - #4 to update the file in your environment. 
+
+<span style="color: red;">**Team member 2:**</span> Almost done! Just one more question...
+
+7. Finally, we are going to compare the change in **seats** apportioned to each state from *1910* to 2020. First, I would like you to create a new variable called `seat_change_1910` that measures the increase in seats apportioned to a state in 2020 compared to 1910 (a negative value would indicate seats lost over this 110 year period).
+
+- Modify the `us-plot-4` code chunk to create a plot of the seat change from 1910 to 2020, with districts colored according to `seat_change_1910`. When making the scale, use informative colors, e.g.
+```
+scale_fill_gradient2(low = "#0015BC", high = "#DE0100")
+```
+and set a midpoint at 0, using additional argument `midpoint=0`, (thus representing **no change** in the number of seats apportioned in each Census. When you are finished, remove `eval = FALSE`.
+
+- Finally, describe what patterns you observe in terms of which states gained and lost seats over this 110 year period.
+
+<span style="color: red;">**Team member 2:**</span>  Check to confirm all code chunks are named, code does not exceed the 80 character limit and all code
+follows the tidyverse style guidelines. Make changes as necessary.
+
+<span style="color: red;">**Team member 2:**</span> When you have finished,
+knit to PDF, then stage, commit, and push your `.Rmd` and PDF to GitHub with an appropriate commit message.
+
+<span style="color: red;">**All other team members:**</span> Once your team 
+member has pushed the work, pull to get the updated documents from GitHub. Click on the `.Rmd` file to see your final version of the lab. 
+
+<span style="color: red;">**Team member 3:**</span> Upload your team's PDF to Gradescope. **Include every team member's name in the Gradescope submission and identify which problems are on each page in Gradescope.** Associate the "Overall" section with the first page of your PDF.
+
+There should only be **one submission per team** on Gradescope.
+
+Rubric:
+
+- Ex 1: 4 pts
+- Ex 2: 6 pts
+- Ex 3: 6 pts
+- Ex 4: 2 pts
+- Ex 5: 8 pts
+- Ex 6: 9 pts
+- Ex 7: 9 pts
+- Workflow and formatting: 6 pts
+  - Workflow and formatting includes the number of commits made, naming chunks, updating the name on the assignment to your name, and following tidyverse style (see: https://style.tidyverse.org/).

@@ -1,0 +1,80 @@
+---
+title: "AE 02: Tour of RStudio + R Markdown + GitHub"
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Loading and working in today's application exercise
+
+- Open RStudio: [https://vm-manage.oit.duke.edu/containers](https://vm-manage.oit.duke.edu/containers)
+
+- Console: Use `R` as a calculator by typing the following in the console:
+
+```
+3 * 5 + 10
+```
+
+```
+x <- 3
+x + x^2
+```
+
+
+```
+x <- 1:10
+x*7
+```
+  
+- GitHub demo
+  - configure git using SSH (instructions from lab reproduced below)
+  - [click here](https://classroom.github.com/a/KLUWRY5l) to clone a GitHub repo and make a new RStudio project
+  - Visit [course organization page](https://github.com/sta199-s22) and navigate to your ae02 repository
+
+Click on the green CODE button, select SSH (this might already be selected by default). Click on the clipboard/square icon to copy the repo URL. Next, in RStudio, navigate `File` > `New Project` > `Version Control` > `Git` > paste the SSH URL > `Create Project`
+
+- Github demo cont.
+  - update document
+  - knit, commit and push
+  - check change in GitHub repo
+  - see commit history
+  
+- RStudio tour
+  - Environment
+  - R functions
+  - Loading and viewing a data frame
+  - Accessing a variable in a data frame
+
+## Configuring SSH and GitHub (instructions)
+
+**Note: if you have already done this, you do NOT need to do this again**
+
+### configure ssh
+
+1. First, type `credentials::ssh_setup_github()` into your console.
+2. Second, R will ask "No SSH key found. Generate one now?" You should click 1 for yes.
+3. Third, you will generate a key. It will begin with "ssh-rsa...." R will then ask "Would you like to open a browser now?" You should click 1 for yes.
+4. Fourth, you may be asked to provide your username and password to log into GitHub. This would be the ones associated with your account that you set up. After entering this information, you should paste the key in and give it a name.
+
+### configure git
+
+Configure git by running the following code in the **terminal**. Fill in your GitHub username and the email address associated with your GitHub account.
+
+```{r, eval = FALSE}
+git config --global user.name 'username'
+git config --global user.email 'emailaddress'
+```
+*You should not have to do this every time.*
+
+## Submitting application exercises
+- Once you have completed the activity, push your final changes to your GitHub repo. Make sure you committed at least *three* times. Check that  your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+- `ae02` will *not* be graded.
+
+
+### Additional Resources
+
+- https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf
+- https://www.tidyverse.org/
+- https://happygitwithr.com/
+- https://style.tidyverse.org/ 

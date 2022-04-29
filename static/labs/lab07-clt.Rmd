@@ -1,0 +1,193 @@
+---
+title: "Lab #07: Central Limit Theorem Intro"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+
+# Learning Goals
+
+In this lab you will...
+
+- Verify conditions for Central Limit Theorem and compute various quantities of the Normal distribution
+- Begin inference based on the Central Limit Theorem to draw conclusions about a population mean
+
+# Getting started
+
+-   A repository has already been created for you and your teammates.
+    Everyone in your team has access to the same repo.
+
+-   Go to the [course organization](https://github.com/sta199-s22) on GitHub.
+
+-   You should see a repo with the prefix **lab07**.
+
+-   Each person on the team should clone the repository and open a new
+    project in RStudio. Do not make any changes to the .Rmd file until
+    the instructions tell you do to so.
+
+## Packages 
+
+We will use the **tidyverse** and **tidymodels** packages in this lab.
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+```
+
+## Data 
+
+Today's data is a subset of the [PanTHERIA dataset](https://ecologicaldata.org/wiki/pantheria)^[Jones, Kate E., et al. "PanTHERIA: a species‐level database of life history, ecology, and geography of extant and recently extinct mammals: Ecological Archives E090‐184." Ecology 90.9 (2009): 2648-2648.] on mammalian life history traits.
+```{r load-data}
+pantheria = read_csv("data/pantheria_subset.csv")
+```
+
+# Exercises 
+
+
+## Instructions
+
+```{r echo=FALSE, out.width='100%', fig.margin = TRUE, fig.cap = "Soricidae aka 'shrews'. Image from [wikipedia](https://en.wikipedia.org/wiki/Shrew)"}
+knitr::include_graphics('img/shrew.jpg')
+```
+
+- Make sure we see all relevant code and output in the knitted PDF. If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write a narrative for each exercise.
+
+- All narrative should be written in full sentences, and visualizations should have clear title and axis labels.
+
+- The goal of this analysis is to analyze the mean adult body mass of various animal families.
+
+## Exercise 1
+
+```{r echo=FALSE, out.width='100%', fig.margin = TRUE, fig.cap = "The yellow bat, an example of Vespertilionidae, aka 'microbats'. Image from [wikipedia](https://en.wikipedia.org/wiki/Scotophilus)"}
+knitr::include_graphics('img/microbat.jpg')
+```
+
+To begin, let's clean the data. Values of `-999` should in fact be `NA`. To convert these to NA, use the code chunk below as a template, replacing the question mark with the appropriate value.
+
+```
+pantheria[pantheria == ?] = NA
+```
+
+- In one sentence, describe what the code above does.
+
+## Exercise 2
+
+- Visualize the distribution of Vespertilionidae and Soricidae adult body mass (abm) using a histogram with binwidth of 5 and faceting.
+
+- Do the distributions look "normal"? Comment on the shape of the distributions.
+
+- Calculate the following summary statistics for each family: the mean abm, standard deviation of abm, and sample size size. Save the summary statistics as summary_stats. Then display summary_stat.
+
+- Based on the data, what is your "best guess" for the mean abm of each family?
+
+## Exercise 3
+
+<span class="marginnote">
+Ex 3 Hint: we only observe each species in a family once. You should search in your favorite browser of choice: "how many species in vespertilionidae family?" and "how many species in soricidae family?")
+</span>
+
+The goal of this analysis is to use CLT-based inference to understand the distribution of body mass. The idea is that if CLT holds, we can assume the distribution of the sample mean is normal and thus easily generate a normal null distribution to test hypotheses.
+
+Before we use CLT, let's check to see if the necessary criteria are satisfied. For each condition, indicate whether it is satisfied and provide a brief explanation supporting your response. Be sure to check for both families of interest.
+
+ - Independence? 
+ - Sample size / distribution? 
+ 
+## Exercise 4
+
+## Is the mean adult body mass (abm) of Soricidae significantly greater than 10 g?
+
+State the null and alternative hypothesis. Write your hypotheses in words and mathematical notation.
+
+## Exercise 5
+
+<span class="marginnote">
+Ex 5 Hint: Use `\sim` to create the mathematical tilde. This statements reads: "x bar is normally distributed"
+</span>
+
+Let $\bar{x}_s$ be the sample mean of Soricidae.
+
+Given the Central Limit Theorem and the hypotheses from the previous exercise,
+
+- What is the mean of the sampling distribution for $\bar{x}_s$? In other words, what is the mean under the null (i.e. assuming the null is true)?
+
+- What is the standard error of the sampling distribution of $\bar{x}_s$? Assume the true $\sigma$ is 15.
+
+- Write the distribution of the null concisely in math notation, i.e. $\bar{x} \sim N()$ notation. 
+
+## Exercise 6
+
+Compute the p-value associated with our observed statistic (sample mean). 
+
+<span class="marginnote">
+Ex 6 Hint: `pnorm` finds a left-tailed probability by default, and we are interested in a right-tailed probability.
+</span>
+
+- State your conclusion using $\alpha = 0.05$. Be sure to state your conclusion in context of the problem as well.
+
+## Exercise 7
+
+Let's compute the p-value in a slightly different way.
+
+To begin, use `R` as a calculator to compute a standardized score called a "Z-score". Save this quantity as `Z`. The formula to compute Z is below:
+
+$$
+Z = \frac{\bar{x} - \mu_0}{SE}
+$$
+Here, $\bar{x}$ is the sample mean, $\mu_0$ is the mean under the null and $SE$ is the standard error. 
+
+- Next, find the p-value associated with your Z score and a **standard normal distribution**.
+
+- Compare this p-value to the previous exercise. What do you observe?
+
+## Exercise 8
+
+- What would the observed mean adult body mass ($\bar{x}$) needed to be in order to reject the null at $\alpha = 0.05$?
+
+- If we weren't given the true population standard deviation $\sigma$, we could approximate it with our observed standard deviation, $\hat{\sigma}$ but our null distribution would change slightly. We'll talk about this more in class this week, but for now compute and report the revised statistic $T$.
+
+$$
+T = \frac{\bar{x} - \mu_0}{SE_\hat{\sigma}}
+$$
+
+Where $SE_{\hat{\sigma}}$ denotes the standard error computed with our observed standard error based on $\hat{\sigma}$.
+
+How does the T statistic compare to the Z score? Why?
+
+# Submission
+
+- **Select <u>one</u> team member to upload the team's PDF submission to Gradescope.** 
+- Be sure to select every team member's name in the Gradescope. 
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all relevant pages.
+
+**There should only be <u>one</u> submission per team on Gradescope.**
+
+
+# Grading 
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1     | 2   |
+| Ex 2      | 10 |
+| Ex 3      | 6   |
+| Ex 4      | 4   |
+| Ex 5     | 5  |
+| Ex 6    | 6  |
+| Ex 7   | 6   |
+| Ex 8 |   5  |
+| Workflow & formatting   | 6      |
