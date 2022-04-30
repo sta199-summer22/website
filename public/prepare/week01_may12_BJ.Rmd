@@ -9,7 +9,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date. <br>
+You can ignore "Your Turn" sections. 
 
 ## Required 
 

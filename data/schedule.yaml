@@ -8,23 +8,21 @@ lessons:
     slides: "01-intro_BJ.html"
     ae: "ae01_BJ.html"
   - date: "Thu, May 12"
-    title: "Meet the toolkit"
+    title: "Meet the Toolkit"
     prepare: "week01_may12_BJ.html"
     slides: "02-toolkit_BJ.html"
     ae: "ae02_BJ.html"
   - date: "Fri, May 13"
-    title: "Data visualization"
+    title: "Data Visualization1"
     prepare: "week01_may13_BJ.html"
     slides:
     ae:
   - title: "Lab 01: Hello R!"
     lab: "lab01-helloR_BJ.html"
-  - title: "HW 01 released"
-    hw:
 
   - week: "Week 7"
-    date: "Wed, Jun 22"
-    title: "Final project presentation"
+    date: "Thu, Jun 23"
+    title: "Final Oroject Presentation"
 
 #  - week:  "Week 2"
 #    date:  "Tue, Jan 11"

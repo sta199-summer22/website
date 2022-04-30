@@ -1,0 +1,70 @@
+---
+title: "Data Visualization"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+library(magick)
+```
+
+
+## Today's Goal 
+
+- Comfortably navigate RStudio fundamentals
+- Be able to define common terms including: **data frame**, **function**, **variable**, **package**
+- Interact with Git from RStudio (committing and pushing)
+- Use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
+- Create a reproducible report via today's AE using R Markdown
+
+---
+
+## Quiz
+
+- dataset, observation, variable 
+- **single entry per observation variable** vs. list (multiple entries per observation)
+- `glimpse()`, `nrow()`, `ncol()`, `dim()`
+- what is EDA? 
+- before plotting, what package to load? `library(tidyverse)`
+- ggplot syntax: ggplot, data, aes, geom_xxxx, some more asethetics options (color, shape, size, alpha)
+- why is visualization important? reveal a new story that summary statistics cannot tell. 
+- mapping vs. setting 
+- faceting to explore conditional relationships 
+- facet_wrap and facet_grid 
+- usually row 1 and column 2: row~column
+- guides 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 02: Tour of RStudio + R Markdown + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
+
+---
+
+## For Tomorrow 
+
+- Watch videos for [Prepare: May 13](https://sta199-summer22.netlify.app/prepare/week01_may13_BJ.html)
+
+- Submit your `AE02`
+
