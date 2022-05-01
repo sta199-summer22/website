@@ -16,7 +16,7 @@ lessons:
     title: "Data Visualization 1"
     prepare: "week01_may13_BJ.html"
     slides: "03-visual_BJ.html"
-    ae:
+    ae: "ae03_BJ.html"
   - title: "Lab 01: Hello R!"
     lab: "lab01-helloR_BJ.html"
 
@@ -26,7 +26,7 @@ lessons:
     prepare: "week02_may16_BJ.html"
     slides:
     ae:
-      
+
   - week: "Week 7"
     date: "Thu, Jun 23"
     title: "Final Oroject Presentation"

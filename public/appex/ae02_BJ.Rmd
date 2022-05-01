@@ -1,5 +1,8 @@
 ---
 title: "AE 02: Part 1, Tour of RStudio + GitHub"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
 output: 
   html_document: 
     toc: true

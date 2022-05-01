@@ -234,7 +234,7 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 03](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
+Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
 
 ---
 

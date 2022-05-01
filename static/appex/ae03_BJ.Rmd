@@ -1,22 +1,33 @@
 ---
-title: "Data Visualization 1"
+title: "AE 03: Data Visualization 1"
+subtitle: "due Monday May 16 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
 output: 
   html_document: 
     toc: true
     toc_float: true
 ---
 
-```{r message = FALSE}
-library(tidyverse)
-```
+## Getting Started 
 
-Exploratory data analysis (EDA) is an approach to analyzing datasets in order to summarize the main characteristics, often with visual representations of the  data (today). We can also calculate summary statistics and perform data  wrangling, manipulation, and transformation (next week).
-
-We will use `ggplot2` to construct visualizations. The gg in `ggplot2` stands  for "grammar of graphics", a system or framework that allows us to describe the components of a graphic, building up an effective visualization layer by later.
+- Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae03-GitHubUsername".
+- Click the green "code" button and copy the `SSH` URL.
+- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Open the `.Rmd` file
 
 ## Minneapolis Housing Data
 
+Exploratory data analysis (EDA) is an approach to analyzing datasets in order to summarize the main characteristics, often with visual representations of the  data (today). We can also calculate summary statistics and perform data  wrangling, manipulation, and transformation (next week).
+
 We will introduce visualization using data on single-family homes sold in Minneapolis, Minnesota between 2005 and 2015.
+
+We first start with loading a relevant package for plotting:
+
+```{r message = FALSE}
+library(tidyverse)
+```
 
 1. **Question:** What happens when you click the green arrow in the code chunk below? What changes in the "Environment" pane?
 
@@ -34,7 +45,7 @@ glimpse(mn_homes)
 
 ### First Visualization
 
-`ggplot` creates the initial base coordinate system that we will add layers  to. We first specify the dataset we will use with `data = mn_homes`. The `mapping` argument is paired with an aesthetic (`aes`), which tells us how the variables in our dataset should be mapped to the visual properties of the graph.
+`ggplot` creates the initial base coordinate system that we will add layers to. We first specify the dataset we will use with `data = mn_homes`. The `mapping` argument is paired with an aesthetic (`aes`), which tells us how the variables in our dataset should be mapped to the visual properties of the graph.
 
 3. **Question:** What does the first code chunk immediately below do?
 
@@ -93,11 +104,11 @@ An aesthetic is a visual property of one of the objects in your plot.
 
 We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_` can be found in the documentation.
 
-Here we are going to use the viridis package, which has more color-blind accessible colors. `scale_color_viridis` specifies which colors you want to use. You can learn more about the options [here](https://www.rdocumentation.org/packages/viridis/versions/0.5.1/topics/scale_color_viridis).
+Here we are going to use the viridis package, which has more color-blind accessible colors. `scale_color_viridis` specifies which colors you want to use. You can learn more about the options [here](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html).
 
-Other sources that can be helpful in devising accessible color schemes include [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), the [Wes Anderson package](https://github.com/karthik/wesanderson), and the [cividis package](https://github.com/marcosci/cividis).
+Other sources that can be helpful in devising accessible color schemes include the [scico package](https://github.com/thomasp85/scico), [Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3), the [Wes Anderson package](https://github.com/karthik/wesanderson), and the [cividis package](https://github.com/marcosci/cividis).
 
-This visualization shows a scatterplot of area (x variable) and sales price (y variable). Using the viridis function, we make points for houses with a fireplace yellow and those without purple. We also add axis and an overall label.
+This visualization shows a scatter plot of area (x variable) and sales price (y variable). Using the viridis function, we make points for houses with a fireplace yellow and those without navy. We also add axis and an overall label.
 
 ```{r aesthetic-1}
 library(viridis)
@@ -107,7 +118,7 @@ ggplot(data = mn_homes,
    geom_point() + 
    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
         x = "Area (square feet)", y = "Sales Price (dollars)") + 
-        scale_color_viridis(discrete=TRUE, option = "D", name="Fireplace?")
+  scale_color_viridis_d(option = "cividis", name="Fireplace?")
 ```
 
 5. **Question:** What will the visualization look like below? Write your answer 
@@ -134,7 +145,7 @@ ggplot(data = mn_homes,
    labs(title = "Sales price vs. area of homes in Minneapolis, MN",
         x = "Area (square feet)", y = "Sales Price (dollars)", 
         size = "Lot Size") +
-  scale_color_viridis(discrete=TRUE, option = "D",name="Fireplace?")
+  scale_color_viridis_d(option = "cividis", name="Fireplace?")
 ```
 
 7. **Question:** Are the above visualizations effective? Why or why not? How might you improve them?
@@ -148,17 +159,17 @@ ggplot(data = mn_homes) +
   geom_point(mapping = aes(x = area, y = salesprice), color = "blue")
 ```
 
-Use `aes` to map variables to plot features, use arguments in `geom_xxx` for customization not mapped to a variable.
+Use `aes` to map variables to plot features, use arguments in `geom_xxxx` for customization not mapped to a variable.
 
-Mapping in the `ggplot` function is global, meaning they apply to every layer we add. Mapping in a particular `geom_xxx` function treats the mappings as local.
+Mapping in the `ggplot` function is global, meaning they apply to every layer we add. Mapping in a particular `geom_xxxx` function treats the mappings as local.
 
-9. **Question:** Create a scatterplot using variables of your choosing using the `mn_homes` data.
+9. **Question:** Create a scatter plot using variables of your choosing using the `mn_homes` data.
 
 ```{r scatterplot}
 
 ```
 
-10. **Question:** Modify your scatterplot above by coloring the points for each community.
+10. **Question:** Modify your scatter plot above by coloring the points for each community.
 
 ```{r scatterplot-community}
 
@@ -166,7 +177,7 @@ Mapping in the `ggplot` function is global, meaning they apply to every layer we
 
 ## Faceting
 
-We can use smaller plots to display different subsets of the data using  faceting. This is helpful to examine conditional relationships.
+We can use smaller plots to display different subsets of the data using faceting. This is helpful to examine conditional relationships.
 
 Let's try a few simple examples of faceting. Note that these plots should be improved by careful consideration of labels, aesthetics, etc.
 
@@ -261,7 +272,7 @@ ggplot(data = mn_homes,
 
 ```
 
-### Additional Resources
+## Additional Resources
 
 - https://ggplot2.tidyverse.org/
 - https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf
