@@ -13,13 +13,20 @@ lessons:
     slides: "02-toolkit_BJ.html"
     ae: "ae02_BJ.html"
   - date: "Fri, May 13"
-    title: "Data Visualization1"
+    title: "Data Visualization 1"
     prepare: "week01_may13_BJ.html"
     slides: "03-visual_BJ.html"
     ae:
   - title: "Lab 01: Hello R!"
     lab: "lab01-helloR_BJ.html"
 
+  - week: "Week 2"
+    date: "Mon, May 16"
+    title: "Data Visualization 2"
+    prepare: "week02_may16_BJ.html"
+    slides:
+    ae:
+      
   - week: "Week 7"
     date: "Thu, Jun 23"
     title: "Final Oroject Presentation"
