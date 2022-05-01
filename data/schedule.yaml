@@ -15,7 +15,7 @@ lessons:
   - date: "Fri, May 13"
     title: "Data Visualization1"
     prepare: "week01_may13_BJ.html"
-    slides:
+    slides: "03-visual_BJ.html"
     ae:
   - title: "Lab 01: Hello R!"
     lab: "lab01-helloR_BJ.html"

@@ -1,5 +1,5 @@
 ---
-title: "Data Visualization"
+title: "Data Visualization 1"
 author: "Bora Jin"
 
 output:
@@ -18,35 +18,211 @@ output:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(rvest)
-library(magick)
 ```
 
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Data and Visualization](https://www.youtube.com/watch?v=FddF4b_GuTI) 
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1)
+
+`r emo::ji("movie_camera")` Watch [Visualizing Data with ggplot2](https://www.youtube.com/watch?v=s2NF2J36ljE)  
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
+
+---
 
 ## Today's Goal 
 
-- Comfortably navigate RStudio fundamentals
-- Be able to define common terms including: **data frame**, **function**, **variable**, **package**
-- Interact with Git from RStudio (committing and pushing)
-- Use a few functions, including: `glimpse()`, `count()`, `group_by()` and `summarize()`
-- Create a reproducible report via today's AE using R Markdown
+- Be able to define a pipe `%>%`
+- Build up an effective visualization systematically layer by layer with `ggplot2`
+
+"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
 
 ---
 
 ## Quiz
 
-- dataset, observation, variable 
-- **single entry per observation variable** vs. list (multiple entries per observation)
-- `glimpse()`, `nrow()`, `ncol()`, `dim()`
-- what is EDA? 
-- before plotting, what package to load? `library(tidyverse)`
-- ggplot syntax: ggplot, data, aes, geom_xxxx, some more asethetics options (color, shape, size, alpha)
-- why is visualization important? reveal a new story that summary statistics cannot tell. 
-- mapping vs. setting 
-- faceting to explore conditional relationships 
-- facet_wrap and facet_grid 
-- usually row 1 and column 2: row~column
-- guides 
+**Q - What does each row of a dataset represent?**  
+
+--
+
+Observation 
+
+--
+
+**Q - What does each column of a dataset represent?** 
+
+--
+
+Variable 
+
+--
+
+**Q - All variables in a dataset must be in the same type (character, integer, etc.). (T/F)** 
+
+--
+
+F
+
+--
+
+
+**Q - In this class, we mainly focus on variables having a single entry per observation. (T/F)** 
+
+--
+
+T
+
+---
+
+## Quiz
+
+**Q - Which function spits out the dimension of a dataset?** 
+
+--
+
+`dim()` (row, column)
+
+--
+
+
+**Q - How to check the number of rows of a dataset?** 
+
+--
+
+`nrow()`
+
+--
+
+**Q - How to check the number of cols of a dataset?** 
+
+--
+
+`ncol()`
+
+---
+
+## Quiz
+
+**Q - What is the information that you cannot get using `glimpse()`?** 
+
+a. number of rows
+
+b. number of cols
+
+c. list of variables 
+
+d. variable types 
+
+e. summaries of variables 
+
+---
+
+## Quiz
+
+**Q - What is the information that you cannot get using `glimpse()`?** 
+
+a. number of rows
+
+b. number of cols
+
+c. list of variables 
+
+d. variable types 
+
+**e. summaries of variables**
+
+---
+
+## Quiz
+
+**Q - What is EDA?** 
+
+--
+
+- Approach to analysing datasets to summarize and describe its main characteristics
+- Often visual 
+
+--
+
+**Q - Why is visualization important?** 
+
+--
+
+It can reveal a new story that summary statistics could miss! 
+
+--
+
+**Q - Before plotting, what package do we load?** 
+
+--
+
+`library(tidyverse)` (`ggplot2` $\in$ `tidyverse`)
+
+---
+
+## Quiz 
+
+**Q - When plotting, what are the three fundamental things to define and the relevant code?** 
+
+--
+
+- Data in `ggplot(data = )`
+- Aesthetics in `ggplot(mapping = aes())`
+- Geometries in `geom_xxxx()`
+
+layers added by `+`
+
+--
+
+```{r eval=F}
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+
+---
+
+## Quiz
+
+**Q - What are *other options* include?** 
+
+--
+
+- Labels and legends in `labs()`
+- More aesthetics options (color, shape, size, alpha)
+- Faceting
+- Many more! 
+
+--
+
+**Q - For aesthetics options, can you explain mapping vs. setting?** 
+
+--
+
+- Mapping: map plotting characters to a specific variable in data through `aes()`
+- Setting: determine them without regard to data values through `geom_xxxx()`
+
+---
+
+## Quiz
+
+**Q - Why faceting?** 
+
+--
+
+- To explore conditional relationships 
+- Multiple smaller plots in one plot 
+
+--
+
+**Q - Two functions for faceting?** 
+
+--
+- `facet_grid([row-variable] ~ [column-variable])`
+- `facet_wrap(~ [variable])`
 
 ---
 
@@ -58,13 +234,13 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 02: Tour of RStudio + R Markdown + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
+Go to [AE 03](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
 
 ---
 
-## For Tomorrow 
+## For Monday 
 
-- Watch videos for [Prepare: May 13](https://sta199-summer22.netlify.app/prepare/week01_may13_BJ.html)
+- Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
 
-- Submit your `AE02`
+- Submit your `AE03`
 

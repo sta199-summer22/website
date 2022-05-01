@@ -18,8 +18,6 @@ output:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(rvest)
-library(magick)
 ```
 
 
@@ -82,7 +80,7 @@ RStudio:
 
 ## Quiz
 
-**Q - How do I install a package called** `unvotes` **and load it?** 
+**Q - How do I install a package called** `unvotes` **and load it?** <br>
 
 --
 
@@ -93,15 +91,14 @@ library(unvotes)
 
 --
 
-**Q - How do I see a help page of data ** `un_votes`**?** 
+**Q - How do I see a help page of data ** `un_votes`**?** <br>
 
 --
-
 ```{r eval = FALSE}
 ?un_votes
 ```
 
--- 
+--
 
 **Q - What am I doing with** `un_votes$country`**?** <br>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Meet the Toolkit</title>
+    <title>Data Visualization 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Meet the Toolkit
+# Data Visualization 1
 ### Bora Jin
 
 ---
@@ -37,143 +37,210 @@ layout: true
 
 
 
-
 ## Material 
 
-🎥 Watch [Meet the Toolkit - Programming](https://youtu.be/Q2QN1RpvLq8) 
+🎥 Watch [Data and Visualization](https://www.youtube.com/watch?v=FddF4b_GuTI) 
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d02-toolkit-r/u1-d02-toolkit-r.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1)
 
-🎥 Watch [Meet the Toolkit - Version Control and Collaboration](https://youtu.be/124DQasLyNQ)  
+🎥 Watch [Visualizing Data with ggplot2](https://www.youtube.com/watch?v=s2NF2J36ljE)  
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u1-d03-toolkit-git/u1-d03-toolkit-git.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
 
 ---
 
 ## Today's Goal 
 
-- Understand reproducibility and version control 
-- Comfortably navigate RStudio fundamentals
-- Be able to define common terms including: **data frame**, **function**, **variable**, **package**
-- Interact with Git from RStudio (committing and pushing)
-- Use a few functions, including: `glimpse()`, `group_by()`, `summarize()`, and `filter()`
-- Create a reproducible report via today's application exercise using R Markdown
+- Be able to define a pipe `%&gt;%`
+- Build up an effective visualization systematically layer by layer with `ggplot2`
+
+"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
 
 ---
 
 ## Quiz
 
-**Q - What is a reproducible data analysis?** &lt;br&gt;
+**Q - What does each row of a dataset represent?**  
 
 --
 
-Near-term goals:
-
-- Exact/similar tables and figures can be generated from the code and data
-- The code performs an intended task
-- Purpose of the analysis is clear
-
-Long-term goals:
-
-- The code can be used for other data
-- The code can be extended to do other things
-
----
-
-## Quiz
-
-**Q - What is difference between R vs. RStudio?** &lt;br&gt;
+Observation 
 
 --
 
- R:
-- Open-source statistical programming language 
-- Easily extensible with **packages**, collections of reproducible R code
+**Q - What does each column of a dataset represent?** 
 
-RStudio: 
-- Convenient interface for R called Integrated development environment (IDE)
+--
+
+Variable 
+
+--
+
+**Q - All variables in a dataset must be in the same type (character, integer, etc.). (T/F)** 
+
+--
+
+F
+
+--
+
+
+**Q - In this class, we mainly focus on variables having a single entry per observation. (T/F)** 
+
+--
+
+T
 
 ---
 
 ## Quiz
 
-**Q - How do I install a package called** `unvotes` **and load it?** &lt;br&gt;
+**Q - Which function spits out the dimension of a dataset?** 
+
+--
+
+`dim()` (row, column)
+
+--
+
+
+**Q - How to check the number of rows of a dataset?** 
+
+--
+
+`nrow()`
+
+--
+
+**Q - How to check the number of cols of a dataset?** 
+
+--
+
+`ncol()`
+
+---
+
+## Quiz
+
+**Q - What is the information that you cannot get using `glimpse()`?** 
+
+a. number of rows
+
+b. number of cols
+
+c. list of variables 
+
+d. variable types 
+
+e. summaries of variables 
+
+---
+
+## Quiz
+
+**Q - What is the information that you cannot get using `glimpse()`?** 
+
+a. number of rows
+
+b. number of cols
+
+c. list of variables 
+
+d. variable types 
+
+**e. summaries of variables**
+
+---
+
+## Quiz
+
+**Q - What is EDA?** 
+
+--
+
+- Approach to analysing datasets to summarize and describe its main characteristics
+- Often visual 
+
+--
+
+**Q - Why is visualization important?** 
+
+--
+
+It can reveal a new story that summary statistics could miss! 
+
+--
+
+**Q - Before plotting, what package do we load?** 
+
+--
+
+`library(tidyverse)` (`ggplot2` `\(\in\)` `tidyverse`)
+
+---
+
+## Quiz 
+
+**Q - When plotting, what are the three fundamental things to define and the relevant code?** 
+
+--
+
+- Data in `ggplot(data = )`
+- Aesthetics in `ggplot(mapping = aes())`
+- Geometries in `geom_xxxx()`
+
+layers added by `+`
 
 --
 
 
 ```r
-install.packages("unvotes")
-library(unvotes)
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   other options
 ```
-
---
-
-**Q - How do I see a help page of data ** `un_votes`**?** &lt;br&gt;
-
---
-
-```r
-?un_votes
-```
-
---
-
-**Q - What am I doing with** `un_votes$country`**?** &lt;br&gt;
-
---
-
-Accessing a column `country` in the data `un_vote`
 
 ---
 
 ## Quiz
 
-**Q - What can you do with R Markdown?** &lt;br&gt;
+**Q - What are *other options* include?** 
 
 --
 
-- Create fully reproducible reports with code for analysis and text for narrative 
-- Every assignment as an R Markdown document (with `.Rmd` extension)
-- R Markdown document should be complete in itself. *The environment of your R Markdown document is separate from the R Console!*
+- Labels and legends in `labs()`
+- More aesthetics options (color, shape, size, alpha)
+- Faceting
+- Many more! 
 
 --
 
-**Q - How do I create a code chunk in an R Markdowm document?** &lt;br&gt;
+**Q - For aesthetics options, can you explain mapping vs. setting?** 
 
 --
 
-Three backticks
-
-&lt;img src="img/02/Rmdcodechunk.png" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+- Mapping: map plotting characters to a specific variable in data through `aes()`
+- Setting: determine them without regard to data values through `geom_xxxx()`
 
 ---
 
 ## Quiz
 
-**Q - What is difference between Git vs. GitHub?** &lt;br&gt;
+**Q - Why faceting?** 
 
 --
 
-- Git: Version control system 
-- GitHub: Home for Git-based projects on the internet 
+- To explore conditional relationships 
+- Multiple smaller plots in one plot 
 
 --
 
-**Q - What is version control?** &lt;br&gt;
+**Q - Two functions for faceting?** 
 
 --
-
-Tracking changes (potentially with human readable messages) 
-
---
-
-**Q - Why is it important?** &lt;br&gt;
-
---
-
-- Otherwise you lose track of your work and become clueless where to go back when you need to fix things! e.g. final.docx, final2.docx, final_final.docx, final_final_XXXX.docx, ...
-- At each version, important to leave an informative tag
+- `facet_grid([row-variable] ~ [column-variable])`
+- `facet_wrap(~ [variable])`
 
 ---
 
@@ -185,15 +252,15 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 02: Part 1, Tour of RStudio + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
+Go to [AE 03](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
 
 ---
 
-## For Tomorrow 
+## For Monday 
 
-- Watch videos for [Prepare: May 13](https://sta199-summer22.netlify.app/prepare/week01_may13_BJ.html)
+- Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
 
-- Submit your `ae02`.
+- Submit your `AE03`
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
