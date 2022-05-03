@@ -1,0 +1,312 @@
+---
+title: "Data Visualization 2"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Visualizing Numerical Data](https://youtu.be/waBabVTI8ec) 
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d03-viz-num/u2-d03-viz-num.html#1)
+
+`r emo::ji("movie_camera")` Watch [Visualizing Categorical Data](https://youtu.be/21h3rEO8k2E) 
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d04-viz-cat/u2-d04-viz-cat.html#1)
+
+---
+
+## Today's Goal 
+
+- Explain continuous, discrete, and categorical variables
+- Understand how to make visualizations and summarize variables according to their type
+- Develop a faceted plot
+
+---
+
+## Quiz 
+
+**Q - ________ variables can be classified as either continuous or discrete.**
+
+--
+
+Numerical
+
+--
+
+**Q - ________ categorical variable has a natural ordering.**
+
+--
+
+Ordinal 
+
+--
+
+**Q - Classify the following variables:**
+
+- monthly expenses
+--
+: numeric, continuous
+--
+
+- number of shoes
+--
+: numeric, discrete 
+--
+
+- course satisfaction rating (“extremely dislike”, “dislike”, “neutral”, “like”, “extremely like”)
+--
+: categorical, ordinal 
+--
+
+- eye color
+--
+: categorical, nominal
+---
+
+## Quiz 
+
+**Q - Describe the shape of the following distributions of a numeric.**
+
+```{r left-skewed, echo = FALSE, fig.align='center', fig.height=3}
+set.seed(123)
+x <- seq(-20, 0, length = 10000)
+y <- dgamma(-x, shape = 2, scale = 1)
+ggplot(data = data.frame(x, y)) +
+  geom_line(aes(x,y)) + labs(y="density")
+```
+
+---
+
+## Quiz 
+
+**Q - Describe the shape of the following distributions of a numeric.**
+
+```{r uniform, echo = FALSE, fig.align='center', fig.height=3}
+set.seed(123)
+x <- seq(-0.1, 1.1, length = 10000)
+y <- dunif(x)
+ggplot(data = data.frame(x, y)) +
+  geom_line(aes(x,y)) + labs(y="density")
+```
+
+---
+
+## Quiz 
+
+**Q - Describe the shape of the following distributions of a numeric.**
+
+```{r bimodal, echo = FALSE, fig.align='center', fig.height=3}
+set.seed(123)
+x <- seq(-5, 10, length = 10000)
+y <- dnorm(x, mean = -2, sd = 1) + dnorm(x, mean = 7, sd = 2)
+ggplot(data = data.frame(x, y)) +
+  geom_line(aes(x,y)) + labs(y="density")
+```
+
+---
+
+## Quiz 
+
+**Q - Fill in the blanks with appropriate** `R` **functions**
+
+- center: mean (`___`), median (`___`)
+- spread: range (`range`), standard deviation (`___`), interquartile range (`IQR`)
+
+---
+
+## Quiz 
+
+**Q - Fill in the blanks with appropriate** `R` **functions**
+
+- center: mean (`mean`), median (`meduan`)
+- spread: range (`range`), standard deviation (`sd`), interquartile range (`IQR`)
+
+--
+
+**Q - What plot might you draw if you want to detect potential outliers?**
+
+--
+
+Box plot 
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize distribution of a single numerical variable?**
+
+a. `geom_histogram()`
+
+b. `geom_point()`
+
+c. `geom_density()`
+
+d. `geom_boxplot()` 
+
+e. `geom_hex()`
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize distribution of a single numerical variable?**
+
+a. `geom_histogram()`
+
+**b. `geom_point()` - to visualize relationships between two numerical variables** 
+
+c. `geom_density()`
+
+d. `geom_boxplot()` 
+
+**e. `geom_hex()` - relationships between two numerical variables through binning** 
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize relationships between numerical and categorical variables?**
+
+a. `geom_boxplot()`
+
+b. `geom_violin()`
+
+c. `geom_density_ridges()` 
+
+d. `geom_bar()` 
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize relationships between numerical and categorical variables?**
+
+a. `geom_boxplot()`
+
+b. `geom_violin()`
+
+c. `geom_density_ridges()` 
+
+**d. `geom_bar()` - visualize distribution of a categorical variable or relationship between categorical variables**
+
+---
+
+## Quiz 
+
+**Q - Which of these is the most relevant for the difference between two bar plots?**
+
+```{r, echo = FALSE}
+library(openintro)
+loans <- loans_full_schema %>%
+  select(loan_amount, interest_rate, term, grade, 
+         state, annual_income, homeownership, debt_to_income)
+```
+
+.pull-left[
+```{r, echo = FALSE, out.width = '100%'}
+plot1 <- ggplot(loans, aes(x = homeownership, 
+                  fill = grade)) +
+  geom_bar() + 
+  labs(
+    x = "Proportion",
+    y = "Homeownership",
+    fill = "Grade"
+  ) +
+  scale_fill_viridis_d()
+plot2 <- ggplot(loans, aes(x = homeownership,
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Proportion",
+    y = "Homeownership",
+    fill = "Grade"
+  ) + 
+  scale_fill_viridis_d()
+ggpubr::ggarrange(plot1, plot2, ncol = 2, common.legend = T, legend = "bottom")
+```
+]
+
+.pull-right[
+a. `aes(x = homeownership, fill = grade)`
+
+b. `position = "fill"` 
+
+c. `labs()`
+]
+
+---
+
+## Quiz 
+
+**Q - Which of these is the most relevant for the difference between two bar plots?**
+
+.pull-left[
+```{r, echo = FALSE, out.width = '100%'}
+plot1 <- ggplot(loans, aes(x = homeownership, 
+                  fill = grade)) +
+  geom_bar() + 
+  labs(
+    x = "Proportion",
+    y = "Homeownership",
+    fill = "Grade"
+  ) +
+  scale_fill_viridis_d()
+plot2 <- ggplot(loans, aes(x = homeownership,
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+  labs(
+    x = "Proportion",
+    y = "Homeownership",
+    fill = "Grade"
+  ) + 
+  scale_fill_viridis_d()
+ggpubr::ggarrange(plot1, plot2, ncol = 2, common.legend = T, legend = "bottom")
+```
+]
+
+.pull-right[
+a. `aes(x = homeownership, fill = grade)`
+
+**b. `position = "fill"` - relative frequency within x**
+
+c. `labs()`
+]
+
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 04](https://sta199-summer22.netlify.app/appex/ae04_BJ.html)
+
+---
+
+## For Monday 
+
+- Watch videos for [Prepare: May 17](https://sta199-summer22.netlify.app/prepare/week02_may17_BJ.html)
+
+- Submit your `AE04`
+

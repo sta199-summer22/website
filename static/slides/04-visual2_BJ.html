@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data Visualization 1</title>
+    <title>Data Visualization 2</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Visualization 1
+# Data Visualization 2
 ### Bora Jin
 
 ---
@@ -39,207 +39,210 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Data and Visualization](https://www.youtube.com/watch?v=FddF4b_GuTI) 
+🎥 Watch [Visualizing Numerical Data](https://youtu.be/waBabVTI8ec) 
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d03-viz-num/u2-d03-viz-num.html#1)
 
-🎥 Watch [Visualizing Data with ggplot2](https://www.youtube.com/watch?v=s2NF2J36ljE)  
+🎥 Watch [Visualizing Categorical Data](https://youtu.be/21h3rEO8k2E) 
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d04-viz-cat/u2-d04-viz-cat.html#1)
 
 ---
 
 ## Today's Goal 
 
-- Build up an effective visualization systematically layer by layer with `ggplot2`
-
-"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
-
----
-
-## Quiz
-
-**Q - What does each row of a dataset represent?**  
-
---
-
-Observation 
-
---
-
-**Q - What does each column of a dataset represent?** 
-
---
-
-Variable 
-
---
-
-**Q - All variables in a dataset must be in the same type (character, integer, etc.). (T/F)** 
-
---
-
-F
-
---
-
-
-**Q - In this class, we mainly focus on variables having a single entry per observation. (T/F)** 
-
---
-
-T
-
----
-
-## Quiz
-
-**Q - Which function spits out the dimension of a dataset?** 
-
---
-
-`dim()` (row, column)
-
---
-
-
-**Q - How to check the number of rows of a dataset?** 
-
---
-
-`nrow()`
-
---
-
-**Q - How to check the number of cols of a dataset?** 
-
---
-
-`ncol()`
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-e. summaries of variables 
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-**e. summaries of variables**
-
----
-
-## Quiz
-
-**Q - What is EDA?** 
-
---
-
-- Approach to analysing datasets to summarize and describe its main characteristics
-- Often visual 
-
---
-
-**Q - Why is visualization important?** 
-
---
-
-It can reveal a new story that summary statistics could miss! 
-
---
-
-**Q - Before plotting, what package do we load?** 
-
---
-
-`library(tidyverse)` (`ggplot2` `\(\in\)` `tidyverse`)
+- Explain continuous, discrete, and categorical variables
+- Understand how to make visualizations and summarize variables according to their type
+- Develop a faceted plot
 
 ---
 
 ## Quiz 
 
-**Q - When plotting, what are the three fundamental things to define and the relevant code?** 
+**Q - ________ variables can be classified as either continuous or discrete.**
 
 --
 
-- Data in `ggplot(data = )`
-- Aesthetics in `ggplot(mapping = aes())`
-- Geometries in `geom_xxxx()`
-
-layers added by `+`
+Numerical
 
 --
 
+**Q - ________ categorical variable has a natural ordering.**
 
-```r
-ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   other options
-```
+--
+
+Ordinal 
+
+--
+
+**Q - Classify the following variables:**
+
+- monthly expenses
+--
+: numeric, continuous
+--
+
+- number of shoes
+--
+: numeric, discrete 
+--
+
+- course satisfaction rating (“extremely dislike”, “dislike”, “neutral”, “like”, “extremely like”)
+--
+: categorical, ordinal 
+--
+
+- eye color
+--
+: categorical, nominal
+---
+
+## Quiz 
+
+**Q - Describe the shape of the following distributions of a numeric.**
+
+&lt;img src="04-visual2_BJ_files/figure-html/left-skewed-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Quiz
+## Quiz 
 
-**Q - What are *other options* include?** 
+**Q - Describe the shape of the following distributions of a numeric.**
 
---
-
-- Labels and legends in `labs()`
-- More aesthetics options (color, shape, size, alpha)
-- Faceting
-- Many more! 
-
---
-
-**Q - For aesthetics options, can you explain mapping vs. setting?** 
-
---
-
-- Mapping: map plotting characters to a specific variable in data through `aes()`
-- Setting: determine them without regard to data values through `geom_xxxx()`
+&lt;img src="04-visual2_BJ_files/figure-html/uniform-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Quiz
+## Quiz 
 
-**Q - Why faceting?** 
+**Q - Describe the shape of the following distributions of a numeric.**
+
+&lt;img src="04-visual2_BJ_files/figure-html/bimodal-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - Fill in the blanks with appropriate** `R` **functions**
+
+- center: mean (`___`), median (`___`)
+- spread: range (`range`), standard deviation (`___`), interquartile range (`IQR`)
+
+---
+
+## Quiz 
+
+**Q - Fill in the blanks with appropriate** `R` **functions**
+
+- center: mean (`mean`), median (`meduan`)
+- spread: range (`range`), standard deviation (`sd`), interquartile range (`IQR`)
 
 --
 
-- To explore conditional relationships 
-- Multiple smaller plots in one plot 
+**Q - What plot might you draw if you want to detect potential outliers?**
 
 --
 
-**Q - Two functions for faceting?** 
+Box plot 
 
---
-- `facet_grid([row-variable] ~ [column-variable])`
-- `facet_wrap(~ [variable])`
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize distribution of a single numerical variable?**
+
+a. `geom_histogram()`
+
+b. `geom_point()`
+
+c. `geom_density()`
+
+d. `geom_boxplot()` 
+
+e. `geom_hex()`
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize distribution of a single numerical variable?**
+
+a. `geom_histogram()`
+
+**b. `geom_point()` - to visualize relationships between two numerical variables** 
+
+c. `geom_density()`
+
+d. `geom_boxplot()` 
+
+**e. `geom_hex()` - relationships between two numerical variables through binning** 
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize relationships between numerical and categorical variables?**
+
+a. `geom_boxplot()`
+
+b. `geom_violin()`
+
+c. `geom_density_ridges()` 
+
+d. `geom_bar()` 
+
+---
+
+## Quiz 
+
+**Q - Which of these commands are inappropriate to visualize relationships between numerical and categorical variables?**
+
+a. `geom_boxplot()`
+
+b. `geom_violin()`
+
+c. `geom_density_ridges()` 
+
+**d. `geom_bar()` - visualize distribution of a categorical variable or relationship between categorical variables**
+
+---
+
+## Quiz 
+
+**Q - Which of these is the most relevant for the difference between two bar plots?**
+
+
+
+.pull-left[
+&lt;img src="04-visual2_BJ_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+a. `aes(x = homeownership, fill = grade)`
+
+b. `position = "fill"` 
+
+c. `labs()`
+]
+
+---
+
+## Quiz 
+
+**Q - Which of these is the most relevant for the difference between two bar plots?**
+
+.pull-left[
+&lt;img src="04-visual2_BJ_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+a. `aes(x = homeownership, fill = grade)`
+
+**b. `position = "fill"` - relative frequency within x**
+
+c. `labs()`
+]
+
 
 ---
 
@@ -251,15 +254,15 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
+Go to [AE 04: Data Visualization 2](https://sta199-summer22.netlify.app/appex/ae04_BJ.html)
 
 ---
 
 ## For Monday 
 
-- Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
+- Watch videos for [Prepare: May 17](https://sta199-summer22.netlify.app/prepare/week02_may17_BJ.html)
 
-- Submit your `AE03`
+- Submit your `AE04`
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

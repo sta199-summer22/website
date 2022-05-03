@@ -34,7 +34,6 @@ library(tidyverse)
 
 ## Today's Goal 
 
-- Be able to define a pipe `%>%`
 - Build up an effective visualization systematically layer by layer with `ggplot2`
 
 "The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey

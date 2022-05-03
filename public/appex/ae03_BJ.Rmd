@@ -85,8 +85,8 @@ The procedure used to construct plots can be summarized using the code below.
 ```{r eval = FALSE}
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   geom_xxx() + 
+   geom_xxxx() +
+   geom_xxxx() + 
   other options
 ```
 
@@ -102,7 +102,7 @@ An aesthetic is a visual property of one of the objects in your plot.
 - size
 - alpha (transparency)
 
-We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_` can be found in the documentation.
+We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each `geom_xxxx` can be found in the documentation.
 
 Here we are going to use the viridis package, which has more color-blind accessible colors. `scale_color_viridis` specifies which colors you want to use. You can learn more about the options [here](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html).
 

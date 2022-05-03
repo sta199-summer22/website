@@ -1,0 +1,197 @@
+---
+title: "AE 04: Data Visualization 2"
+subtitle: "due Tuesday May 17 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae04-GitHubUsername".
+- Click the green "code" button and copy the `SSH` URL.
+- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Minneapolis Housing Data
+
+We always begin by loading relevant libraries.
+
+```{r load-packages, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Next, we load data.
+
+We will continue our investigation of single-family home prices in Minneapolis, Minnesota.
+
+```{r load-data, message = FALSE}
+mn_homes <- read_csv("data/mn_homes.csv")
+```
+
+Add a `glimpse` to the code chunk below and identify the following variables as
+numeric continuous, numeric discrete, categorical ordinal, or categorical
+nominal. 
+
+- `salesprice` 
+- `numfireplaces`
+- `community`
+
+```{r glimpse-data}
+glimpse(mn_homes$salesprice)
+```
+
+The `summary` command is also useful in looking at numerical variables. Use this command to look at the numeric variables from the previous chunk.
+
+```{r summarize}
+summary(mn_homes$salesprice)
+```
+
+### Numeric Variables
+
+We can use a **histogram** to summarize a numeric variable. Play with different `binwidth`.
+
+```{r histogram}
+ggplot(data = mn_homes, 
+       mapping = aes(x = salesprice)) + 
+  geom_histogram(binwidth = 100000)
+```
+
+Now let’s look at the distribution of price for each community. To do so, we will make a faceted histogram where each facet represents a community and displays the distribution of sales price for that community. Once you have modified the code, remove the option `eval = FALSE` from the code chunk header. 
+
+```{r histogram-faceted, eval = FALSE}
+ggplot(data = mn_homes, 
+       mapping = aes(x = salesprice)) + 
+  geom_histogram(binwidth = 100000) + 
+  facet_wrap(~____)
+```
+
+You might notice that 1) a few expensive homes exist in one community and 2) some communities have less homes sold than others. These obscure our ability to see the histograms for sales prices in all of the communities at once. In this case, we might change the scales for each histogram by `scales = "free_x"`, `scales = "free_y"`, or `scales = "free"`. Choose the option that you think best solves the issues.
+
+```{r histogram-faceted2, eval = FALSE}
+ggplot(data = mn_homes, 
+       mapping = aes(x = salesprice)) + 
+  geom_histogram(binwidth = 100000) + 
+  facet_wrap(~____, scales = ____)
+```
+
+A **density plot** is another option. We just connect the boxes in a histogram with a smooth curve. Fill in the code below to create a desntiy plot of `salesprice`. 
+
+```{r density-plot, eval = FALSE}
+ggplot(data = mn_homes, 
+       mapping = aes(x = ____)) + 
+   geom_xxxx()
+```
+
+Side-by-side **boxplots** are helpful to visualize the distribution of a numeric
+variable across the levels of a categorical variable.
+
+```{r boxplots}
+ggplot(data = mn_homes, 
+       mapping = aes(x = community, y = salesprice)) + 
+  geom_boxplot() + 
+  coord_flip() + 
+  labs(title = "Sales Price by Community", x = "Community", y = "Sales Price") 
+```
+
+1. **Question:** What is `coord_flip()` doing in the code chunk above? Try removing it to see. Does it affect `labs()`? 
+
+2. **Question:** Can you detect any homes sold for unusually high prices? In which community? Does it match what we observed in the faceted histogram above? 
+
+### Categorical Variables
+
+**Bar plots** allow us to visualize categorical variables.
+
+```{r bar-plot}
+ggplot(data = mn_homes, mapping = aes(x = community)) + 
+  geom_bar() + 
+  labs(title = "Homes by Community", x = "Community", y = "Number of Homes")
+```
+
+**Segmented bar plots** can be used to visualize two categorical variables.
+
+Segment the number of homes in each `community` into whether a fireplace exists or not (the variable `fireplace`). We intend to make horizontal bars. 
+
+```{r segmented-bar-plot, eval = FALSE}
+ggplot(data = mn_homes, mapping = aes(x = ____, fill = ____)) + 
+  geom_bar() +
+  coord_flip() + 
+  scale_fill_viridis_d(option = "cividis", name = "Fireplace?") + 
+  labs(title = "Fireplaces by Community", 
+       x = "Community", y = "Number of Homes")
+```
+
+Fill in the blank with an informative y-label. 
+
+```{r segmented-bar-plot-fill}
+ggplot(data = mn_homes, mapping = aes(x = community, fill = fireplace)) + 
+  geom_bar(position = "fill") + 
+  scale_fill_viridis_d(option = "cividis", name="Fireplace?") + 
+  coord_flip() + 
+  labs(title = "Percentage of Homes with a Fireplace by Community", 
+       x = "Community", y = "____")
+```
+
+3. **Question:** Which of the above two visualizations do you prefer? Why? Is this answer always the same?
+
+4. **Solve** There is something wrong with each of the plots below. Run the code for each plot, read the error, then identify and fix the problem.
+
+```{r fix-errors, eval = FALSE}
+ggplot(data = mn_homes) +
+  geom_point(mapping = aes(
+    x = lotsize,
+    y = salesprice,
+    shape = 21,
+    size = .85
+  ))
+ggplot(data = mn_homes, mapping = (x = otsize, y = area)) +
+  geom_point(, shape = 21, size = .85)
+ggplot(data = mn_homes) +
+  geom_point(
+    mapping = aes(x = lotsize, y = area),
+    color = community,
+    size = 0.85
+  )
+ggplot(data = mn_homes) +
+  geom_point(mapping = aes(x = 1otsize, y = area))
+```
+
+General principles for effective data visualization
+
+- keep it simple
+- use color effectively
+- tell a story
+
+## Practice
+
+(1) Modify the code outline to create a ridge plot examining the 
+distribution of year built within each community.
+
+```{r ex-1, eval = FALSE}
+library(ggridges)
+ggplot(data = ___, aes(x = ___, y = ___, fill = ____, color = ____)) +
+  geom_density_ridges(alpha = 0.5) + 
+  scale_fill_viridis_d() + 
+  scale_color_viridis_d() + 
+  labs(x = "_____", 
+       y = "_____", 
+       fill = "_____", 
+       color = "_____", 
+       title = "_____", 
+       subtitle = "_____")
+```
+
+## Additional Resources
+
+- https://ggplot2.tidyverse.org/
+- https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf
+- http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+- https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535
+- https://ggplot2-book.org/
+= https://ggplot2.tidyverse.org/reference/geom_histogram.html
+- https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+- https://github.com/GraphicsPrinciples/CheatSheet/blob/master/NVSCheatSheet.pdf

@@ -24,12 +24,27 @@ lessons:
     date: "Mon, May 16"
     title: "Data Visualization 2"
     prepare: "week02_may16_BJ.html"
+    slides: "04-visual2_BJ.html"
+    ae: "ae04_BJ.html"
+  - date: "Tue, May 17"
+    title: "Data Wrangling"
+    prepare: "week02_may17_BJ.html"
     slides:
     ae:
 
+  - week: "Week 3"
+    date: "Fri, May 27"
+    title: "Exam 01 released at 1pm"
+    exam:
+
+  - week: "Week 6"
+    date: "Fri, Jun 17"
+    title: "Exam 02 released at 9am"
+    exam:
+
   - week: "Week 7"
     date: "Thu, Jun 23"
-    title: "Final Oroject Presentation"
+    title: "Final Project Presentation"
 
 #  - week:  "Week 2"
 #    date:  "Tue, Jan 11"

@@ -9,9 +9,9 @@ output:
     toc: true
     toc_depth: 1
 link-citations: yes
-# editor_options: 
-#   markdown: 
-#     wrap: sentence
+editor_options:
+  markdown:
+    wrap: sentence
 ---
 
 This lab will go through the same workflow as class with R / RStudio and git / GitHub.
@@ -113,7 +113,7 @@ To find out more about the dataset, type the following in your **console**.
 ?datasaurus_dozen
 ```
 
-1.  Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you're done, commit your changes with the commit message "added answer for exercise 1", and push.
+1.  Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. 
 
 Let's take a look at what these datasets are.
 To do so we can make a *frequency table* of the dataset variable.
@@ -127,6 +127,11 @@ datasaurus_dozen %>%
 The original Datasaurus (`dino`) was created by Alberto Cairo in [this great blog post](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html).
 The other Dozen were generated using simulated annealing and the process is described in the paper *Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics* through Simulated Annealing by Justin Matejka and George Fitzmaurice.
 In the paper, the authors simulate a variety of datasets that the same summary statistics to the Datasaurus but have very different distributions.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your changes to GitHub with the commit message "Added answer for Ex 1".
+Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.\*\*
+:::
 
 # Data visualization and summary
 
@@ -177,13 +182,13 @@ dino_data %>%
 ```
 
 ::: {.commit}
-Now pause, knit and <b>commit changes</b> with the commit message "added answer for exercise 2" Push these changes when you're done.
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now pause, knit and commit changes with the commit message "Added answer for Ex 2". Push these changes when you're done.
 :::
 
 3.  Plot `y` vs. `x` for the `star` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?
 
 ::: {.commit}
-Now pause, knit, commit changes with the commit message "Added answer for Ex 3", and push.
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Now pause, knit, commit changes with the commit message "Added answer for Ex 3", and push.
 :::
 
 ```{marginfigure}
@@ -212,6 +217,10 @@ datasaurus_dozen %>%
 
 4.  Include the faceted plot and the summary of the correlation coefficients in your lab write-up by including relevant code in R chunks (give them appropriate names). In the narrative below the code chunks, *briefly* comment on what you notice about the plots and the correlations between `x` and `y` values within each of them (one or two sentences is fine!).
 
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")`Now is another good time to knit and commit changes with the commit message "Added answer for Ex 4", and push.
+:::
+
 You're done with the data analysis exercises, but we'd like to do one more thing to customize the look of the report.
 
 ## Resize your figures
@@ -238,7 +247,7 @@ Now, save and knit.
 Once you've created this .pdf file, you're done!
 
 ::: {.commit}
-Commit all remaining changes, use the commit message "done with lab 1!" and push.
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit and commit all remaining changes, use the commit message "done with lab 1!" and push.
 :::
 
 # Submission
@@ -263,18 +272,25 @@ To submit your assignment:
 All of the papers of your lab should be associated with at least one question (i.e., should be "checked").
 - Select the first page of your .pdf submission to be associated with the *"Workflow and formatting"* section.
 
-### Grading
+# Grading (50 pts)
 
-Total: 50 pts.
+<br>
 
--   Exercise 1: 7 pts
--   Exercise 2: 10 pts
--   Exercise 3: 11 pts
--   Exercise 4: 14 pts
--   Workflow and formatting: 8 pts
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 7      |
+| Ex 2      | 10     |
+| Ex 3      | 11     |
+| Ex 4      | 14     |
+| Workflow & formatting   | 8      |
 
-    -   Workflow and formatting includes the number of commits made, naming chunks, and updating the name on the assignment to your name.
--   Note: the points for resizing are part of the total for the other exercises.
+**Grading notes**:
+
+- Workflow and formatting includes the number of commits made, naming chunks, and updating the name on the assignment to your name.
+
+- Note: the points for resizing are part of the total for the other exercises.
+
+<hr>
 
 ### Acknowledgements
 

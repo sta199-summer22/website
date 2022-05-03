@@ -1,0 +1,29 @@
+---
+title: "Prepare: May 17"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Tidy Data](https://youtu.be/Ux85eR3h9hw)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d05-tidy-data/u2-d05-tidy-data.html#1)
+
+`r emo::ji("movie_camera")` Watch [Grammar of Data Wrangling](https://youtu.be/ZCaYBES_VEk)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d06-grammar-wrangle/u2-d06-grammar-wrangle.html#1)
+
+`r emo::ji("movie_camera")` Watch [Working With a Single Data Frame](https://youtu.be/0229Uq2hkJo)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d07-single-df/u2-d07-single-df.html#1)
+

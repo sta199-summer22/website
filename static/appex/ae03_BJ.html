@@ -322,8 +322,8 @@ div.tocify {
 <p>The procedure used to construct plots can be summarized using the code below.</p>
 <pre class="r"><code>ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   geom_xxx() + 
+   geom_xxxx() +
+   geom_xxxx() + 
   other options</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Question:</strong> What do you think <code>eval = FALSE</code> is doing in the code chunk above?</li>
@@ -339,7 +339,7 @@ div.tocify {
 <li>size</li>
 <li>alpha (transparency)</li>
 </ul>
-<p>We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each <code>geom_</code> can be found in the documentation.</p>
+<p>We can map a variable in our dataset to a color, a size, a transparency, and so on. The aesthetics that can be used with each <code>geom_xxxx</code> can be found in the documentation.</p>
 <p>Here we are going to use the viridis package, which has more color-blind accessible colors. <code>scale_color_viridis</code> specifies which colors you want to use. You can learn more about the options <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">here</a>.</p>
 <p>Other sources that can be helpful in devising accessible color schemes include the <a href="https://github.com/thomasp85/scico">scico package</a>, <a href="https://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3">Color Brewer</a>, the <a href="https://github.com/karthik/wesanderson">Wes Anderson package</a>, and the <a href="https://github.com/marcosci/cividis">cividis package</a>.</p>
 <p>This visualization shows a scatter plot of area (x variable) and sales price (y variable). Using the viridis function, we make points for houses with a fireplace yellow and those without navy. We also add axis and an overall label.</p>
