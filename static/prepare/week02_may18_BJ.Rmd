@@ -1,0 +1,26 @@
+---
+title: "Prepare: May 18"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Working With Multiple Data Frames](https://youtu.be/VdV5ABsaf5Y)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d08-multi-df/u2-d08-multi-df.html#1)
+
+## Optional 
+
+`r emo::ji("book")` Read[Journal of Statistical Software: Tidy Data](https://www.jstatsoft.org/article/view/v059i10)
+
+`r emo::ji("book")` Read [R for Data Science (R4DS): Chapter 5 - Data transformation](https://r4ds.had.co.nz/transform.html)

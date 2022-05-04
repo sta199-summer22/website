@@ -1,0 +1,362 @@
+---
+title: "AE 05: Data Wrangling I"
+subtitle: "due Wednesday May 18 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae05-GitHubUsername".
+- Click the green "code" button and copy the `SSH` URL.
+- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## RDU Flights 
+
+We start with loading relevant packages. For the very first time only, uncomment the line `install.packages("anyflights")` and install the package `anyflights`. 
+
+```{r load-package, message=FALSE, warning=FALSE}
+library(tidyverse)
+# install.packages("anyflights")
+library(anyflights)
+```
+
+To demonstrate data wrangling we will use a dataset of characteristics of all flights departing from RDU (Raleigh–Durham International Airport) in 2021. We could download the data directly from the package `anyflights` with the commented line of the following code chunk; but to save time, I did it for you, and all you need to do is to read the RDS file using `readRDS()`.
+
+```{r download, message = FALSE, warning = FALSE}
+# flights <- get_flights("RDU", 2021) 
+flights <- readRDS("data/rduflights_2021.RDS")
+```
+
+### Part 1: Data overview 
+
+We first explore the data a bit. Examine the documentation as well.
+
+```{r explore-data}
+glimpse(flights)
+names(flights) # to get column names 
+head(flights) 
+tail(flights)
+?get_flights # to examine data dictionary 
+```
+
+The `head()` / `tail()` function returns the first / last six rows of the `flights` data. You can specify the number of rows shown with the second argument in the functions, e.g. `tail(flights, 2)`. 
+
+**Q - **Can you print the first three rows of the `flights` data? 
+
+```{r print}
+```
+
+### Part 2: Wrangling
+
+Often we need to wrangle our data to extract meaning. This includes calculating new variables, summary statistics, grouping by variables, renaming, reordering, selecting subsets of data, filtering by various conditions, etc.
+
+We can accomplish a great deal of wrangling by learning some **key verbs** and a pipe operator. Each of the following functions takes a data frame as input and returns a data frame as output.
+
+- select
+- arrange
+- slice
+- filter
+- mutate
+- summarize
+- group_by
+- distinct
+- count
+
+#### `select()`
+
+The `select()` function picks off one or more columns by name.
+
+Let's say we want a dataset that only contains the variables `month` and `dest`.
+
+```{r select-vars}
+select(flights, month, dest)
+```
+
+We can also use `select()` to exclude variables. Let's exclude `year` but keep all the other variables because we know the year is 2021. 
+
+```{r exclude-vars}
+select(flights, -year)
+```
+
+We can also use `select()` with certain characteristics. Here, we select all the variables whose names contain "time". Try `?contains` for more info about other select helpers. 
+
+```{r include-contains}
+select(flights, contains("time"))
+```
+
+#### `arrange()`
+
+The `arrange()` function orders rows (observations) in ascending / descending order. 
+
+Let's arrange the data by descending departure delays, with large departure delays on top.
+
+```{r arrange-delays-desc}
+arrange(flights, desc(dep_delay))
+```
+
+Or with low departure delays on top.
+
+```{r arrange-delays-asc}
+arrange(flights, dep_delay)
+```
+
+#### Pipe operator `%>%`
+
+What if we only want to examine the `dep_delay`, `dest`, `month`, and `day` columns? We can combine `arrange()` and `select()`!
+
+```{r select-and-arrange}
+arrange(select(flights, month:day, dest, dep_delay), desc(dep_delay))
+```
+
+**It is not easy to understand what is going on in the code chunk above.**
+
+- we have to read from inside out and right to left
+- not clear which argument goes with which function
+- doesn't focus on the functions
+
+The pipe is a technique for passing information from one process to another. It can rewrite the code with many parentheses (like the one above!) into a more natural and easier-to-read structure (see the code chunk below!).
+
+```{r pipe-demo}
+flights %>%
+  select(month:day, dest, dep_delay) %>%
+  arrange(desc(dep_delay)) 
+```
+
+When reading code "in English", say "then" whenever you see a pipe.
+
+**Q - **How would you read the code chunk above in English? What is it accomplishing?
+
+#### `slice()`
+
+Slice subsets a data frame for certain row numbers. 
+
+We slice off the bottom 5 rows of the `flights` data. Here `n()` computes the number of rows in the data. 
+
+```{r slice}
+flights %>%
+  slice((n()-4):n())
+```
+
+**Q - **You can accomplish the same thing with one of the functions introduced above. What is it? 
+
+We can also slice every other row, e.g., 1st, 3rd, 5th, $\cdots$.
+
+```{r slice-odd}
+flights %>%
+  slice(seq(1, n(), by=2))
+```
+
+**Q - **What is the code chunk below accomplishing? Guess before running the code.
+
+```{r arrange-slice}
+flights %>%
+  select(month:day, dest, dep_delay) %>%
+  arrange(desc(dep_delay)) %>%
+  slice(1:5)
+```
+
+**Q - **What will happen if you comment out the line containing `arrange()` in the code chunk above? Try it.
+
+#### `filter()`
+
+`filter()` selects rows satisfying certain conditions.
+
+Around 8am on Dec 12, I was at RDU waiting for my Delta flight to Atlanta (ATL). I was supposed to take a direct flight from ATL to South Korea at around 11am. However, because of a plane maintenance delay I could not depart to ATL on time and had to reschedule my itinerary completely. Here we will find that incident. 
+
+We first select all flights that experienced departure delays to ATL. 
+
+```{r atl}
+flights %>%
+  filter(dep_delay > 0, dest == "ATL")
+```
+
+We add another condition for Delta Airlines (DL). 
+
+```{r atl-dl}
+flights %>%
+  filter(dep_delay > 0, dest == "ATL", 
+         carrier == "DL")
+```
+
+We further filter with information about date and time. 
+
+```{r atl-dl-time}
+flights %>%
+  filter(dep_delay > 0, dest == "ATL", 
+         carrier == "DL", 
+         month == 12, day == 12, sched_arr_time < 1100)
+```
+
+We found it!
+
+**Q - **In plain English, what is the code below accomplishing?
+
+```{r dlaa-nodelay-peakseason}
+flights %>%
+  filter(carrier %in% c("DL", "AA"), # American Airlines
+         arr_delay < 0 | dep_delay < 0)
+```
+
+The table of logical operators below will be helpful as you work with filtering.
+
+|operator | definition |
+|:----------|:--------|
+| `<` |   less than |
+| `<=` |   less than or equal to |
+| `>` |   greater than |
+| `>=` |   greater than or equal to |
+| `==` |   exactly equal to |
+| `!=` |   not equal to |
+| `is.na(x)` |   is x NA? |
+| `!is.na(x)` |   is x not NA? |
+| `x %in% y` |   is x in y? |
+| `!(x %in% y)` |   is x not in y? |
+| `x & y` |   x AND y |
+| `x | y` |   x OR y |
+| `!x` |   not x |
+
+#### `mutate()`
+
+`mutate()` creates a new variable.
+
+In the code chunk below, `air_time` is converted to hours, and a new variable
+`mph` is created, corresponding to the miles per hour of the flight.
+
+```{r calculate-mph}
+flights %>%
+  mutate(hours = air_time / 60,
+         mph = distance / hours) %>%
+  select(air_time, distance, hours, mph)
+```
+
+**Q - **Using `<=` in the mutate, create a new variable `on_time` that is TRUE if the flight arrived on time and FALSE if it did not.
+
+Note: Once you have modified the code, remove the option `eval = FALSE` from the code chunk header and knit to see the updates. 
+
+```{r calculate-ontime, eval = FALSE}
+flights %>%
+  mutate(on_time = ____) %>%
+  select(arr_delay, on_time)
+```
+
+**Q - **What do you think will happen if you take the mean of the `on_time` variable?
+
+#### `summarize()`
+
+`summarize` calculates summary statistics. It collapses rows into summary statistics and removes columns irrelevant to the calculation.
+
+Be sure to name your summary statistics!
+
+```{r find-mean-delay}
+flights %>%
+  summarize(mean_dep_delay = mean(dep_delay))
+```
+
+**Q - **The code chunk above should return an NA. What is going wrong? Try to fix it to find the mean departure delay. Hint: Try `summary(flights$dep_delay)`.
+
+#### `group_by()`
+
+`group_by()` is used for grouped operations. It's very powerful when paired with `summarize()` to calculate summary statistics by group.
+
+Here we find the proportion of flights that are on time by each carrier and print top 5 airlines in descending order of the proportions. 
+
+```{r summarize-by-airline}
+flights %>%
+  group_by(carrier) %>%
+  summarize(prop_on_time = mean((arr_delay <= 0), na.rm = TRUE)) %>% 
+  arrange(desc(prop_on_time)) %>% 
+  head(5)
+```
+
+9E, AS, and YX represent Endeavor Airlines, Alaska Airlines, and Midwest Express Airlines, respectively. 
+
+We can calculate more than one summary statistic in `summarize()`. Let's find the maximum delay, median delay, and the count of flights in each month as well as the proportion on time for each month. 
+
+Here `n()` calculates the current group size.
+
+```{r summarize-by-month}
+flights %>%
+  group_by(month) %>%
+  summarize(prop_on_time = mean((arr_delay <= 0), na.rm = TRUE),
+            max_delay = max(arr_delay, na.rm = TRUE),
+            median_delay = median(arr_delay, na.rm = TRUE),
+            count = n())
+```
+
+Finally, let's see what the proportion on time, the maximum delay, the median delay, and the count of flights are in each month for DL, AS, and AA over the summer peak season (June ~ August). 
+
+```{r by-month-airlines}
+flights %>%
+  filter(between(month, 6, 8), 
+         carrier %in% c("DL", "AS", "AA")) %>% 
+  group_by(month, carrier) %>%
+  summarize(prop_on_time = mean((arr_delay <= 0), na.rm = TRUE),
+            max_delay = max(arr_delay, na.rm = TRUE),
+            median_delay = median(arr_delay, na.rm = TRUE),
+            count = n())
+```
+
+#### `distinct()`
+
+`distinct()` selects only unique rows. 
+
+**Q - **I am planning on a trip to Seattle this summer. I want to find which airlines have direct flights to Seattle-Tacoma Airport (SEA). Find unique combinations of `carrier` and `dest` and filter for `dest` equal to "SEA". 
+
+Note: Once you have modified the code, remove the option `eval = FALSE` from the code chunk header and knit to see the updates. 
+
+```{r toSEA, eval = FALSE}
+flights %>% 
+  distinct(____, ____) %>% 
+  filter(____)
+```
+
+#### `count()`
+
+`count` counts the unique values of one or more variables. It creates frequency tables.
+
+Here we count the number of flights to each destination to find popular destinations from RDU. 
+
+```{r count}
+flights %>%
+  count(dest) %>% 
+  arrange(desc(n))
+```
+
+**Q - ** What is the code chunk below doing?
+
+```{r find-prop}
+flights %>%
+  count(dest) %>%
+  mutate(prop = n / sum(n))
+```
+
+## Practice
+
+(1) Create a new dataset that only contains flights that do not have a missing departure time. Include the columns `year`, `month`, `day`, `dep_time`, `dep_delay`, and `dep_delay_hours` (the departure delay in hours). Note you  may need to use `mutate()` to make one or more of these variables.
+
+```{r practice-1}
+```
+
+(2) For each airplane (uniquely identified by `tailnum`), use a `group_by()` paired with `summarize()` to find the sample size, mean, and standard deviation of flight distances. Then, pick off the top 5 and bottom 5 airplanes in terms of mean distance traveled per flight.
+
+```{r practice-2}
+  
+```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
+### Additional Resources
+
+- https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+- https://style.tidyverse.org/

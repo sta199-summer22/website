@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data Visualization 1</title>
+    <title>Data Wrangling</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Visualization 1
+# Data Wrangling
 ### Bora Jin
 
 ---
@@ -39,207 +39,174 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Data and Visualization](https://www.youtube.com/watch?v=FddF4b_GuTI) 
+🎥 Watch [Tidy Data](https://youtu.be/Ux85eR3h9hw)
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d05-tidy-data/u2-d05-tidy-data.html#1)
 
-🎥 Watch [Visualizing Data with ggplot2](https://www.youtube.com/watch?v=s2NF2J36ljE)  
+🎥 Watch [Grammar of Data Wrangling](https://youtu.be/ZCaYBES_VEk)
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d06-grammar-wrangle/u2-d06-grammar-wrangle.html#1)
+
+🎥 Watch [Working With a Single Data Frame](https://youtu.be/0229Uq2hkJo)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d07-single-df/u2-d07-single-df.html#1)
 
 ---
 
 ## Today's Goal 
 
-- Build up an effective visualization systematically layer by layer with `ggplot2`
+- Understand how data are organized according to a consistent set of "tidy" principles
+- Use **seven key verbs** to wrangle data and extract meaning
 
-"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
-
----
-
-## Quiz
-
-**Q - What does each row of a dataset represent?**  
-
---
-
-Observation 
-
---
-
-**Q - What does each column of a dataset represent?** 
-
---
-
-Variable 
-
---
-
-**Q - All variables in a dataset must be in the same type (character, integer, etc.). (T/F)** 
-
---
-
-F
-
---
-
-
-**Q - In this class, we mainly focus on variables having a single entry per observation. (T/F)** 
-
---
-
-T
-
----
-
-## Quiz
-
-**Q - Which function spits out the dimension of a dataset?** 
-
---
-
-`dim()` (row, column)
-
---
-
-
-**Q - How to check the number of rows of a dataset?** 
-
---
-
-`nrow()`
-
---
-
-**Q - How to check the number of cols of a dataset?** 
-
---
-
-`ncol()`
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-e. summaries of variables 
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-**e. summaries of variables**
-
----
-
-## Quiz
-
-**Q - What is EDA?** 
-
---
-
-- Approach to analysing datasets to summarize and describe its main characteristics
-- Often visual 
-
---
-
-**Q - Why is visualization important?** 
-
---
-
-It can reveal a new story that summary statistics could miss! 
-
---
-
-**Q - Before plotting, what package do we load?** 
-
---
-
-`library(tidyverse)` (`ggplot2` `\(\in\)` `tidyverse`)
+"Happy families are all alike; every unhappy family is unhappy in its own way" - Leo Tolstoy
 
 ---
 
 ## Quiz 
 
-**Q - When plotting, what are the three fundamental things to define and the relevant code?** 
+Tidy data has three related characteristics
+
+1. Each variable forms a column.
+2. Each observation forms a row.
+3. Each value has its own cell.
 
 --
 
-- Data in `ggplot(data = )`
-- Aesthetics in `ggplot(mapping = aes())`
-- Geometries in `geom_xxxx()`
-
-layers added by `+`
+**Q - A tidy data set is tidy for any analyses (T/F).**
 
 --
 
+F
+---
 
-```r
-ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   other options
-```
+## Quiz 
+
+**Q - What makes this data not tidy?**
+
+&lt;div class="figure" style="text-align: left"&gt;
+&lt;img src="img/05/untidy_data.png" alt="source: https://gist.github.com/Kimmirikwa/b69d0ea134820ea52f8481991ffae93e#file-student_results-csv" width="100%" /&gt;
+&lt;p class="caption"&gt;source: https://gist.github.com/Kimmirikwa/b69d0ea134820ea52f8481991ffae93e#file-student_results-csv&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## Quiz 
+
+**Q - What makes this data not tidy?**
+
+1. `sex and age`: multiple variables in one column
+2. `test number`: not a value for each observation, `test 1` and `test 2` should be a variable 
+3. `term 1-3`: can be aggregated 
+
+|id | name | phone | sex | age | test1 | test2 | term |
+|:--|:-----|:------|:----|:----|:------|:------|:-----|
+| 1 | Mike | 134   |  m  | 12  |  76   |  85   | term1|
+| 1 | Mike | 134   |  m  | 12  |  84   |  80   | term2|
+| 1 | Mike | 134   |  m  | 12  |  87   |  90   | term3|
 
 ---
 
 ## Quiz
 
-**Q - What are *other options* include?** 
+**Q - Correct the following sentences about** `dplyr` **functions:**
 
---
+a. Its input can be a matrix.
 
-- Labels and legends in `labs()`
-- More aesthetics options (color, shape, size, alpha)
-- Faceting
-- Many more! 
+b. Its output is in various forms. 
 
---
+c. Functions are nouns. 
 
-**Q - For aesthetics options, can you explain mapping vs. setting?** 
-
---
-
-- Mapping: map plotting characters to a specific variable in data through `aes()`
-- Setting: determine them without regard to data values through `geom_xxxx()`
+d. Replace the input data frame. 
 
 ---
 
 ## Quiz
 
-**Q - Why faceting?** 
+**Q - Correct the following sentences about** `dplyr` **functions:**
 
---
+a. Its input should be a **data frame**.
 
-- To explore conditional relationships 
-- Multiple smaller plots in one plot 
+b. Its output is always a **data frame**. 
 
---
+c. Functions are **verbs**. 
 
-**Q - Two functions for faceting?** 
+d. **Do not modify** the input data frame. 
 
---
-- `facet_grid([row-variable] ~ [column-variable])`
-- `facet_wrap(~ [variable])`
+---
+
+## Quiz
+
+**Q - What of these is the most appropriate translation of ** `%&gt;%` **in English?**
+
+a. Before 
+
+b. Which 
+
+c. Then
+
+d. Do
+
+---
+
+## Quiz
+
+**Q - What of these is the most appropriate translation of ** `%&gt;%` **in English?**
+
+a. Before 
+
+b. Which 
+
+**c. Then**
+
+d. Do
+
+---
+
+## Quiz
+
+**Q - Connect each function to its effect.**
+
+.pull-left[
+`filter` - 
+
+`arrange` -
+
+`select` - 
+
+`distinct` - 
+
+`mutate` - 
+
+`summarize` - 
+
+`group_by` - 
+
+]
+
+.pull-right[
+- pick columns by variable names 
+
+- reorder rows by values of variables 
+
+- pick rows matching criteria 
+
+- enable grouped operations
+
+- compute summary statistics 
+
+- extract unique rows
+
+- create new variables 
+
+]
+
+---
+
+## Quiz 
+
+**Q - Connect each function to its effect.**  &lt;br&gt;
+
+&lt;img src="img/05/answer.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -251,15 +218,15 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
+Go to [AE 05: Data Wrangling](https://sta199-summer22.netlify.app/appex/ae05_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
+- Watch videos for [Prepare: May 18](https://sta199-summer22.netlify.app/prepare/week02_may18_BJ.html)
 
-- Submit your `ae03`
+- Submit your `ae05`
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

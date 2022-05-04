@@ -29,7 +29,9 @@ We first start with loading a relevant package for plotting:
 library(tidyverse)
 ```
 
-1. **Question:** What happens when you click the green arrow in the code chunk below? What changes in the "Environment" pane?
+### Part 1: Data
+
+**Q - **What happens when you click the green arrow in the code chunk below? What changes in the "Environment" pane?
 
 [Write your answer here, you will do this for questions like this in your RMD file.]
 
@@ -37,17 +39,17 @@ library(tidyverse)
 mn_homes <- read_csv("data/mn_homes.csv")
 ```
 
+**Q - **In a data frame, what does each row represent? Each column? Does `glimpse()` output match this?
+
 ```{r glimpse-data}
 glimpse(mn_homes)
 ```
 
-2. **Question:** In a data frame, what does each row represent? Each column? Does `glimpse()` output match this?
+### Part 2: ggplot layers
 
-### First Visualization
+`ggplot()` creates the initial base coordinate system that we will add layers to. We first specify the dataset we will use with `data = mn_homes`. The `mapping` argument is paired with an aesthetic (`aes`), which tells us how the variables in our dataset should be mapped to the visual properties of the graph.
 
-`ggplot` creates the initial base coordinate system that we will add layers to. We first specify the dataset we will use with `data = mn_homes`. The `mapping` argument is paired with an aesthetic (`aes`), which tells us how the variables in our dataset should be mapped to the visual properties of the graph.
-
-3. **Question:** What does the first code chunk immediately below do?
+**Q - **What does the first code chunk immediately below do?
 
 ```{r base-layer}
 ggplot(data = mn_homes, 
@@ -67,7 +69,7 @@ ggplot(data = mn_homes,
    geom_smooth()
 ```
 
-Run `?geom_smooth` in the console. What does this function do?
+**Q - **What does `geom_smooth()` do? Hint: Run `?geom_smooth` in the console. 
 
 This fits a loess regression line (moving regression) to the data. 
 
@@ -90,10 +92,9 @@ ggplot(data = [dataset],
   other options
 ```
 
-4. **Question:** What do you think `eval = FALSE` is doing in the code chunk above?
+**Q - **What do you think `eval = FALSE` is doing in the code chunk above?
 
-
-## Aesthetics
+### Part 3: Aesthetics
 
 An aesthetic is a visual property of one of the objects in your plot.
 
@@ -121,8 +122,7 @@ ggplot(data = mn_homes,
   scale_color_viridis_d(option = "cividis", name="Fireplace?")
 ```
 
-5. **Question:** What will the visualization look like below? Write your answer 
-down before running the code.
+**Q - **What will the visualization look like below? Write your answer down before running the code.
 
 ```{r aesthetic-2}
 ggplot(data = mn_homes, 
@@ -134,7 +134,7 @@ ggplot(data = mn_homes,
         shape="Fireplace?") 
 ```
 
-6. **Question:** This one?
+**Q - **This one?
 
 ```{r aesthetic-3}
 ggplot(data = mn_homes, 
@@ -148,9 +148,9 @@ ggplot(data = mn_homes,
   scale_color_viridis_d(option = "cividis", name="Fireplace?")
 ```
 
-7. **Question:** Are the above visualizations effective? Why or why not? How might you improve them?
+**Q - **Are the above visualizations effective? Why or why not? How might you improve them?
 
-8. **Question:** What is the difference between the two plots below?
+**Q - **What is the difference between the two plots below?
 
 ```{r compare-plots}
 ggplot(data = mn_homes) + 
@@ -163,19 +163,19 @@ Use `aes` to map variables to plot features, use arguments in `geom_xxxx` for cu
 
 Mapping in the `ggplot` function is global, meaning they apply to every layer we add. Mapping in a particular `geom_xxxx` function treats the mappings as local.
 
-9. **Question:** Create a scatter plot using variables of your choosing using the `mn_homes` data.
+Create a scatter plot using variables of your choosing using the `mn_homes` data.
 
 ```{r scatterplot}
 
 ```
 
-10. **Question:** Modify your scatter plot above by coloring the points for each community.
+Modify your scatter plot above by coloring the points for each community.
 
 ```{r scatterplot-community}
 
 ```
 
-## Faceting
+### Part 4: Faceting 
 
 We can use smaller plots to display different subsets of the data using faceting. This is helpful to examine conditional relationships.
 
@@ -264,13 +264,19 @@ ggplot(data = mn_homes,
   labs(title = "Histogram of Lot Size" , x = "Size of Lot", y = "Number of Homes")
 ```
 
-**Question:** What is the difference between the `color` and `fill` arguments?
+**Q - **What is the difference between the `color` and `fill` arguments?
 
 (3) Develop an effective visualization on your own using the code chunk provided below. Use three variables and at least one aesthetic mapping.
 
 ```{r on-your-own}
 
 ```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
 
 ## Additional Resources
 

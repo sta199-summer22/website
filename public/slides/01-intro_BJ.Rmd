@@ -340,25 +340,25 @@ countdown::countdown(minutes = 5, seconds = 0)
 
 ---
 
-## For Tomorrow
+## Bulletin
 
 - Watch videos for [Prepare: May 12](https://sta199-summer22.netlify.app/prepare/week01_may12_BJ.html)
 
-- Make sure you have access to Sakai and Gradescope.
+- Make sure you have access to Sakai and Gradescope
 
 - Submit your [GitHub username](https://forms.gle/WgBRjAoCJPb5eNBX7)
 
 - Join [Slack](https://sta199-summer22.slack.com/)
 
-- Bring a laptop to class.
+- Bring a laptop to class
 
 ---
 
-## For Tomorrow
+## Bulletin
 
 - Reserve an **STA198-199 RStudio container**. 
   - Go to https://vm-manage.oit.duke.edu/containers
-  - Click **Reserve Container** for the STA198-199 container.
+  - Click **Reserve Container** for the STA198-199 container
 
 - (Optional) If you wish to work "locally" on your own computer, you need to download
   - (1) the [R programming language](https://cran.r-project.org/)

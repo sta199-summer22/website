@@ -237,9 +237,9 @@ Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae
 
 ---
 
-## For Monday 
+## Bulletin
 
 - Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
 
-- Submit your `AE03`
+- Submit your `ae03`
 

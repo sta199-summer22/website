@@ -220,7 +220,7 @@ loans <- loans_full_schema %>%
 ```
 
 .pull-left[
-```{r, echo = FALSE, out.width = '100%'}
+```{r segmented-bar, echo = FALSE, out.width = '100%'}
 plot1 <- ggplot(loans, aes(x = homeownership, 
                   fill = grade)) +
   geom_bar() + 
@@ -258,7 +258,7 @@ c. `labs()`
 **Q - Which of these is the most relevant for the difference between two bar plots?**
 
 .pull-left[
-```{r, echo = FALSE, out.width = '100%'}
+```{r segmented-bar2, echo = FALSE, out.width = '100%'}
 plot1 <- ggplot(loans, aes(x = homeownership, 
                   fill = grade)) +
   geom_bar() + 
@@ -300,13 +300,15 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 04](https://sta199-summer22.netlify.app/appex/ae04_BJ.html)
+Go to [AE 04: Data Visualization 2](https://sta199-summer22.netlify.app/appex/ae04_BJ.html)
 
 ---
 
-## For Monday 
+## Bulletin
+
+- Lab 01 due Monday, May 16 at 11:59pm
 
 - Watch videos for [Prepare: May 17](https://sta199-summer22.netlify.app/prepare/week02_may17_BJ.html)
 
-- Submit your `AE04`
+- Submit your `ae04`
 

@@ -1,6 +1,8 @@
 ---
 title: "AE 01: UN Votes"
 author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
 output: 
   html_document: 
     toc: true

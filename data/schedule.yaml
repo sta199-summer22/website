@@ -29,6 +29,11 @@ lessons:
   - date: "Tue, May 17"
     title: "Data Wrangling"
     prepare: "week02_may17_BJ.html"
+    slides: "05-wrangling_BJ.html"
+    ae: "ae05_BJ.html"
+  - date: "Wed, May 18"
+    title: "Data Wrangling 2"
+    prepare: "week02_may18_BJ.html"
     slides:
     ae:
 
