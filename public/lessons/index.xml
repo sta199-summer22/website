@@ -149,7 +149,7 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
       <guid>https://sta199-summer22.netlify.app/home/band_three/</guid>
-      <description> .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Bora Jin Mon/Wed/Thu 11am - 12:15pm, Old Chem 003   TAs TA1 time, location    TA2 time, location    </description>
+      <description> .column { width: 100%; } table { width: 525px; font-size: 17px; font-weight: 400; padding-top: 5px; padding-bottom: 5px; }            Instructor Bora Jin Mon/Wed/Thu 11am - 12:15pm, Old Chem 003   TAs Camilla Yu Tue/Fri 12:15pm - 1:15pm, zoom    </description>
       <content>&lt;style&gt;
   .column {
   width: 100%;
@@ -181,13 +181,8 @@ Go to [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukerea
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;TAs&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:ta1@duke.edu&#34;&gt;TA1&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;time, location&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;mailto:ta2@duke.edu&#34;&gt;TA2&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;time, location&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:yue.yu652@duke.edu&#34;&gt;Camilla Yu&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Tue/Fri 12:15pm - 1:15pm, &lt;a href=&#34;https://sakai.duke.edu/portal/site/075d15cd-07a5-4c1d-91bb-8aa4a955b02d/page/b75a3cdb-4a3e-4d75-a238-9299c2c50b41&#34;&gt;zoom&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

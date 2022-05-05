@@ -39,12 +39,23 @@ knitr::include_graphics("img/01/research_interest.png")
 
 ## Teaching Team
 
-### TA, 
+### TA, Camilla Yu
 
-- photo
+.pull-left[
+```{r camilla, echo=FALSE, out.width = '90%'} 
+knitr::include_graphics("img/01/CamillaYu.png")
+``` 
+
+] 
+
+.pull-right[
+
+Hi, my name is Camilla Yu. I’m a master’s student in Statistical Science and I will be your TA this summer. Hope you all could enjoy the course and learn a lot! Look forward to seeing you soon.
+
 - Office hours
-  - TBD
-
+  - Tuesday, Friday at 12:15pm - 1:15pm
+  - [zoom links on sakai](https://sakai.duke.edu/portal/site/075d15cd-07a5-4c1d-91bb-8aa4a955b02d/page/b75a3cdb-4a3e-4d75-a238-9299c2c50b41)
+]
 ---
 
 class: middle, center

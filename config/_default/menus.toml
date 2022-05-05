@@ -22,7 +22,7 @@
 
 [[main]]
     pre = "<i class=\"fa fa-graduation-cap\" aria-hidden=\"true\"></i>"
-    url = "https://sakai.duke.edu"
+    url = "https://sakai.duke.edu/portal/site/075d15cd-07a5-4c1d-91bb-8aa4a955b02d"
     name = "Sakai"
     weight = 30
 

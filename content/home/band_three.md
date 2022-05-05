@@ -22,5 +22,4 @@ title: Teaching Team and Office Hours
 |            |                     |     |
 |------------|---------------------|-----|
 | Instructor | [Bora Jin](mailto:bora.jin@duke.edu) | Mon/Wed/Thu 11am - 12:15pm, Old Chem 003 |
-| TAs         | [TA1](mailto:ta1@duke.edu) | time, location |
-|       | [TA2](mailto:ta2@duke.edu) | time, location |
+| TA         | [Camilla Yu](mailto:yue.yu652@duke.edu) | Tue/Fri 12:15pm - 1:15pm, [zoom](https://sakai.duke.edu/portal/site/075d15cd-07a5-4c1d-91bb-8aa4a955b02d/page/b75a3cdb-4a3e-4d75-a238-9299c2c50b41) |
