@@ -1,6 +1,6 @@
 ---
 title: "AE 04: Data Visualization 2"
-subtitle: "due Tuesday May 17 at 9:29am"
+subtitle: "due Tuesday, May 17 at 9:29am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console

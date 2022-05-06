@@ -1,6 +1,6 @@
 ---
-title: "AE 05: Data Wrangling I"
-subtitle: "due Wednesday May 18 at 9:29am"
+title: "AE 05: Data Wrangling 1"
+subtitle: "due Wednesday, May 18 at 9:29am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
@@ -41,9 +41,16 @@ We first explore the data a bit. Examine the documentation as well.
 ```{r explore-data}
 glimpse(flights)
 names(flights) # to get column names 
+?get_flights # to examine data dictionary 
+```
+
+```{r explore-data2}
 head(flights) 
 tail(flights)
-?get_flights # to examine data dictionary 
+```
+
+```{fig.margin=T}
+A **tibble** is a tweaked, opinionated version of the `R` data frame. The two main differences in the usage of a data frame vs a tibble are printing and subsetting. 
 ```
 
 The `head()` / `tail()` function returns the first / last six rows of the `flights` data. You can specify the number of rows shown with the second argument in the functions, e.g. `tail(flights, 2)`. 

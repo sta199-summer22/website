@@ -1,10 +1,10 @@
-<table class="table schedule center" style="max-width:80%" align = "center">
+<table class="table schedule center" style="max-width:90%" align = "center">
         {{- range .Site.Data.schedule }}
         {{- range . }}
         <tr>
-                 <td align="left" style="width:10%;text-align:right">{{ .week }}</td>
-            <td align="right" style="width:20%;text-align:right">{{ .date }}</td>
-            <td style="width:40%;text-align:left">{{ .title | markdownify }}</td>
+                 <td align="left" style="width:17.5%;text-align:right">{{ .week }}</td>
+            <td align="right" style="width:27.5%;text-align:right">{{ .date }}</td>
+            <td style="width:45%;text-align:left">{{ .title | markdownify }}</td>
 
             {{- if .header }}
             <td style="width:5%;text-align:center" class="mid-table-header">Prepare</td>

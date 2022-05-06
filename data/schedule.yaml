@@ -12,6 +12,8 @@ lessons:
     prepare: "week01_may12_BJ.html"
     slides: "02-toolkit_BJ.html"
     ae: "ae02_BJ.html"
+  - title: "Bechdel Test"
+    ae: "ae02_Bechdel_BJ.html"
   - date: "Fri, May 13"
     title: "Data Visualization 1"
     prepare: "week01_may13_BJ.html"
@@ -31,13 +33,30 @@ lessons:
     prepare: "week02_may17_BJ.html"
     slides: "05-wrangling_BJ.html"
     ae: "ae05_BJ.html"
+  - title: "Lab 02: Data Visualization + Wrangling"
+    lab: "lab02-Visual-Wrangling_BJ.html"
   - date: "Wed, May 18"
     title: "Data Wrangling 2"
     prepare: "week02_may18_BJ.html"
-    slides:
-    ae:
+    slides: "06-wrangling2_BJ.html"
+    ae: "ae06_BJ.html"
+  - title: "HW 01 released"
+    hw:
+  - date: "Thu, May 19"
+    title: "Spatial Data and Visualization"
+    prepare: "week02_may19_BJ.html"
+    slides: "spatial.html"
+    ae: "ae07_BJ.html"
+  - slides: "07-spatial_BJ.html"
+  - date: "Fri, May 20"
+    title: "Wrap up: Data Visualization + Wrangling + Asking for Help"
+  - title: "Lab 03"
+    lab:
 
   - week: "Week 3"
+    date: "Wed, May 25"
+    title: "HW 02 released"
+    hw: "hw02_BJ.html"
     date: "Fri, May 27"
     title: "Exam 01 released at 1pm"
     exam:

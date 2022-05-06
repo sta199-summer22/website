@@ -1,0 +1,120 @@
+---
+title: "Spatial Data and Visualization"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Spatial Data](https://warpwire.duke.edu/w/Yw4GAA/)
+
+- [Slides](https://sta199-summer22.netlify.app/slides/spatial.html#1)
+
+---
+
+## Today's Goal 
+
+- Understand spatial data frame structure
+- Be able to create a visualization from a spatial data frame
+
+---
+
+## Spatial Data are Interesting and Important! 
+
+- Straightforward visualization through maps
+- Help detecting spatial trends 
+- Many real examples have spatial patterns 
+    - air pollutants 
+    - water pollutants 
+    - disease spread 
+    - home sales prices
+    - $\cdots$
+- Analyses of such data should account for their spatial relationships 
+
+---
+
+## Quiz
+
+**Q - Which package are we going to use in this class to work with spatial data?**
+
+--
+
+`library(sf)`
+
+- represents "simple features" as records in a `data.frame` or `tibble` with a **geometry** column
+  - simple features can contain both spatial and non-spatial data
+- compatible with `dplyr` functions we've learnt
+- functions begin with `st_`
+--
+
+- how to draw an `sf` object in ggplot?
+
+--
+`geom_sf()`
+
+---
+
+## Quiz
+
+**Q - What do you need to check before visualizing and wrangling multiple `sf` objects?**
+
+--
+
+Coordinate reference system (CRS) - they should match
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Hot Keys
+
+<br> 
+
+| **Task / function**  | **Windows & Linux** |      **macOS**      |
+|:--------------------:|:-------------------:|:-------------------:|
+| Insert R chunk       |      Ctrl+Alt+I     |   Command+Option+I  |
+| Knit document        |     Ctrl+Shift+K    |   Command+Shift+K   |
+| Run current line     |      Ctrl+Enter     | Command+Enter       |
+| Run current chunk    |   Ctrl+Shift+Enter  | Command+Shift+Enter |
+| Run all chunks above |      Ctrl+Alt+P     |   Command+Option+P  |
+| Comment current line |     Ctrl+Shift+C    |   Command+Shift+C   |
+| `<-`                 |        Alt + -      |       Option + -    |
+| `%>%`                |     Ctrl+Shift+M    |   Command+Shift+M   |
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 07: Spatial Data and Visualization](https://sta199-summer22.netlify.app/appex/ae07_BJ.html)
+
+---
+
+## Bulletin
+
+- Lab 02 due Friday, May 20 at 11:59pm
+
+- Homework 01 due Wednesday, May 25 at 11:59pm
+
+- Submit your `ae07`
+
+

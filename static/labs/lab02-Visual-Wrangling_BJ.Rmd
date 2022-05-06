@@ -1,0 +1,162 @@
+---
+title: "Lab #02: Data Visualization + Wrangling"
+subtitle: "due Friday May 20 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Goals
+
+- Learn how to effectively visualize numeric and categorical data.
+- Use data wrangling to extract meaning from data.
+- Continue developing a workflow for reproducible data analysis.
+
+# Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "lab02-GitHubUsername"
+- Clone the repo and make a new project in RStudio. 
+- Find `lab02.Rmd` to open the template R Markdown file. 
+
+In addition, code should not exceed the 80 character limit. To help police this, add a vertical line at 80 characters by clicking "Tools" $\rightarrow$ "Global Options" $\rightarrow$ "Code" $\rightarrow$ "Display", 
+then set "Margin Column" to 80 and click "Apply".
+
+Finally, all plots should follow best visualization practices; plots should include:
+
+- an informative title, 
+- axes that are labeled, and 
+- careful consideration should be given to aesthetic choices.
+
+# Packages 
+
+We need the **tidyverse** and **fivethirtyeight** for this lab. 
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(fivethirtyeight) # for data 
+```
+
+# Avengers 
+
+The Avengers data were originally collected for [a FiveThirtyEight article](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/). 
+
+We will use a dataset called `avengers` inside the `fivethirtyeight` package.
+
+This dataset includes information about characters across the entire Marvel Cinematic Universe (MCU), so some of the names will be familiar if you are a fan of the films or comics. Don't worry if you aren't a Marvel fan; no background knowledge is needed to successfully complete this lab! 
+
+Check the documentation of the data by typing `?avengers` in your console. 
+
+1. Make a histogram of the appearances as of April 30, 2015. 
+Please set the number of bins at 20. Please label your axes and give the plot a title.
+    - Describe the shape of the distribution
+    - Are there any outliers? 
+
+2. Make a new data frame `active_avengers` using a single pipeline: 
+Use `filter` to only include Avengers 1) who were not given probationary status, 2) who are still active, and 3) whose introduction year is **not** 1900 as "1900" indicates the value of `full_reserve_avengers_intro` is missing. 
+Confirm that once you have filtered, you are left with a data frame with 67 observations.  
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+3. Who are the oldest active Avengers?: In `active_avengers`, create a new 
+variable called `years_served` that represents the number of years served **as of 2022** 
+(Hint: you can use either the `year` variable or `years_since_joining` variables to do this).  
+Then, arrange the dataset in descending order of `years_served`, 
+select the `name_alias` and `years_served`, and display the first five rows.
+    - Report the names of the five oldest Avengers and how long they have served in your narrative. 
+
+4. Generate a scatterplot of the number of years served by a character (`years_served`) 
+as your x variable versus the number of comic books that the character appeared in (`appearances`) 
+as your y variable with points colored and shaped by gender. 
+Please label your axes and legend and give the plot a title. You might find `scale_color_viridis_d(option = "inferno", begin = 0.2, end = 0.8)` useful. 
+    - Describe what you observe in the plot. In your description, include similarities 
+  and differences in the patterns by gender. 
+  
+
+5. Now, examine the relationship between the same two variables, 
+using a separate plot for each gender (Hint: use facet). Label the axes and give 
+the plot a title. Use `geom_smooth` with the argument `se = FALSE` 
+to add a smooth curve fit to the data without confidence bands around the line. 
+Which plot do you prefer - this plot or the plot in Exercise 4? Briefly explain your choice.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+6. Explore if the percentage of active female Avengers in `active_avengers` differs 
+from the percentage of females among **all** Avengers. 
+What do you conclude based on these results? 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+7. Sort the `active_avengers` dataset in descending order of appearances and 
+display only the columns `name_alias`, `appearances`, `death1`, and `return1` 
+for the top five observations.
+What do you observe about these Avengers in terms of deaths and returns?
+
+8. Use the `active_avengers` dataset to examine the mean and median number of 
+appearances for Avengers who have died at least once compared to those who have 
+not died.
+    - What do you learn about Marvel movies from your results?
+    - What do the mean and median tell you about the distribution of appearances for these two groups? 
+
+9. Confirm your guesses about the distributions of appearances in Exercise 8 by 1) side-by-side boxplots and 2) density plots. Use `appearances` as your x variable and map `death1` to appropriate aesthetic arguments. Fill the density plots 
+with different colors by the value of `death1` and set `alpha = 0.5`. 
+  
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+# Submission
+
+Once you are fully satisfied with your lab, **Knit to .pdf** to create a PDF 
+document.
+
+Follow the instructions in previous labs to submit your PDF to Gradescope.
+
+Be sure to identify which problems are on each page using Gradescope.
+
+Once you are finished with the lab, you will submit the PDF document produced from your final *knit, commit, and push* to Gradescope.
+
+**Before you wrap up the assignment, make sure all documents are updated on your GitHub repo. We will be checking these to make sure you have been practicing how to commit and push changes.** **Remember -- you must turn in a .pdf file to the Gradescope page by the submission deadline to be considered "on time".**
+
+To submit your assignment:
+
+-   Go to <http://www.gradescope.com> and click *Log in* in the top right corner.
+-   Click *School Credentials* $\rightarrow$ *Duke NetID* and log in using your NetID credentials.
+-   Click on your *STA 199* course.
+-   Click on the assignment, and you'll be prompted to submit it.
+-   Mark all the pages associated with exercise. All the pages of your lab should be associated with at least one question (i.e., should be "checked").
+-   Select the first page of your .pdf submission to be associated with the *"Workflow & formatting"* question.
+
+# Grading (50 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 3      |
+| Ex 2      | 4      |
+| Ex 3      | 5      |
+| Ex 4      | 6      |
+| Ex 5      | 6      |
+| Ex 6      | 4      |
+| Ex 7      | 4      |
+| Ex 8      | 5      |
+| Ex 9      | 5      |
+| Workflow & formatting   | 8      |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and having readable code that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)

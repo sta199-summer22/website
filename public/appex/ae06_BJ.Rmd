@@ -1,0 +1,202 @@
+---
+title: "AE 06: Data Wrangling 2"
+subtitle: "due Thursday, May 19 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae06-GitHubUsername".
+- Click the green "code" button and copy the `SSH` URL.
+- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Demonstrations 
+
+```{r load-package, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r test-joins}
+# lab scores
+Lab <- tibble(id = c(2, 3, 4, 6),
+              lab1 = c(100, 100, 100, 100), 
+              lab2 = c(80, 20, 60, 100))
+# ae scores
+AE <- tibble(id = c(1, 2, 3, 5),
+             ae1 = c(100, 80, 50, 100), 
+             ae2 = c(90, 100, 40, 95),  
+             ae3 = c(70, 80, 60, 100), 
+             ae4 = c(90, 70, 30, 90))
+            
+Lab
+AE
+```
+
+We will demonstrate each of the joins on these small, toy datasets. 
+
+Print all the scores on the labs and AEs for all six students. `NA` if the assignment is not turned in. 
+
+```{r full-join}
+full_join(Lab, AE)
+```
+
+Who has completed all the labs and AEs and what are their scores on the completed assignments?
+
+```{r inner-join}
+inner_join(Lab, AE)
+```
+
+What are the scores of labs and AEs for those who have completed lab assignments?  
+
+```{r left-join}
+left_join(Lab, AE)
+```
+
+This time, I want the scores for those who have completed AEs. 
+
+```{r right-join}
+right_join(Lab, AE)
+```
+
+What are the lab scores for those who have completed both AEs and labs?
+
+```{r semi-join}
+semi_join(Lab, AE)
+```
+
+What are the lab scores for those who have completed labs but not AEs?
+
+```{r anti-join}
+anti_join(Lab, AE)
+```
+
+How do the join functions above know to join `Lab` and `AE` by `value`? Examine the names to find out.
+
+```{r names}
+names(Lab)
+names(AE)
+```
+
+We will again work with RDU data stored in `rduall_2021.RDS`. This can be downloaded from the `anyflights` package. 
+
+```{r load-rdu-list, message=FALSE, warning=FALSE}
+rdu <- readRDS("data/rduall_2021.RDS")
+airports <- rdu$airports
+flights <- rdu$flights
+```
+
+The `R` object `rdu` is a list where each element is a data frame. We will focus on the following data sets: 
+
+- `flights`: Data on all flights that departed from RDU in 2021
+- `airports`: Data on airports at which those flights arrived
+- `airlines`: Data to translate between two letter carrier codes and names
+- `planes`: Construction information about each plane
+
+```{r load-rdu-data}
+flights <- rdu$flights
+airports <- rdu$airports
+airlines <- rdu$airlines
+planes <- rdu$planes
+```
+
+**Q - ** How are these datasets related? Examine their variable names. 
+
+```{r colnames}
+names(flights)
+names(airports)
+names(airlines)
+names(planes)
+```
+
+**Q - ** Last time, it was not straightforward to understand Airlines by their carrier code. Let's append full airline names in `flights`. 
+
+```{r flights-airlines}
+flights %>% 
+  left_join(airlines, by = "carrier") %>%
+  rename(carrier_name = name) %>% # new = old
+  select(year:day, contains("carrier")) 
+```
+
+**Q - ** Suppose you wanted to make a map of the route of every flight from RDU. What variables would you need from which datasets?
+
+Let's add latitude and longitude information of the destination airports in `flights`. Note these `flights` and `airports` have no variables in common so we will have to specify the variable to join by using `by = `. Check out the documentation for more information.
+
+```{r flights-join}
+flights %>% 
+  left_join(airports %>% 
+              select(faa, lat, lon), 
+            by = c("dest" = "faa"))
+```
+
+## Practice
+
+(1) Create a new dataset `dest_delays` with the median arrival delay in 2021 for each destination. Note this question does not require you to use joins.
+
+```{r make-dest-delays, include = FALSE}
+dest_delays <- flights %>% 
+  group_by(dest) %>% 
+  summarize(median_arr_delay = median(arr_delay, na.rm = TRUE)) 
+```
+
+    - **Q - ** How many different destinations could you visit directly from RDU in 2021? 
+
+(2) Join `dest_delays` and `airports`, only including observations that have both delay and airport information. Note `dest_delays` and `airports` have no variables in common so you will need to specify the variables to join using `by` as in the example above.
+
+```{r new-dataset, include = FALSE}
+dest_delays %>% 
+  inner_join(airports, by = c("dest" = "faa"))
+```
+
+    - **Q - ** Are all of the observations in `dest_delays` included in the new dataset you created by joining `dest_delays` and `airports`? Use an appropriate join function to investigate this issue and determine what is going on here.
+
+```{r mysterious-join, include = FALSE}
+dest_delays %>% 
+  anti_join(airports, by = c("dest" = "faa"))
+```
+
+<!-- SJU did not have airports information.  -->
+
+(3) Is there a relationship between the age of a plane and its delays? The plane tail number is given in the `tailnum` variable in the `flights` dataset. The year the plane was manufactured is given in the `year` variable in the `planes` dataset. 
+
+    - Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in `plane_delays`.
+
+```{r step-1, include = FALSE}
+plane_delays <- flights %>% 
+  group_by(tailnum) %>% 
+  summarize(median_arr_delay = median(arr_delay, na.rm = TRUE)) 
+```
+
+    - Step #2: Join `plane_delays` to the `planes` data using an appropriate join and then use `mutate` to create an age variable. 
+
+```{r step-2, include = FALSE}
+plane_delays <- plane_delays %>% 
+  left_join(planes, by = "tailnum") %>% 
+  mutate(plane_age = 2021 - year)
+```
+
+    - Step #3: Finally, create an effective visualization of the data.
+
+```{r step-3, include = FALSE}
+plane_delays %>% 
+  ggplot(aes(plane_age, median_arr_delay)) + 
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Plane age as of 2021", y = "Median arrival delay")
+```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
+### Additional Resources
+
+- https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf

@@ -1,0 +1,20 @@
+---
+title: "Prepare: May 19"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Spatial Data](https://warpwire.duke.edu/w/Yw4GAA/)
+
+- [Slides](https://sta199-summer22.netlify.app/slides/spatial.html#1)

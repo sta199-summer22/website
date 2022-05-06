@@ -3,7 +3,7 @@ title: "Lab #01: Hello R!"
 subtitle: "due Monday May 16 at 11:59pm"
 output: 
   tufte::tufte_html:
-    css: "./sta199-labs.css"
+    css: "sta199-labs.css"
     tufte_variant: "envisioned"
     highlight: pygments
     toc: true
@@ -143,7 +143,7 @@ Basically, the answer is already given, but you need to include relevant bits in
 Start with the `datasaurus_dozen` and **pipe** it into the `filter` function to filter for observations where `dataset == "dino"`.
 Store the resulting filtered data frame as a new data frame called `dino_data`.
 
-```{r filter}
+```{r filter-dino}
 dino_data <- datasaurus_dozen %>%
   filter(dataset == "dino")
 ```
@@ -163,7 +163,7 @@ In other words, the columns of the data that get mapped to certain aesthetic fea
 Then, we add another layer to this plot where we define which `geom`etric shapes we want to use to represent each observation in the data.
 In this case we want these to be points, hence `geom_point`.
 
-```{r plot, fig.width = 6}
+```{r plot-dino, fig.width = 6}
 ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
@@ -176,7 +176,7 @@ In this case, calculating a correlation coefficient really doesn't make sense si
 
 For illustrative purposes only, let's calculate the correlation coefficient between `x` and `y`.
 
-```{r sum}
+```{r cor-dino}
 dino_data %>%
   summarize(r = cor(x, y))
 ```
@@ -192,16 +192,16 @@ dino_data %>%
 :::
 
 ```{marginfigure}
-Facet by the dataset variable, placing the plots in a 3 column grid, and don't add a legend. <br>
-Notice that I moved `aes` to `geom_point()` from `ggplot()`. This will be useful later when we have multiple geom's. 
+Facet by the dataset variable, placing the plots in a 3 column grid, and don't add a legend. 
 ```
 
 Finally, let's plot all datasets at once.
 In order to do this we will make use of faceting, given by the code below:
 
-```{r all-viz, eval=FALSE, fig.fullwidth=TRUE}
-ggplot(datasaurus_dozen)+
-  geom_point(aes(x = x, y = y, color = dataset))+
+```{r plot-all, eval=FALSE, fig.fullwidth=TRUE}
+ggplot(datasaurus_dozen, 
+       aes(x = x, y = y, color = dataset)) +
+  geom_point() +
   facet_wrap(~ dataset, ncol = 3) +
   theme(legend.position = "none")
 ```
@@ -209,7 +209,7 @@ ggplot(datasaurus_dozen)+
 And we can use the `group_by` function to generate all the summary correlation coefficients.
 We'll go through these functions next week when we learn about data wrangling.
 
-```{r all-r, eval=FALSE}
+```{r cor-all, eval=FALSE}
 datasaurus_dozen %>%
   group_by(dataset) %>%
   summarize(r = cor(x, y)) 
