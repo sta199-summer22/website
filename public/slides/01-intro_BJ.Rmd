@@ -138,7 +138,7 @@ A - Yes. We will use the computing language R.
 
 - [What Redisctricting Looks Like in Every State](https://projects.fivethirtyeight.com/redistricting-2022-maps/)
 
-- [Tracking Sleep with Apple Watch](https://towardsdatascience.com/what-i-learned-by-tracking-my-sleep-with-apple-watch-bea2caa49a47)
+- [Traking Your Health via Fitbit](https://www.freecodecamp.org/news/how-i-analyzed-the-data-from-my-fitbit-to-improve-my-overall-health-a2e36426d8f9/)
 
 - [Infectious Disease Tracker](https://nextstrain.org)
 
@@ -190,7 +190,7 @@ Summer courses require a high-level of commitment: "a **minimum** of 25 hours pe
 **Course Website:** [sta199-summer22.netlify.app](https://sta199-summer22.netlify.app/)
   - Central hub for the course
   - Check office hours!
-  - Full office hours start next week.
+    - Full office hours start next week.
   <!-- - introduce textbooks -->
 
 **GitHub:** [github.com/sta199-summer22](https://github.com/sta199-summer22)
@@ -218,10 +218,11 @@ Summer courses require a high-level of commitment: "a **minimum** of 25 hours pe
 
 ## Grading Components
 
-- **Homework (25%)**: Individual homework assignments combining conceptual and computational skills
+- **Homework (25%)**: Individual homework assignments combining conceptual and computational skills. *The lowest homework grade will be dropped at the end of the semester*
   
 - **Labs (15%)**: Individual assignments focusing on computational skills
-  
+*The lowest lab grade will be dropped at the end of the semester*
+ 
 - **Exams (35%)**: Two take-home open-note exams
   
 - **Final Project (20%)**
@@ -238,7 +239,7 @@ Summer courses require a high-level of commitment: "a **minimum** of 25 hours pe
   - Graded for completion 
   
 - **Participation (2.5%)**
-  - You are expected to attend and participate lectures and labs.
+  - You are expected to attend and participate in lectures and labs.
   - Frequent absences or tardiness may impact your final grade.  
 
 - Regrading requests

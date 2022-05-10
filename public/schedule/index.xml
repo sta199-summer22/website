@@ -15,7 +15,7 @@
       <pubDate>12 Mar 17 10:00 +0000</pubDate>
       
       <guid>https://sta199-summer22.netlify.app/home/band_two/</guid>
-      <description> .column { width: 100%; } table { width: 100%; font-size: 20px; font-weight: 400; }     Lecture Old Chem 003 Mon - Fri 9:30 - 10:45am   Labs Old Chem 003 Tue/Fri 11am - 12:15pm     </description>
+      <description> .column { width: 100%; } table { width: 100%; font-size: 20px; font-weight: 400; }     Lecture Old Chem 003 Mon - Fri 9:30 - 10:45am   Lab Old Chem 003 Tue/Fri 11am - 12:15pm     </description>
       <content>&lt;style&gt;
   .column {
   width: 100%;
@@ -37,7 +37,7 @@
     &lt;td class=&#34;tg-0pky&#34;&gt;Mon - Fri 9:30 - 10:45am&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td class=&#34;tg-0pky&#34;&gt;Labs&lt;/td&gt;
+    &lt;td class=&#34;tg-0pky&#34;&gt;Lab&lt;/td&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Old Chem 003&lt;/td&gt;
     &lt;td class=&#34;tg-0pky&#34;&gt;Tue/Fri 11am - 12:15pm&lt;/td&gt;
   &lt;/tr&gt;
