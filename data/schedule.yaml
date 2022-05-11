@@ -51,7 +51,7 @@ lessons:
   - date: "Fri, May 20"
     title: "Wrap up: Data Visualization + Wrangling + Asking for Help"
   - title: "Lab 03: Spatial Data Visualization + Wrangling"
-#    lab:
+#    lab: "lab03-Spatial-Visual-Wrangling_BJ.html"
 
   - week: "Week 3"
     date: "Mon, May 23"

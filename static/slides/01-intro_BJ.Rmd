@@ -220,7 +220,7 @@ Summer courses require a high-level of commitment: "a **minimum** of 25 hours pe
 
 - **Homework (25%)**: Individual homework assignments combining conceptual and computational skills. *The lowest homework grade will be dropped at the end of the semester*
   
-- **Labs (15%)**: Individual assignments focusing on computational skills
+- **Labs (15%)**: Individual assignments focusing on computational skills.
 *The lowest lab grade will be dropped at the end of the semester*
  
 - **Exams (35%)**: Two take-home open-note exams
