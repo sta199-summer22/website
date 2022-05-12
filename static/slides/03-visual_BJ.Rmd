@@ -94,7 +94,7 @@ T
 
 --
 
-**Q - How to check the number of cols of a dataset?** 
+**Q - How to check the number of columns of a dataset?** 
 
 --
 
@@ -233,7 +233,9 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
+- [AE 02: Part 1, Tour of RStudio + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
+
+- [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
 
 ---
 
@@ -241,5 +243,5 @@ Go to [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae
 
 - Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
 
-- Submit your `ae03`
+- Submit your `ae02` and `ae03`
 

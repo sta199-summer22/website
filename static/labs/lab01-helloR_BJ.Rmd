@@ -1,6 +1,6 @@
 ---
 title: "Lab #01: Hello R!"
-subtitle: "due Monday May 16 at 11:59pm"
+subtitle: "due Monday, May 16 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "sta199-labs.css"

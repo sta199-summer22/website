@@ -177,5 +177,5 @@ Go to [AE 02: Part 1, Tour of RStudio + GitHub](https://sta199-summer22.netlify.
 
 - Watch videos for [Prepare: May 13](https://sta199-summer22.netlify.app/prepare/week01_may13_BJ.html)
 
-- Submit your `ae02`.
+
 

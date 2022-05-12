@@ -19,7 +19,7 @@ output:
 
 ## Minneapolis Housing Data
 
-Exploratory data analysis (EDA) is an approach to analyzing datasets in order to summarize the main characteristics, often with visual representations of the  data (today). We can also calculate summary statistics and perform data  wrangling, manipulation, and transformation (next week).
+Exploratory data analysis (EDA) is an approach to analyzing datasets in order to summarize the main characteristics, often with visual representations of the data (today). We can also calculate summary statistics and perform data wrangling, manipulation, and transformation (next week).
 
 We will introduce visualization using data on single-family homes sold in Minneapolis, Minnesota between 2005 and 2015.
 
@@ -89,7 +89,7 @@ ggplot(data = [dataset],
        mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxxx() +
    geom_xxxx() + 
-  other options
+   other options
 ```
 
 **Q - **What do you think `eval = FALSE` is doing in the code chunk above?
