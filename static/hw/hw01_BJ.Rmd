@@ -1,0 +1,144 @@
+---
+title: "Homework #01: Data Visualization and Wrangling"
+subtitle: "due Wednesday, May 25 at 11:59 PM "
+output: 
+  tufte::tufte_html:
+    css: "sta199-hw.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 2
+link-citations: yes
+---
+
+## Goals
+
+-   Gain proficiency in data visualization and data-wrangling functions
+-   Apply principles of effective data visualization to a real data set
+-   Answer real research questions using related data sets
+-   Practice data science workflow using git and GitHub
+
+## Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "hw01-GitHubUsername"
+- Clone the repo and make a new project in RStudio. 
+- Find `hw01.Rmd` to open the template R Markdown file. 
+
+## Formatting 
+
+- All plots should follow best visualization practices; plots should include:
+
+  - an informative title, 
+  - axes that are labeled, and 
+  - careful consideration should be given to aesthetic choices.
+  - Please choose colorblind-friendly color maps such as `viridis`, `scico`, and many others.
+
+- Place all plots in the center and properly adjust their size so that they are placed nicely in a written report. 
+
+- Don’t forget to label your R chunk as well. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.
+
+## Packages 
+
+```{r load-package, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+library(sf)
+library(ggridges)
+```
+
+## Hawaii Airbnb Listings
+
+The following data can be downloaded from [Inside Airbnb](http://insideairbnb.com/get-the-data) (date compiled: 11 Dec, 2021). We will work on two data sets, namely, `hawaii` and `hawaii_nb`. The data set `hawaii` contains summary information and metrics for listings in Hawaii, and an `sf` object `hawaii_nb`contains geometry information on neighborhoods of Hawaii. You do not have to worry about the last line; it simply replaces column names with better understandable ones for future use. Data dictionary is available [here](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/edit#gid=982310896).
+
+```{r load-data, message = FALSE}
+hawaii <- read_csv("data/hawaii_airbnb_listings.csv")
+hawaii_nb <- st_read("data/hawaii_airbnb_neighborhood.shp", quiet = TRUE)
+names(hawaii_nb)[1:2] <- c("neighbourhood", "neighbourhood_group")
+```
+
+1. How many observations (rows) does the data set `hawaii` have? 
+How many variables (columns)? What does each row in the data set represent?
+Instead of hard coding the number in your answer, use inline code. 
+Hint: use "r ncol()" wrapped by a backtick in front and back. 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+2. Plot the exact locations (longitude and latitude) of the Airbnb listings on a map of Hawaii. The four major islands, Hawaii, Honolulu, Kauai, and Maui, should be painted in distinct colors. You may adjust transparency for better visibility. Please complete the code below. What characteristics do you observe about the Airbnb listings in Hawaii? Once you fill out `___`, remove `eval = FALSE`. 
+
+```{r, viz-loc, eval = FALSE}
+hawaii_nb %>% 
+  ggplot() + 
+  geom_sf(aes(fill = ______)) +
+  geom_point(data = hawaii, aes(______, ______)) +
+  scale_fill_viridis_d() + 
+  labs(x = "Longitude", y = "Latitude", 
+       fill = "________", title = "_______")
+```
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+3. Create a faceted histogram where each facet represents a neighborhood and displays the distribution of Airbnb prices in that neighborhood. In order to better understand the neighborhoods, fill histograms for neighborhoods in the same group (`neighbourhood_group`) in the same color. How would you describe the distribution of price in general? How do neighborhoods compare to each other in terms of price?
+    - Think critically about whether it makes more sense to stack the facets on top of each other in a column, lay them out in a row, or wrap them around. Along with your visualization, include your reasoning for the layout you chose for your facets. 
+    - You should decide what makes a reasonable bin width for the histogram by trying out a few options.
+    - You should decide if scales should be fixed or not. If the scales are fixed, every facet is drawn on the same ranges of x values and y values. 
+
+4. We will examine median listing prices of neighborhoods. 
+    - Create a summary data set called `hawaii_summary` with the minimum, mean, median, standard deviation, IQR, and maximum listing price in each neighborhood and identify neighborhoods with the top five median listing prices.
+    - Create a new `sf` object `hawaii_sf` that includes all rows and columns from `hawaii_summary` and the associated geometry information from `hawaii_nb`. 
+    - Create a map of Hawaii where each neighborhood is colored by the level of its median listing price using `scale_fill_gradient`. Describe what you observe. 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+5. Now you will meet the Airbnb hosts in Hawaii. 
+    - How many hosts are there in Hawaii? 
+    - Using one pipeline: 
+      - create a new variable `annual_revenue` that represents the expected annual revenue for each listing using `price` and `availability_365`: available days of the listing in next 365 days.
+      - calculate sum of the expected annual revenue and the number of listings by each of the hosts.
+      - create a scatterplot illustrating the two variables' relationship. Put the number of listings on x-axis. Use `geom_smooth()` for a fitted line. 
+    - Interpret your visualization and find the hosts 1) who earn more than 50 million dollars a year and 2) who make less than 10 million with more than 250 listings. 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+6. Come up with a question you want to answer using these data, and write it down. Then, answer it using summary statistic(s) and/or visualization(s). 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+## Submission
+
+Knit to PDF to create a PDF document. Stage and commit all remaining
+changes, and push your work to GitHub. Make sure all files are updated
+on your GitHub repo.
+
+Only upload your PDF document to Gradescope. Before you submit the
+uploaded document, mark where each answer is to the exercises. If any
+answer spans multiple pages, then mark all pages. Associate the
+*"Workflow & formatting"* section with the first page.
+
+## Grading (50 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 4      |
+| Ex 2      | 6      |
+| Ex 3      | 7      |
+| Ex 4      | 12     |
+| Ex 5      | 10     |
+| Ex 6      | 7      |
+| Workflow & formatting   | 4      |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and using tidyverse style throughout.
+

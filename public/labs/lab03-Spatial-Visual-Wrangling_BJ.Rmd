@@ -1,6 +1,6 @@
 ---
 title: "Lab #03: Spatial Data Visualization + Wrangling"
-subtitle: "due Friday, May 23 at 11:59pm"
+subtitle: "due Monday, May 23 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "sta199-labs.css"
@@ -11,7 +11,7 @@ output:
 link-citations: yes
 editor_options: 
   markdown: 
-    wrap: console
+    wrap: sentence
 ---
 
 # Goals
@@ -32,12 +32,15 @@ All plots should follow best visualization practices; plots should include:
 - axes that are labeled, and 
 - careful consideration should be given to aesthetic choices.
 
+Don’t forget to label your R chunk as well. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.
+
 # Packages 
 
 We need the **tidyverse** and **dsbox** for this lab. If you don't have `dsbox` already installed, please run commented lines only *once*. 
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
+theme_set(theme_bw())
 # install.packages("devtools")
 # devtools::install_github("rstudio-education/dsbox")
 library(dsbox) # for data 
@@ -48,180 +51,73 @@ library(sf)
 
 The data set `ncbikecrash` is available in the `dsbox` package and contains all NC bike crash data from 2007 - 2014. Check the documentation of the data by typing `?ncbikecrash` in your console. 
 
-```{r data-manipulate}
-ncbikecrash$bike_age_group <- factor(ncbikecrash$bike_age_group, 
-                                     levels = c("0-5", "6-10", "11-15", "16-19", 
-                                                "20-24", "25-29", "30-39", 
-                                                "40-49", "50-59", "60-69", 
-                                                "70+"))
-ncbikecrash$crash_day <- factor(ncbikecrash$crash_day, 
-                                levels = c("Monday", "Tuesday", "Wednesday", 
-                                   "Thursday", "Friday", "Saturday", "Sunday"))
-locmat <- ncbikecrash$geo_point %>% 
-  strsplit(", ") %>% 
-  unlist() %>% 
-  as.numeric() %>% 
-  matrix(ncol = 2, byrow =  T)
-ncbikecrash$long <- locmat[,2]
-ncbikecrash$lat <- locmat[,1]
+1. Create a line plot displaying temporal changes of the number of bike accidents where the drivers age is 0 to 19 with points at each year. Make each year have a tick and a label on the x-axis. (Hint: you may use `scale_x_continuous()`.) Please describe what you observe. 
 
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
 
+2. We examine if there is any relationship between `crash_hour` and `hit_run`. 
+    - Create bar plots of `crash_hour` at each level of `hit_run` using faceting. What do you learn about the relationship from this plot?
+    - Create a segmented bar plot displaying proportions of hit and run 
+    at different hours. What do you learn about the relationship from this plot?
+    - Which plot do you think is more effective? Why? 
 
-nc_counties <- st_read("data/nc_counties.shp", quiet = TRUE)
-```
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
 
-```{r spatial-viz}
-ncbikecrash_sf <- ncbikecrash %>% 
-  left_join(nc_counties) %>% 
-  st_as_sf()
+3. Recreate the following plot and describe in context of the data. The aesthetic factor alpha is set at 0.85. Colors used are #A04543, #FFFFCC, and #EBA553. Note for this exercise you should begin with the code below. The `ifelse([condition], [value1], [value2])` function assigns `[value1]` if `[condition]` holds and `[value2]` otherwise. 
 
-# alpha, effective visualization?
-ncbikecrash_sf %>% 
-  ggplot() + 
-  geom_sf() + 
-  geom_point(aes(long, lat), alpha = 0.3)
-
-# scale_fill_gradient
-ncbikecrash_sf %>% 
-  count(county) %>% 
-  ggplot() + 
-  geom_sf(aes(fill = n)) + 
-  scale_fill_gradient(low = "#FFFFBF", high = "#9E0142")
-
-# which county has no accident data?
-nc_counties %>% 
-  anti_join(ncbikecrash)
-```
-
-```{r viz}
-# # on which day more crashes?
-# ncbikecrash %>% 
-#   ggplot(aes(x = crash_day)) + 
-#   geom_bar()
-# 
-# ncbikecrash %>% 
-#   ggplot(aes(x = crash_day, fill = crash_severity)) + 
-#   geom_bar(position = "fill")
-# 
-# ncbikecrash %>% 
-#   ggplot(aes(x = crash_day, fill = bike_age_group)) + 
-#   geom_bar(position = "fill")
-
-# on what year more crashes?
-ncbikecrash %>% 
-  count(crash_year, bike_age_group) %>% 
-  ggplot(aes(x = crash_year, y = n, color = bike_age_group)) + 
-  geom_line() +
-  geom_point() +
-  scale_color_viridis_d()
-
-# on what time more crashes?
-ncbikecrash %>% 
-  ggplot(aes(x = crash_hour)) + 
-  geom_bar()
-
-# on what time more likely to hit and run? alarming color 
-ncbikecrash %>% 
-  ggplot(aes(x = crash_hour, fill = hit_run)) + 
-  geom_bar(position = "fill") + 
-  scale_fill_manual(values = c("No" = "#999999", "Yes" = "#E41A1C"))
-
-# # on what time severer?
-# ncbikecrash %>% 
-#   ggplot(aes(x = crash_hour, fill = crash_severity)) + 
-#   geom_bar(position = "fill")
-
-# on what weather condition more crashes? 
-ncbikecrash %>% 
-  ggplot(aes(x = weather)) + 
-  geom_bar()
-
-# on what weather condition more deaths?
-library(scico)
-ncbikecrash %>% 
-  ggplot(aes(x = weather, fill = crash_severity)) + 
-  geom_bar(position = "fill") +
-  scale_fill_scico_d(palette = "batlow")
-
-# ifelse
+```{r ifelse}
 ncbikecrash <- ncbikecrash %>% 
-  mutate(week = ifelse(crash_day %in% 
-                         c("Saturday", "Sunday"), "Weekend", "Weekday"))
-# recreate
+  mutate(week = ifelse(crash_day %in% c("Saturday", "Sunday"), 
+                       "Weekend", "Weekday"))
+```
+
+```{r reproduce, echo = FALSE}
 ncbikecrash %>% 
   filter(crash_severity %in% 
            c("O: No Injury", "A: Disabling Injury", "K: Killed")) %>% 
   ggplot(aes(x = crash_time, fill = crash_severity)) + 
   geom_density(alpha = 0.85) + 
   facet_wrap(~ week, ncol = 1) + 
-  theme_bw() + 
-  labs(y = "Density", x = "Time of day", fill = "Severity") +
+  labs(y = "Density", x = "Time of day", fill = "Severity", 
+       title = "Distribution of accidents throughout the day", 
+       subtitle = "By day of week and severity") +
   scale_fill_manual(values = c("K: Killed" = "#A04543", 
                                "A: Disabling Injury" = "#EBA553", 
                                "O: No Injury" = "#FFFFCC"))
 ```
 
-
-1. Make a histogram of the appearances as of April 30, 2015. 
-Please set the number of bins at 20. Please label your axes and give the plot a title.
-    - Describe the shape of the distribution
-    - Are there any outliers? 
-
-2. Make a new data frame `active_avengers` using a single pipeline: 
-Use `filter` to only include Avengers 1) who were not given probationary status, 2) who are still active, and 3) whose introduction year is **not** 1900 as "1900" indicates the value of `full_reserve_avengers_intro` is missing. 
-Confirm that once you have filtered, you are left with a data frame with 67 observations.  
-
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
 :::
 
-3. Who are the oldest active Avengers?: In `active_avengers`, create a new 
-variable called `years_served` that represents the number of years served **as of 2022** 
-(Hint: you can use either the `year` variable or `years_since_joining` variables to do this).  
-Then, arrange the dataset in descending order of `years_served`, 
-select the `name_alias` and `years_served`, and display the first five rows.
-    - Report the names of the five oldest Avengers and how long they have served in your narrative. 
+Now we will play with spatial data. Use the code below to load the NC shapefile downloaded from [NC OneMap](https://www.nconemap.gov/datasets/NCEM-GIS::north-carolina-state-and-county-boundary-polygons/about). 
 
-4. Generate a scatterplot of the number of years served by a character (`years_served`) 
-as your x variable versus the number of comic books that the character appeared in (`appearances`) 
-as your y variable with points colored and shaped by gender. 
-Please label your axes and legend and give the plot a title. You might find `scale_color_viridis_d(option = "inferno", begin = 0.2, end = 0.8)` useful. 
-    - Describe what you observe in the plot. In your description, include similarities 
-  and differences in the patterns by gender. 
-  
+```{r load-nc}
+nc_counties <- st_read("data/nc_counties.shp", quiet = TRUE) 
+```
 
-5. Now, examine the relationship between the same two variables, 
-using a separate plot for each gender (Hint: use facet). Label the axes and give 
-the plot a title. Use `geom_smooth` with the argument `se = FALSE` 
-to add a smooth curve fit to the data without confidence bands around the line. 
-Which plot do you prefer - this plot or the plot in Exercise 4? Briefly explain your choice.
+4. Join `ncbikecrash` and `nc_counties`.
+    - What variable can be an identifier joining the two data sets? 
+    Please leave only the identifier of your choosing and geometry from `nc_counties`. 
+    - Create a data set called `ncbikecrash_sf` that contains 
+    all accidents in `ncbikecrash` and associated geometry features.
+    The resulting data set should be a simple feature, too. 
 
-::: {.commit}
-`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
-:::
 
-6. Explore if the percentage of active female Avengers in `active_avengers` differs 
-from the percentage of females among **all** Avengers. 
-What do you conclude based on these results? 
+5. Create an NC map with counties colored according to the total number of 
+accidents between 2007 and 2014. You may use `scale_fill_gradient()` to fill 
+counties with a color gradient. Use informative colors for *low* and *high* number of accidents. 
+    - What are the counties with the high number ($>$ 750) of accidents? 
+    - Can you conclude that bikers should avoid those counties based on the above map? Explain your answer. If not, which map would you consider instead to examine which counties are dangerous for bikers?
 
-::: {.commit}
-`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
-:::
 
-7. Sort the `active_avengers` dataset in descending order of appearances and 
-display only the columns `name_alias`, `appearances`, `death1`, and `return1` 
-for the top five observations.
-What do you observe about these Avengers in terms of deaths and returns?
+6. Identify the county without any accident data using an appropriate join function. 
 
-8. Use the `active_avengers` dataset to examine the mean and median number of 
-appearances for Avengers who have died at least once compared to those who have 
-not died.
-    - What do you learn about Marvel movies from your results?
-    - What do the mean and median tell you about the distribution of appearances for these two groups? 
 
-9. Confirm your guesses about the distributions of appearances in Exercise 8 by 1) side-by-side boxplots and 2) density plots. Use `appearances` as your x variable and map `death1` to appropriate aesthetic arguments. Fill the density plots 
-with different colors by the value of `death1` and set `alpha = 0.5`. 
-  
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
 :::
@@ -254,15 +150,12 @@ To submit your assignment:
 
 | Component | Points |
 |:----------|:-------|
-| Ex 1      | 3      |
-| Ex 2      | 4      |
-| Ex 3      | 5      |
-| Ex 4      | 6      |
-| Ex 5      | 6      |
+| Ex 1      | 7      |
+| Ex 2      | 9      |
+| Ex 3      | 10     |
+| Ex 4      | 5      |
+| Ex 5      | 7      |
 | Ex 6      | 4      |
-| Ex 7      | 4      |
-| Ex 8      | 5      |
-| Ex 9      | 5      |
 | Workflow & formatting   | 8      |
 
 **Grading notes**:
