@@ -1,0 +1,41 @@
+---
+title: "Prepare: May 23"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Misrepresentation](https://youtu.be/C_-rTKfswUI)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d01-misrepresentation/u3-d01-misrepresentation.html#1) 
+
+`r emo::ji("movie_camera")` Watch [Data Privacy](https://youtu.be/c4fvdoNbcSw)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d02-privacy/u3-d02-privacy.html#1) 
+
+`r emo::ji("movie_camera")` Watch [Algorithmic Bias](https://youtu.be/E2eD72pwtps)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d03-algorithmic-bias/u3-d03-algorithmic-bias.html#1) 
+
+
+## Optional 
+
+`r emo::ji("movie_camera")` [Alberto Cairo - How Charts Lie](https://youtu.be/Low28hx4wyk)
+
+`r emo::ji("movie_camera")` [The Guardian - Cambridge Analytica Whistleblower](https://youtu.be/FXdYSQ6nu-M)
+
+`r emo::ji("movie_camera")` [Joy Buolamwini - How I’m Fighting Bias in Algorithms](https://youtu.be/UG_X_7g63rY)
+
+`r emo::ji("movie_camera")` [Cathy O’Neil - Weapons of Math Destruction](https://youtu.be/TQHs8SA1qpk)
+
+`r emo::ji("movie_camera")` [Kristian Lum - What’s An Algorithm Got To Do With It](https://youtu.be/5zxDwA99soA)
