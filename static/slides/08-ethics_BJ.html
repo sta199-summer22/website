@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Science Ethics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link href="libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Science Ethics
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Material 
+
+🎥 Watch [Misrepresentation](https://youtu.be/C_-rTKfswUI)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d01-misrepresentation/u3-d01-misrepresentation.html#1) 
+
+🎥 Watch [Data Privacy](https://youtu.be/c4fvdoNbcSw)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d02-privacy/u3-d02-privacy.html#1) 
+
+🎥 Watch [Algorithmic Bias](https://youtu.be/E2eD72pwtps)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u3-d03-algorithmic-bias/u3-d03-algorithmic-bias.html#1) 
+
+---
+
+## Today's Goal 
+
+- Understand data misrepresentation, data ethics, and algorithmic bias
+- Critique visualizations and interpretations that misrepresent data or results of analysis
+- Improve data visualizations to better convey the right message
+
+---
+
+## Quiz 
+
+**Q - What confusion was there in this news article about interpreting the research results?**
+
+&lt;img src="img/08/exercise-cancer-time.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - What confusion was there in this news article about interpreting the research results?**
+
+- Original research
+
+Moore, Steven C., et al. **["Association of leisure-time physical activity with risk of 26 types of cancer in 1.44 million adults."](https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2521826)** JAMA internal medicine 176.6 (2016): 816-825.
+
+  - **Volunteers** were **asked** about their physical activity level over the preceding year. 
+  - Compared to the bottom 10% of exercisers, the top 10% had lower rates of esophageal, liver, lung, endometrial, colon, and breast cancer.
+  - No association was found between exercising and 13 other cancers (e.g. pancreatic, ovarian, and brain).
+
+--
+
+Causality vs. Association 
+
+---
+
+## Quiz 
+
+**Q - What is wrong with this picture? How would you correct it?**
+
+&lt;img src="img/08/ga-dph-declining-bars.jpeg" width="73%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - What is wrong with this picture? How would you correct it?**
+
+&lt;img src="img/08/ga-dph-declining-bars-fixed.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+- x-axis is sensible in time 
+- order of counties is consistent 
+
+---
+
+## Quiz 
+
+**Q - Which of these is a way to help visualize uncertainty in the results a public opinion survey?**
+
+.pull-left[
+&lt;img src="08-ethics_BJ_files/figure-html/catalan-misleading-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+a. Resizing based upon population
+
+b. Including margin of error bounds 
+
+c. Including a causality discussion
+
+d. Eliminate responses where the person surveyed has no opinion 
+]
+---
+
+## Quiz 
+
+**Q - Which of these is a way to help visualize uncertainty in the results a public opinion survey?**
+
+.pull-left[
+&lt;img src="08-ethics_BJ_files/figure-html/catalan-misleading-fixed-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+a. Resizing based upon population
+
+**b. Including margin of error bounds**
+
+c. Including a causality discussion
+
+d. Eliminate responses where the person surveyed has no opinion 
+]
+
+---
+
+## Quiz 
+
+**Q - The OK Cupid data breach didn’t release the real names and pictures of users. Was it ethical for researchers to release the users’ data? Why?**
+
+a.	No, their identities could still be easily uncovered from the details 
+provided such as usernames.
+
+b.	No, OK Cupid users didn’t willingly give their data.
+
+c.	Yes, if you don’t know the names it isn’t a problem.
+
+d.	Yes, the data were already public.
+
+---
+
+## Quiz 
+
+**Q - The OK Cupid data breach didn’t release the real names and pictures of users. Was it ethical for researchers to release the users’ data? Why?**
+
+**a.	No, their identities could still be easily uncovered from the details 
+provided such as usernames.**
+
+b.	No, OK Cupid users didn’t willingly give their data.
+
+c.	Yes, if you don’t know the names it isn’t a problem.
+
+d.	Yes, the data were already public.
+
+---
+
+## Quiz 
+
+**Q -	All algorithms are neutral and we should not worry about algorithmic bias.** (T/F)
+
+--
+
+F 
+
+- gender-bias in Google translate and Amazon's hiring algorithm
+- race-bias in facial recognition and criminal sentencing
+
+---
+
+## Guidelines for Discussion
+
+- Listen respectfully. Listen actively and with an ear to understanding others’ views.
+
+- Criticize ideas, not individuals.
+
+- Commit to learning, not debating. Comment in order to share information, not to persuade.
+
+- Avoid blame, speculation, and inflammatory language.
+
+- Avoid assumptions about any member of the class or generalizations about social groups.
+
+---
+
+## Discussion
+
+**What are the questions you should consider to avoid misrepresentation of data or results of data analysis?** 
+
+<div class="countdown" id="timer_627ea463" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+--
+
+- Is it association or causality? 
+- Can I generalize the result to a bigger group? 
+- Are the axes correct and not distorted? 
+- Are the scales in intuitive and natural order? 
+- Do size / areas align well with associated figures? 
+- For estimates, how uncertain are they? 
+
+---
+
+## Discussion
+
+**What is data ethics?**
+
+<div class="countdown" id="timer_627ea4c4" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+.pull-left[
+- Ethics related to data practices, including, but not limited to, 
+generation, collection, analysis, and dissemination of data 
+- Ask yourself all the time to not violate reasonable expectations of privacy and ethical practices as a researcher 
+    - "Should I?"
+    - "Is it necessary / reasonable?"
+    - "Is it okay that somebody does the same to me and the data about me?"
+] 
+
+.pull-right[
+
+&lt;iframe src="https://giphy.com/embed/MCZ39lz83o5lC" width="480" height="257" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/MCZ39lz83o5lC"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;
+
+]
+
+
+---
+
+## Discussion
+
+**As you start working on data analyses for the STA199 project, internships, research, etc., what are 1 - 2 things you can do to ensure you’re doing the analysis in an ethical way?**
+
+<div class="countdown" id="timer_627ea588" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+--
+
+- Be familiar with research ethics, compliance, protocols, etc. through, e.g., the Collaborative Institutional Training Initiative (CITI) Program 
+
+
+---
+
+class: middle, center
+
+# Questions?
+
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 08: Data Science Ethics](https://sta199-summer22.netlify.app/appex/ae08_BJ.html)
+
+---
+
+## Bulletin
+
+- Lab 03 due today at 11:59pm
+
+- Homework 01 due Wednesday, May 25 at 11:59pm
+
+- Submit your `ae08`
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
