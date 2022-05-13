@@ -14,8 +14,8 @@ link-citations: yes
 ## Goals
 
 -   Gain proficiency in data visualization and data-wrangling functions
--   Apply principles of effective data visualization to a real data set
--   Answer real research questions using related data sets
+-   Apply principles of effective data visualization to a real dataset
+-   Answer real research questions using related datasets
 -   Practice data science workflow using git and GitHub
 
 ## Getting started
@@ -43,21 +43,38 @@ link-citations: yes
 library(tidyverse)
 theme_set(theme_bw())
 library(sf)
-library(ggridges)
 ```
 
-## Hawaii Airbnb Listings
+## Hawaii Airbnb Listings in 2021
 
-The following data can be downloaded from [Inside Airbnb](http://insideairbnb.com/get-the-data) (date compiled: 11 Dec, 2021). We will work on two data sets, namely, `hawaii` and `hawaii_nb`. The data set `hawaii` contains summary information and metrics for listings in Hawaii, and an `sf` object `hawaii_nb`contains geometry information on neighborhoods of Hawaii. You do not have to worry about the last line; it simply replaces column names with better understandable ones for future use. Data dictionary is available [here](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/edit#gid=982310896).
+The following data were originally distributed by [Inside Airbnb](http://insideairbnb.com/get-the-data) (date compiled: 11 Dec, 2021) and has been modified for the purpose of this homework.
+
+We will work on two datasets, namely, `hawaii` and `hawaii_nb`. The dataset `hawaii` contains summary information and metrics for listings in Hawaii for the following variables: 
+
+- `id`: ID number of the listing
+- `host_id`: ID number for the host 
+- `neighbourhood`: Neighbourhood the listing is located in
+- `neighbourhood_group`: Neighbourhood group (major islands) the listing is located in
+- `room_type`: Room type of the listing 
+- `price`: Daily price in US dollar 
+- `minimum_nights`: Minimum number of night stay for the listing
+- `number of reviews`: Number of reviews the listing has in the last 12 months
+- `bedrooms`: Number of bedrooms
+- `review_scores_rating`: Average rating of the listing 
+
+An `sf` object `hawaii_nb`contains geometry information on neighborhoods of Hawaii. 
+
+**Note**: You do not have to worry about the last line in the code chunk below; 
+it simply replaces column names with better understandable ones for future use. 
 
 ```{r load-data, message = FALSE}
-hawaii <- read_csv("data/hawaii_airbnb_listings.csv")
+hawaii <- read_csv("data/hawaii_airbnb.csv")
 hawaii_nb <- st_read("data/hawaii_airbnb_neighborhood.shp", quiet = TRUE)
 names(hawaii_nb)[1:2] <- c("neighbourhood", "neighbourhood_group")
 ```
 
-1. How many observations (rows) does the data set `hawaii` have? 
-How many variables (columns)? What does each row in the data set represent?
+1. How many observations (rows) does the dataset `hawaii` have? 
+How many variables (columns)? What does each row in the dataset represent?
 Instead of hard coding the number in your answer, use inline code. 
 Hint: use "r ncol()" wrapped by a backtick in front and back. 
 
@@ -65,16 +82,10 @@ Hint: use "r ncol()" wrapped by a backtick in front and back.
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
 :::
 
-2. Plot the exact locations (longitude and latitude) of the Airbnb listings on a map of Hawaii. The four major islands, Hawaii, Honolulu, Kauai, and Maui, should be painted in distinct colors. You may adjust transparency for better visibility. Please complete the code below. What characteristics do you observe about the Airbnb listings in Hawaii? Once you fill out `___`, remove `eval = FALSE`. 
+2. Reproduce the following tables. The column "count" represents the number of listings, and "percentage" is the associated percentage. For the final table, you may create a new variable using `ifelse()` for "minimum stay < 30?". 
 
-```{r, viz-loc, eval = FALSE}
-hawaii_nb %>% 
-  ggplot() + 
-  geom_sf(aes(fill = ______)) +
-  geom_point(data = hawaii, aes(______, ______)) +
-  scale_fill_viridis_d() + 
-  labs(x = "Longitude", y = "Latitude", 
-       fill = "________", title = "_______")
+```{r hw1-ex2, echo=FALSE, out.width = '95%'}
+knitr::include_graphics("img/hw1_ex2_table.png")
 ```
 
 ::: {.commit}
@@ -87,7 +98,7 @@ hawaii_nb %>%
     - You should decide if scales should be fixed or not. If the scales are fixed, every facet is drawn on the same ranges of x values and y values. 
 
 4. We will examine median listing prices of neighborhoods. 
-    - Create a summary data set called `hawaii_summary` with the minimum, mean, median, standard deviation, IQR, and maximum listing price in each neighborhood and identify neighborhoods with the top five median listing prices.
+    - Create a summary dataset called `hawaii_summary` with the minimum, mean, median, standard deviation, IQR, and maximum listing price in each neighborhood and identify neighborhoods with the top five median listing prices.
     - Create a new `sf` object `hawaii_sf` that includes all rows and columns from `hawaii_summary` and the associated geometry information from `hawaii_nb`. 
     - Create a map of Hawaii where each neighborhood is colored by the level of its median listing price using `scale_fill_gradient`. Describe what you observe. 
 
@@ -98,10 +109,11 @@ hawaii_nb %>%
 5. Now you will meet the Airbnb hosts in Hawaii. 
     - How many hosts are there in Hawaii? 
     - Using one pipeline: 
-      - create a new variable `annual_revenue` that represents the expected annual revenue for each listing using `price` and `availability_365`: available days of the listing in next 365 days.
-      - calculate sum of the expected annual revenue and the number of listings by each of the hosts.
+      - create a new variable `annual_revenue` that estimates the annual revenue for the listing in the last 12 months. You may assume that visitors always left a review and stayed in the listing for minimum nights only. Hint: use `minimum_nights`, `price` and `number_of_reviews`. 
+      - calculate the sum of the estimated annual revenue and the number of listings by each of the hosts identified by `host_id`.
       - create a scatterplot illustrating the two variables' relationship. Put the number of listings on x-axis. Use `geom_smooth()` for a fitted line. 
-    - Interpret your visualization and find the hosts 1) who earn more than 50 million dollars a year and 2) who make less than 10 million with more than 250 listings. 
+    - Interpret your visualization.
+    - Are there any outliers? If so, identify them. 
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
