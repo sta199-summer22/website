@@ -1,0 +1,257 @@
+---
+title: "AE 09: `R` Errors, Troubleshooting, and Getting Help"
+subtitle: "due Wednesday, May 25 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae09-GitHubUsername".
+- Click the green "code" button and copy the `SSH` URL.
+- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Troubleshooting
+
+`R` or `R Markdown` will provide an error message if a problem with a
+computation occurs.
+
+Encountering errors is extremely common and figuring out how to fix them 
+is frustrating and time-consuming. But errors are helpful! They provide 
+you with information that will help you fix your code.
+
+**Scenario**: You just finished your assignment (or so you thought). You click knit to PDF and get an error. Worse yet you try to run individual code chunks to debug the error and even more errors are showing up!
+
+**Step #0: Relax. You can solve this!**
+
+**Step #1: Find the relevant code.**
+
+Navigate to the code chunk where the error or problem occurred. If the error 
+occurred while running a code chunk this is already done. If the error occurred
+while knitting, `R` usually provides a line number. If possible, navigate to the
+code chunk in question so you can see both the code and error at the same time.
+
+**Step #2: Read the error.**
+
+Pause and read the error carefully and in full. What does it say in plain 
+English? **Usually**, there is enough information provided to both diagnose and 
+fix the problem.
+
+Below are some common errors that have enough information to fix the problem.
+
+1. `...could not find function...`
+
+`R` can't find a function that you used. Did you include a code chunk loading
+the necessary packages? If you did is `eval = FALSE` included as a code chunk
+option?
+
+2. `...object 'some-name-of-object' not found...`
+
+`R` can't find `some-name-of-object`. Is `some-name-of-object` spelled and
+formatted consistently, including correct capitalization? Was 
+`some-name-of-object` actually created in a code chunk where `eval` is not set
+to `FALSE`? Is the code chunk located **above** the code chunk where the
+error occurred? Is it stored via `<-`? The "Environment" pane can be helpful 
+here.
+
+3. `...unexpected 'some-symbol' in...`
+
+Here `some-symbol` can be a comma, parenthesis, bracket, etc. This means the 
+code you are running is not correct syntactically. Do you have an extra comma, 
+parenthesis, bracket, or other symbol? Did you make a typo?
+
+4. `Error: attempt to use zero-length variable name`
+
+This generally happens when you highlight the backticks in the code chunk 
+in addition to the code. It can also occur if there is a stray `%>%` or `+` at 
+the end of a code chunk.
+
+5. `...requires the following missing aesthetics...`
+
+`ggplot()` is missing a necessary aesthetic. Is the `ggplot()` formatted 
+correctly? Is the aesthetic provided consistent with what is required? 
+
+6. `object of type 'closure' is not subsettable`
+
+The above error is included because it is pretty common. It (usually) means
+that you tried to subset a function.
+
+7. `non-numeric argument to binary operator`
+
+Occurs when you mix different data types in a calculation.
+
+Often, closely reading the error will allow you to fix the problem. 
+
+**Step #3: When in doubt, comment out.**
+
+Run the code line by line.
+
+For a code chunk with a number of lines, it is sometimes tricky to tell where
+exactly the error is occurring. In this situation, it is helpful to run the 
+code line-by-line to figure out where the error is occurring.
+
+The code chunk below has a few small errors. Let's demonstrate how running the
+code line-by-line helps us troubleshoot.
+
+```{r load-package, message=FALSE}
+library(tidyverse)
+```
+
+```{r line-by-line, eval = FALSE}
+mpg %>%
+  filter(class == "subcmpct") %>%
+  group_by(drv)
+  summarize(median_cty_mpg = median(cty),
+            sd_cty_mpg = sd(cty),
+            avg_cty_mpg = average(cty))
+```
+
+```{r debug-solved}
+
+```
+
+**Step #4: Examine the Documentation**
+
+If an error is from a particular function or argument, pulling up the 
+documentation is a good step.
+
+Documentation in `R` is extremely helpful. If you want to understand what a 
+function does, its arguments, or examples of usage, examine the documentation.
+In many situations, it should be higher than the fifth troubleshooting step.
+
+Documentation can be examined using `?` or `help()`. 
+
+- Description: a general description of what the function does
+- Usage: the arguments of the function and their defaults
+- Arguments: a description of each argument and what it does
+- Details: further details about the function
+- Examples: examples of function usage
+
+**Step 5: Google it**
+
+Generally you are not the first person to encounter a particular error in `R`. 
+A well-thought out Google search can lead to others who have encountered the
+same or a similar problem and potentially a solution.
+
+**Include** general search terms related to the error. Include quotation
+marks to search for an exact phrase and include aspects of the error that are
+unique. If the error is with a function in a particular package (`rvest`, 
+`dplyr`, etc) include that with your search. Include `R` as a search term.
+
+**Avoid** search terms that are specific to your current project. This includes
+datasets, variables, and aspects of your personal system (file paths, etc). You
+can exclude search terms using a "-" in Google.
+
+You can also use advanced search operators. A helpful official Google link is
+[here](https://support.google.com/websearch/answer/2466433?hl=en) and an 
+unofficial blog post is [here](https://www.lifewire.com/advanced-google-search-3482174).
+Check out partial search, domain search, and words by proximity.
+
+[StackOverflow](https://stackoverflow.com/) is an extremely helpful site.
+Check out the [`R` related topics](https://stackoverflow.com/questions/tagged/r)
+with the tag `R`.
+
+**Examine a Vignette**
+
+For a broad overview of the capabilities of a package it is helpful to examine
+a vignette. Vignettes are "discursive documents meant to illustrate and explain
+facilities in [a] package" (R-Project).
+
+Use `browseVignettes()` to see vignettes from all installed packages and
+`browseVignettes(package = some-package)` to see vignettes from a particular
+package. Use `vignette("vignette-name")` to see a particular vignette.
+
+Let's try examining a vignette from a previous lecture.
+
+**Step #6: Post to Slack (Not during exam!)**
+
+First (if possible) push your most recent work to GitHub.
+
+In your Slack posting, state the following:
+
+- What assignment and problem you are working on.
+- What you are trying to accomplish.
+- What issue you encountered.
+- A (brief) overview of the steps you have taken to solve the issue.
+
+Include both the code and error in a code chunk using the "Markdown editor". 
+You can create a code chunk in the same way we do in an `R` Markdown document.
+
+If possible, include a reproducible example of the error.
+
+## Reproducible Examples
+
+A reproducible example is a very small, toy example used to recreate
+the issue for yourself and others. Often, devising such an example helps you diagnose
+the issue. 
+
+The function `tribble()` is helpful for creating small, toy datasets row-by-row.
+
+Let's check out 
+
+`r emo::ji("book")` [How to create a Minimal, Reproducible Example](https://stackoverflow.com/help/minimal-reproducible-example) 
+
+`r emo::ji("book")` [How to make a great R Reproducible Example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+
+A reproducible example should be:
+
+- minimal: use as little code as possible to reproduce the issue and minimal dataset to demonstrate the problem
+- complete: should include all aspects necessary to reproduce the problem 
+  - `library`'s
+  - R version (`sessionInfo()`)
+  - Operating System 
+  - seed (`set.seed()`) for random numbers to enable others to replicaate **exactly** the same results 
+- reproducible: should generate the issue in question
+
+Let's explore real examples and try to answer them! 
+
+`r emo::ji("raised")` [Ex 1](https://stackoverflow.com/questions/24576515/relative-frequencies-proportions-with-dplyr/24576703#24576703): I want relative frequencies with `dplyr`!
+
+```{r ex1}
+library(dplyr)
+data(mtcars)
+mtcars <- tbl_df(mtcars)
+
+# count frequency
+mtcars %>%
+  group_by(am, gear) %>%
+  summarise(n = n())
+```
+
+```{r ex1-fixed}
+
+```
+
+`r emo::ji("raised")` [Ex 2](https://stackoverflow.com/questions/35090883/remove-all-of-x-axis-labels-in-ggplot): I want all of x-axis labels removed in `ggplot`!
+
+
+```{r ex2}
+data(diamonds)
+ggplot(data = diamonds, mapping = aes(x = clarity)) + 
+  geom_bar(aes(fill = cut)) 
+```
+
+```{r ex2-fixed}
+
+```
+
+Check [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) for various ggplot2 themes.
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
+### Additional Resources
+
+- [R Project Help](https://www.r-project.org/help.html)
+- [Advanced Debugging](https://adv-r.hadley.nz/debugging.html)
+- [Reprex package](https://www.tidyverse.org/help/#reprex-pkg)
+- [How to write a reproducible example](http://adv-r.had.co.nz/Reproducibility.html)

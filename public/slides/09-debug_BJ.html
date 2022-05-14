@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data Visualization 1</title>
+    <title>Troubleshooting &amp; Debugging</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Visualization 1
+# Troubleshooting &amp; Debugging
 ### Bora Jin
 
 ---
@@ -39,231 +39,187 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Data and Visualization](https://www.youtube.com/watch?v=FddF4b_GuTI) 
-
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d01-data-viz/u2-d01-data-viz.html#1)
-
-🎥 Watch [Visualizing Data with ggplot2](https://www.youtube.com/watch?v=s2NF2J36ljE)  
-
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d02-ggplot2/u2-d02-ggplot2.html#1)
+📖 Read [How to read an R help page (Section A.1.1)](https://socviz.co/appendix.html#a-little-more-about-r)
 
 ---
 
 ## Today's Goal 
 
-- Build up an effective visualization systematically layer by layer with `ggplot2`
+- Learn troubleshooting strategies
+- Practice debugging some common errors 
 
-"The simple graph has brought more information to the data analyst's mind than any other device" - John Tukey
-
----
-
-## Quiz
-
-**Q - What does each row of a dataset represent?**  
-
---
-
-Observation 
-
---
-
-**Q - What does each column of a dataset represent?** 
-
---
-
-Variable 
-
---
-
-**Q - All variables in a dataset must be in the same type (character, integer, etc.). (T/F)** 
-
---
-
-F
-
---
-
-
-**Q - In this class, we mainly focus on variables having a single entry per observation. (T/F)** 
-
---
-
-T
-
----
-
-## Quiz
-
-**Q - Which function spits out the dimension of a dataset?** 
-
---
-
-`dim()` (row, column)
-
---
-
-
-**Q - How to check the number of rows of a dataset?** 
-
---
-
-`nrow()`
-
---
-
-**Q - How to check the number of columns of a dataset?** 
-
---
-
-`ncol()`
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-e. summaries of variables 
-
----
-
-## Quiz
-
-**Q - What is the information that you cannot get using `glimpse()`?** 
-
-a. number of rows
-
-b. number of cols
-
-c. list of variables 
-
-d. variable types 
-
-**e. summaries of variables**
-
----
-
-## Quiz
-
-**Q - What is EDA?** 
-
---
-
-- Approach to analysing datasets to summarize and describe its main characteristics
-- Often visual 
-
---
-
-**Q - Why is visualization important?** 
-
---
-
-It can reveal a new story that summary statistics could miss! 
-
---
-
-**Q - Before plotting, what package do we load?** 
-
---
-
-`library(tidyverse)` (`ggplot2` `\(\in\)` `tidyverse`)
+"Each time you figure out the solution to your problem, you acquire more and more knowledge about how and why things go wrong, and more confidence about how to tackle the next glitch that comes along." - from today's material
 
 ---
 
 ## Quiz 
 
-**Q - When plotting, what are the three fundamental things to define and the relevant code?** 
+**Functions take inputs, perform actions, and return outputs.** 
+
+**Q - In an R help page, which sections do we read for information on how to use the function?**
 
 --
 
-- Data in `ggplot(data = )`
-- Aesthetics in `ggplot(mapping = aes())`
-- Geometries in `geom_xxxx()`
+Usage
 
-layers added by `+`
+--
+
+  - function's name 
+  - named arguments in () **in the order the function expects the arguments** 
+  - some arguments come with default values 
+  - but you must specify values for arguments without default values
+
+---
+
+## Quiz 
+
+**Q - In an R help page, which sections do we read for information on inputs?**
+
+--
+
+Arguments
+
+--
+
+  - detailed information on each argument 
+  - it tells you the class of inputs that the function expects 
+
+--
+
+**Q - In an R help page, which sections do we read for information on actions?**
+
+--
+
+Description or title 
+
+--
+
+  - describes what the function does 
+  
+---
+
+## Quiz
+
+**Q - In an R help page, which sections do we read for information on outputs?**
+
+--
+
+Value
+
+--
+
+  - function's output **in the order the function returns values** 
+  - can be a single number, a list with multiple objects, a data frame, a plot, or a model
+
+---
+
+## Quiz 
+
+**Q - In an R help page, which sections do we read for information on examples?**
+
+--
+
+Examples 
+
+--
+
+  - simple and quick-to-run examples to help you understand how to use the function and what to use it on
+
+--
+
+**Q - What if we want to learn more about the package as a whole, rather than a few specific functions?**
+
+--
+
+Demos and Vignettes 
+
+--
+
+  - you may google directly the package name 
+  - or click the link at the end of the help page to visit the package's index page
+
+---
+
+## Example 
+
+
+
+```r
+?qnorm
+```
 
 --
 
 
 ```r
-ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   other options
+?lm
 ```
 
 ---
 
-## Quiz
+## Example 
 
-**Q - What are *other options* include?** 
 
---
+```r
+qnorm(0.5) # default values
+```
 
-- Labels and legends in `labs()`
-- More aesthetics options (color, shape, size, alpha)
-- Faceting
-- Many more! 
-
---
-
-**Q - For aesthetics options, can you explain mapping vs. setting?** 
+```
+## [1] 0
+```
 
 --
 
-- Mapping: map plotting characters to a specific variable in data through `aes()`
-- Setting: determine them without regard to data values through `geom_xxxx()`
 
----
+```r
+qnorm(0.5, 2, 1) # in default order
+```
 
-## Quiz
-
-**Q - Why faceting?** 
-
---
-
-- To explore conditional relationships 
-- Multiple smaller plots in one plot 
+```
+## [1] 2
+```
 
 --
 
-**Q - Two functions for faceting?** 
+
+```r
+qnorm(0.5, 1, 2) # mean and sd values swapped
+```
+
+```
+## [1] 1
+```
 
 --
-- `facet_grid([row-variable] ~ [column-variable])`
-- `facet_wrap(~ [variable])`
 
+
+```r
+qnorm(0.5, sd = 1, mean = 2) # mean and sd order swapped but same as qnorm(0, 2, 1)
+```
+
+```
+## [1] 2
+```
 ---
 
 class: middle, center
 
 # Questions?
 
+
 ---
 
 ## Let's Practice Together! 
 
-- [AE 02: Part 1, Tour of RStudio + GitHub](https://sta199-summer22.netlify.app/appex/ae02_BJ.html)
-
-- [AE 03: Data Visualization 1](https://sta199-summer22.netlify.app/appex/ae03_BJ.html)
+Go to [AE 09: `R` Errors, Troubleshooting, and Getting Help](https://sta199-summer22.netlify.app/appex/ae09_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: May 16](https://sta199-summer22.netlify.app/prepare/week02_may16_BJ.html)
+- Homework 01 due Wednesday, May 25 at 11:59pm
 
-- Submit your `ae02`
 
-- Complete Part 1-3 in `ae03`
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

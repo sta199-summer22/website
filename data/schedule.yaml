@@ -61,6 +61,9 @@ lessons:
 #   ae: "ae08_BJ.html"
   - date: "Tue, May 24"
     title: "Troubleshooting"
+#   prepare: "week03_may24_BJ.html"
+#   slides: "09-debug_BJ.html"
+#   ae: "ae09_BJ.html"
   - date: "Wed, May 25"
     title: Introd to Probability
 #  - title: "HW 02 released"

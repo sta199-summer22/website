@@ -1,0 +1,184 @@
+---
+title: "Troubleshooting & Debugging"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("book")` Read [How to read an R help page (Section A.1.1)](https://socviz.co/appendix.html#a-little-more-about-r)
+
+---
+
+## Today's Goal 
+
+- Learn troubleshooting strategies
+- Practice debugging some common errors 
+
+"Each time you figure out the solution to your problem, you acquire more and more knowledge about how and why things go wrong, and more confidence about how to tackle the next glitch that comes along." - from today's material
+
+---
+
+## Quiz 
+
+**Functions take inputs, perform actions, and return outputs.** 
+
+**Q - In an R help page, which sections do we read for information on how to use the function?**
+
+--
+
+Usage
+
+--
+
+  - function's name 
+  - named arguments in () **in the order the function expects the arguments** 
+  - some arguments come with default values 
+  - but you must specify values for arguments without default values
+
+---
+
+## Quiz 
+
+**Q - In an R help page, which sections do we read for information on inputs?**
+
+--
+
+Arguments
+
+--
+
+  - detailed information on each argument 
+  - it tells you the class of inputs that the function expects 
+
+--
+
+**Q - In an R help page, which sections do we read for information on actions?**
+
+--
+
+Description or title 
+
+--
+
+  - describes what the function does 
+  
+---
+
+## Quiz
+
+**Q - In an R help page, which sections do we read for information on outputs?**
+
+--
+
+Value
+
+--
+
+  - function's output **in the order the function returns values** 
+  - can be a single number, a list with multiple objects, a data frame, a plot, or a model
+
+---
+
+## Quiz 
+
+**Q - In an R help page, which sections do we read for information on examples?**
+
+--
+
+Examples 
+
+--
+
+  - simple and quick-to-run examples to help you understand how to use the function and what to use it on
+
+--
+
+**Q - What if we want to learn more about the package as a whole, rather than a few specific functions?**
+
+--
+
+Demos and Vignettes 
+
+--
+
+  - you may google directly the package name 
+  - or click the link at the end of the help page to visit the package's index page
+
+---
+
+## Example 
+
+
+```{r help-qnorm}
+?qnorm
+```
+
+--
+
+```{r help-lm}
+?lm
+```
+
+---
+
+## Example 
+
+```{r usage-order}
+qnorm(0.5) # default values
+```
+
+--
+
+```{r usage-order2}
+qnorm(0.5, 2, 1) # in default order
+```
+
+--
+
+```{r usage-order3}
+qnorm(0.5, 1, 2) # mean and sd values swapped
+```
+
+--
+
+```{r usage-order4}
+qnorm(0.5, sd = 1, mean = 2) # mean and sd order swapped but same as qnorm(0, 2, 1)
+```
+---
+
+class: middle, center
+
+# Questions?
+
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 09: `R` Errors, Troubleshooting, and Getting Help](https://sta199-summer22.netlify.app/appex/ae09_BJ.html)
+
+---
+
+## Bulletin
+
+- Homework 01 due Wednesday, May 25 at 11:59pm
+
+
+
