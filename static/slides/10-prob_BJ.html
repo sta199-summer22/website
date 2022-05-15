@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Probability</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to Probability
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Material 
+
+🎥 Watch [Probability](https://warpwire.duke.edu/w/8RUGAA/)
+
+- [Slides](https://sta198f2021.github.io/website/slides/week-02/w2-l03-prob.html)
+
+---
+
+## Today's Goal 
+
+- Understand population, sample, event, sample space, and probability.
+- Compute probabilities of events from data
+- Create a contingency table using `pivot_wider()` and `kable()`
+- Use a contingency table to explore the relationship between two categorical variables.
+
+---
+
+## Quiz 
+
+One goal of statistics is to answer a research question, 
+by making inferences about a population based on data in one or more samples.
+
+--
+
+**Q - What is a research question?**
+
+--
+
+What we want to learn and what we are curious about. For example:  
+
+  - How likely is it for patients with early Parkinson's disease to experience a serious movement disorder within 5 years after the first diagnosis? 
+  - Does the average amount of caffeine vary by vendor in 12 oz. cups of coffee at Duke coffee shops?
+  - How popular is the president among college students? 
+
+---
+
+## Quiz 
+
+**Q - What is a "population"?**
+
+--
+
+- Entire group we would like to make conclusions about 
+- If we had data from every unit in the population, we could just calculate what we wanted and be done!
+
+--
+
+**Q - What is a "sample"?**
+
+--
+
+- The group we have collected data from 
+- Usually we have to settle with a sample because the population is just too big! 
+
+---
+
+## Quiz 
+
+**Q - What is a good sample and why is it important?**
+
+--
+
+- A sample that represents the target population well (has similar characteristics as the population) is a good sample
+- Representativeness is what makes the conclusions and inferences from the sample generalizable and valid to the whole population
+
+---
+
+## Quiz 
+
+**Q - Identify the population and potential samples to answer the following questions**
+
+How likely is it for patients with early Parkinson's disease to experience a serious movement disorder within 5 years after the first diagnosis? 
+  
+--
+
+- population: all patients with early Parkinson's disease
+- sample: patients with early Parkinson's disease who agree to be followed up from Duke Hospital
+
+---
+
+## Quiz 
+
+**Q - Identify the population and potential samples to answer the following questions**
+
+Does the average amount of caffeine vary by vendor in 12 oz. cups of coffee at Duke coffee shops?
+
+--
+
+- population: all 12 oz. cups of coffee at Duke coffee shops
+- sample: randomly selected 50 cups of coffee (12 oz.) by each vendor at Duke coffee shops
+
+---
+
+## Quiz 
+
+**Q - Identify the population and potential samples to answer the following questions**
+
+How popular is the president among college students? 
+ 
+--
+
+- population: all college students
+- sample: randomly selected college students who share their opinions about the president 
+
+---
+
+## Quiz 
+
+In order to draw principled conclusions from data, we rely on a formal **probabilistic framework** that allows us to quantify uncertainty.
+
+**Q - In probability theory, what is a term indicating the result of an observation or experiment?**
+
+--
+
+- "Event"
+- Usually denoted by capital letters 
+- `\(A\)` is the event that a student in STA199 is a sophomore. 
+- `\(A^c\)` (A complement) is the event that `\(A\)` is not true; a student in STA199 is in a different year than 2nd. 
+
+---
+
+## Quiz 
+
+**Q - What is a "sample space"?**
+
+--
+
+- Set of all possible outcomes 
+- {Freshman, Sophomore, Junior, Senior}
+- `\(\Omega = A \cup A^c\)`
+- Varies by research questions 
+
+---
+
+## Quiz 
+
+**Q - Say in words the following math expressions**
+
+`\(A\)` is the event that a student in STA199 is a sophomore. 
+`\(B\)` is the event that a student in STA199 is a senior. 
+
+--
+
+- Union: `\(A \cup B\)`
+
+--
+
+- Intersection: `\(A \cap B\)`
+
+--
+
+  - Is it possible? If not, we say `\(A\)` and `\(B\)` are mutually exclusive or disjoint.
+
+--
+
+- Complement: `\(B^c\)`
+
+---
+
+
+## Quiz 
+
+**Q - What is the "probability" of an event?**
+
+--
+
+- How likely an event is to occur
+- Interpretations 
+
+  - The proportion of times the event would occur if it could be observed an infinite number of times. 
+  - Degree of belief an event will happen
+
+---
+
+## Quiz 
+
+**Q - Probability Rules?**
+
+--
+
+- [0, 1]
+
+--
+
+- The probability of the entire sample space is 1; `\(P(\Omega) = 1\)`
+
+--
+
+- Complement rule: `\(P(A) + P(A^c) = 1\)`
+
+--
+
+- Additive rule: `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`
+
+  - Avoiding double-counting 
+  - If `\(A\)` and `\(B\)` are disjoint, `\(P(A \cap B)=0\)` and thus `\(P(A \cup B) = P(A) + P(B)\)`
+
+---
+
+class: middle, center
+
+# Questions?
+
+
+---
+
+## Let's Practice Together! 
+
+&lt;img src="img/10/coffee.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+For 64,821 men enrolled in the European Prospective Investigation into Cancer and Nutrition after a mean follow-up of 16.4 years
+
+
+|                           | Did not die| Died|
+|:--------------------------|-----------:|----:|
+|Does not drink coffee      |        5438| 1039|
+|Drinks coffee occasionally |       25369| 4440|
+|Drinks coffee regularly    |       24934| 3601|
+
+.small[*Source:* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5788283/]
+
+---
+
+## Let's Practice Together! 
+
+Let `\(A\)` be the event that a man died and `\(B\)` be the event that a man was a non-coffee drinker. 
+Calculate the following probabilities for a randomly selected person in the cohort:
+
+.midi[
+
+|                           | Did not die| Died|
+|:--------------------------|-----------:|----:|
+|Does not drink coffee      |        5438| 1039|
+|Drinks coffee occasionally |       25369| 4440|
+|Drinks coffee regularly    |       24934| 3601|
+]
+
+- `\(P(A)\)`
+
+--
+= 9080/64821
+--
+
+- `\(P(B)\)`
+
+--
+= 6477/64821
+--
+
+- `\(P(A \cap B)\)`
+
+--
+= 1039/64821
+--
+
+- `\(P(A \cup B)\)`
+
+--
+= (9080 + 6477 - 1039)/64821
+--
+
+- `\(P(A \cup B^c)\)`
+
+--
+= (9080 + 58344 - 8041)/64821
+---
+
+## Let's Practice Together! 
+
+Go to [AE 10: Introduction to Probability](https://sta199-summer22.netlify.app/appex/ae10_BJ.html)
+
+---
+
+## Bulletin
+
+- Homework 01 due today at 11:59pm
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

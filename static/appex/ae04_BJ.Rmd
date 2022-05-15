@@ -40,13 +40,13 @@ Add a `glimpse()` to the code chunk below and identify the following variables a
 - `community`
 
 ```{r glimpse-data}
-glimpse(mn_homes$salesprice)
+# code here
 ```
 
 The `summary()` command is also useful in looking at numerical variables. Use this command to look at the numeric variables from the previous chunk.
 
 ```{r summarize}
-summary(mn_homes$salesprice)
+# code here
 ```
 
 ### Part 2: Numeric variables
@@ -56,7 +56,7 @@ We can use a **histogram** to summarize a numeric variable. Play with different 
 ```{r histogram}
 ggplot(data = mn_homes, 
        mapping = aes(x = salesprice)) + 
-  geom_histogram(binwidth = 100000)
+  geom_histogram()
 ```
 
 Now let’s look at the distribution of price for each community. We will make a faceted histogram where each facet represents a community and displays the distribution of sales price for that community. Fill in the blank with an appropriate variable. 
@@ -66,7 +66,7 @@ Note: Once you have modified the code, remove the option `eval = FALSE` from the
 ```{r histogram-faceted, eval = FALSE}
 ggplot(data = mn_homes, 
        mapping = aes(x = salesprice)) + 
-  geom_histogram(binwidth = 100000) + 
+  geom_histogram(binwidth = ____) + 
   facet_wrap(~____)
 ```
 
@@ -149,20 +149,16 @@ Note: Once you have modified the code, remove the option `eval = FALSE` from the
 
 ```{r fix-errors, eval = FALSE}
 ggplot(data = mn_homes) +
-  geom_point(mapping = aes(
-    x = lotsize,
-    y = salesprice,
-    shape = 21,
-    size = .85
-  ))
+  geom_point(mapping = aes(x = lotsize, y = salesprice,
+                           shape = 21, size = .85))
+
 ggplot(data = mn_homes, mapping = (x = otsize, y = area)) +
   geom_point(, shape = 21, size = .85)
+
 ggplot(data = mn_homes) +
-  geom_point(
-    mapping = aes(x = lotsize, y = area),
-    color = community,
-    size = 0.85
-  )
+  geom_point(mapping = aes(x = lotsize, y = area),
+             color = community, size = 0.85)
+
 ggplot(data = mn_homes) +
   geom_point(mapping = aes(x = 1otsize, y = area))
 ```
@@ -206,6 +202,6 @@ ggplot(data = ___, aes(x = ___, y = ___, fill = ____, color = ____)) +
 - http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 - https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535
 - https://ggplot2-book.org/
-= https://ggplot2.tidyverse.org/reference/geom_histogram.html
+- https://ggplot2.tidyverse.org/reference/geom_histogram.html
 - https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 - https://github.com/GraphicsPrinciples/CheatSheet/blob/master/NVSCheatSheet.pdf
