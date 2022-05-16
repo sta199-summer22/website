@@ -28,7 +28,7 @@
 
 [[main]]
     pre = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
-    url = "https://www.gradescope.com"
+    url = "https://www.gradescope.com/courses/385955"
     name = "Gradescope"
     weight = 40
 
