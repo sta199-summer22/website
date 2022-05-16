@@ -42,7 +42,7 @@ library(tidyverse)
 
 ## Quiz 
 
-**Q - ________ variables can be classified as either continuous or discrete.**
+**Q - (Numerical / Categorical) variables can be classified as either continuous or discrete.**
 
 --
 
@@ -50,7 +50,7 @@ Numerical
 
 --
 
-**Q - ________ categorical variable has a natural ordering.**
+**Q - (Ordinal / Nominal) categorical variable has a natural ordering.**
 
 --
 
@@ -82,9 +82,9 @@ Ordinal
 
 ## Quiz 
 
-**Q - Describe the shape of the following distributions of a numeric.**
+**Q - Describe the shape of the following distribution of a numeric w.r.t. skewness and modality.**
 
-```{r left-skewed, echo = FALSE, fig.align='center', fig.height=3}
+```{r left-skewed, echo = FALSE, fig.align='center', out.width="50%"}
 set.seed(123)
 x <- seq(-20, 0, length = 10000)
 y <- dgamma(-x, shape = 2, scale = 1)
@@ -92,13 +92,17 @@ ggplot(data = data.frame(x, y)) +
   geom_line(aes(x,y)) + labs(y="density")
 ```
 
+--
+
+left-skewed, unimodal 
+
 ---
 
 ## Quiz 
 
-**Q - Describe the shape of the following distributions of a numeric.**
+**Q - Describe the shape of the following distribution of a numeric w.r.t. skewness and modality.**
 
-```{r uniform, echo = FALSE, fig.align='center', fig.height=3}
+```{r uniform, echo = FALSE, fig.align='center', out.width="50%"}
 set.seed(123)
 x <- seq(-0.1, 1.1, length = 10000)
 y <- dunif(x)
@@ -106,19 +110,29 @@ ggplot(data = data.frame(x, y)) +
   geom_line(aes(x,y)) + labs(y="density")
 ```
 
+--
+
+symmetric, uniform
+
+
 ---
 
 ## Quiz 
 
-**Q - Describe the shape of the following distributions of a numeric.**
+**Q - Describe the shape of the following distribution of a numeric w.r.t. skewness and modality.**
 
-```{r bimodal, echo = FALSE, fig.align='center', fig.height=3}
+```{r bimodal, echo = FALSE, fig.align='center', out.width="50%"}
 set.seed(123)
 x <- seq(-5, 10, length = 10000)
 y <- dnorm(x, mean = -2, sd = 1) + dnorm(x, mean = 7, sd = 2)
 ggplot(data = data.frame(x, y)) +
   geom_line(aes(x,y)) + labs(y="density")
 ```
+
+--
+
+bimodal
+
 
 ---
 
@@ -135,7 +149,7 @@ ggplot(data = data.frame(x, y)) +
 
 **Q - Fill in the blanks with appropriate** `R` **functions**
 
-- center: mean (`mean`), median (`meduan`)
+- center: mean (`mean`), median (`median`)
 - spread: range (`range`), standard deviation (`sd`), interquartile range (`IQR`)
 
 --
@@ -306,9 +320,11 @@ Go to [AE 04: Data Visualization 2](https://sta199-summer22.netlify.app/appex/ae
 
 ## Bulletin
 
-- Lab 01 due Monday, May 16 at 11:59pm
+- Lab 01 due Today at 11:59pm
 
 - Watch videos for [Prepare: May 17](https://sta199-summer22.netlify.app/prepare/week02_may17_BJ.html)
+
+- Complete Part 4 and Practice of `ae03` 
 
 - Submit your `ae04`
 

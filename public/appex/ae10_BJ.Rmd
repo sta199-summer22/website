@@ -1,0 +1,192 @@
+---
+title: "AE 10: Introduction to Probability"
+subtitle: "due Thursday, May 26 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Complete this [survey](https://forms.gle/FQiDDMQ2Nmfzsdf2A)!
+
+- Wait until we finish watching a video
+
+  - Clone the repository entitled "ae10-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+  - Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Introduction 
+
+Today we load `knitr` to use `kable()` function which neatly displays tables:
+
+```{r load-packages}
+library(tidyverse)
+library(knitr)
+```
+
+We will also use a new function `pivot_wider()` in `dplyr` package ($\in$ `tidyverse`):
+
+- `r emo::ji("movie_camera")` [Video](https://www.youtube.com/watch?v=x3KM5uxaFdI) and  [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d09-tidying/u2-d09-tidying.html#1)
+
+For this Application Exercise, we will look at our newly collected data.
+
+```{r load-data, eval = FALSE}
+sta199 <- read_csv("data/sta199-ae10.csv")
+```
+
+The dataset includes
+
+- `year`: Year in school
+- `animal`: Whether you prefer cats or dogs
+- `movie`: Favorite movie genre
+- `stat_major`: statistical science or not
+
+## Events, Sample Space 
+
+### Part 1
+
+Give two examples of an event from the dataset.
+
+Let $A$ be the event that a student's favorite animal is a dog.
+
+Let $A$ be the event that a student is pursuing a statsci major.
+
+Let $A$ be the event that a student is a sophomore *or* senior.
+
+### Part 2
+
+Let's take a look at favorite movie genre. Note that we have categorized genres so that each person can only have one favorite genre. 
+
+**Q- ** What is the sample space for favorite movie genre? You can use code to identify the sample space. 
+
+```{r movie-sample-space}
+# code here
+```
+
+### Part 3
+
+**Q- ** How large is the sample space of any individual's response? 
+
+```{r response-sample-size}
+# code here
+```
+
+The sample space for the four survey questions contains $4 \times 2 \times 4 \times 2 = 64$ different outcomes.
+
+## Probability 
+
+### Part 4
+
+Let's make a table that includes the year, the number of people who prefer each, and the associated probabilities. 
+
+**Q- ** What is the probability a randomly selected STA199 student is a freshman?
+
+```{r year}
+# code here
+```
+
+### Part 5
+
+**Q- ** What is the probability a randomly selected STA199 student favors cats?
+
+```{r animal}
+# code here
+```
+
+### Part 6
+
+**Q- ** What is the probability a randomly selected STA199 student is not a senior **and** prefers dogs? 
+
+Let $A$ be the event that someone is not a senior and prefers dogs.
+
+```{r year-animal} 
+# code here
+```
+
+### Part 7
+
+**Q- ** What is the probability a randomly selected STA199 student likes either action movies or comedy **and** is a statsci major? 
+
+Let $B$ be the event someone is an action or comedy movie lover and a statsci major.
+
+```{r movie-major} 
+# code here
+```
+
+### Part 8
+
+Now let's make a table looking at the relationship between favorite animal and favorite movie.
+
+```{r animal-movie}
+# code here
+```
+
+Using `pivot_wider()`, we'll reformat the data into a **contingency table**, a table frequently used to study the association between two categorical variables. In this contingency table, each row will represent a year, each column will represent a movie, and each cell is the number of students have a particular combination of year and movie.  
+
+```{r pivot-wider}
+# code here
+```
+
+**Q - ** How many students in STA199 like sci-fi movies? 
+
+**Q - ** How many students in STA199 like dogs and dramas?
+
+### Practice
+
+For each of the following exercises:
+
+- Calculate the probability using a relevant contingency table.  
+- Then write code to check your answer using the `sta199` data frame and `dplyr` functions. 
+
+(1) Relationship between `year` and `major`
+
+**Q - **What is the probability a randomly selected STA199 student is a junior **or** not a statsci major?
+
+```{r ex1-1}
+# code here
+```
+
+```{r ex1-2}
+# code here
+```
+
+**Q - ** What is the probability a randomly selected STA199 student is a statsci major?
+
+```{r ex1-3}
+# code here
+```
+
+(2) Relationship between `animal` and `major`
+
+**Q - **What is the probability a randomly selected STA199 student likes dogs **and** a statsci major?
+
+```{r ex2-1}
+# code here
+```
+
+```{r ex2-2}
+# code here
+```
+
+(3) Relationship between `year` and `movie`
+
+**Q - ** What is the probability a randomly selected STA199 student is a senior **or** does not pick sci-fi as favorite movie genre? 
+
+```{r ex3-1}
+# code here
+```
+
+```{r ex3-2}
+# code here
+```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
