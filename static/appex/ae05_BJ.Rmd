@@ -49,15 +49,16 @@ head(flights)
 tail(flights)
 ```
 
-```{fig.margin=T}
-A **tibble** is a tweaked, opinionated version of the `R` data frame. The two main differences in the usage of a data frame vs a tibble are printing and subsetting. 
-```
+The `head()` / `tail()` function returns "A tibble: 6 x 19" and then the first / last six rows of the `flights` data. 
 
-The `head()` / `tail()` function returns the first / last six rows of the `flights` data. You can specify the number of rows shown with the second argument in the functions, e.g. `tail(flights, 2)`. 
+- A tibble is a tweaked, opinionated version of the `R` data frame. The two main differences between a data frame vs a tibble are printing and subsetting. 
+
+- You can specify the number of rows shown with the second argument in the functions, e.g. `tail(flights, 2)`. 
 
 **Q - **Can you print the first three rows of the `flights` data? 
 
 ```{r print}
+# code here
 ```
 
 ### Part 2: Wrangling
@@ -92,11 +93,13 @@ We can also use `select()` to exclude variables. Let's exclude `year` but keep a
 select(flights, -year)
 ```
 
-We can also use `select()` with certain characteristics. Here, we select all the variables whose names contain "time". Try `?contains` for more info about other select helpers. 
+We can also use `select()` with certain characteristics. Here, we select all the variables whose names contain "time". 
 
 ```{r include-contains}
 select(flights, contains("time"))
 ```
+
+Try `?contains` for more info about other select helpers. 
 
 #### `arrange()`
 
@@ -144,9 +147,16 @@ When reading code "in English", say "then" whenever you see a pipe.
 
 Slice subsets a data frame for certain row numbers. 
 
-We slice off the bottom 5 rows of the `flights` data. Here `n()` computes the number of rows in the data. 
+Here we slice off the first 5 rows of the flights data.
 
-```{r slice}
+```{r slice-1}
+flights %>%
+  slice(1:5)
+```
+  
+We can also slice the bottom 5 rows of the `flights` data. Here `n()` computes the number of rows in the data. 
+
+```{r slice-2}
 flights %>%
   slice((n()-4):n())
 ```
@@ -243,6 +253,20 @@ flights %>%
   select(air_time, distance, hours, mph)
 ```
 
+Note that the above code chunk creates `hour` and `mph` available only locally within the code chunk because `dplyr` functions do not modify the input data frame. If you want to use these newly created variables for future code chunks, you may create another data frame with two additional variables or overwrite `flights`. 
+
+```{r save, eval = FALSE}
+# option1: create a new data frame
+flights2 <- flights %>%
+  mutate(hours = air_time / 60,
+         mph = distance / hours) 
+
+# option2: overwrite the original data frame
+flights <- flights %>%
+  mutate(hours = air_time / 60,
+         mph = distance / hours) 
+```
+
 **Q - **Using `<=` in the mutate, create a new variable `on_time` that is TRUE if the flight arrived on time and FALSE if it did not.
 
 Note: Once you have modified the code, remove the option `eval = FALSE` from the code chunk header and knit to see the updates. 
@@ -261,12 +285,21 @@ flights %>%
 
 Be sure to name your summary statistics!
 
+```{r find-mean-ontime}
+# option3: create a variable every time I use it
+flights %>%
+  mutate(on_time = (arr_delay <= 0)) %>% 
+  summarize(prop_on_time = mean(on_time))
+```
+
+Huh? Shall we try another variable? 
+
 ```{r find-mean-delay}
 flights %>%
   summarize(mean_dep_delay = mean(dep_delay))
 ```
 
-**Q - **The code chunk above should return an NA. What is going wrong? Try to fix it to find the mean departure delay. Hint: Try `summary(flights$dep_delay)`.
+**Q - **The code chunks above should return an NA. What is going wrong? Try to fix it to find the proportion of flights on time and the mean departure delay. Hint: Try `summary(flights$dep_delay)`.
 
 #### `group_by()`
 
@@ -351,7 +384,7 @@ flights %>%
 ```{r practice-1}
 ```
 
-(2) For each airplane (uniquely identified by `tailnum`), use a `group_by()` paired with `summarize()` to find the sample size, mean, and standard deviation of flight distances. Then, pick off the top 5 and bottom 5 airplanes in terms of mean distance traveled per flight.
+(2) For each airline (uniquely identified by `carrier`), use a `group_by()` paired with `summarize()` to find the sample size, mean, and standard deviation of flight distances. Then, pick off the top 5 and bottom 5 airlines in terms of mean distance traveled per flight.
 
 ```{r practice-2}
   

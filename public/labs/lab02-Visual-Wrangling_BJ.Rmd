@@ -1,6 +1,6 @@
 ---
 title: "Lab #02: Data Visualization + Wrangling"
-subtitle: "due Friday May 20 at 11:59pm"
+subtitle: "due Friday, May 20 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "sta199-labs.css"
@@ -56,7 +56,7 @@ Check the documentation of the data by typing `?avengers` in your console.
 
 1. Make a histogram of the appearances as of April 30, 2015. 
 Please set the number of bins at 20. Please label your axes and give the plot a title.
-    - Describe the shape of the distribution
+    - Describe the shape of the distribution.
     - Are there any outliers? 
 
 2. Make a new data frame `active_avengers` using a single pipeline: 
@@ -146,16 +146,16 @@ To submit your assignment:
 
 | Component | Points |
 |:----------|:-------|
-| Ex 1      | 3      |
+| Ex 1      | 4      |
 | Ex 2      | 4      |
-| Ex 3      | 5      |
+| Ex 3      | 7      |
 | Ex 4      | 6      |
-| Ex 5      | 6      |
+| Ex 5      | 4      |
 | Ex 6      | 4      |
 | Ex 7      | 4      |
 | Ex 8      | 5      |
 | Ex 9      | 5      |
-| Workflow & formatting   | 8      |
+| Workflow & formatting   | 7      |
 
 **Grading notes**:
 

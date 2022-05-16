@@ -327,9 +327,13 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 ## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
 ## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<pre fig.margin="T"><code>A **tibble** is a tweaked, opinionated version of the `R` data frame. The two main differences in the usage of a data frame vs a tibble are printing and subsetting. </code></pre>
-<p>The <code>head()</code> / <code>tail()</code> function returns the first / last six rows of the <code>flights</code> data. You can specify the number of rows shown with the second argument in the functions, e.g. <code>tail(flights, 2)</code>.</p>
+<p>The <code>head()</code> / <code>tail()</code> function returns “A tibble: 6 x 19” and then the first / last six rows of the <code>flights</code> data.</p>
+<ul>
+<li><p>A tibble is a tweaked, opinionated version of the <code>R</code> data frame. The two main differences between a data frame vs a tibble are printing and subsetting.</p></li>
+<li><p>You can specify the number of rows shown with the second argument in the functions, e.g. <code>tail(flights, 2)</code>.</p></li>
+</ul>
 <p><strong>Q - </strong>Can you print the first three rows of the <code>flights</code> data?</p>
+<pre class="r"><code># code here</code></pre>
 </div>
 <div id="part-2-wrangling" class="section level3">
 <h3>Part 2: Wrangling</h3>
@@ -383,7 +387,7 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 ## # … with 44,126 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
 ## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 ## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<p>We can also use <code>select()</code> with certain characteristics. Here, we select all the variables whose names contain “time”. Try <code>?contains</code> for more info about other select helpers.</p>
+<p>We can also use <code>select()</code> with certain characteristics. Here, we select all the variables whose names contain “time”.</p>
 <pre class="r"><code>select(flights, contains(&quot;time&quot;))</code></pre>
 <pre><code>## # A tibble: 44,136 × 6
 ##    dep_time sched_dep_time arr_time sched_arr_time air_time time_hour          
@@ -399,6 +403,7 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 ##  9      722            730      922            945      105 2021-01-01 07:00:00
 ## 10      724            730      844            909       61 2021-01-01 07:00:00
 ## # … with 44,126 more rows</code></pre>
+<p>Try <code>?contains</code> for more info about other select helpers.</p>
 </div>
 <div id="arrange" class="section level4">
 <h4><code>arrange()</code></h4>
@@ -488,7 +493,21 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 <div id="slice" class="section level4">
 <h4><code>slice()</code></h4>
 <p>Slice subsets a data frame for certain row numbers.</p>
-<p>We slice off the bottom 5 rows of the <code>flights</code> data. Here <code>n()</code> computes the number of rows in the data.</p>
+<p>Here we slice off the first 5 rows of the flights data.</p>
+<pre class="r"><code>flights %&gt;%
+  slice(1:5)</code></pre>
+<pre><code>## # A tibble: 5 × 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+## 1  2021     1     1      552            600        -8      725            758
+## 2  2021     1     1      553            600        -7      704            722
+## 3  2021     1     1      557            600        -3      722            727
+## 4  2021     1     1      648            654        -6      749            807
+## 5  2021     1     1      655            700        -5      850            915
+## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>We can also slice the bottom 5 rows of the <code>flights</code> data. Here <code>n()</code> computes the number of rows in the data.</p>
 <pre class="r"><code>flights %&gt;%
   slice((n()-4):n())</code></pre>
 <pre><code>## # A tibble: 5 × 19
@@ -699,6 +718,16 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 ##  9      105      680 1.75   389.
 ## 10       61      431 1.02   424.
 ## # … with 44,126 more rows</code></pre>
+<p>Note that the above code chunk creates <code>hour</code> and <code>mph</code> available only locally within the code chunk because <code>dplyr</code> functions do not modify the input data frame. If you want to use these newly created variables for future code chunks, you may create another data frame with two additional variables or overwrite <code>flights</code>.</p>
+<pre class="r"><code># option1: create a new data frame
+flights2 &lt;- flights %&gt;%
+  mutate(hours = air_time / 60,
+         mph = distance / hours) 
+
+# option2: overwrite the original data frame
+flights &lt;- flights %&gt;%
+  mutate(hours = air_time / 60,
+         mph = distance / hours) </code></pre>
 <p><strong>Q - </strong>Using <code>&lt;=</code> in the mutate, create a new variable <code>on_time</code> that is TRUE if the flight arrived on time and FALSE if it did not.</p>
 <p>Note: Once you have modified the code, remove the option <code>eval = FALSE</code> from the code chunk header and knit to see the updates.</p>
 <pre class="r"><code>flights %&gt;%
@@ -710,13 +739,22 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 <h4><code>summarize()</code></h4>
 <p><code>summarize</code> calculates summary statistics. It collapses rows into summary statistics and removes columns irrelevant to the calculation.</p>
 <p>Be sure to name your summary statistics!</p>
+<pre class="r"><code># option3: create a variable every time I use it
+flights %&gt;%
+  mutate(on_time = (arr_delay &lt;= 0)) %&gt;% 
+  summarize(prop_on_time = mean(on_time))</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   prop_on_time
+##          &lt;dbl&gt;
+## 1           NA</code></pre>
+<p>Huh? Shall we try another variable?</p>
 <pre class="r"><code>flights %&gt;%
   summarize(mean_dep_delay = mean(dep_delay))</code></pre>
 <pre><code>## # A tibble: 1 × 1
 ##   mean_dep_delay
 ##            &lt;dbl&gt;
 ## 1             NA</code></pre>
-<p><strong>Q - </strong>The code chunk above should return an NA. What is going wrong? Try to fix it to find the mean departure delay. Hint: Try <code>summary(flights$dep_delay)</code>.</p>
+<p><strong>Q - </strong>The code chunks above should return an NA. What is going wrong? Try to fix it to find the proportion of flights on time and the mean departure delay. Hint: Try <code>summary(flights$dep_delay)</code>.</p>
 </div>
 <div id="group_by" class="section level4">
 <h4><code>group_by()</code></h4>
@@ -839,7 +877,7 @@ flights &lt;- readRDS(&quot;data/rduflights_2021.RDS&quot;)</code></pre>
 <h2>Practice</h2>
 <ol style="list-style-type: decimal">
 <li><p>Create a new dataset that only contains flights that do not have a missing departure time. Include the columns <code>year</code>, <code>month</code>, <code>day</code>, <code>dep_time</code>, <code>dep_delay</code>, and <code>dep_delay_hours</code> (the departure delay in hours). Note you may need to use <code>mutate()</code> to make one or more of these variables.</p></li>
-<li><p>For each airplane (uniquely identified by <code>tailnum</code>), use a <code>group_by()</code> paired with <code>summarize()</code> to find the sample size, mean, and standard deviation of flight distances. Then, pick off the top 5 and bottom 5 airplanes in terms of mean distance traveled per flight.</p></li>
+<li><p>For each airline (uniquely identified by <code>carrier</code>), use a <code>group_by()</code> paired with <code>summarize()</code> to find the sample size, mean, and standard deviation of flight distances. Then, pick off the top 5 and bottom 5 airlines in terms of mean distance traveled per flight.</p></li>
 </ol>
 </div>
 <div id="submitting-application-exercises" class="section level2">
