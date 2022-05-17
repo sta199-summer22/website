@@ -10,6 +10,94 @@ output: html_document
 
 <!-- --- -->
 
+## R syntax
+
+<details><summary>What do you mean "assign"?</summary>
+<p>
+
+<h2>What do you mean "assign"?</h2>
+
+- `name <- value` or `name = value`
+
+- Using `<-` or `=` we assign a value to a name and **store** the name in Environment. 
+
+- By calling `name` we can use the value repeatedly without typing it every time we use it. 
+
+For example, in the following code chunk, having assigned `c(1,2,3)` to `x` makes the code more neat and tidy to get the same result. 
+
+```{r ex-assign}
+c(1,2,3)^2 + 2*c(1,2,3) - sqrt(c(1,2,3))
+
+x <- c(1,2,3)
+x^2 + 2*x - sqrt(x)
+```
+
+
+</p>
+</details>
+
+
+<details><summary>Why is `ggplot(data = mydata, mapping = aes(x = [x-variable], y = [y-variable]))` not enough to draw a plot?</summary>
+<p>
+
+<h2>Why is `ggplot()` not enough to draw a plot?</h2>
+
+The function `ggplot()` is simply to tell `R` to **prepare** a canvas for a plot. It is a declaration that you will draw a plot. **What** you will draw on the canvas should be specified by `geom_xxxx()` functions, e.g. `geom_point` for scatterplots, `geom_bar` for bar plots, etc. 
+
+You might think "...why? I even specified mapping variables there!"
+Yes, I hear you. But, that is again a part of preparation for drawing a plot. We specify mapping variables in `ggplot()` so that it applies to all subsequent `geom_xxxx()` functions globally. 
+
+</p>
+</details>
+
+<details><summary>I am confused about when to use `%>%` vs. `+`.</summary>
+<p>
+
+<h2>I am confused about when to use `%>%` vs. `+`.</h2>
+
+- Are you manipulating data by creating a new variable, filtering rows, arranging rows, selecting columns, etc.? Then use `%>%`. 
+
+- Are you working on plots? Use `+`. 
+
+Remember, plotting is all about **adding** components of a graphic layer by layer. 
+
+```{r}
+knitr::include_graphics("img/grammar-of-graphics.png")
+```
+
+Once you declare your intention to draw a plot by typing `ggplot()`, every subsequent layer should be added by `+`. 
+
+In the end, you will commonly write the code in the following structure: 
+
+```{r, eval = FALSE}
+data %>% 
+  select() %>% 
+  mutate() %>% 
+  summarize() %>% # end of manipulation
+  ggplot() + # beginning of drawing a plot 
+  geom_whatever() + 
+  facet_wrap() + 
+  theme()
+```
+
+</p>
+</details>
+
+<details><summary>Where should I put `,`?</summary>
+<p>
+
+<h2>Where should I put `,`?</h2>
+
+The comma `,` is used **within** a function, and it separates **inputs**. 
+
+Let's check with `mean()`. We've seen two uses of `mean()` with or without `na.rm = TRUE`. 
+If we want to include `na.rm = TRUE` we always put a comma in between:
+
+```{r, eval = F}
+mean(x)
+mean(x, na.rm = TRUE)
+```
+
 ## RStudio and Git troubleshooting
 
 <details><summary>My push was rejected, what do I do?</summary>
@@ -139,3 +227,4 @@ For tidyverse style guidelines:
 </p>
 </details>
 -->
+

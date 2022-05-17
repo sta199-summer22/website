@@ -49,13 +49,13 @@ layout: true
 
 - Combine data from different sources using a well-chosen join function in the format `something_join(x, y)`:
 
-  - `left_join()`: all rows from `x`
-  - `right_join()`: all rows from `y`
-  - `full_join()`: all rows from both `x` and `y`
-  - `semi_join()`: all rows from `x` where there are matching values in `y`, keeping just columns from `x`
-  - `inner_join()`: all rows from `x` where there are matching values in `y`, returning
-all combination of multiple matches in the case of multiple matches
-  - `anti_join()`: return all rows from `x` where there are not matching values in `y`, never duplicate rows of `x`
+  - `left_join()`: return all rows from `x` for all columns in `x` and `y`
+  - `right_join()`: return all rows from `y` for all columns in `x` and `y`
+  - `full_join()`: return all rows from both `x` and `y` for all columns in `x` and `y`
+  - `inner_join()`: return all rows from `x` where there are matching values in `y`, returning
+all combination of multiple matches in the case of multiple matches for all columns in `x` and `y`
+  - `semi_join()`: return all rows from `x` where there are matching values in `y`, keeping just columns from `x`   
+  - `anti_join()`: return all rows from `x` where there are not matching values in `y`, keeping just columns from `x`   
   - `\(\cdots\)`
 
 ---
@@ -72,7 +72,7 @@ all combination of multiple matches in the case of multiple matches
 
 ## Quiz 
 
-**Q - Which join function might you use when you want a data set with all the rows and the columns in `x` and `y`?**
+**Q - Which join function might you use when you want a dataset with all the rows and the columns in `x` and `y`?**
 
 --
 
@@ -92,7 +92,7 @@ all combination of multiple matches in the case of multiple matches
 
 ## Quiz 
 
-**Q - Which join function might you use when you want a data set with all the columns from `x` and `y` and only the rows existing in both data frames?**
+**Q - Which join function might you use when you want a dataset with all the columns from `x` and `y` and only the rows existing in both data frames?**
 
 --
 
@@ -124,13 +124,15 @@ Go to [AE 06: Data Wrangling 2](https://sta199-summer22.netlify.app/appex/ae06_B
 
 ## Bulletin
 
-- Lab 02 due Friday, May 20 at 11:59pm
-
 - Watch videos for [Prepare: May 19](https://sta199-summer22.netlify.app/prepare/week02_may19_BJ.html)
+
+- Submit your `ae05`
 
 - Submit your `ae06`
 
-- Homework 01 released today 
+- Lab 02 due Friday, May 20 at 11:59pm
+
+- HW 01 due Tuesday, May 24 at 11:59pm 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

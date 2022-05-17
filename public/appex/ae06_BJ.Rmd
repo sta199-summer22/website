@@ -17,7 +17,7 @@ output:
 - Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
 - Open the `.Rmd` file and replace "Your Name" with your name. 
 
-## Demonstrations 
+## Part 1: Demonstrations 
 
 ```{r load-package, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -77,14 +77,27 @@ What are the lab scores for those who have completed labs but not AEs?
 anti_join(Lab, AE)
 ```
 
-How do the join functions above know to join `Lab` and `AE` by `value`? Examine the names to find out.
+How do the join functions above know to join `Lab` and `AE` by `id`? Examine the names to find out.
 
 ```{r names}
 names(Lab)
 names(AE)
 ```
 
+Also, try above functions by specifying the join variable. Do you see any differences? 
+
+```{r full-join-2}
+full_join(Lab, AE)
+full_join(Lab, AE, by = "id")
+```
+
+### Part 2: RDU flights
+
 We will again work with RDU data stored in `rduall_2021.RDS`. This can be downloaded from the `anyflights` package. 
+
+```{r load-rdu-package, message=FALSE, warning=FALSE}
+library(anyflights)
+```
 
 ```{r load-rdu-list, message=FALSE, warning=FALSE}
 rdu <- readRDS("data/rduall_2021.RDS")
@@ -106,20 +119,24 @@ airlines <- rdu$airlines
 planes <- rdu$planes
 ```
 
-**Q - ** How are these datasets related? Examine their variable names. 
+**Q - ** How are these datasets related? Examine their variable names. You may find helpful to read help pages of the datasets:
+
+```{r help}
+?get_flights
+?get_airports
+?get_airlines
+?get_planes
+```
 
 ```{r colnames}
-names(flights)
-names(airports)
-names(airlines)
-names(planes)
+# code here
 ```
 
 **Q - ** Last time, it was not straightforward to understand Airlines by their carrier code. Let's append full airline names in `flights`. 
 
-```{r flights-airlines}
+```{r flights-airlines, eval = FALSE}
 flights %>% 
-  left_join(airlines, by = "carrier") %>%
+  xxxx_join(____, by = "____") %>%
   rename(carrier_name = name) %>% # new = old
   select(year:day, contains("carrier")) 
 ```
@@ -128,67 +145,52 @@ flights %>%
 
 Let's add latitude and longitude information of the destination airports in `flights`. Note these `flights` and `airports` have no variables in common so we will have to specify the variable to join by using `by = `. Check out the documentation for more information.
 
-```{r flights-join}
+```{r flights-join, eval = FALSE}
 flights %>% 
-  left_join(airports %>% 
-              select(faa, lat, lon), 
-            by = c("dest" = "faa"))
+  left_join(______, 
+            by = c("____" = "faa"))
 ```
 
 ## Practice
 
 (1) Create a new dataset `dest_delays` with the median arrival delay in 2021 for each destination. Note this question does not require you to use joins.
 
-```{r make-dest-delays, include = FALSE}
-dest_delays <- flights %>% 
-  group_by(dest) %>% 
-  summarize(median_arr_delay = median(arr_delay, na.rm = TRUE)) 
+```{r make-dest-delays}
+# code here
 ```
 
-    - **Q - ** How many different destinations could you visit directly from RDU in 2021? 
+  - **Q - ** How many different destinations could you visit directly from RDU in 2021? 
 
 (2) Join `dest_delays` and `airports`, only including observations that have both delay and airport information. Note `dest_delays` and `airports` have no variables in common so you will need to specify the variables to join using `by` as in the example above.
 
-```{r new-dataset, include = FALSE}
-dest_delays %>% 
-  inner_join(airports, by = c("dest" = "faa"))
+```{r new-dataset}
+# code here
 ```
 
-    - **Q - ** Are all of the observations in `dest_delays` included in the new dataset you created by joining `dest_delays` and `airports`? Use an appropriate join function to investigate this issue and determine what is going on here.
+  - **Q - ** Are all of the observations in `dest_delays` included in the new dataset you created by joining `dest_delays` and `airports`? Use an appropriate join function to investigate this issue and determine what is going on here.
 
-```{r mysterious-join, include = FALSE}
-dest_delays %>% 
-  anti_join(airports, by = c("dest" = "faa"))
+```{r mysterious-join}
+# code here
 ```
-
-<!-- SJU did not have airports information.  -->
 
 (3) Is there a relationship between the age of a plane and its delays? The plane tail number is given in the `tailnum` variable in the `flights` dataset. The year the plane was manufactured is given in the `year` variable in the `planes` dataset. 
 
-    - Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in `plane_delays`.
+  - Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in `plane_delays`.
 
-```{r step-1, include = FALSE}
-plane_delays <- flights %>% 
-  group_by(tailnum) %>% 
-  summarize(median_arr_delay = median(arr_delay, na.rm = TRUE)) 
+```{r step-1}
+# code here
 ```
 
-    - Step #2: Join `plane_delays` to the `planes` data using an appropriate join and then use `mutate` to create an age variable. 
+  - Step #2: Join `plane_delays` to the `planes` data using an appropriate join and then use `mutate` to create an age variable. 
 
-```{r step-2, include = FALSE}
-plane_delays <- plane_delays %>% 
-  left_join(planes, by = "tailnum") %>% 
-  mutate(plane_age = 2021 - year)
+```{r step-2}
+# code here
 ```
 
-    - Step #3: Finally, create an effective visualization of the data.
+  - Step #3: Finally, create an effective visualization of the data.
 
-```{r step-3, include = FALSE}
-plane_delays %>% 
-  ggplot(aes(plane_age, median_arr_delay)) + 
-  geom_point() +
-  geom_smooth() +
-  labs(x = "Plane age as of 2021", y = "Median arrival delay")
+```{r step-3}
+# code here
 ```
 
 ## Submitting Application Exercises

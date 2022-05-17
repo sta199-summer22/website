@@ -260,8 +260,8 @@ div.tocify {
 <li>Open the <code>.Rmd</code> file and replace “Your Name” with your name.</li>
 </ul>
 </div>
-<div id="demonstrations" class="section level2">
-<h2>Demonstrations</h2>
+<div id="part-1-demonstrations" class="section level2">
+<h2>Part 1: Demonstrations</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre class="r"><code># lab scores
 Lab &lt;- tibble(id = c(2, 3, 4, 6),
@@ -347,12 +347,37 @@ Lab</code></pre>
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     4   100    60
 ## 2     6   100   100</code></pre>
-<p>How do the join functions above know to join <code>Lab</code> and <code>AE</code> by <code>value</code>? Examine the names to find out.</p>
+<p>How do the join functions above know to join <code>Lab</code> and <code>AE</code> by <code>id</code>? Examine the names to find out.</p>
 <pre class="r"><code>names(Lab)</code></pre>
 <pre><code>## [1] &quot;id&quot;   &quot;lab1&quot; &quot;lab2&quot;</code></pre>
 <pre class="r"><code>names(AE)</code></pre>
 <pre><code>## [1] &quot;id&quot;  &quot;ae1&quot; &quot;ae2&quot; &quot;ae3&quot; &quot;ae4&quot;</code></pre>
+<p>Also, try above functions by specifying the join variable. Do you see any differences?</p>
+<pre class="r"><code>full_join(Lab, AE)</code></pre>
+<pre><code>## Joining, by = &quot;id&quot;</code></pre>
+<pre><code>## # A tibble: 6 × 7
+##      id  lab1  lab2   ae1   ae2   ae3   ae4
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     2   100    80    80   100    80    70
+## 2     3   100    20    50    40    60    30
+## 3     4   100    60    NA    NA    NA    NA
+## 4     6   100   100    NA    NA    NA    NA
+## 5     1    NA    NA   100    90    70    90
+## 6     5    NA    NA   100    95   100    90</code></pre>
+<pre class="r"><code>full_join(Lab, AE, by = &quot;id&quot;)</code></pre>
+<pre><code>## # A tibble: 6 × 7
+##      id  lab1  lab2   ae1   ae2   ae3   ae4
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     2   100    80    80   100    80    70
+## 2     3   100    20    50    40    60    30
+## 3     4   100    60    NA    NA    NA    NA
+## 4     6   100   100    NA    NA    NA    NA
+## 5     1    NA    NA   100    90    70    90
+## 6     5    NA    NA   100    95   100    90</code></pre>
+<div id="part-2-rdu-flights" class="section level3">
+<h3>Part 2: RDU flights</h3>
 <p>We will again work with RDU data stored in <code>rduall_2021.RDS</code>. This can be downloaded from the <code>anyflights</code> package.</p>
+<pre class="r"><code>library(anyflights)</code></pre>
 <pre class="r"><code>rdu &lt;- readRDS(&quot;data/rduall_2021.RDS&quot;)
 airports &lt;- rdu$airports
 flights &lt;- rdu$flights</code></pre>
@@ -367,84 +392,56 @@ flights &lt;- rdu$flights</code></pre>
 airports &lt;- rdu$airports
 airlines &lt;- rdu$airlines
 planes &lt;- rdu$planes</code></pre>
-<p><strong>Q - </strong> How are these datasets related? Examine their variable names.</p>
-<pre class="r"><code>names(flights)</code></pre>
-<pre><code>##  [1] &quot;year&quot;           &quot;month&quot;          &quot;day&quot;            &quot;dep_time&quot;      
-##  [5] &quot;sched_dep_time&quot; &quot;dep_delay&quot;      &quot;arr_time&quot;       &quot;sched_arr_time&quot;
-##  [9] &quot;arr_delay&quot;      &quot;carrier&quot;        &quot;flight&quot;         &quot;tailnum&quot;       
-## [13] &quot;origin&quot;         &quot;dest&quot;           &quot;air_time&quot;       &quot;distance&quot;      
-## [17] &quot;hour&quot;           &quot;minute&quot;         &quot;time_hour&quot;</code></pre>
-<pre class="r"><code>names(airports)</code></pre>
-<pre><code>## [1] &quot;faa&quot;   &quot;name&quot;  &quot;lat&quot;   &quot;lon&quot;   &quot;alt&quot;   &quot;tz&quot;    &quot;dst&quot;   &quot;tzone&quot;</code></pre>
-<pre class="r"><code>names(airlines)</code></pre>
-<pre><code>## [1] &quot;carrier&quot; &quot;name&quot;</code></pre>
-<pre class="r"><code>names(planes)</code></pre>
-<pre><code>## [1] &quot;tailnum&quot;      &quot;year&quot;         &quot;type&quot;         &quot;manufacturer&quot; &quot;model&quot;       
-## [6] &quot;engines&quot;      &quot;seats&quot;        &quot;speed&quot;        &quot;engine&quot;</code></pre>
+<p><strong>Q - </strong> How are these datasets related? Examine their variable names. You may find helpful to read help pages of the datasets:</p>
+<pre class="r"><code>?get_flights
+?get_airports
+?get_airlines
+?get_planes</code></pre>
+<pre class="r"><code># code here</code></pre>
 <p><strong>Q - </strong> Last time, it was not straightforward to understand Airlines by their carrier code. Let’s append full airline names in <code>flights</code>.</p>
 <pre class="r"><code>flights %&gt;% 
-  left_join(airlines, by = &quot;carrier&quot;) %&gt;%
+  xxxx_join(____, by = &quot;____&quot;) %&gt;%
   rename(carrier_name = name) %&gt;% # new = old
   select(year:day, contains(&quot;carrier&quot;)) </code></pre>
-<pre><code>## # A tibble: 44,136 × 5
-##     year month   day carrier carrier_name          
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;                 
-##  1  2021     1     1 YX      Republic Airline      
-##  2  2021     1     1 AA      American Airlines Inc.
-##  3  2021     1     1 DL      Delta Air Lines Inc.  
-##  4  2021     1     1 AA      American Airlines Inc.
-##  5  2021     1     1 AA      American Airlines Inc.
-##  6  2021     1     1 9E      Endeavor Air Inc.     
-##  7  2021     1     1 DL      Delta Air Lines Inc.  
-##  8  2021     1     1 AA      American Airlines Inc.
-##  9  2021     1     1 9E      Endeavor Air Inc.     
-## 10  2021     1     1 YX      Republic Airline      
-## # … with 44,126 more rows</code></pre>
 <p><strong>Q - </strong> Suppose you wanted to make a map of the route of every flight from RDU. What variables would you need from which datasets?</p>
 <p>Let’s add latitude and longitude information of the destination airports in <code>flights</code>. Note these <code>flights</code> and <code>airports</code> have no variables in common so we will have to specify the variable to join by using <code>by =</code>. Check out the documentation for more information.</p>
 <pre class="r"><code>flights %&gt;% 
-  left_join(airports %&gt;% 
-              select(faa, lat, lon), 
-            by = c(&quot;dest&quot; = &quot;faa&quot;))</code></pre>
-<pre><code>## # A tibble: 44,136 × 21
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2021     1     1      552            600        -8      725            758
-##  2  2021     1     1      553            600        -7      704            722
-##  3  2021     1     1      557            600        -3      722            727
-##  4  2021     1     1      648            654        -6      749            807
-##  5  2021     1     1      655            700        -5      850            915
-##  6  2021     1     1      701            705        -4      847            912
-##  7  2021     1     1      701            705        -4      826            837
-##  8  2021     1     1      715            700        15      935            926
-##  9  2021     1     1      722            730        -8      922            945
-## 10  2021     1     1      724            730        -6      844            909
-## # … with 44,126 more rows, and 13 more variables: arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
-## #   lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
+  left_join(______, 
+            by = c(&quot;____&quot; = &quot;faa&quot;))</code></pre>
+</div>
 </div>
 <div id="practice" class="section level2">
 <h2>Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Create a new dataset <code>dest_delays</code> with the median arrival delay in 2021 for each destination. Note this question does not require you to use joins.</p>
+<li>Create a new dataset <code>dest_delays</code> with the median arrival delay in 2021 for each destination. Note this question does not require you to use joins.</li>
+</ol>
+<pre class="r"><code># code here</code></pre>
 <ul>
 <li><strong>Q - </strong> How many different destinations could you visit directly from RDU in 2021?</li>
-</ul></li>
-<li><p>Join <code>dest_delays</code> and <code>airports</code>, only including observations that have both delay and airport information. Note <code>dest_delays</code> and <code>airports</code> have no variables in common so you will need to specify the variables to join using <code>by</code> as in the example above.</p>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Join <code>dest_delays</code> and <code>airports</code>, only including observations that have both delay and airport information. Note <code>dest_delays</code> and <code>airports</code> have no variables in common so you will need to specify the variables to join using <code>by</code> as in the example above.</li>
+</ol>
+<pre class="r"><code># code here</code></pre>
 <ul>
 <li><strong>Q - </strong> Are all of the observations in <code>dest_delays</code> included in the new dataset you created by joining <code>dest_delays</code> and <code>airports</code>? Use an appropriate join function to investigate this issue and determine what is going on here.</li>
-</ul></li>
-</ol>
-<!-- SJU did not have airports information.  -->
+</ul>
+<pre class="r"><code># code here</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Is there a relationship between the age of a plane and its delays? The plane tail number is given in the <code>tailnum</code> variable in the <code>flights</code> dataset. The year the plane was manufactured is given in the <code>year</code> variable in the <code>planes</code> dataset.</p>
-<ul>
-<li><p>Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in <code>plane_delays</code>.</p></li>
-<li><p>Step #2: Join <code>plane_delays</code> to the <code>planes</code> data using an appropriate join and then use <code>mutate</code> to create an age variable.</p></li>
-<li><p>Step #3: Finally, create an effective visualization of the data.</p></li>
-</ul></li>
+<li>Is there a relationship between the age of a plane and its delays? The plane tail number is given in the <code>tailnum</code> variable in the <code>flights</code> dataset. The year the plane was manufactured is given in the <code>year</code> variable in the <code>planes</code> dataset.</li>
 </ol>
+<ul>
+<li>Step #1: Start by finding the average arrival delay for each plane and store the resulting dataset in <code>plane_delays</code>.</li>
+</ul>
+<pre class="r"><code># code here</code></pre>
+<ul>
+<li>Step #2: Join <code>plane_delays</code> to the <code>planes</code> data using an appropriate join and then use <code>mutate</code> to create an age variable.</li>
+</ul>
+<pre class="r"><code># code here</code></pre>
+<ul>
+<li>Step #3: Finally, create an effective visualization of the data.</li>
+</ul>
+<pre class="r"><code># code here</code></pre>
 </div>
 <div id="submitting-application-exercises" class="section level2">
 <h2>Submitting Application Exercises</h2>

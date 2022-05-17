@@ -216,5 +216,6 @@ Go to [AE 05: Data Wrangling 1](https://sta199-summer22.netlify.app/appex/ae05_B
 
 - Submit your `ae04`
 
-- Submit your `ae05`
+- Complete up to `filter()` in `ae05`
 
+- HW 01 released 

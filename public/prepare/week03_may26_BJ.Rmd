@@ -1,0 +1,24 @@
+---
+title: "Prepare: May 26"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Conditional Probability](https://warpwire.duke.edu/w/9RUGAA/)
+
+- [Slides](https://sta198f2021.github.io/website/slides/week-02/w2-l04-condprob.html)
+
+`r emo::ji("movie_camera")` Watch [Simpson's Paradox](https://www.youtube.com/watch?v=sdas62v0iJU)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d16-simpsons-paradox/u2-d16-simpsons-paradox.html#1)
