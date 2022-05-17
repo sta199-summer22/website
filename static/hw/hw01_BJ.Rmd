@@ -1,6 +1,6 @@
 ---
 title: "Homework #01: Data Visualization and Wrangling"
-subtitle: "due Wednesday, May 25 at 11:59 PM "
+subtitle: "due Tuesday, May 24 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "sta199-hw.css"
@@ -73,29 +73,34 @@ hawaii_nb <- st_read("data/hawaii_airbnb_neighborhood.shp", quiet = TRUE)
 names(hawaii_nb)[1:2] <- c("neighbourhood", "neighbourhood_group")
 ```
 
-1. How many observations (rows) does the dataset `hawaii` have? 
-How many variables (columns)? What does each row in the dataset represent?
-Instead of hard coding the number in your answer, use inline code. 
-Hint: use "r ncol()" wrapped by a backtick in front and back. 
+1. How many observations (rows) does the dataset `hawaii` have? What does each row in the dataset represent? How many variables (columns) does `hawaii` have? Identify `review_scores_rating` and `room_type` as numeric continuous, numeric discrete, categorical ordinal, or categorical nominal.
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
 :::
 
-2. Reproduce the following tables. The column "count" represents the number of listings, and "percentage" is the associated percentage. For the final table, you may create a new variable using `ifelse()` for "minimum stay < 30?". 
+2. Reproduce the following tables. The column "count" represents the number of listings, and "percentage" is the associated percentage. Hint: 
 
-```{r hw1-ex2, echo=FALSE, out.width = '95%'}
-knitr::include_graphics("img/hw1_ex2_table.png")
+    - Include `knitr::kable(., digits = 3)` at the end of your pipeline to neatly display tables in your final document with numbers rounded to three decimal places. 
+    - You may create a new variable using `ifelse()` for the column "minimum stay < 30?". 
+    - When your variable name has space in between, you need quotation marks. 
+
+```{r hw1-ex2, echo=FALSE, out.width = '75%', fig.align='center'}
+knitr::include_graphics("img/hw1_ex2_tab1.png")
+knitr::include_graphics("img/hw1_ex2_tab2.png")
+knitr::include_graphics("img/hw1_ex2_tab3.png")
 ```
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
 :::
 
-3. Create a faceted histogram where each facet represents a neighborhood and displays the distribution of Airbnb prices in that neighborhood. In order to better understand the neighborhoods, fill histograms for neighborhoods in the same group (`neighbourhood_group`) in the same color. How would you describe the distribution of price in general? How do neighborhoods compare to each other in terms of price?
+3. Create a faceted histogram where each facet represents a neighborhood and displays the distribution of Airbnb prices in that neighborhood. In order to better understand the neighborhoods, fill histograms for neighborhoods in the same group (`neighbourhood_group`) in the same color. How would you describe the distribution of price in general? How do neighborhoods compare to each other in terms of price? 
+
     - Think critically about whether it makes more sense to stack the facets on top of each other in a column, lay them out in a row, or wrap them around. Along with your visualization, include your reasoning for the layout you chose for your facets. 
     - You should decide what makes a reasonable bin width for the histogram by trying out a few options.
     - You should decide if scales should be fixed or not. If the scales are fixed, every facet is drawn on the same ranges of x values and y values. 
+    - Make sure your figure is large enough to properly display histograms for all facets. 
 
 4. We will examine median listing prices of neighborhoods. 
     - Create a summary dataset called `hawaii_summary` with the minimum, mean, median, standard deviation, IQR, and maximum listing price in each neighborhood and identify neighborhoods with the top five median listing prices.
@@ -136,21 +141,21 @@ uploaded document, mark where each answer is to the exercises. If any
 answer spans multiple pages, then mark all pages. Associate the
 *"Workflow & formatting"* section with the first page.
 
-## Grading (50 pts)
+## Grading (60 pts)
 
 <br>
 
 | Component | Points |
 |:----------|:-------|
-| Ex 1      | 4      |
-| Ex 2      | 6      |
-| Ex 3      | 7      |
-| Ex 4      | 12     |
-| Ex 5      | 10     |
-| Ex 6      | 7      |
-| Workflow & formatting   | 4      |
+| Ex 1      | 5      |
+| Ex 2      | 8      |
+| Ex 3      | 8      |
+| Ex 4      | 15     |
+| Ex 5      | 8      |
+| Ex 6      | 6      |
+| Workflow & formatting   | 10      |
 
 **Grading notes**:
 
--   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and using tidyverse style throughout.
+- The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, using tidyverse style throughout, and following best visualization practices. 
 

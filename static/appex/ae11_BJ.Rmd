@@ -1,0 +1,102 @@
+---
+title: "AE 11: Conditional Probability"
+subtitle: "due Friday, May 27 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae11-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Bayes' Theorem
+
+The global coronavirus pandemic illustrates the need for accurate testing of COVID-19, as its extreme infectivity poses a significant public health threat. Due to the time-sensitive nature of the situation, the FDA enacted emergency authorization of a number of serological tests for COVID-19 in 2020. Full details of these tests may be found on its website [here](https://www.fda.gov/medical-devices/coronavirus-disease-2019-covid-19-emergency-use-authorizations-medical-devices/eua-authorized-serology-test-performance).
+
+We will define the following events:
+
+-   **Pos**: The event the Alinity test returns positive.
+-   **Neg**: The event the Alinity test returns negative.
+-   **Covid**: The event a person has COVID-19
+-   **No Covid**: The event a person does not have COVID-19
+
+The Abbott Alinity test has an estimated sensitivity of 100%, *P(Pos \| Covid) = 1*, and specificity of 99%, *P(Neg \| No Covid) = 0.99*.
+
+Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Covid) = 0.02*.
+
+### Part 1: Hypothetical 10,000
+
+**Q - ** Use the Hypothetical 10,000 to calculate the probability a person has COVID-19 given they get a positive test result, i.e. *P(Covid | Pos)*.
+
+|           | Covid | No Covid | Total |
+|-----------|-------|----------|-------|
+| **Pos**   |       |          |       |
+| **Neg**   |       |          |       |
+| **Total** |       |          | 10000 |
+
+### Part 2: Bayes' Theorem
+
+**Q - ** Use Bayes' Theorem to calculate *P(Covid|Pos)*. 
+
+**Q - ** Now suppose the prevalence of COVID-19 in the general population is 10%. Can you reuse code from the previous calculation somehow? 
+
+**Q - ** Under which prevalence level would you be worried more after you get a positive result? Does your expectation/intuition match the computed probabilities?
+
+## Simpson's paradox
+
+A study of conducted in Whickham, England recorded participants' age, smoking status at baseline between 1972 and 1974 and then 20 years later recorded their health outcome.
+
+Let's analyze the relationships between these variables, first two at a time, and then controlling for the third.
+
+Today's data lives in the `mosaicData` package. We start by loading relevant packages:
+
+```{r eval = TRUE, message = FALSE}
+library(tidyverse) 
+library(mosaicData) 
+```
+
+The dataset we'll use is called `Whickham`.
+You can find out more about the dataset by inspecting their documentation, which you can access by running `?Whickham` in the console.
+
+### Part 3: Variables
+
+**Q - ** How many variables are in this dataset? What type of variable is each? Display each variable using an appropriate visualization.
+
+### Part 4: Smoking vs. Health outcome
+
+**Q - ** Create a visualization depicting the relationship between smoking status and health outcome. Briefly describe the relationship, and evaluate whether this meets your expectations. Additionally, calculate the relevant conditional probabilities to help your narrative. Here is some code to get you started:
+
+```{r smoking-outcome, eval = FALSE}
+Whickham %>%
+  count(smoker, outcome) 
+```
+
+### Part 5: Smoking vs. Health outcome given Age 
+
+**Q - ** Create a new variable called `age_cat` using the following scheme:
+
+-   `age <= 44 ~ "18-44"`
+-   `age > 44 & age <= 64 ~ "45-64"`
+-   `age > 64 ~ "65+"`
+
+**Q - ** Re-create the visualization depicting the relationship between smoking status and health outcome, faceted by `age_cat`. What changed? What might explain this change? Extend the contingency table from earlier by breaking it down by age category and use it to help your narrative.
+
+```{r smoking-outcome-age, eval = FALSE}
+Whickham %>%
+  count(smoker, age_cat, outcome) 
+```
+
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
