@@ -1,0 +1,153 @@
+---
+title: "Lab #04: Probability"
+subtitle: "due Tuesday, May 31 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Goals
+
+- Calculate marginal, joint, and conditional probabilities in a reproducible way. 
+- Visualize categorical data.
+- Use visualizations and probabilities to describe the association between two categorical variables. 
+# Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and clone the repository entitled "lab04-GitHubUsername" in RStudio. 
+- Find `lab04.Rmd` to open the template R Markdown file. 
+
+Don’t forget to label your R chunk. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.
+
+# Packages 
+
+We will use the **tidyverse** and **knitr** packages in this lab.
+
+```{r, message = F}
+library(tidyverse)
+library(knitr)
+```
+
+# NC Courage
+
+Today, we will be working with data from the first three full seasons of the [NC Courage](https://www.nccourage.com/), a highly successful National Women's Soccer League (NWSL) team located near Duke in Cary, NC. The Courage moved to the Triangle from Western New York in 2017 and had three very successful first seasons, culminating in winning the championship game that was held at their stadium in Cary in 2019! (Data for this lab were sourced from the `nwslR` package on Github, and verified with the NC Courage website by Meredith Brown in a previous semester.)
+
+Use the code below to load the data set. 
+
+```{r, message = FALSE}
+courage <- read_csv("data/courage.csv")
+glimpse(courage)
+```
+
+1. How many observations are in this dataset? What does each observation represent? (You do not need to create a code chunk here)
+
+2. Each season the Courage play 26 games. We want to find out whether they win more in the early, middle or late season.
+
+- Create a new variable called `seasonal_category` that classifies NC courage games as `early` (games 1-9), `middle` (games 10-17), or `late` (18-26) season.
+- Create a new variable called `win` that takes the value `0` if the courage lose and `1` if they win.
+- Create a 3 x 2 tibble that has the season category (early, middle late) in one column and the proportion of wins in the second column.
+- Save your tibble as `seasonal_courage` **and** print it to the screen.
+- Describe what this table shows using the term "conditional probability".
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+3. By default, `R` will arrange the categories of a categorical variable in alphabetical order in any output and visualizations, but we want the levels for `seasonal_category` to be in logical order. To achieve this, we will use the `factor()` function to make both of these variables factors (categorical variables with ordering) and specify the levels we wish to use. 
+
+The code to reorder levels for `seasonal_category` is below.
+
+- Uncomment and run the code below. NOTE: you will need to save your output from the previous question as `seasonal_courage`.
+- Add one line of code to the chunk below so that the seasonal categories print in the correct order (`early` then `middle`, then `late`). Hint: what `dplyr` verb changes the order of output?
+
+```{r seasonal-order}
+# seasonal_courage %>%
+#   mutate(seasonal_category =
+#            factor(seasonal_category,
+#                   levels = c("early", "middle", "late")))
+```
+
+4. Based on the data, 
+- what is the marginal probability the Courage win a game?
+- What is the conditional probability the Courage win a game given it was a home game? 
+- Based on your findings, would you say winning is independent of whether they are playing at their home-field? Why? What does this say about home-field advantage?
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+5. Independence, contingency tables and ties.
+
+- Create a new column called `home_courage` that takes values "home" if Courage is the home team and "away" if Courage is the away team, save this data frame.
+
+- Using the data frame above, create a `3 x 2` contingency table with
+
+  - columns denoting whether or not a game is `home` or `away` for the Courage and
+  - rows denoting whether the Courage win, lose or tie.
+
+  - Your tibble output may be `3 x 3` counting the game result (lose, tie, win) as a column. When the same table viewed as a contingency table, however, we count their dimensions as `3 x 2`. 
+
+- Use the contingency table to find 
+  - The marginal probability a game is home
+  - The marginal probability a tie
+  - The conditional probability of a game being at home given the game was a tie
+
+Bayes' theorem tells us that
+
+$$
+P(\text{tie} \ | \ \text{home}) = \frac{P(\text{home} \ | \ \text{tie}) P(\text{tie})}{P(\text{home})}
+$$
+  
+  - Using Bayes' theorem, find and report the conditional probability a game is a tie given a game is home. Check your result using the contingency table.
+
+- Finally, is the probability of a tie independent of the Courage playing at home or away? Why?
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+# Submission
+
+Once you are fully satisfied with your lab, **Knit to .pdf** to create a PDF 
+document.
+
+Follow the instructions in previous labs to submit your PDF to Gradescope.
+
+Be sure to identify which problems are on each page using Gradescope.
+
+Once you are finished with the lab, you will submit the PDF document produced from your final *knit, commit, and push* to Gradescope.
+
+**Before you wrap up the assignment, make sure all documents are updated on your GitHub repo. We will be checking these to make sure you have been practicing how to commit and push changes.** **Remember -- you must turn in a .pdf file to the Gradescope page by the submission deadline to be considered "on time".**
+
+To submit your assignment:
+
+-   Go to <http://www.gradescope.com> and click *Log in* in the top right corner.
+-   Click *School Credentials* $\rightarrow$ *Duke NetID* and log in using your NetID credentials.
+-   Click on your *STA 199* course.
+-   Click on the assignment, and you'll be prompted to submit it.
+-   Mark all the pages associated with exercise. All the pages of your lab should be associated with at least one question (i.e., should be "checked").
+-   Select the first page of your .pdf submission to be associated with the *"Workflow & formatting"* question.
+
+# Grading (50 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 2      |
+| Ex 2      | 10     |
+| Ex 3      | 3      |
+| Ex 4      | 10     |
+| Ex 5      | 20     |
+| Workflow & formatting   | 5      |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and having readable code that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)
