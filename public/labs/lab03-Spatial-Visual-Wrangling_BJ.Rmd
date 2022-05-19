@@ -51,7 +51,7 @@ library(sf)
 
 The data set `ncbikecrash` is available in the `dsbox` package and contains all NC bike crash data from 2007 - 2014. Check the documentation of the data by typing `?ncbikecrash` in your console. 
 
-1. Create a line plot displaying temporal changes of the number of bike accidents where the drivers age is 0 to 19 with points at each year. Make each year have a tick and a label on the x-axis. (Hint: you may use `scale_x_continuous()`.) Please describe what you observe. 
+1. Create a line plot displaying temporal changes of the number of bike accidents where the drivers age is between 0 and 19, inclusive, with points at each year. Make each year have a tick and a label on the x-axis. Hint: you may use  `geom_line()`, `geom_point()`, and `scale_x_continuous(breaks = 2007:2014)`. Please describe what you observe. 
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
@@ -153,10 +153,10 @@ To submit your assignment:
 | Ex 1      | 7      |
 | Ex 2      | 9      |
 | Ex 3      | 10     |
-| Ex 4      | 5      |
+| Ex 4      | 6      |
 | Ex 5      | 7      |
 | Ex 6      | 4      |
-| Workflow & formatting   | 8      |
+| Workflow & formatting   | 7      |
 
 **Grading notes**:
 

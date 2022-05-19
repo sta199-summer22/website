@@ -1,6 +1,6 @@
 ---
 title: "AE 07: Spatial Data and Visualization"
-subtitle: "due Friday, May 20 at 9:29am"
+subtitle: "due Monday, May 23 at 9:29am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
@@ -96,36 +96,34 @@ The `sf` package plays nicely with our earlier data wrangling functions from `dp
 
 #### `filter()`
 
-Compare county FIPS from two data sets by filtering for Durham county in NC. The state FIPS for NC is 37. Check variable types before filtering. 
+Compare county FIPS from two data sets by filtering for Durham county in NC. The state FIPS for NC is 37. Check variable names, types, and value formats before filtering. 
 
-```{r filter}
+```{r filter, eval = FALSE}
 us_counties %>% 
-  filter(county == "Durham", statefips == "37") 
+  filter(____, ____) 
 
 covid %>% 
-  filter(county == "Durham County", state == "North Carolina")
+  filter(____, ____) 
 ```
 
 **Q - **How are they different?
 
 #### `mutate()`
 
-In `us_counties` data, we will create a new variable `county_fips` that exactly matches `county_fips` from `covid` data. Here we use `paste0()` that concatenates strings. 
+In `us_counties` data, we will create a new variable `county_fips` that exactly matches `county_fips` from `covid` data. Here we use `paste0()` to concatenate strings. 
 
 ```{r mutate}
 us_counties <- us_counties %>% 
   mutate(county_fips = paste0(statefips, countyfips))
-us_counties$county_fips %>% 
-  head(5)
 ```
 
 #### `select()`
 
-Select `county` and `county_fips` from `us_counties`. 
+Let's check if `county_fips` is well created as we intended by selecting `statefips`, `countyfips`, and `county_fips` from `us_counties`. 
 
 ```{r select}
 us_counties %>% 
-  select(county, county_fips)
+  select(statefips, countyfips, county_fips)
 ```
 
 Notice that geometries are "sticky". They are kept until deliberately dropped using 
@@ -143,6 +141,11 @@ us_counties %>%
 
 Create a new `sf` object `covid_sf` by joining `covid` and `us_counties` keeping all rows in `covid`. Note that two variable names are common, namely, `county_fips` and `county`, in both data frames. 
 
+```{r before-join}
+glimpse(covid)
+glimpse(us_counties)
+```
+
 **Q - **Which variable should we use to join the data frames by? Can we use any? Why or why not? 
 
 ```{r join}
@@ -156,13 +159,11 @@ covid_sf
 
 #### `group_by()`, `summarize()`
 
-Using `covid`, let's compute the total population across counties in different Covid-19 community levels based on the latest data (`date == "2022-05-05"`).
+Using `covid`, let's compute the total population living in counties with each of the Covid-19 community levels based on the latest data (`date == "2022-05-05"`). Complete the code chunk below.
 
-```{r summarize}
+```{r summarize, eval = FALSE}
 covid %>% 
   filter(date == "2022-05-05") %>% 
-  group_by(covid_community_level) %>%
-  summarize(tot_pop = sum(county_population))
 ```
 
 ### Part 3: `sf` and `ggplot`
@@ -180,21 +181,21 @@ covid_sf %>%
 
 Let's try NC.
 
-```{r plot-nc, fig.width=10, fig.height=4}
+```{r plot-nc, fig.width=10, fig.height=4, eval = FALSE}
 covid_sf %>% 
-  filter(state == "North Carolina") %>% 
+  filter(state == "_____") %>% 
   ggplot() + 
-  geom_sf() + 
+  geom_xxxx() + 
   labs(title = "NC counties")
 ```
 
 Now adjust the theme with `theme_bw()`.
 
-```{r plot-theme, fig.width=10, fig.height=4}
+```{r plot-theme, fig.width=10, fig.height=4, eval = FALSE}
 covid_sf %>% 
-  filter(state == "North Carolina") %>% 
+  filter(state == "_____") %>% 
   ggplot() + 
-  geom_sf() + 
+  geom_xxxx() + 
   labs(title = "NC counties") +
   theme_bw() # white canvas
 ```
@@ -207,11 +208,11 @@ theme_set(theme_bw())
 
 We now fill each county by the latest value of Covid-19 community level (`date == "2022-05-05"`). To match colors used in CDC, we use `scale_fill_manual()`. 
 
-```{r plot-covid-us, fig.width=10, fig.height=6}
+```{r plot-covid-us, fig.width=10, fig.height=6, eval = FALSE}
 covid_sf %>% 
-  filter(date == "2022-05-05") %>% 
+  ______(date == "2022-05-05") %>% 
   ggplot() + 
-  geom_sf(aes(fill = covid_community_level)) + 
+  geom_sf(aes(fill = _______)) + 
   labs(title = "Covid-19 community level across US counties as of May 5, 2022", 
        fill = "Covid-19 community level") +
   scale_fill_manual(values = c("High" = "#fb8b5b",
@@ -221,12 +222,12 @@ covid_sf %>%
 
 Now adjust `color` in `geom_sf` to change the color of the county borders.
 
-```{r plot-covid-us-2, fig.width=10, fig.height=6}
+```{r plot-covid-us-2, fig.width=10, fig.height=6, eval = FALSE}
 covid_sf %>% 
   filter(date == "2022-05-05") %>% 
   ggplot() + 
   geom_sf(aes(fill = covid_community_level), # mapping
-          color = NA) + # setting
+          _________) + # setting
   labs(title = "Covid-19 community level across US counties as of May 5, 2022", 
        fill = "Covid-19 community level") +
   scale_fill_manual(values = c("High" = "#fb8b5b",
@@ -241,7 +242,7 @@ covid_sf %>%
   filter(date == "2022-05-05") %>% 
   ggplot() + 
   geom_sf(aes(fill = covid_community_level), # mapping
-          size = 0) + # setting
+          _________) + # setting
   labs(title = "Covid-19 community level across US counties as of May 5, 2022", 
        fill = "Covid-19 community level") +
   scale_fill_manual(values = c("High" = "#fb8b5b",
@@ -256,7 +257,7 @@ covid_sf %>%
   filter(date == "2022-05-05") %>% 
   ggplot() + 
   geom_sf(aes(fill = covid_community_level), # mapping
-          alpha = 1) + # setting
+          _________) + # setting
   labs(title = "Covid-19 community level across US counties as of May 5, 2022", 
        fill = "Covid-19 community level") +
   scale_fill_manual(values = c("High" = "#fb8b5b",
@@ -267,79 +268,32 @@ covid_sf %>%
 **Q - **What is your final choice of `color`, `size`, and `alpha`? 
 
 ```{r plot-covid-us-final, fig.width=10, fig.height=6}
-
+# code here 
 ```
 
 **Q - **Create the same plot for NC counties only. Different choices of `color`, `size`, and `alpha` might be more appealing in this case. 
 
 ```{r plot-covid-nc-final, fig.width=10, fig.height=4}
-covid_sf %>% 
-  filter(date == "2022-05-05", 
-         state == "North Carolina") %>% 
-  ggplot() + 
-  geom_sf(aes(fill = covid_community_level)) + 
-  labs(title = "Covid-19 community level across NC counties as of May 5, 2022", 
-       fill = "Covid-19 community level") +
-  scale_fill_manual(values = c("High" = "#fb8b5b",
-                               "Medium" = "#f9f99d", 
-                               "Low" = "#00cc99"))
+# code here 
 ```
 
 **Q - ** What is the county that has a different community level than the rest of the counties in NC? 
-```{r find-medium, include = FALSE}
-covid_sf %>% 
-  filter(date == "2022-05-05", 
-         state == "North Carolina", 
-         covid_community_level == "Medium")
+```{r find-medium}
+# code here 
 ```
 
 We can visualize temporal trends of Covid-19 community levels by faceting. 
 
 **Q - **Create a faceted plot of US counties over all available dates where each county is filled with Covid-19 community level. Briefly explain the spatial and temporal trends. 
 
-```{r plot-covid-us-facet, out.width="100%", include = FALSE}
-covid_sf %>% 
-  ggplot() + 
-  geom_sf(aes(fill = covid_community_level), 
-          color = NA) + 
-  facet_wrap(~ date) + 
-  labs(title = "Covid-19 community level across US counties since Feb 2022", 
-       fill = "Covid-19 community level") +
-  scale_fill_manual(values = c("High" = "#fb8b5b",
-                               "Medium" = "#f9f99d", 
-                               "Low" = "#00cc99"))
+```{r plot-covid-us-facet, out.width="100%"}
+# code here 
 ```
 
 **Q - **Repeat the previous exercise for states of your choosing. 
 
-```{r plot-covid-nc-facet, out.width="100%", include = FALSE}
-covid_sf %>% 
-  filter(state == "North Carolina") %>% 
-  ggplot() + 
-  geom_sf(aes(fill = covid_community_level)) + 
-  facet_wrap(~ date) + 
-  labs(title = "Covid-19 community level across NC counties since Feb 2022", 
-       fill = "Covid-19 community level") +
-  scale_fill_manual(values = c("High" = "#fb8b5b",
-                               "Medium" = "#f9f99d", 
-                               "Low" = "#00cc99"))
-```
-
-
-```{r plot-covid-ny-facet, out.width="100%", include = FALSE}
-covid_sf %>% 
-  filter(state %in% c("New York", "Vermont", "New Hampshire", 
-                      "Maine", "Massachusetts", "Connecticut", 
-                      "Rhode Island", "New Jersey")) %>% 
-  ggplot() + 
-  geom_sf(aes(fill = covid_community_level)) + 
-  facet_wrap(~ date) + 
-  labs(title = "Covid-19 community level in Northeastern US since Feb 2022", 
-       fill = "Covid-19 community level") +
-  scale_fill_manual(values = c("High" = "#fb8b5b",
-                               "Medium" = "#f9f99d", 
-                               "Low" = "#00cc99")) + 
-  theme(legend.position = "bottom")
+```{r plot-covid-facet, out.width="100%"}
+# code here 
 ```
 
 ## Practice
@@ -347,7 +301,7 @@ covid_sf %>%
 (1) Write a brief research question that you could answer with this dataset and then investigate it here.
 
 ```{r practice-1}
-
+# code here 
 ```
 
 (2) What are limitations of your visualizations above?

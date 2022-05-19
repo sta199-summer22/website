@@ -118,9 +118,7 @@ Go to [AE 06: Data Wrangling 2](https://sta199-summer22.netlify.app/appex/ae06_B
 
 ## Bulletin
 
-- Watch videos for [Prepare: May 19](https://sta199-summer22.netlify.app/prepare/week02_may19_BJ.html)
-
-- Submit your `ae05`
+- Watch videos for [Prepare: May 20](https://sta199-summer22.netlify.app/prepare/week02_may20_BJ.html)
 
 - Submit your `ae06`
 

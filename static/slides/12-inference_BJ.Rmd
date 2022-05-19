@@ -1,0 +1,299 @@
+---
+title: "Foundations of Inference"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Scientific Studies and Confounding](https://youtu.be/WnMzTBrZDcc)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d15-studies-confounding/u2-d15-studies-confounding.html#1)
+
+---
+
+## Today's Goal 
+
+- Understand statistical process terminology
+- Understand the types of conclusions that can be made given the underlying statistical process
+- Learn to simulate from a binomial distribution
+
+---
+
+## Quiz 
+
+**Q - Find the correct term, a mathematical notation with events** $A$ **and** $B$, **and an example for each of the following descriptions.**
+
+"The probability an event occurs regardless of values of the other event"
+
+--
+
+- Marginal probability 
+
+--
+
+- $P(A)$ or $P(B)$
+
+--
+
+- The probability that a randomly selected student in STA199 favors dogs over cats.
+
+---
+
+## Quiz 
+
+**Q - Find the correct term, a mathematical notation with events** $A$ **and** $B$, **and an example for each of the following descriptions.**
+
+"The probability two or more events simultaneously occur"
+
+--
+
+- Joint probability 
+
+--
+
+- $P(A \cap B)$ 
+
+--
+
+- The probability that a randomly selected student in STA199 favors dogs **and** their favorite movie genre is drama.
+
+---
+
+## Quiz 
+
+**Q - Find the correct term, a mathematical notation with events** $A$ **and** $B$, **and an example for each of the following descriptions.**
+
+"The probability an event occurs given the other has occurred"
+
+--
+
+- Conditional probability 
+
+--
+
+- $P(A|B) = \frac{P(A \cap B)}{P(B)}$ or $P(B|A)$
+
+--
+
+- The probability that a randomly selected student in STA199 favors dogs **given** their favorite movie genre is drama.
+
+--
+
+- $A \text{ given } B$ restricts our attention to $B$ from the whole sample space $\Omega$.
+
+---
+
+## Quiz 
+
+**Q - What is the multiplicative rule of probability?** 
+
+--
+
+$$P(A \cap B) = P(A|B)P(B)$$
+
+Comes directly from definition of conditional probability.
+
+--
+
+**Q - What is the law of total probability?** 
+
+--
+
+$$P(A) = P(A|B)P(B) + P(A|B^c)P(B^c) = P(A \cap B) + P(A \cap B^c)$$
+
+Let's verify it with a Venn Diagram!
+
+---
+
+## Quiz 
+
+**Q - What are the independent events?**
+
+--
+
+- Knowing one event has occurred does not lead to any change in the probability we assign to another event.
+
+--
+
+- $P(A|B) = P(A)$ or $P(B|A) = P(B)$
+
+- $P(A\cap B) = P(A)P(B)$ if $A$ and $B$ are independent.
+
+--
+
+- P(dogs|drama) = P(dogs)
+
+- Knowing one's movie taste tells us nothing about his/her preference of dogs over cats. 
+
+---
+
+## Quiz 
+
+**Q - Are two disjoint events with positive marginal probability independent?**
+
+--
+
+No
+
+$P(A)P(B) > 0$ while $P(A \cap B)=0$ and thus $P(A \cap B) \neq P(A)P(B)$.
+
+---
+
+**Q - Are dying and abstaining from coffee independent events?**
+
+Let $A$ be the event that a man died and $B$ be the event that a man was a non-coffee drinker. 
+
+.midi[
+```{r, echo = F}
+coffee <- c(rep("Does not drink coffee", 6477), 
+            rep("Drinks coffee occasionally", 29809), 
+            rep("Drinks coffee regularly", 28535))
+died <- c(rep("Died", 1039), rep("Did not die", 5438), 
+          rep("Died", 4440), rep("Did not die", 25369),
+          rep("Died", 3601), rep("Did not die", 24934))
+knitr::kable(table(coffee, died))
+```
+]
+
+--
+
+- $P(A) = 9080/64821$
+- $P(B) = 6477/64821$
+- $P(A \cap B) = 1039/64821$
+--
+
+- $P(A)P(B) = 0.014 \approx P(A \cap B) = 0.016$
+
+--
+They are independent!
+
+---
+
+## Quiz 
+
+**Q - What is the probability that a man was a non-coffee drinker given he died?**
+
+- $P(A) = 9080/64821$
+- $P(B) = 6477/64821$
+- $P(A \cap B) = 1039/64821$
+
+--
+
+$P(B|A) = P(B \cap A) / P(A) = 1039 / 9080 = 0.114$ 
+
+---
+
+## Quiz 
+
+**Q - What is the probability that a man died given he was a non-coffee drinker?**
+
+- $P(A) = 9080/64821$
+- $P(B) = 6477/64821$
+- $P(A \cap B) = 1039/64821$
+
+--
+
+$P(A|B) = P(A \cap B) / P(B) = 1039 / 6477 = 0.160$ 
+
+---
+
+## Quiz 
+
+**Q - ** $P(A|B)$ **and** $P(B|A)$ **are not the same. Are they related in some way?**
+
+--
+
+Yes - According to Bayes' theorem, 
+
+$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}.$$
+If we know marginal probabilities and one conditional probability, we can always compute the other conditional probability! 
+
+This can be viewed as updating prior belief $P(A)$ to posterior belief $P(A|B)$ after seeing new information $B$. 
+
+---
+
+## Quiz 
+
+**Q - Let's recompute** $P(A|B)$ **using Bayes' theorem.**
+
+- $P(A) = 9080/64821$
+- $P(B) = 6477/64821$
+- $P(B|A) = 1039/9080$
+
+--
+
+\begin{align}
+P(A|B) &= \frac{P(B|A)P(A)}{P(B)} \\
+&= \frac{1039/9080 \times 9080/64821}{6477/64821} \\
+&= \frac{1039}{6477} = 0.160
+\end{align}
+
+---
+
+## Quiz 
+
+**Q - What is Simpson's paradox?**
+
+--
+
+The effect where the inclusion of a third variable in the analysis can change the apparent relationship between the other two variables
+
+--
+
+**Q - Explain Simpson's paradox in UC Berkeley admission data in mathematical expressions.**
+
+--
+
+Overall, P(Admit|Female) $<$ P(Admit|Male) 
+
+However, P(Admit|Dept, Female) $\approx$ P(Admit|Dept, Male) or even P(Admit|Dept, Female) $>$ P(Admit|Dept, Male) 
+
+---
+
+## Quiz 
+
+**Q - The effect of the function** `group_by()` **applies to all the subsequent operations. What function do we need to undo grouping?**
+
+--
+
+- `ungroup()`
+
+- `summarize()` also peels off one layer of grouping by default; if there were multiple grouping variables, then the dataset would still be grouped even after summarize.
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 11: Conditional Probability](https://sta199-summer22.netlify.app/appex/ae11_BJ.html)
+
+---
+
+## Bulletin
+
+- Exam 01 on Friday! 
+
+
+

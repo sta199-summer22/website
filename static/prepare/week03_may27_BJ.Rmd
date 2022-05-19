@@ -1,0 +1,20 @@
+---
+title: "Prepare: May 27"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Scientific Studies and Confounding](https://youtu.be/WnMzTBrZDcc)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d15-studies-confounding/u2-d15-studies-confounding.html#1)
