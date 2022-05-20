@@ -62,8 +62,9 @@ What we want to learn and what we are curious about. For example:
 
 --
 
-- Entire group we would like to make conclusions about 
-- If we had data from every unit in the population, we could just calculate what we wanted and be done!
+- Entire group we are interested in studying 
+- **Parameter**: a numerical quantity derived from the population (almost always unknown)
+- If we had data from every unit in the population, we could just calculate population parameters and be done!
 
 --
 
@@ -71,8 +72,9 @@ What we want to learn and what we are curious about. For example:
 
 --
 
-- The group we have collected data from 
-- Usually we have to settle with a sample because the population is just too big! 
+- The group we have collected data from (a subset of our population of interest)
+- **Statistic**: a numerical quantity derived from a sample 
+- Usually we have to settle with a sample and draw conclusions from it because the population is just too big! 
 
 ---
 
@@ -84,6 +86,7 @@ What we want to learn and what we are curious about. For example:
 
 - A sample that represents the target population well (has similar characteristics as the population) is a good sample
 - Representativeness is what makes the conclusions and inferences from the sample generalizable and valid to the whole population
+- Similar to tasting a spoonful of soup while cooking to make an inference about the entire pot 
 
 ---
 
@@ -303,7 +306,7 @@ Go to [AE 10: Introduction to Probability](https://sta199-summer22.netlify.app/a
 
 ## Bulletin
 
-- Homework 01 due today at 11:59pm
+- HW 01 due today at 11:59pm
 
 
 

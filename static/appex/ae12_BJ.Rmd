@@ -1,0 +1,176 @@
+---
+title: "AE 12: Foundations of Inference"
+subtitle: "due Tuesday, May 31 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae12-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Statistical Process Terminology
+
+### Part 1: Population vs. Sample  
+
+Go to the Monmouth University Polling Institute [website](https://www.monmouth.edu/polling-institute/reports/) and select a poll of interest. Briefly read the poll results and methodology section at the end. Try and identify the following for a different example: 
+
+- Title: [Steady Support for Russia Sanctions](https://www.monmouth.edu/polling-institute/reports/monmouthpoll_us_051622/)
+
+- Population of interest: Americans with age 18 and older 
+
+- Parameter of interest: Proportion supporting the economic sanctions imposed on Russia in response to its invasion of Ukraine
+
+- Sample: A nationwide random sample of adults age 18 and older
+
+- Sample size: 807
+
+- Sample statistic: Proportion supporting the economic sanctions imposed on Russia in response to its invasion of Ukraine
+
+- Sample statistic’s value: 77%
+
+### Part 2: Scientific Studies 
+
+Researchers aim to evaluate the effects of prenatal exposure to air pollutants on neurodevelopmental and behavioral development in children. They recruited a total of 700 African American and Dominican women from two prenatal clinics in Northern Manhattan who satisfied the following inclusion criteria: 
+- enrolled in a longitudinal birth cohort as a mother-child dyad
+- aged 18-35
+- had first prenatal visit before the 20th week of gestation 
+- were free of diabetes, hypertension, or known HIV
+- did not report tobacco or illicit drug use 
+- resided in the study area for at least one year prior to pregnancy 
+
+For neurodevelopmental and behavioral development in children, an IQ test was administered to children at age seven. 
+
+**Q - ** What type of study is it? What kind of conclusions can we make?
+
+**Q - ** Identify a response variable, explanatory variables, and confounding variables. 
+
+**Q - ** Is random sampling employed? Can we extend findings in the study to a broader population, for instance, mother-child dyads across the US?
+
+**Q - ** What could have been done differently for a more representative sample? 
+
+## Data Generative Process 
+
+```
+Your friend wants to play a game. The game goes: you flip a coin. If it's tails then the turn goes to your friend. If it's heads, you keep playing. 
+```
+
+Let's flip a real coin for 10 times and see how this game would go.
+
+We will say a Tails is 0 and a Heads is 1. To be more precise, we will say: 
+
+Let $X$ be a **random variable** that maps the outcome ("Heads", "Tails") to the numbers (1, 0) respectively.
+
+A **random variable** takes each outcome (possibly a categorical variable) in the sample space and maps it to a number.
+
+### Part 3
+
+Input the data.
+
+```{r flip-coin}
+# coin_flips = c()
+```
+
+**Q - **Do you think this coin is fair? Why?
+
+Let's come up with a **data generative process**, a model for how the data was generated.
+
+We might imagine that $X$ (the outcome of an individual coin flip, represented as 0 or 1) is obeying some universal law. Each time I flip the coin, there is a probability $p$ that the coin lands heads. What is the probability the coin lands tails? 
+
+This probability $p$ is fixed to this coin. For example, some scenarios:
+
+- the coin is fair, $p = 0.5$
+- the coin is double-sided, $p = 0$ or $p = 1$
+- the coin is weighted slightly in favor tails: $p = 0.4$
+
+We say "$X$ is Bernoulli distributed with parameter $p$."
+
+$$
+X \sim \text{Bernoulli}(p)
+$$
+
+this means $P(X = 1) = p$ and $P(X = 0) = 1-p$.
+
+Now we can frame questions about the coin being fair in terms of $p$.
+
+### Part 4
+
+Let's flip a coin for another 10 times. 
+
+```{r coin-flips-part-2}
+# coin_flips = c(coin_flips, )
+```
+
+**Q - **What's the probability of this outcome if the coin is fair?
+
+More generally, we can define $Y$ to be the number of heads. In other words, $Y = \sum_{i=1}^{n} X_i = X_1 + X_2 + ... X_{n}$ where $n$ is the total number of coin flips. In our case, $n=20$. 
+
+We say "$Y$ follows a Bionomial distribution with parameters $n$ and $p$". 
+
+$$
+Y \sim \text{Binomial}(n, p)
+$$
+
+this means:
+
+$$
+P(Y = y) = {n \choose y} p^{y} (1-p)^{n-y}
+$$
+Notice:
+
+- the number of heads observed is lower case $y$
+- $y$ is the number of heads
+- $n-y$ is the number of tails 
+
+### Part 5
+
+We can simulate much more coin flips. The code below simulates 100,000 coin flips where each flip is Bernoulli distributed with $p = 0.5$. Note, Bernoulli(p) $\stackrel{d}{=}$ Binomial(1, p).
+
+```{r bernoulli-simulation}
+set.seed(527)
+flips <- rbinom(100000, 1, 0.5)
+```
+
+We can simulate 20 coin flips for multiple times as well. The code below simulates the number of heads out of 20 coin flips for 50,000 times. Each element $Y$ follows a Binomial distribution with $n = 20$ and $p = 0.5$. 
+
+```{r binomial-simulation}
+set.seed(527)
+total_head <- rbinom(50000, 20, 0.5)
+```
+
+**Q - ** What does `rbinom()` do? 
+
+### Practice 
+
+(1) Using `total_head`, find the probability of seeing 15 tails out of 20 coin flips. 
+
+```{r prac-1}
+```
+
+(2) Plot a histogram of the simulation. What does this show? 
+
+```{r load-package, message = FALSE}
+library(tidyverse)
+```
+
+```{r prac-2}
+```
+
+(3) What is the probability of seeing at least 15 tails? 
+
+```{r prac-3}
+```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+
