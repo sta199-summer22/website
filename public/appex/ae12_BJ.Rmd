@@ -36,7 +36,7 @@ Go to the Monmouth University Polling Institute [website](https://www.monmouth.e
 
 - Sample statistic’s value: 77%
 
-### Part 2: Scientific Studies 
+### Part 2: Scientific Studies^[Modified from Source: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1241351/]
 
 Researchers aim to evaluate the effects of prenatal exposure to air pollutants on neurodevelopmental and behavioral development in children. They recruited a total of 700 African American and Dominican women from two prenatal clinics in Northern Manhattan who satisfied the following inclusion criteria: 
 - enrolled in a longitudinal birth cohort as a mother-child dyad

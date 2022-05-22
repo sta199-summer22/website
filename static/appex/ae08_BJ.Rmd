@@ -87,7 +87,7 @@ df %>%
 
 ### Part 3: Misleading Truth^[Source: https://theconversation.com/even-the-most-beautiful-maps-can-be-misleading-126474]
 
-Sometimes, a completely honest, but not well thought out graph can distort the information that the visualization intends to show. 
+Sometimes, a completely honest, but not well-thought-out graph can distort the information that the visualization intends to show. 
 
 ```{r echo=FALSE, out.width = "60%", fig.align='center'}
 knitr::include_graphics("img/deprivation.png")
@@ -96,8 +96,6 @@ knitr::include_graphics("img/deprivation.png")
 **Q - ** What is the graph trying to show?
 
 **Q - ** Why is this graph misleading?
-
-This graph leads readers overlook the population size affected by the deprivation level. It only considers the geographic size based on the traditional map. 
 
 *"In general, highly deprived neighborhoods such as urban areas tend to be densely populated, 
 and they are less visible on a regular map. By contrast, wealthier suburban areas – which are often less densely populated and therefore much larger – dominate the map. So there’s a risk that readers might draw inaccurate conclusions about the level of deprivation in any given area."* 
@@ -116,11 +114,15 @@ A company uses a machine learning algorithm to determine which job advertisement
 
 **Q - ** What ethical considerations might be considered when reviewing this algorithm?
 
-**Simpson's paradox** is a phenomenon where conclusions drawn from analyzing subgroups differ from conclusions drawn from the aggregate group. Can you demonstrate Simpson's paradox with the data below? ^[Source:  https://www.randomservices.org/random/data/Berkeley.html]
+**Simpson's paradox** is a phenomenon where conclusions drawn from analyzing subgroups differ from conclusions drawn from the aggregate group. We will demonstrate Simpson's paradox with the data below. ^[Source:  https://www.randomservices.org/random/data/Berkeley.html]
 
 ```{r sp, message=F}
 berk <- read_csv("data/Berkeley_admissions.csv")
 ```
+
+**Q -** Let's compute total female / male applicants, the total number of 
+applicants accepted, and acceptance probabilities for female / male / all applicants.
+
 
 **Q -** So what happened at Berkeley?
 
@@ -133,7 +135,7 @@ A data analyst received permission to post a dataset that was scraped from a soc
 
 **Q - ** Why might it be problematic to post this dataset publicly?
 
-**Q - ** You want to make the data available so your analysis is transparent and reproducible. How can you modify the full data set to make the data available in an ethical way?
+**Q - ** You want to make the data available so your analysis is transparent and reproducible. How can you modify the full dataset to make the data available in an ethical way?
 
 ## Submitting Application Exercises
 

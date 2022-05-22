@@ -1,0 +1,72 @@
+# STA 199: Exam 01
+
+## Instructions
+
+- The exam questions are in the README portion of your repository entitled "exam01-GitHubUsername" at [the GitHub course organization page](https://github.com/sta199-summer22).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+- This exam is **due Monday, May 30 by 12:59pm**.
+
+- You must submit a PDF document to Gradescope that corresponds to an 
+`.Rmd` file on your GitHub repository in order to receive credit for
+this exam.
+
+  - If a PDF is not uploaded to Gradescope by the submission deadline, your
+latest commit prior to the deadline will be used as your submission.
+  - There will be a 5 percentage point (2.5 points) penalty for failing to 
+  submit a PDF to Gradescope.
+
+- Commit and push often and at appropriate times. Part of your grade will
+be based on quality of commit history.
+
+- **With the exception of major emergencies, late submissions will not be accepted.** 
+In the case of a major emergency, you should have your Dean send the instructor an excuse. 
+
+- **Start and submit the exam early** in order to avoid any last-minute technical issues.
+
+- **You may resubmit the exam before the deadline.**
+
+## Rules
+
+-   This is an individual assignment.
+-   Everything in your repository is for your eyes only.
+-   You may not collaborate or communicate anything about this exam to
+    **anyone** except the instructor. For example, you may not
+    communicate with other students, the TA, or post/solicit help on
+    the internet, email or via any other method of communication.
+-   You may use `R`, as well as any notes, books, or existing internet
+    resources to answer exam questions. If you use a resource outside of those
+    we used for class, you should cite it.
+-   You must cite any code you use as inspiration. A failure to cite is
+    plagiarism. Cite any sources by providing a link to the original
+    source in your exam write-up.
+-   No office hours will be held while the exam is live.
+-   Do not email the TA with questions.
+-   If you have questions, email the instructor. Questions should only be
+    about understanding the data or the exam’s instructions. You may not
+    ask questions on any topics from past assignments or material
+    related to the exam. Note: questions asked between 7:00am and 12:59pm Monday the 30th may not be answered. 
+-   The instructor will provide code debugging if needed, but this will
+    result in a **grade penalty** if needed. 
+
+## Academic Integrity
+
+By taking this exam, you pledge to uphold the Duke Community Standard:
+
+-   I will not lie, cheat, or steal in my academic endeavors;
+-   I will conduct myself honorably in all my endeavors; and
+-   I will act if the Standard is compromised.
+
+## Submission
+
+Please only upload your PDF document to Gradescope. Before you submit
+the uploaded document, mark the pages associate with each exercise. If
+any answer for an exercise spans multiple pages, mark all pages. Make sure to
+associate the “Workflow and formatting” section with the first page. 
+**Failure to mark the pages in Gradescope may result in point deductions.**
+
+Make sure that your uploaded PDF document matches your `.Rmd` and the
+PDF in your repository exactly. 
+**Points will be deducted for non-reproducibility.**
+

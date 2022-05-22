@@ -98,7 +98,7 @@ knitr::include_graphics("img/08/ga-dph-declining-bars-fixed.png")
 
 ## Quiz 
 
-**Q - Which of these is a way to help visualize uncertainty in the results a public opinion survey?**
+**Q - Which of these is a way to help visualize uncertainty in the results of a public opinion survey?**
 
 .pull-left[
 ```{r catalan-misleading, echo=FALSE, warning=FALSE, out.width = "100%"}
@@ -215,6 +215,8 @@ d.	Yes, the data were already public.
 
 F 
 
+--
+
 - gender-bias in Google translate and Amazon's hiring algorithm
 - race-bias in facial recognition and criminal sentencing
 
@@ -245,8 +247,8 @@ countdown::countdown(minutes = 3, seconds = 0)
 
 - Is it association or causality? 
 - Can I generalize the result to a bigger group? 
-- Are the axes correct and not distorted? 
-- Are the scales in intuitive and natural order? 
+- Are the scales correct and not distorted? 
+- Are the axes in intuitive and natural order? 
 - Do size / areas align well with associated figures? 
 - For estimates, how uncertain are they? 
 
@@ -288,7 +290,7 @@ countdown::countdown(minutes = 3, seconds = 0)
 ```
 --
 
-- Be familiar with research ethics, compliance, protocols, etc. through, e.g., the Collaborative Institutional Training Initiative (CITI) Program 
+- Be familiar with research ethics, compliance, protocols, etc.
 
 
 ---
@@ -310,7 +312,7 @@ Go to [AE 08: Data Science Ethics](https://sta199-summer22.netlify.app/appex/ae0
 
 - Lab 03 due today at 11:59pm
 
-- Homework 01 due Wednesday, May 25 at 11:59pm
+- HW 01 due Tuesday, May 24 at 11:59pm
 
 - Submit your `ae08`
 
