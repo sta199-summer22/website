@@ -48,8 +48,8 @@ Below are some common errors that have enough information to fix the problem.
 1. `...could not find function...`
 
 `R` can't find a function that you used. Did you include a code chunk loading
-the necessary packages? If you did is `eval = FALSE` included as a code chunk
-option?
+the necessary packages? If you did, is `eval = FALSE` included as a code chunk
+option? 
 
 2. `...object 'some-name-of-object' not found...`
 
@@ -57,7 +57,7 @@ option?
 formatted consistently, including correct capitalization? Was 
 `some-name-of-object` actually created in a code chunk where `eval` is not set
 to `FALSE`? Is the code chunk located **above** the code chunk where the
-error occurred? Is it stored via `<-`? The "Environment" pane can be helpful 
+error occurred? Is it stored via `<-` or `=`? The "Environment" pane can be helpful 
 here.
 
 3. `...unexpected 'some-symbol' in...`
@@ -106,7 +106,7 @@ library(tidyverse)
 ```{r line-by-line, eval = FALSE}
 mpg %>%
   filter(class == "subcmpct") %>%
-  group_by(drv)
+  group_by(drv) 
   summarize(median_cty_mpg = median(cty),
             sd_cty_mpg = sd(cty),
             avg_cty_mpg = average(cty))
@@ -164,10 +164,16 @@ a vignette. Vignettes are "discursive documents meant to illustrate and explain
 facilities in [a] package" (R-Project).
 
 Use `browseVignettes()` to see vignettes from all installed packages and
-`browseVignettes(package = some-package)` to see vignettes from a particular
+`browseVignettes(package = "some-package")` to see vignettes from a particular
 package. Use `vignette("vignette-name")` to see a particular vignette.
 
 Let's try examining a vignette from a previous lecture.
+
+```{r vignette, eval = FALSE}
+browseVignettes(package = "tidyverse")
+browseVignettes(package = "fivethirtyeight")
+browseVignettes(package = "dsbox")
+```
 
 **Step #6: Post to Slack (Not during exam!)**
 
@@ -201,12 +207,14 @@ Let's check out
 
 A reproducible example should be:
 
-- minimal: use as little code as possible to reproduce the issue and minimal dataset to demonstrate the problem
+- minimal: use as little code as possible to reproduce the issue and minimal 
+dataset to demonstrate the problem
 - complete: should include all aspects necessary to reproduce the problem 
   - `library`'s
   - R version (`sessionInfo()`)
   - Operating System 
-  - seed (`set.seed()`) for random numbers to enable others to replicaate **exactly** the same results 
+  - seed (`set.seed()`) for random numbers to enable others to replicaate 
+  **exactly** the same results 
 - reproducible: should generate the issue in question
 
 Let's explore real examples and try to answer them! 
@@ -242,6 +250,9 @@ ggplot(data = diamonds, mapping = aes(x = clarity)) +
 ```
 
 Check [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) for various ggplot2 themes.
+Note the `viridis` color palette is the default for ordered factors starting in `ggplot2_3.0.0`. 
+Click [here](https://github.com/tidyverse/ggplot2/blob/main/NEWS.md#scales-and-guides)
+for `ggplot2` NEWS.
 
 ## Submitting Application Exercises
 

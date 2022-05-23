@@ -131,7 +131,7 @@ applicants accepted, and acceptance probabilities for female / male / all applic
 
 ### Part 5: Ethics in Collecting & Handling Data 
 
-A data analyst received permission to post a dataset that was scraped from a social media site. The full dataset included name, username, email address, geographic location, IP (Internet protocol) address, demographic profiles, and preferences for relationships. The analyst removes name and email address from the data set in effort to de-identify it.
+A data analyst received permission to post a dataset that was scraped from a social media site. The full dataset included name, username, email address, geographic location, IP (Internet protocol) address, demographic profiles, and preferences for relationships. The analyst removes name and email address from the dataset in effort to de-identify it.
 
 **Q - ** Why might it be problematic to post this dataset publicly?
 
