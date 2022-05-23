@@ -84,7 +84,7 @@ lessons:
   - title: "Lab 04: Probability"
 #    lab: "lab04-Probability_BJ.html"
   - title: "Exam 01 released at 1pm"
-#    exam:
+#    exam: "exam01_instructions_BJ.html"
 
   - week: "Week 4"
     date: "Mon, May 30"
@@ -92,6 +92,8 @@ lessons:
   - date: "Tue, May 31"
     title: "Simulation-based Inference"
   - title: "Lab 05: Merge Conflicts"
+  - title: "Final Project Information"
+#    project: "project_BJ.html"
   - date: "Wed, Jun 1"
     title: "Hypothesis Testing 1"
   - date: "Thu, Jun 2"
