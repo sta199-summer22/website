@@ -19,6 +19,10 @@ output:
 
 ## Troubleshooting
 
+```{r load-package, message=FALSE}
+library(tidyverse)
+```
+
 `R` or `R Markdown` will provide an error message if a problem with a
 computation occurs.
 
@@ -51,6 +55,12 @@ Below are some common errors that have enough information to fix the problem.
 the necessary packages? If you did, is `eval = FALSE` included as a code chunk
 option? 
 
+```{r nofunc, eval = FALSE}
+mpg %>% 
+  ggplot(aes(x = dislp, y = manufacturer)) +
+  geom_density_ridges()
+```
+
 2. `...object 'some-name-of-object' not found...`
 
 `R` can't find `some-name-of-object`. Is `some-name-of-object` spelled and
@@ -60,11 +70,24 @@ to `FALSE`? Is the code chunk located **above** the code chunk where the
 error occurred? Is it stored via `<-` or `=`? The "Environment" pane can be helpful 
 here.
 
+```{r noobj, eval = FALSE}
+mgp %>% 
+  group_by(manufacturer) %>% 
+  summarize(mean_displ = mean(displ))
+```
+
 3. `...unexpected 'some-symbol' in...`
 
 Here `some-symbol` can be a comma, parenthesis, bracket, etc. This means the 
 code you are running is not correct syntactically. Do you have an extra comma, 
 parenthesis, bracket, or other symbol? Did you make a typo?
+
+```{r unexp, eval = FALSE}
+mpg %>% 
+  group_by(manufacturer) %>% 
+  summarize(mean_displ = mean(displ), 
+            sd_displ = sd(displ)))
+```
 
 4. `Error: attempt to use zero-length variable name`
 
@@ -72,19 +95,43 @@ This generally happens when you highlight the backticks in the code chunk
 in addition to the code. It can also occur if there is a stray `%>%` or `+` at 
 the end of a code chunk.
 
+```{r wrongsyn, eval = FALSE}
+mpg %>% 
+  group_by(manufacturer) %>% 
+  summarize(mean_displ = mean(displ), 
+            sd_displ = sd(displ)) %>%
+```
+
 5. `...requires the following missing aesthetics...`
 
 `ggplot()` is missing a necessary aesthetic. Is the `ggplot()` formatted 
 correctly? Is the aesthetic provided consistent with what is required? 
+
+```{r aesmissing, eval = FALSE}
+mpg %>% 
+  group_by(class) %>% 
+  summarize(mean_hwy = mean(hwy)) %>% 
+  ggplot(aes(y = class)) +
+  geom_bar(stat = "identity")
+```
 
 6. `object of type 'closure' is not subsettable`
 
 The above error is included because it is pretty common. It (usually) means
 that you tried to subset a function.
 
+```{r subsetfunc, eval = FALSE}
+glimpse[1]
+```
+
 7. `non-numeric argument to binary operator`
 
 Occurs when you mix different data types in a calculation.
+
+```{r computechar, eval = FALSE}
+mpg %>% 
+  mutate(cmt = cyl*trans)
+```
 
 Often, closely reading the error will allow you to fix the problem. 
 
@@ -98,10 +145,6 @@ code line-by-line to figure out where the error is occurring.
 
 The code chunk below has a few small errors. Let's demonstrate how running the
 code line-by-line helps us troubleshoot.
-
-```{r load-package, message=FALSE}
-library(tidyverse)
-```
 
 ```{r line-by-line, eval = FALSE}
 mpg %>%

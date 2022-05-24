@@ -262,6 +262,7 @@ div.tocify {
 </div>
 <div id="troubleshooting" class="section level2">
 <h2>Troubleshooting</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
 <p><code>R</code> or <code>R Markdown</code> will provide an error message if a problem with a computation occurs.</p>
 <p>Encountering errors is extremely common and figuring out how to fix them is frustrating and time-consuming. But errors are helpful! They provide you with information that will help you fix your code.</p>
 <p><strong>Scenario</strong>: You just finished your assignment (or so you thought). You click knit to PDF and get an error. Worse yet you try to run individual code chunks to debug the error and even more errors are showing up!</p>
@@ -275,36 +276,57 @@ div.tocify {
 <li><code>...could not find function...</code></li>
 </ol>
 <p><code>R</code> can’t find a function that you used. Did you include a code chunk loading the necessary packages? If you did, is <code>eval = FALSE</code> included as a code chunk option?</p>
+<pre class="r"><code>mpg %&gt;% 
+  ggplot(aes(x = dislp, y = manufacturer)) +
+  geom_density_ridges()</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><code>...object &#39;some-name-of-object&#39; not found...</code></li>
 </ol>
 <p><code>R</code> can’t find <code>some-name-of-object</code>. Is <code>some-name-of-object</code> spelled and formatted consistently, including correct capitalization? Was <code>some-name-of-object</code> actually created in a code chunk where <code>eval</code> is not set to <code>FALSE</code>? Is the code chunk located <strong>above</strong> the code chunk where the error occurred? Is it stored via <code>&lt;-</code> or <code>=</code>? The “Environment” pane can be helpful here.</p>
+<pre class="r"><code>mgp %&gt;% 
+  group_by(manufacturer) %&gt;% 
+  summarize(mean_displ = mean(displ))</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><code>...unexpected &#39;some-symbol&#39; in...</code></li>
 </ol>
 <p>Here <code>some-symbol</code> can be a comma, parenthesis, bracket, etc. This means the code you are running is not correct syntactically. Do you have an extra comma, parenthesis, bracket, or other symbol? Did you make a typo?</p>
+<pre class="r"><code>mpg %&gt;% 
+  group_by(manufacturer) %&gt;% 
+  summarize(mean_displ = mean(displ), 
+            sd_displ = sd(displ)))</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><code>Error: attempt to use zero-length variable name</code></li>
 </ol>
 <p>This generally happens when you highlight the backticks in the code chunk in addition to the code. It can also occur if there is a stray <code>%&gt;%</code> or <code>+</code> at the end of a code chunk.</p>
+<pre class="r"><code>mpg %&gt;% 
+  group_by(manufacturer) %&gt;% 
+  summarize(mean_displ = mean(displ), 
+            sd_displ = sd(displ)) %&gt;%</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><code>...requires the following missing aesthetics...</code></li>
 </ol>
 <p><code>ggplot()</code> is missing a necessary aesthetic. Is the <code>ggplot()</code> formatted correctly? Is the aesthetic provided consistent with what is required?</p>
+<pre class="r"><code>mpg %&gt;% 
+  group_by(class) %&gt;% 
+  summarize(mean_hwy = mean(hwy)) %&gt;% 
+  ggplot(aes(y = class)) +
+  geom_bar(stat = &quot;identity&quot;)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><code>object of type &#39;closure&#39; is not subsettable</code></li>
 </ol>
 <p>The above error is included because it is pretty common. It (usually) means that you tried to subset a function.</p>
+<pre class="r"><code>glimpse[1]</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li><code>non-numeric argument to binary operator</code></li>
 </ol>
 <p>Occurs when you mix different data types in a calculation.</p>
+<pre class="r"><code>mpg %&gt;% 
+  mutate(cmt = cyl*trans)</code></pre>
 <p>Often, closely reading the error will allow you to fix the problem.</p>
 <p><strong>Step #3: When in doubt, comment out.</strong></p>
 <p>Run the code line by line.</p>
 <p>For a code chunk with a number of lines, it is sometimes tricky to tell where exactly the error is occurring. In this situation, it is helpful to run the code line-by-line to figure out where the error is occurring.</p>
 <p>The code chunk below has a few small errors. Let’s demonstrate how running the code line-by-line helps us troubleshoot.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
 <pre class="r"><code>mpg %&gt;%
   filter(class == &quot;subcmpct&quot;) %&gt;%
   group_by(drv) 
@@ -367,7 +389,7 @@ browseVignettes(package = &quot;dsbox&quot;)</code></pre>
 <li>reproducible: should generate the issue in question</li>
 </ul>
 <p>Let’s explore real examples and try to answer them!</p>
-<p>🙋 <a href="https://stackoverflow.com/questions/24576515/relative-frequencies-proportions-with-dplyr/24576703#24576703">Ex 1</a>: I want relative frequencies with <code>dplyr</code>!</p>
+<p>🤚 <a href="https://stackoverflow.com/questions/24576515/relative-frequencies-proportions-with-dplyr/24576703#24576703">Ex 1</a>: I want relative frequencies with <code>dplyr</code>!</p>
 <pre class="r"><code>library(dplyr)
 data(mtcars)
 mtcars &lt;- tbl_df(mtcars)</code></pre>
@@ -389,7 +411,7 @@ mtcars %&gt;%
 ## 2     0     4     4
 ## 3     1     4     8
 ## 4     1     5     5</code></pre>
-<p>🙋 <a href="https://stackoverflow.com/questions/35090883/remove-all-of-x-axis-labels-in-ggplot">Ex 2</a>: I want all of x-axis labels removed in <code>ggplot</code>!</p>
+<p>🤚 <a href="https://stackoverflow.com/questions/35090883/remove-all-of-x-axis-labels-in-ggplot">Ex 2</a>: I want all of x-axis labels removed in <code>ggplot</code>!</p>
 <pre class="r"><code>data(diamonds)
 ggplot(data = diamonds, mapping = aes(x = clarity)) + 
   geom_bar(aes(fill = cut)) </code></pre>

@@ -111,11 +111,12 @@ nc_counties <- st_read("data/nc_counties.shp", quiet = TRUE)
 5. Create an NC map with counties colored according to the total number of 
 accidents between 2007 and 2014. You may use `scale_fill_gradient()` to fill 
 counties with a color gradient. Use informative colors for *low* and *high* number of accidents. 
-    - What are the counties with the high number ($>$ 750) of accidents? 
+    - What are the counties with the high number ($>$ 750) of accidents? Answer it 
+    using `ncbikecrash`. 
     - Can you conclude that bikers should avoid those counties based on the above map? Explain your answer. If not, which map would you consider instead to examine which counties are dangerous for bikers?
 
 
-6. Identify the county that is not drawn on the map above using an appropriate join function. 
+6. Identify the county that is not drawn on the map above using an appropriate join function for `nc_counties` and `ncbikecrash`. 
 
 
 ::: {.commit}

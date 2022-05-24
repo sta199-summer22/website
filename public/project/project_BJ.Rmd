@@ -238,7 +238,7 @@ with regular meaningful commits / pushes and should include
 
 - R Markdown file (formatted to clearly present all of your code and results)
 that will output the final report in one document.
-- Meaningful README file on the GitHub repository that contains a *codebook*
+- Meaningful README file on the GitHub repository that contains a **codebook**
 for relevant variables
 - Dataset(s) (in csv or RData format, in a "data" folder)
 
@@ -268,8 +268,8 @@ and less on crafting the final report. Your draft must include a reasonable
 attempt at each analysis component - exploratory data analysis, inference or modeling, 
 and drawing initial conclusions.
 
-Lab on **Tuesday, June 14** will be devoted to allowing your group to 
-write your peer review.
+<!-- Lab on **Tuesday, June 14** will be devoted to allowing your group to  -->
+<!-- write your peer review. -->
 
 Click [here](https://sta199-summer22.netlify.app/project/project-review_BJ.html) 
 for detailed guidelines on how to create GitHub issues and relevant questions to 

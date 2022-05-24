@@ -1,0 +1,71 @@
+---
+title: "Final Project Proposal"
+author: "Bora Jin"
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+courage <- read_csv("../labs/data/courage.csv")
+```
+
+## Project Proposal Steps
+
+1. Find a dataset that satisfies the [final project guidelines](https://sta199-summer22.netlify.app/project/project_BJ.html)
+
+2. Write about:
+
+  - the source of data
+  - when and how it was originally collected (by the curator, not necessarily how you found the data)
+  - a brief description of the observations and variables you intend to explore
+
+3. Choose 1-2 research questions
+
+4. `glimpse` the data
+
+---
+
+## Ex: Introduction / data
+
+Dataset #1: NC Courage Homefield Advantage 
+
+Our first dataset comes from the [National Women's Soccer League (NSWL) Github](https://github.com/adror1/nwslR) and was sourced from [nwslsoccer.com](https://www.nwslsoccer.com/).
+
+The dataset contains 78 observations (soccer games) played by the NC courage 
+spanning three seasons: 2017, 2018, 2019. There are 10 variables in this dataset. 
+Some of the variables we care about are `home_team`, `away_team`, and `result` 
+(of the game).
+
+---
+## Ex: Research question(s):
+
+1. Does NC Courage have a home-field advantage? We hypothesize that NC Courage is more likely to win on their home field than another team's field.
+
+  - To answer this question we will use information about the `home_team` and the 
+`result` of the game.
+
+2. Does winning propagate winning? When NC Courage win a game, does it increase the probability of winning the very next game?
+
+  - To answer this question we will use information about the `result` of the game 
+  and the `game_number`.
+
+---
+
+## Ex: Glimpse
+```{r glimpse-courage}
+glimpse(courage)
+```
+
+
