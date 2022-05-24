@@ -23,7 +23,7 @@ output:
 
 Today we load `knitr` to use `kable()` function which neatly displays tables:
 
-```{r load-packages}
+```{r load-packages, message = FALSE}
 library(tidyverse)
 library(knitr)
 ```
@@ -33,6 +33,7 @@ We will also use a new function `pivot_wider()` in `dplyr` package ($\in$ `tidyv
 - `r emo::ji("movie_camera")` [Video](https://www.youtube.com/watch?v=x3KM5uxaFdI) and  [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d09-tidying/u2-d09-tidying.html#1)
 
 For this Application Exercise, we will look at our newly collected data.
+Remove `eval = FALSE` to read data. 
 
 ```{r load-data, eval = FALSE}
 sta199 <- read_csv("data/sta199-ae10.csv")
@@ -51,17 +52,13 @@ The dataset includes
 
 Give two examples of an event from the dataset.
 
-Let $A$ be the event that a student's favorite animal is a dog.
-
-Let $A$ be the event that a student is pursuing a statsci major.
-
-Let $A$ be the event that a student is a sophomore *or* senior.
-
 ### Part 2
 
-Let's take a look at favorite movie genre. Note that we have categorized genres so that each person can only have one favorite genre. 
+Let's take a look at favorite movie genre. Note that we have categorized genres 
+so that each person can only have one favorite genre. 
 
-**Q- ** What is the sample space for favorite movie genre? You can use code to identify the sample space. 
+**Q- ** What is the sample space for favorite movie genre? You can use code to 
+identify the sample space. 
 
 ```{r movie-sample-space}
 # code here
@@ -81,7 +78,8 @@ The sample space for the four survey questions contains $4 \times 2 \times 4 \ti
 
 ### Part 4
 
-Let's make a table that includes the year, the number of people who prefer each, and the associated probabilities. 
+Let's make a table that includes `year`, the number of students in each, 
+and the associated probabilities. 
 
 **Q- ** What is the probability a randomly selected STA199 student is a freshman?
 
@@ -92,6 +90,8 @@ Let's make a table that includes the year, the number of people who prefer each,
 ### Part 5
 
 **Q- ** What is the probability a randomly selected STA199 student favors cats?
+Answer it with a table that includes `animal`, the number of students who prefer each, 
+and the associated probabilities. 
 
 ```{r animal}
 # code here
@@ -99,7 +99,8 @@ Let's make a table that includes the year, the number of people who prefer each,
 
 ### Part 6
 
-**Q- ** What is the probability a randomly selected STA199 student is not a senior **and** prefers dogs? 
+**Q- ** What is the probability a randomly selected STA199 student is not a 
+senior **and** prefers dogs? 
 
 Let $A$ be the event that someone is not a senior and prefers dogs.
 
@@ -109,7 +110,8 @@ Let $A$ be the event that someone is not a senior and prefers dogs.
 
 ### Part 7
 
-**Q- ** What is the probability a randomly selected STA199 student likes either action movies or comedy **and** is a statsci major? 
+**Q- ** What is the probability a randomly selected STA199 student likes either 
+action movies or comedy **and** is a statsci major? 
 
 Let $B$ be the event someone is an action or comedy movie lover and a statsci major.
 
@@ -119,13 +121,18 @@ Let $B$ be the event someone is an action or comedy movie lover and a statsci ma
 
 ### Part 8
 
-Now let's make a table looking at the relationship between favorite animal and favorite movie.
+Now we examine the relationship between favorite animal and favorite movie. 
+Let's make a table of the number of students for every combination of favorite 
+animals and movie genres. 
 
 ```{r animal-movie}
 # code here
 ```
 
-Using `pivot_wider()`, we'll reformat the data into a **contingency table**, a table frequently used to study the association between two categorical variables. In this contingency table, each row will represent a year, each column will represent a movie, and each cell is the number of students have a particular combination of year and movie.  
+Using `pivot_wider()`, we'll reformat the data into a **contingency table**, 
+a table frequently used to study the association between two categorical variables. 
+In this contingency table, each row will represent an animal, each column will represent a movie, 
+and each cell is the number of students have a particular combination of animal and movie.  
 
 ```{r pivot-wider}
 # code here
@@ -174,7 +181,7 @@ For each of the following exercises:
 
 (3) Relationship between `year` and `movie`
 
-**Q - ** What is the probability a randomly selected STA199 student is a senior **or** does not pick sci-fi as favorite movie genre? 
+**Q - ** What is the probability a randomly selected STA199 student is a senior **or** does not pick sci-fi as the favorite movie genre? 
 
 ```{r ex3-1}
 # code here

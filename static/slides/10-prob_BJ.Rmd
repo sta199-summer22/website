@@ -92,7 +92,7 @@ What we want to learn and what we are curious about. For example:
 
 ## Quiz 
 
-**Q - Identify the population and potential samples to answer the following questions**
+**Q - Identify the population and potential samples to answer the following questions.**
 
 How likely is it for patients with early Parkinson's disease to experience a serious movement disorder within 5 years after the first diagnosis? 
   
@@ -105,7 +105,7 @@ How likely is it for patients with early Parkinson's disease to experience a ser
 
 ## Quiz 
 
-**Q - Identify the population and potential samples to answer the following questions**
+**Q - Identify the population and potential samples to answer the following questions.**
 
 Does the average amount of caffeine vary by vendor in 12 oz. cups of coffee at Duke coffee shops?
 
@@ -118,7 +118,7 @@ Does the average amount of caffeine vary by vendor in 12 oz. cups of coffee at D
 
 ## Quiz 
 
-**Q - Identify the population and potential samples to answer the following questions**
+**Q - Identify the population and potential samples to answer the following questions.**
 
 How popular is the president among college students? 
  
@@ -140,7 +140,7 @@ In order to draw principled conclusions from data, we rely on a formal **probabi
 - "Event"
 - Usually denoted by capital letters 
 - $A$ is the event that a student in STA199 is a sophomore. 
-- $A^c$ (A complement) is the event that $A$ is not true; a student in STA199 is in a different year than 2nd. 
+- $A^c$ ("$A$ complement") is the event that $A$ is not true; a student in STA199 is not a sophomore. 
 
 ---
 
@@ -159,12 +159,10 @@ In order to draw principled conclusions from data, we rely on a formal **probabi
 
 ## Quiz 
 
-**Q - Say in words the following math expressions**
+**Q - Say in words the following math expressions.**
 
 $A$ is the event that a student in STA199 is a sophomore. 
 $B$ is the event that a student in STA199 is a senior. 
-
---
 
 - Union: $A \cup B$
 
@@ -190,10 +188,10 @@ $B$ is the event that a student in STA199 is a senior.
 --
 
 - How likely an event is to occur
-- Interpretations 
+- Interpretations (1) vs. (2)
 
-  - The proportion of times the event would occur if it could be observed an infinite number of times. 
-  - Degree of belief an event will happen
+  - (1) The proportion of times the event would occur if it could be observed an infinite number of times. 
+  - (2) Degree of belief an event will happen
 
 ---
 
@@ -308,8 +306,7 @@ Go to [AE 10: Introduction to Probability](https://sta199-summer22.netlify.app/a
 
 - Watch videos for [Prepare: May 26](https://sta199-summer22.netlify.app/prepare/week03_may26_BJ.html)
 
-- HW 01 due today at 11:59pm
-
 - Submit your `ae10`
 
+- HW02 released 
 
