@@ -183,7 +183,7 @@ Go to [AE 09: `R` Errors, Troubleshooting, and Getting Help](https://sta199-summ
 
 - HW 01 due tonight at 11:59pm
 
-- Submit your `ae09`
+- Submit your `ae08` and `ae09`
 
 
 
