@@ -306,7 +306,10 @@ Go to [AE 10: Introduction to Probability](https://sta199-summer22.netlify.app/a
 
 ## Bulletin
 
+- Watch videos for [Prepare: May 26](https://sta199-summer22.netlify.app/prepare/week03_may26_BJ.html)
+
 - HW 01 due today at 11:59pm
 
+- Submit your `ae10`
 
 

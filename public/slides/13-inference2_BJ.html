@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistical Inference</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistical Inference
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Today's Goal 
+
+- Understand statistical process terminology
+- Understand different types of conclusions we can make through statistical inference
+- Understand point estimate and confidence intervals 
+
+---
+
+class: center, middle
+
+# Statistical Inference
+
+---
+
+## Terminology  
+
+- **Population**: a group of individuals or objects we are interested in studying
+
+- **Parameter**: a numerical quantity derived from the population
+(almost always unknown)
+
+  - Parameters could be the mean, median, correlation, maximum, etc. 
+
+If we had data from every unit in the population, we could just calculate 
+population parameters and be done!
+
+---
+
+## Terminology  
+
+Unfortunately, we usually cannot do this, so we draw conclusions from
+
+- **Sample**: a subset of our population of interest
+
+- **Statistic**: a numerical quantity derived from a sample
+
+  - Statistics could be the mean, median, correlation, maximum, etc. 
+
+Naturally, it makes sense to use the sample mean (and other quantities derived from the sample) to make generalizations about the population mean.
+
+---
+
+## Statistical Inference
+
+Statistical inference is the process of using sample data to make 
+conclusions about the underlying population the sample came from.
+
+- **Estimation**: using the sample to estimate a plausible range of values 
+for the unknown parameter
+
+- **Testing**: evaluating whether our observed sample provides evidence 
+for or against some claim about the population
+
+--
+
+Today we will focus on **Estimation**.
+
+---
+
+class: center, middle
+
+# Estimation
+
+---
+
+## Trip to Asheville! 
+
+&lt;img src="img/13/asheville.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+
+.center[
+How much should we expect to pay for an Airbnb in Asheville?
+]
+
+---
+
+## Asheville Airbnb
+
+- **Research question**: What is the mean price per guest per night
+among Airbnb rentals with at least ten reviews in Asheville (zip codes 28801 - 28806)?
+
+--
+
+- **Population of interest**: listings in the Asheville with at least ten reviews.
+
+--
+
+- **Parameter of interest**: Mean price per guest per night among these 
+listings.
+
+--
+
+We have data on the price per guest (`ppg`) for a random sample of 50 Airbnb listings
+with at least ten reviews in Asheville, NC, that were active on June 25, 2020 (Source: http://insideairbnb.com/).
+
+--
+
+- **Sample**: randomly selected 50 listings in the Asheville with at least ten reviews.
+
+--
+
+- **Statistic**: Mean price per guest per night among these sampled listings.
+
+---
+
+## Point Estimate
+
+A **point estimate** is a single value computed from the sample data to serve
+as the "best guess", or estimate, for the population parameter. 
+
+
+```r
+abb &lt;- read_csv("data/asheville.csv")
+abb %&gt;% 
+  summarize(mean_price = mean(ppg))
+```
+
+```
+## # A tibble: 1 × 1
+##   mean_price
+##        &lt;dbl&gt;
+## 1       76.6
+```
+
+---
+
+## Visualizing Our Sample
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Point vs. Interval 
+
+If you want to catch a fish, do you prefer a spear or a net?
+
+.pull-left[
+&lt;img src="img/13/spear.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="img/13/net.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Point vs. Interval 
+
+If you want to estimate a population parameter, do you prefer to report a single value or a range of values the parameter might be in?
+
+.pull-left[
+&lt;img src="img/13/spear.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="img/13/net.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Point vs. Interval 
+
+If you want to estimate a population parameter, do you prefer to report a single value or a range of values the parameter might be in?
+
+.pull-left[
+&lt;img src="img/13/spear.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="img/13/net.png" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+- If we report a point estimate, we probably won’t hit the exact population 
+parameter.
+
+- If we report a range of plausible values, we have a good shot at capturing 
+the parameter.
+
+---
+
+class: middle, center
+
+# Uncertainty Quantification 
+
+---
+
+## Confidence Intervals 
+
+- A plausible range of values for the population parameter is a **confidence interval**.
+
+- In order to construct a confidence interval we need to quantify variability (uncertainty) of our sample statistic.
+
+- For example, if we want to construct a confidence interval for a population mean, we need to come up with a plausible range of values around our observed sample mean.
+
+- This range will depend on how precise and how accurate our sample mean is as an estimate of the population mean.
+
+- Quantifying this requires a measurement of how much we would expect the sample mean to vary from sample to sample.
+
+---
+
+## Quantifying Variability
+
+- There is almost always some variability of sample statistics because random samples may differ from each other. 
+
+--
+
+- If we took another random sample of 50 Airbnb listings in Asheville, we probably wouldn't get the same mean price per guest. 
+
+--
+
+- Suppose we split the class in half and ask each student their height. 
+Then, we calculate the mean height of students on each side of the classroom. 
+Would you expect these two means to be exactly equal, close but not equal, 
+or wildly different?
+
+--
+
+- Suppose you randomly sample 50 students and 5 of them are left handed. If you 
+were to take another random sample of 50 students, how many would you expect to 
+be left handed? Would you be surprised if only 3 of them were left handed? Would 
+you be surprised if 40 of them were left handed?
+
+---
+
+## Quantifying Variability
+
+We can quantify the variability of sample statistics using different approaches:
+
+- **Simulation**: via bootstrapping or "resampling" techniques 
+
+- **Theory**: via the Central Limit Theorem 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 1](https://sta199-summer22.netlify.app/prepare/week04_jun01_BJ.html)
+
+- Kick-off of the final project! Read [intructions](https://sta199-summer22.netlify.app/project/project_BJ.html) carefully. 
+
+- Project proposal due Friday, June 3 at 11:59pm 
+
+- Lab 04 due tonight at 11:59pm
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

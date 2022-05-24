@@ -16,158 +16,261 @@ output:
 ```{r child = "setup.Rmd"}
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
+theme_set(theme_bw())
+# library(broom)
+# library(knitr)
+# library(DT)
+# library(emo)
+# library(openintro)
+# library(infer)
+# library(patchwork)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
-
-## Material 
-
-`r emo::ji("movie_camera")` Watch [Scientific Studies and Confounding](https://youtu.be/WnMzTBrZDcc)
-
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u2-d15-studies-confounding/u2-d15-studies-confounding.html#1)
-
----
 
 ## Today's Goal 
 
 - Understand statistical process terminology
-- Understand the types of conclusions that can be made given the underlying statistical process
-- Learn to simulate from a binomial distribution
+- Understand different types of conclusions we can make through statistical inference
+- Understand point estimate and confidence intervals 
 
 ---
 
-## Quiz 
+class: center, middle
 
-**Q - What is an observational study? Any examples?** 
-
---
-
-- Collect data in a way that does not interfere with how the data arise 
-- Establish **associations** (!= causation)
-- Data often cheaper and easier to collect 
-- e.g., Smoking behavior and health outcomes 
+# Statistical Inference
 
 ---
 
-## Quiz 
+## Terminology  
 
-**Q - What is an experimental study? Any examples?** 
+- **Population**: a group of individuals or objects we are interested in studying
 
---
+- **Parameter**: a numerical quantity derived from the population
+(almost always unknown)
 
-- Randomly assign subjects to treatments vs. control 
-- Establish **causal connections**
-- Often more expensive 
-- Sometimes impossible or unethical to design an experiment 
-- e.g., Covid-19 vaccine tests in developmental phase 
+  - Parameters could be the mean, median, correlation, maximum, etc. 
 
----
-
-## Quiz 
-
-In the prep video, the following terms are introduced: <br>
-response variables and explanatory variables
-
-**Q - What is a response variable?** 
-
---
-
-- "Dependent variable" 
-- Denoted by $y$
-- The focus of a research question
-
---
-
-**Q - What is an explanatory variable?**
-
---
-
-- "Independent variable" 
-- Denoted by $x$
-- Variables that might affect or explain changes in the response variable 
+If we had data from every unit in the population, we could just calculate 
+population parameters and be done!
 
 ---
 
-## Quiz 
+## Terminology  
 
-**Q - Identify a response variable and an explanatory variable regarding the following examples.**
+Unfortunately, we usually cannot do this, so we draw conclusions from
 
-Do larger homes in good locations lead to higher home selling prices? 
+- **Sample**: a subset of our population of interest
 
---
+- **Statistic**: a numerical quantity derived from a sample
 
-- $y$: home selling price
-- $x$: size of a house, neighborhood
+  - Statistics could be the mean, median, correlation, maximum, etc. 
 
---
-
-Which procedure prolongs life more for breast cancer patients, chemo or anti-estrogen treatment? 
-
---
-
-- $y$: survival time 
-- $x$: type of treatment
-- In real life, you would include several more explanatory variables such as age, general health conditions, weight, etc. 
----
-
-## Quiz 
-
-**Q - What is a confounding variable?**
-
---
-
-- Extraneous variable that affects both the explanatory and the response variable, and that makes it seem like there is a relationship between them.
-- If you fail to account for confounding variables, you may not correctly observe the actual relationship between explanatory variables and a response variable.
+Naturally, it makes sense to use the sample mean (and other quantities derived from the sample) to make generalizations about the population mean.
 
 ---
 
-## Quiz 
+## Statistical Inference
 
-**Q - Identify the confounding variable in each of the following statements.**
+Statistical inference is the process of using sample data to make 
+conclusions about the underlying population the sample came from.
 
-As the amount of ice cream sales increases, the number of shark attacks also increases.
+- **Estimation**: using the sample to estimate a plausible range of values 
+for the unknown parameter
 
---
-
-- Confounding variable: summer
-- Both increase in the summer, when people go to the beach.
-
---
-
-The higher the number of firefighters at a fire is, the greater the amount of damage caused by that fire.
+- **Testing**: evaluating whether our observed sample provides evidence 
+for or against some claim about the population
 
 --
 
-- Confounding variable: size of a fire 
-- More firefighters are sent to larger and severer fires that cause greater damage. 
+Today we will focus on **Estimation**.
 
 ---
 
-## Quiz 
+class: center, middle
 
-In the prep video, the following terms are introduced: <br>
-random sampling and non-random sampling 
-
-**Q - What is random sampling?** 
-
---
-
-- A sampling method that allows for randomization of sample selection. 
-- Conclusions from a random sample are **generalizable**.
-- Simple random sampling: every element in a whole population has an equal chance of being chosen for the sample
-<!-- - Stratified random sampling: it divides the population into subgroups or strata such that each subgroup is homogeneous. Then simple random sampling is applied within each stratum.  -->
-<!--   - Useful when you need to make sure you get a sufficient sample from each demographic group and then you weight to the approximate percentage in the population. -->
+# Estimation
 
 ---
 
-## Quiz 
+## Trip to Asheville! 
 
-**Q - What is non-random sampling?** 
+```{r echo=FALSE, out.width="50%", fig.align="center"}
+knitr::include_graphics("img/13/asheville.jpeg")
+```
 
-- In a non-random sample, individuals are selected based on non-random criteria, and not every individual has a chance of being included.
-- Conclusions from a non-random sample are **not generalizable**. 
-- e.g., I make my close friends complete a survey and analyze the survey data for a final project.
-- e.g.. An online survey available to anyone who wishes to provide responses 
+.center[
+How much should we expect to pay for an Airbnb in Asheville?
+]
+
+---
+
+## Asheville Airbnb
+
+- **Research question**: What is the mean price per guest per night
+among Airbnb rentals with at least ten reviews in Asheville (zip codes 28801 - 28806)?
+
+--
+
+- **Population of interest**: listings in the Asheville with at least ten reviews.
+
+--
+
+- **Parameter of interest**: Mean price per guest per night among these 
+listings.
+
+--
+
+We have data on the price per guest (`ppg`) for a random sample of 50 Airbnb listings
+with at least ten reviews in Asheville, NC, that were active on June 25, 2020 (Source: http://insideairbnb.com/).
+
+--
+
+- **Sample**: randomly selected 50 listings in the Asheville with at least ten reviews.
+
+--
+
+- **Statistic**: Mean price per guest per night among these sampled listings.
+
+---
+
+## Point Estimate
+
+A **point estimate** is a single value computed from the sample data to serve
+as the "best guess", or estimate, for the population parameter. 
+
+```{r}
+abb <- read_csv("data/asheville.csv")
+abb %>% 
+  summarize(mean_price = mean(ppg))
+```
+
+---
+
+## Visualizing Our Sample
+
+```{r, echo = F, out.width = "70%"}
+ggplot(data = abb, aes(ppg)) +
+  geom_histogram(binwidth = 22,
+                 color = "darkblue",
+                 fill = "skyblue") +
+  labs(title = "Right-skewed distribution of price per guest",
+       x = "Price per guest per night ($)",
+       y = "Count") +
+  scale_y_continuous(breaks = seq(0, 20, by = 5)) 
+```
+
+---
+
+## Point vs. Interval 
+
+If you want to catch a fish, do you prefer a spear or a net?
+
+.pull-left[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/spear.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/net.png")
+```
+]
+
+---
+
+## Point vs. Interval 
+
+If you want to estimate a population parameter, do you prefer to report a single value or a range of values the parameter might be in?
+
+.pull-left[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/spear.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/net.png")
+```
+]
+
+---
+
+## Point vs. Interval 
+
+If you want to estimate a population parameter, do you prefer to report a single value or a range of values the parameter might be in?
+
+.pull-left[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/spear.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width=300, fig.align="center"}
+knitr::include_graphics("img/13/net.png")
+```
+]
+
+- If we report a point estimate, we probably won’t hit the exact population 
+parameter.
+
+- If we report a range of plausible values, we have a good shot at capturing 
+the parameter.
+
+---
+
+class: middle, center
+
+# Uncertainty Quantification 
+
+---
+
+## Confidence Intervals 
+
+- A plausible range of values for the population parameter is a **confidence interval**.
+
+- In order to construct a confidence interval we need to quantify variability (uncertainty) of our sample statistic.
+
+- For example, if we want to construct a confidence interval for a population mean, we need to come up with a plausible range of values around our observed sample mean.
+
+- This range will depend on how precise and how accurate our sample mean is as an estimate of the population mean.
+
+- Quantifying this requires a measurement of how much we would expect the sample mean to vary from sample to sample.
+
+---
+
+## Quantifying Variability
+
+- There is almost always some variability of sample statistics because random samples may differ from each other. 
+
+--
+
+- If we took another random sample of 50 Airbnb listings in Asheville, we probably wouldn't get the same mean price per guest. 
+
+--
+
+- Suppose we split the class in half and ask each student their height. 
+Then, we calculate the mean height of students on each side of the classroom. 
+Would you expect these two means to be exactly equal, close but not equal, 
+or wildly different?
+
+--
+
+- Suppose you randomly sample 50 students and 5 of them are left handed. If you 
+were to take another random sample of 50 students, how many would you expect to 
+be left handed? Would you be surprised if only 3 of them were left handed? Would 
+you be surprised if 40 of them were left handed?
+
+---
+
+## Quantifying Variability
+
+We can quantify the variability of sample statistics using different approaches:
+
+- **Simulation**: via bootstrapping or "resampling" techniques 
+
+- **Theory**: via the Central Limit Theorem 
 
 ---
 
@@ -177,23 +280,14 @@ class: middle, center
 
 ---
 
-## Let's Practice Together! 
-
-Go to [AE 12: Foundations of Inference](https://sta199-summer22.netlify.app/appex/ae12_BJ.html)
-
----
-
 ## Bulletin
 
-- Exam 01 
+- Watch videos for [Prepare: June 1](https://sta199-summer22.netlify.app/prepare/week04_jun01_BJ.html)
 
-  - to be released today at 1pm
-  - due Monday, May 30 at 12:59pm 
-  
-- May 30 
+- Kick-off of the final project! Read [intructions](https://sta199-summer22.netlify.app/project/project_BJ.html) carefully. 
 
-  - Memorial day holiday. No class! 
-  - Have fun after submitting Exam 01 
+- Project proposal due Friday, June 3 at 11:59pm 
 
+- Lab 04 due tonight at 11:59pm
 
 

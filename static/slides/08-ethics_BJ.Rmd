@@ -310,6 +310,8 @@ Go to [AE 08: Data Science Ethics](https://sta199-summer22.netlify.app/appex/ae0
 
 ## Bulletin
 
+- Watch videos for [Prepare: May 24](https://sta199-summer22.netlify.app/prepare/week03_may24_BJ.html)
+
 - Lab 03 due today at 11:59pm
 
 - HW 01 due Tuesday, May 24 at 11:59pm
