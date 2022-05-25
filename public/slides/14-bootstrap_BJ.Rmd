@@ -1,0 +1,218 @@
+---
+title: "Confidence Intervals through Bootstrapping"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Bootstrapping](https://youtu.be/bdqpI3iVOso)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1) 
+
+---
+
+## Today's Goal 
+
+- Understand how to draw a bootstrap sample and calculate a bootstrap statistic
+- Use `infer` (part of `tidymodels`) to obtain a bootstrap distribution
+- Calculate a confidence interval from the bootstrap distribution
+- Interpret a confidence interval in context of the data
+
+---
+
+## Ideas Behind Bootstrapping   
+
+--
+
+- It is extremely hard to hit the exact population parameter with a single value (a.k.a. point estimate or sample statistic) from a sample.
+
+--
+
+- We would have a better chance with **a range of plausible values** for the population parameter. 
+
+--
+
+- One statistic from one sample... then we need multiple samples to obtain multiple statistics. 
+
+--
+
+- Uh oh, getting multiple samples is generally expensive and time-consuming. If it was 
+so easy, we would simply collect data from every unit in the population. 
+
+--
+
+- We just have to make the best of it! With the sample at hand, let's pretend 
+that we have multiple samples!! $\Rightarrow$ Bootstrapping is a resampling technique. 
+
+---
+
+## Quiz 
+
+**Q - Correct the following sentences.**
+
+`r emo::ji("emergency")` A bootstrap sample is taken without replacement from the original sample. 
+
+--
+
+`r emo::ji("check")` A bootstrap sample is taken with replacement from the original sample. 
+
+--
+
+`r emo::ji("emergency")` A researcher chooses a bootstrap sample size.
+
+--
+
+`r emo::ji("check")` A bootstrap sample should be of the same size as the original sample.
+
+---
+
+## Quiz 
+
+**Q - Correct the following sentences.**
+
+`r emo::ji("emergency")` A bootstrap distribution is a distribution of resampled data. 
+
+--
+
+`r emo::ji("check")` A bootstrap distribution is a distribution of bootstrap statistics. 
+
+--
+
+`r emo::ji("emergency")` Calculate the bounds of the XX% confidence interval as 
+the shortest interval with XX% of the bootstrap distribution. 
+
+--
+
+`r emo::ji("check")` Calculate the bounds of the XX% confidence interval as the middle XX% of the bootstrap distribution. 
+
+---
+
+## Quiz 
+
+**Q - Correct the following sentences.**
+
+`r emo::ji("emergency")` Bootstrapping can be used for mean and median, but not for 
+standard deviation.  
+
+--
+
+`r emo::ji("check")` Bootstrapping can be used for any sample statistic. 
+
+--
+
+`r emo::ji("emergency")` The length of a confidence interval has nothing to do with its confidence level.
+
+--
+
+`r emo::ji("check")` The lower the confidence level, the narrower the interval. 
+
+---
+
+## Quiz 
+
+**Q - Correct the following sentences.**
+
+`r emo::ji("emergency")` Bootstrapping can improve statistical inference based on 
+a bad sample. 
+
+--
+
+`r emo::ji("check")` Bootstrapping is meaningless if the original sample is not representative because your bootstrap distribution will be centered around the original sample statistic.  
+
+- Bootstrapping is best suited for modeling studies where the data have been generated through **random sampling** from a population.
+
+---
+
+## Quiz 
+
+The 95% confidence interval for the mean price per guest per night
+among Airbnb rentals (with at least ten reviews) in Asheville was ($64, $90).
+
+**Q - What is the correct interpretation for this interval?**
+
+a. There is a 95% probability the mean price per night for an Airbnb in Asheville is between $64 and $90.
+
+b. There is a 95% probability the price per night for an Airbnb in Asheville is between $64 and $90.
+
+c. We are 95% confident the mean price per night for Airbnbs in Asheville in our sample is between $64 and $90.
+
+d. We are 95% confident the mean price per night for all Airbnbs in Asheville is between $64 and $90.
+
+---
+
+## Quiz 
+
+The 95% confidence interval for the mean price per guest per night
+among Airbnb rentals (with at least ten reviews) in Asheville was ($64, $90).
+
+**Q - What is the correct interpretation for this interval?**
+
+a. There is a 95% probability the mean price per night for an Airbnb in Asheville is between $64 and $90.
+
+b. There is a 95% probability the price per night for an Airbnb in Asheville is between $64 and $90.
+
+c. We are 95% confident the mean price per night for Airbnbs in Asheville in our sample is between $64 and $90.
+
+**d. We are 95% confident the mean price per night for all Airbnbs in Asheville is between $64 and $90.**
+
+---
+
+## Quiz 
+
+a. "There is a 95% probability"
+
+- The true unknown parameter is either in ($64, $90) or not. It can't have a "95% probability" of being in any specific interval. 
+
+b. "the price per night for an Airbnb in Asheville"
+
+- We did not infer on individual price; we did infer on the population mean price per night. 
+
+c. "in our sample"
+
+- I don't need to build a confidence interval for the sample statistic. It's known! 
+
+---
+
+## Quiz 
+
+**Q - What does it mean that "we are 95% confident"?**
+
+--
+
+- Suppose we took 100 independent samples from a population. 
+- For each sample, we computed the sample statistic and constructed a 95% confidence interval using bootstrapping. 
+- Then we would expect 95 out of these 100 intervals to contain the unknown parameter. 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 2](https://sta199-summer22.netlify.app/prepare/week04_jun02_BJ.html)
+
+- Project proposal due Friday, June 3 at 11:59pm 
+
+
+

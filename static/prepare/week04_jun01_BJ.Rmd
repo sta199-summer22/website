@@ -1,0 +1,24 @@
+---
+title: "Prepare: June 1"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Bootstrapping](https://youtu.be/bdqpI3iVOso)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1) 
+
+## Optional 
+
+`r emo::ji("book")` Read [IMS: Chapter 12 - Confidence intervals with bootstrapping](https://openintro-ims.netlify.app/foundations-bootstrapping.html)

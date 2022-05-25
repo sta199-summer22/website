@@ -1,0 +1,217 @@
+---
+title: "AE 14: Confidence Invertals through Bootstrapping"
+subtitle: "due Thursday, June 2 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae14-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Rent in Manhattan 
+
+On a given day in 2018, twenty one-bedroom apartments were randomly selected on Craigslist Manhattan from apartments listed as "by owner". The data are in the `manhattan` data frame. We will use this sample to conduct inference on the typical rent of one-bedroom apartments in Manhattan. 
+
+**Q - ** State the research question and identify the population and our sample.
+
+- Question: 
+- Population: 
+- Sample: 
+
+We start with loading relevant packages. For bootstrapping, we will use the `infer` package, included as part of `tidymodels`.  
+
+```{r load-packages, message=FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+```{r load-survey, message=FALSE}
+manhattan <- read_csv("data/manhattan.csv")
+```
+
+### Part 1: Parameter and point estimate
+
+Let's start by using bootstrapping to estimate the **mean** rent of 
+one-bedroom apartments in Manhattan. Therefore, 
+
+- Parameter: Mean rent of all one-bedroom apartments in Manhattan 
+- Statistic: Mean rent of all apartments in the sample 
+
+**Q - ** What is the point estimate of the mean rent?
+
+```{r point-est}
+
+```
+
+### Part 2: Manual bootstrapping
+
+Let's bootstrap! We should start by setting a seed. Function `set.seed()` is a 
+base `R` function that allows us to control `R`'s random number generation. 
+This ensures our analysis is reproducible, which means we'll get the same random sample 
+each time we run the code or knit.
+
+**Step 1**: Sample with replacement.
+
+**Q - ** How many observations do we need for our bootstrap sample?
+
+```{r boot-sample, eval = FALSE}
+set.seed(123)
+
+mht_boot1 <- manhattan %>% 
+  slice_sample(n = ___, replace = ___)
+
+data.frame(org = manhattan$rent, 
+           boot1 = mht_boot1$rent)
+```
+
+**Step 2**: Compute the statistic from the bootstrap sample.
+
+```{r boot-point-est}
+
+```
+
+**Step 3**: Repeat steps 1 and 2 multiple times and create a bootstrap distribution of sample statistics.
+
+```{r repeat}
+set.seed(123)
+
+# how many times? 
+reps <- 1000
+
+# make a zero vector of length reps to save sample statistics 
+mean_rent <- rep(0, reps)
+
+# repeat steps 1 and 2
+for (i in 1:reps) {
+  mht_boot <- manhattan %>% 
+  slice_sample(n = 20, replace = TRUE)
+  mean_rent[i] <- mean(mht_boot$rent)
+}
+
+# histogram of the sample means 
+boot_dist <- tibble(replicate = 1:reps, 
+                      stat = mean_rent)
+boot_dist %>% 
+  ggplot(aes(x = stat)) + 
+  geom_histogram(binwidth = 50) + 
+  geom_vline(xintercept = mean(manhattan$rent), 
+             color = "red", linetype = "dashed") +
+  labs(x = "Sample mean", y = "Count", 
+       title = "Bootstrap distribution of sample means", 
+       subtitle = "Rent of one-bedroom apartments in Manhattan")
+```
+
+**Step 4**: Calculate a confidence interval (CI) using percentiles of the bootstrap distribution.
+
+```{r ci-marked, echo = FALSE}
+boot_dist %>% 
+  ggplot(aes(x = stat)) + 
+  geom_histogram(binwidth = 50) + 
+  geom_vline(xintercept = mean(manhattan$rent), 
+             color = "red", linetype = "dashed") +
+  geom_vline(xintercept = boot_dist %>% 
+               summarize(quantile(stat, 0.025)) %>% 
+               pull(), 
+             color = "#1e81b0", linetype = "dashed", size = 1.5) + 
+  geom_vline(xintercept = boot_dist %>% 
+               summarize(quantile(stat, 0.975)) %>% 
+               pull(), 
+             color = "#1e81b0", linetype = "dashed", size = 1.5) + 
+  labs(x = "Sample mean", y = "Count", 
+       title = "Bootstrap distribution of sample means and 95% CI", 
+       subtitle = "Rent of one-bedroom apartments in Manhattan")
+```
+
+
+### Part 3: Bootstrap samples using functions in `infer`
+
+**Steps 1-3** can be done in one pipeline using functions in `infer`. 
+
+**Q - ** Complete the code chunk below.
+
+```{r infer, eval = FALSE}
+set.seed(123)
+
+# save resulting bootstrap distribution
+boot_dist2 <- manhattan %>%
+  # specify the variable of interest
+  specify(response = ____) %>%
+  # generate reps (say 100, 1000, 10000, etc.) bootstrap samples
+  generate(reps = ____, type = _____) %>%
+  # calculate the statistic of each bootstrap sample
+  calculate(stat = _____)
+```
+
+**Q - ** How many rows are in `boot_dist2`? 
+
+**Q - ** What does each row represent? 
+
+**Q - ** What are the variables in `boot_dist2`? What do they mean?
+
+**Q -** Visualize the bootstrap distribution using a histogram. Describe the shape, center, and spread of this distribution.
+
+```{r viz}
+
+```
+
+### Part 4: Confidence intervals
+
+**Q - Step 4**. Construct the 95% confidence interval for the mean rent of one-bedroom apartments in Manhattan. To get middle 95%, we want to omit 2.5% on the left and on the right.
+
+```{r ci, eval = FALSE}
+boot_dist2 %>% 
+  summarize(lower_bound = quantile(____, ____), 
+            upper_bound = quantile(____, 0.975)) 
+```
+
+**Q - ** What is the correct interpretation for the interval calculated above? 
+
+**Q - ** Modify the code used to calculate a 95% confidence interval to calculate a 90% confidence interval for the mean rent of one-bedroom apartments in Manhattan. Hint: `upper` - `lower` should yield what you want, e.g., 0.975 - 0.025 = 0.95. 
+
+```{r ci-90}
+
+```
+
+**Q - ** Calculate a 99% confidence interval for the mean rent of one-bedroom apartments in Manhattan. How does the width of this interval compare to the width of the 90% or the 95% confidence interval?
+
+```{r ci-99}
+
+```
+
+**Q - ** What is one advantage to using a 90% confidence interval instead of a 95% confidence interval to estimate a parameter? What is one advantage to using a 99% confidence interval instead of a 95% confidence interval to estimate a parameter? 
+Explain in terms of accuracy and precision. 
+
+
+### Practice
+
+Use bootstrapping to estimate the **median** rent for one-bedroom apartments in Manhattan.
+
+(1) Generate the bootstrap distribution of the sample medians. Use 1000 reps. Save the results in `boot_dist_median`.
+
+```{r boot-dist-median}
+set.seed(123)
+
+```
+
+(2) Calculate a 92% confidence interval. 
+
+```{r confidence-interval-92}
+
+```
+
+(3) Interpret the 92% confidence interval. 
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

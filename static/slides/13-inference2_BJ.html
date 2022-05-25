@@ -119,11 +119,11 @@ among Airbnb rentals with at least ten reviews in Asheville (zip codes 28801 - 2
 
 --
 
-- **Population of interest**: listings in the Asheville with at least ten reviews.
+- **Population of interest**: listings in Asheville with at least ten reviews.
 
 --
 
-- **Parameter of interest**: Mean price per guest per night among these 
+- **Parameter of interest**: mean price per guest per night among these 
 listings.
 
 --
@@ -137,7 +137,7 @@ with at least ten reviews in Asheville, NC, that were active on June 25, 2020 (S
 
 --
 
-- **Statistic**: Mean price per guest per night among these sampled listings.
+- **Statistic**: mean price per guest per night among these sampled listings.
 
 ---
 
@@ -263,7 +263,122 @@ We can quantify the variability of sample statistics using different approaches:
 
 - **Simulation**: via bootstrapping or "resampling" techniques 
 
+or
+
 - **Theory**: via the Central Limit Theorem 
+
+--
+
+Today we will focus on **Booststrapping**.
+
+---
+
+class: middle, center
+
+# Bootstrapping 
+
+---
+
+## Bootstrapping 
+
+&lt;img src="img/13/boot.png" style="float:right"&gt;
+
+- The term **bootstrapping** comes from the phrase "pulling oneself up by one’s 
+bootstraps", which is a metaphor for accomplishing an impossible task without 
+any outside help.
+
+- **Impossible task**: Estimating a population parameter using data from only the given sample
+
+- **Note**: This notion of saying something about a population parameter using 
+only information from an observed sample is the crux of statistical inference,  
+not limited to bootstrapping.
+
+---
+
+## Bootstrappng Steps
+
+1. Take a bootstrap sample: a random sample taken **with replacement** from the original sample, 
+**of the same size** as the original sample.
+
+--
+
+2. Calculate the bootstrap statistic: the statistic you’re interested in (the 
+mean, the median, the correlation, etc.) computed on the bootstrap sample.
+
+--
+
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution: 
+a distribution of bootstrap statistics.
+
+--
+
+4. Calculate the bounds of the XX% confidence interval as the middle XX% of 
+the bootstrap distribution.
+
+---
+
+## Original Sample 
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 1
+
+Take a bootstrap sample: a random sample taken **with replacement** from the original sample, 
+**of the same size** as the original sample.
+
+
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 2
+
+Calculate the bootstrap statistic (in this case, the sample mean) using the bootstrap sample.
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 3
+
+Do steps 1 and 2 over and over again to create a bootstrap distribution of sample means.
+
+
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-16-1.png" width="60%" height="90%" style="display: block; margin: auto;" /&gt;
+              
+---
+
+## Step 3
+
+In this plot, we've taken 1,000 bootstrap samples, calculated the
+sample mean for each, and plotted them in a histogram.
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-17-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 3
+
+Here we compare the bootstrap distribution of sample means to that 
+of the original data. What do you notice?
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-18-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Step 4
+
+Calculate the bounds of the bootstrap interval by using percentiles of the bootstrap distribution.
+
+&lt;img src="13-inference2_BJ_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+--
+
+The 95% confidence interval for the mean price per guest per night
+among Airbnb rentals with at least ten reviews in Asheville is ($64, $90).
 
 ---
 

@@ -19,13 +19,7 @@ output:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 theme_set(theme_bw())
-# library(broom)
-# library(knitr)
-# library(DT)
-# library(emo)
-# library(openintro)
-# library(infer)
-# library(patchwork)
+library(tidymodels)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
@@ -113,11 +107,11 @@ among Airbnb rentals with at least ten reviews in Asheville (zip codes 28801 - 2
 
 --
 
-- **Population of interest**: listings in the Asheville with at least ten reviews.
+- **Population of interest**: listings in Asheville with at least ten reviews.
 
 --
 
-- **Parameter of interest**: Mean price per guest per night among these 
+- **Parameter of interest**: mean price per guest per night among these 
 listings.
 
 --
@@ -131,7 +125,7 @@ with at least ten reviews in Asheville, NC, that were active on June 25, 2020 (S
 
 --
 
-- **Statistic**: Mean price per guest per night among these sampled listings.
+- **Statistic**: mean price per guest per night among these sampled listings.
 
 ---
 
@@ -152,13 +146,14 @@ abb %>%
 
 ```{r, echo = F, out.width = "70%"}
 ggplot(data = abb, aes(ppg)) +
-  geom_histogram(binwidth = 22,
+  geom_histogram(binwidth = 25,
                  color = "darkblue",
                  fill = "skyblue") +
   labs(title = "Right-skewed distribution of price per guest",
        x = "Price per guest per night ($)",
        y = "Count") +
-  scale_y_continuous(breaks = seq(0, 20, by = 5)) 
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  scale_y_continuous(breaks = seq(0, 20, by = 5), limits = c(0, 20)) 
 ```
 
 ---
@@ -270,7 +265,249 @@ We can quantify the variability of sample statistics using different approaches:
 
 - **Simulation**: via bootstrapping or "resampling" techniques 
 
+or
+
 - **Theory**: via the Central Limit Theorem 
+
+--
+
+Today we will focus on **Booststrapping**.
+
+---
+
+class: middle, center
+
+# Bootstrapping 
+
+---
+
+## Bootstrapping 
+
+<img src="img/13/boot.png" style="float:right">
+
+- The term **bootstrapping** comes from the phrase "pulling oneself up by one’s 
+bootstraps", which is a metaphor for accomplishing an impossible task without 
+any outside help.
+
+- **Impossible task**: Estimating a population parameter using data from only the given sample
+
+- **Note**: This notion of saying something about a population parameter using 
+only information from an observed sample is the crux of statistical inference,  
+not limited to bootstrapping.
+
+---
+
+## Bootstrappng Steps
+
+1. Take a bootstrap sample: a random sample taken **with replacement** from the original sample, 
+**of the same size** as the original sample.
+
+--
+
+2. Calculate the bootstrap statistic: the statistic you’re interested in (the 
+mean, the median, the correlation, etc.) computed on the bootstrap sample.
+
+--
+
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution: 
+a distribution of bootstrap statistics.
+
+--
+
+4. Calculate the bounds of the XX% confidence interval as the middle XX% of 
+the bootstrap distribution.
+
+---
+
+## Original Sample 
+
+```{r, echo = F, out.width = "70%"}
+ggplot(data = abb, aes(ppg)) +
+  geom_histogram(binwidth = 25,
+                 color = "darkblue",
+                 fill = "skyblue") +
+  labs(title = "Original sample",
+       x = "Price per guest per night ($)",
+       y = "Count") +
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  scale_y_continuous(breaks = seq(0, 20, by = 5), limits = c(0, 20)) +
+  geom_segment(x = mean(abb$ppg), xend = mean(abb$ppg), 
+               y = 0, yend = 3, col = "red") +
+  geom_text(x = mean(abb$ppg), y = 4, 
+            label = "sample mean", size = 5, col = "red")
+```
+
+---
+
+## Step 1
+
+Take a bootstrap sample: a random sample taken **with replacement** from the original sample, 
+**of the same size** as the original sample.
+
+```{r, echo = F}
+set.seed(1)
+boot_samp_1 <- abb %>% 
+  slice_sample(n = 50, replace = T)
+```
+
+```{r, echo = F, out.width = "60%"}
+ggplot(data = boot_samp_1, aes(ppg)) +
+  geom_histogram(binwidth = 25,
+                 color = "darkblue",
+                 fill = "skyblue") +
+  labs(title = "Bootstrap sample 1",
+       x = "Price per guest per night",
+       y = "Count") +
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  scale_y_continuous(breaks = seq(0, 20, by = 5), limits = c(0, 20)) 
+```
+
+---
+
+## Step 2
+
+Calculate the bootstrap statistic (in this case, the sample mean) using the bootstrap sample.
+
+```{r, echo = F, out.width = "60%"}
+ggplot(data = boot_samp_1, aes(ppg)) +
+  geom_histogram(binwidth = 25,
+                 color = "darkblue",
+                 fill = "skyblue") +
+  labs(title = "Bootstrap sample 1",
+       x = "Price per guest per night",
+       y = "Count") +
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  scale_y_continuous(breaks = seq(0, 20, by = 5), limits = c(0, 20)) + 
+  geom_segment(x = mean(boot_samp_1$ppg), xend = mean(boot_samp_1$ppg), 
+               y = 0, yend = 3, col = "red") +
+  geom_text(x = mean(boot_samp_1$ppg), y = 4, 
+            label = round(mean(boot_samp_1$ppg)), size = 5, col = "red")
+```
+
+---
+
+## Step 3
+
+Do steps 1 and 2 over and over again to create a bootstrap distribution of sample means.
+
+```{r, echo = F}
+plt <- list()
+for (i in 1:6) {
+  set.seed(i+100)
+  temp <- abb %>% 
+    slice_sample(n = 50, replace = T)
+  mean_ppg <- mean(temp$ppg)
+  plt[[i]] <- ggplot(data = temp, aes(ppg)) +
+    geom_histogram(binwidth = 25,
+                 color = "darkblue",
+                 fill = "skyblue") +
+    labs(x = "", y = "") +
+    scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) +
+    scale_y_continuous(breaks = seq(0, 20, by = 5), limits = c(0, 20)) +
+    geom_segment(x = mean_ppg, xend = mean_ppg, y = 0, yend = 3, col = "red") +
+    geom_text(x = mean_ppg, y = 4, label = round(mean_ppg), 
+              size = 4, col = "red")
+}
+```
+
+```{r, echo = F, out.height="90%"}
+gridExtra::grid.arrange(plt[[1]], plt[[2]], plt[[3]], 
+                        plt[[4]], plt[[5]], plt[[6]], nrow = 2)
+```
+              
+---
+
+## Step 3
+
+In this plot, we've taken 1,000 bootstrap samples, calculated the
+sample mean for each, and plotted them in a histogram.
+
+```{r, echo = F, out.width = "60%"}
+set.seed(123)
+abb_boot <- abb %>% 
+  specify(response = ppg) %>% 
+  generate(reps = 1000, type = "bootstrap") %>% 
+  calculate(stat = "mean")
+
+abb_boot %>% 
+  ggplot(aes(x = stat)) + 
+  geom_histogram(binwidth = 5, color = "darkred", fill = "pink") +
+  labs(x = "Sample means", y = "Count", 
+       title = "Bootstrap distribution of sample means") + 
+  geom_segment(x = mean(abb$ppg), xend = mean(abb$ppg), 
+               y = 0, yend = 100, col = "red") +
+  geom_text(x = mean(abb$ppg), y = 130, 
+            label = "original\nsample mean", size = 5, col = "red")
+```
+
+---
+
+## Step 3
+
+Here we compare the bootstrap distribution of sample means to that 
+of the original data. What do you notice?
+
+```{r, echo = F, out.width = "60%"}
+p1 <- ggplot(data = abb, aes(ppg)) +
+  geom_histogram(binwidth = 25,
+                 color = "darkblue",
+                 fill = "skyblue") +
+  labs(x = "Price per guest per night ($)", y = "", 
+       title = "Original sample") +
+  geom_vline(xintercept = mean(abb$ppg), col = "red") +
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p2 <- abb_boot %>% 
+  ggplot(aes(x = stat)) + 
+  geom_histogram(binwidth = 5, color = "darkred", fill = "pink") +
+  labs(x = "Sample means", y = "", 
+       title = "Bootstrap distribution of sample means") + 
+  geom_vline(xintercept = mean(abb$ppg), col = "red") +
+  scale_x_continuous(breaks = seq(0, 250, by = 50), limits = c(0, 250)) + 
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+gridExtra::grid.arrange(p1, p2, ncol = 1)
+```
+
+---
+
+## Step 4
+
+Calculate the bounds of the bootstrap interval by using percentiles of the bootstrap distribution.
+
+```{r, echo = F, out.width = "50%"}
+lower_bound <- abb_boot %>% 
+  summarize(lower_bound = quantile(stat, 0.025)) %>% pull() 
+upper_bound <- abb_boot %>% 
+  summarize(upper_bound = quantile(stat, 0.975)) %>% pull() 
+
+abb_boot %>% 
+  ggplot(aes(x = stat)) + 
+  geom_histogram(binwidth = 5,  
+                 fill = "pink", alpha = 0.7) +
+  labs(x = "Sample means", y = "Count", 
+       title = "Bootstrap distribution of sample means", 
+       subtitle = "and 95% confidence interval") + 
+  geom_segment(x = mean(abb$ppg), xend = mean(abb$ppg), 
+               y = 0, yend = 100, col = "red") +
+  geom_segment(x = lower_bound, xend = lower_bound, 
+               y = 0, yend = 100, linetype = "dashed") +
+  geom_segment(x = upper_bound, xend = upper_bound, 
+               y = 0, yend = 100, linetype = "dashed") +
+  geom_text(x = mean(abb$ppg), y = 120, 
+            label = round(mean(abb$ppg)), size = 5, col = "red") + 
+  geom_text(x = lower_bound, y = 120, 
+            label = round(lower_bound), size = 5) +
+  geom_text(x = upper_bound, y = 120, 
+            label = round(upper_bound), size = 5)
+```
+--
+
+The 95% confidence interval for the mean price per guest per night
+among Airbnb rentals with at least ten reviews in Asheville is ($64, $90).
 
 ---
 
