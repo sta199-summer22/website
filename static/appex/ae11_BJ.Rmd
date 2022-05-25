@@ -18,7 +18,7 @@ output:
 
 ## Bayes' Theorem
 
-The global coronavirus pandemic illustrates the need for accurate testing of COVID-19, as its extreme infectivity poses a significant public health threat. Due to the time-sensitive nature of the situation, the FDA enacted emergency authorization of a number of serological tests for COVID-19 in 2020. Full details of these tests may be found on its website [here](https://www.fda.gov/medical-devices/coronavirus-disease-2019-covid-19-emergency-use-authorizations-medical-devices/eua-authorized-serology-test-performance).
+The global coronavirus pandemic illustrates the need for accurate testing of COVID-19, as its extreme infectivity poses a significant public health threat. Due to the time-sensitive nature of the situation, the FDA enacted emergency authorization of a number of serological tests including Abbott Alinity for COVID-19 in 2020. Full details of these tests may be found on its website [here](https://www.fda.gov/medical-devices/coronavirus-disease-2019-covid-19-emergency-use-authorizations-medical-devices/eua-authorized-serology-test-performance).
 
 We will define the following events:
 
@@ -51,7 +51,7 @@ Suppose the prevalence of COVID-19 in the general population is about 2%, *P(Cov
 
 ## Simpson's paradox
 
-A study of conducted in Whickham, England recorded participants' age, smoking status at baseline between 1972 and 1974 and then 20 years later recorded their health outcome.
+A study conducted in Whickham, England recorded participants' age, smoking status at baseline between 1972 and 1974 and then 20 years later recorded their health outcome.
 
 Let's analyze the relationships between these variables, first two at a time, and then controlling for the third.
 

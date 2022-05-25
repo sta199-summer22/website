@@ -1,5 +1,5 @@
 ---
-title: "HW 02: Statistics Experience"
+title: "Homework #02: Statistics Experience"
 subtitle: "due Thursday, June 16 at 11:59pm"
 output: 
   tufte::tufte_html:
@@ -88,4 +88,4 @@ Include the following on your slide:
 
 ## Submission 
 
-Submit the reflection as a PDF under the  **HW 02: Statistics Experience** assignment on Gradescope by **Thursday, June 16 at 11:59pm.** It must be submitted by the deadline on Gradescope to be considered for grading.
+Submit the reflection as a PDF under the  **HW02** assignment on Gradescope by **Thursday, June 16 at 11:59pm.** 
