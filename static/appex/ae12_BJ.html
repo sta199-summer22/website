@@ -275,27 +275,35 @@ div.tocify {
 </div>
 <div id="part-2-scientific-studies" class="section level3">
 <h3>Part 2: Scientific Studies<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h3>
-<p>Researchers aim to evaluate the effects of prenatal exposure to air pollutants on neurodevelopmental and behavioral development in children. They recruited a total of 700 African American and Dominican women from two prenatal clinics in Northern Manhattan who satisfied the following inclusion criteria: - enrolled in a longitudinal birth cohort as a mother-child dyad - aged 18-35 - had first prenatal visit before the 20th week of gestation - were free of diabetes, hypertension, or known HIV - did not report tobacco or illicit drug use - resided in the study area for at least one year prior to pregnancy</p>
+<p>Researchers aim to evaluate the effects of prenatal exposure to air pollutants on neurodevelopmental and behavioral development in children. They recruited a total of 700 African American and Dominican women from two prenatal clinics in Northern Manhattan who satisfied the following inclusion criteria:</p>
+<ul>
+<li>enrolled in a longitudinal birth cohort as a mother-child dyad</li>
+<li>aged 18-35</li>
+<li>had first prenatal visit before the 20th week of gestation</li>
+<li>were free of diabetes, hypertension, or known HIV</li>
+<li>did not report tobacco or illicit drug use</li>
+<li>resided in the study area for at least one year prior to pregnancy</li>
+</ul>
 <p>For neurodevelopmental and behavioral development in children, an IQ test was administered to children at age seven.</p>
 <p><strong>Q - </strong> What type of study is it? What kind of conclusions can we make?</p>
 <p><strong>Q - </strong> Identify a response variable, explanatory variables, and confounding variables.</p>
-<p><strong>Q - </strong> Is random sampling employed? Can we extend findings in the study to a broader population, for instance, mother-child dyads across the US?</p>
+<p><strong>Q - </strong> Can we extend findings in the study to a broader population, for instance, mother-child dyads across the US?</p>
 <p><strong>Q - </strong> What could have been done differently for a more representative sample?</p>
 </div>
 </div>
 <div id="data-generative-process" class="section level2">
 <h2>Data Generative Process</h2>
 <pre><code>Your friend wants to play a game. The game goes: you flip a coin. If it&#39;s tails then the turn goes to your friend. If it&#39;s heads, you keep playing. </code></pre>
-<p>Let’s flip a real coin for 10 times and see how this game would go.</p>
 <p>We will say a Tails is 0 and a Heads is 1. To be more precise, we will say:</p>
 <p>Let <span class="math inline">\(X\)</span> be a <strong>random variable</strong> that maps the outcome (“Heads”, “Tails”) to the numbers (1, 0) respectively.</p>
 <p>A <strong>random variable</strong> takes each outcome (possibly a categorical variable) in the sample space and maps it to a number.</p>
+<p>Let’s flip a real coin with your friend for 10 times and see how this game goes.</p>
 <div id="part-3" class="section level3">
 <h3>Part 3</h3>
 <p>Input the data.</p>
-<pre class="r"><code># coin_flips = c()</code></pre>
+<pre class="r"><code># coin_flips &lt;- c()</code></pre>
 <p><strong>Q - </strong>Do you think this coin is fair? Why?</p>
-<p>Let’s come up with a <strong>data generative process</strong>, a model for how the data was generated.</p>
+<p>Let’s come up with a <strong>data generative process</strong>, a model for how the data were generated.</p>
 <p>We might imagine that <span class="math inline">\(X\)</span> (the outcome of an individual coin flip, represented as 0 or 1) is obeying some universal law. Each time I flip the coin, there is a probability <span class="math inline">\(p\)</span> that the coin lands heads. What is the probability the coin lands tails?</p>
 <p>This probability <span class="math inline">\(p\)</span> is fixed to this coin. For example, some scenarios:</p>
 <ul>
@@ -313,9 +321,10 @@ X \sim \text{Bernoulli}(p)
 <div id="part-4" class="section level3">
 <h3>Part 4</h3>
 <p>Let’s flip a coin for another 10 times.</p>
-<pre class="r"><code># coin_flips = c(coin_flips, )</code></pre>
-<p><strong>Q - </strong>What’s the probability of this outcome if the coin is fair?</p>
-<p>More generally, we can define <span class="math inline">\(Y\)</span> to be the number of heads. In other words, <span class="math inline">\(Y = \sum_{i=1}^{n} X_i = X_1 + X_2 + ... X_{n}\)</span> where <span class="math inline">\(n\)</span> is the total number of coin flips. In our case, <span class="math inline">\(n=20\)</span>.</p>
+<pre class="r"><code># coin_flips &lt;- c(coin_flips, )</code></pre>
+<pre><code>What&#39;s the probability of this outcome if the coin is fair?</code></pre>
+<p>In order to answer this question, we need a distribution of the number of heads from 20 trials with a fair coin.</p>
+<p>We can define <span class="math inline">\(Y\)</span> to be the number of heads. In other words, <span class="math inline">\(Y = \sum_{i=1}^{n} X_i = X_1 + X_2 + \cdots + X_{n}\)</span> where <span class="math inline">\(n\)</span> is the total number of coin flips. In our case, <span class="math inline">\(n=20\)</span>.</p>
 <p>We say “<span class="math inline">\(Y\)</span> follows a Bionomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>”.</p>
 <p><span class="math display">\[
 Y \sim \text{Binomial}(n, p)
@@ -326,13 +335,13 @@ P(Y = y) = {n \choose y} p^{y} (1-p)^{n-y}
 \]</span> Notice:</p>
 <ul>
 <li>the number of heads observed is lower case <span class="math inline">\(y\)</span></li>
-<li><span class="math inline">\(y\)</span> is the number of heads</li>
 <li><span class="math inline">\(n-y\)</span> is the number of tails</li>
 </ul>
 </div>
 <div id="part-5" class="section level3">
 <h3>Part 5</h3>
-<p>We can simulate much more coin flips. The code below simulates 100,000 coin flips where each flip is Bernoulli distributed with <span class="math inline">\(p = 0.5\)</span>. Note, Bernoulli(p) <span class="math inline">\(\stackrel{d}{=}\)</span> Binomial(1, p).</p>
+<p>Once we figure out the distribution, we can either calculate the probability analytically or through simulations. For analytical results, we can simply replace <span class="math inline">\(y\)</span> with the observed number of heads that we want to compute the probability for.</p>
+<p>Let’s practice how to simulate coin flips. The code below simulates 100,000 coin flips where each flip is Bernoulli distributed with <span class="math inline">\(p = 0.5\)</span>. Note, Bernoulli(p) <span class="math inline">\(\stackrel{d}{=}\)</span> Binomial(1, p).</p>
 <pre class="r"><code>set.seed(527)
 flips &lt;- rbinom(100000, 1, 0.5)</code></pre>
 <p>We can simulate 20 coin flips for multiple times as well. The code below simulates the number of heads out of 20 coin flips for 50,000 times. Each element <span class="math inline">\(Y\)</span> follows a Binomial distribution with <span class="math inline">\(n = 20\)</span> and <span class="math inline">\(p = 0.5\)</span>.</p>
@@ -344,11 +353,13 @@ total_head &lt;- rbinom(50000, 20, 0.5)</code></pre>
 <h3>Practice</h3>
 <ol style="list-style-type: decimal">
 <li><p>Using <code>total_head</code>, find the probability of seeing 15 tails out of 20 coin flips.</p></li>
+<li><p>Compare the above results based on simulation with analytical results using <code>dbinom()</code>.</p></li>
 <li><p>Plot a histogram of the simulation. What does this show?</p></li>
 </ol>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>What is the probability of seeing at least 15 tails?</li>
+<ol start="4" style="list-style-type: decimal">
+<li><p>What is the probability of seeing at least 15 tails?</p></li>
+<li><p>Verify the results in (4) with analytical results using <code>pbinom()</code>.</p></li>
 </ol>
 </div>
 </div>

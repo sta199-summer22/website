@@ -1,0 +1,302 @@
+---
+title: "Hypothesis Testing 1"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Hypothesis Testing](https://warpwire.duke.edu/w/YQ4GAA/)
+
+- [Slides](https://sta199-f21-001.netlify.app/slides/16-hypothesis-test.html#1)
+
+Optional: `r emo::ji("book")` Read [IMS: Chapter 11 - Hypothesis Testing With Randomization](https://openintro-ims.netlify.app/foundations-randomization.html)
+
+---
+
+## Today's Goal 
+
+- Understand important concepts in hypothesis testing framework including the null hypothesis, alternative hypothesis, and p-value, etc.
+- Conduct simulation-based hypothesis testing with the `tidymodels` package 
+
+---
+
+## Statistical Inference
+
+Statistical inference is the process of using sample data to make 
+conclusions about the underlying population the sample came from.
+
+- **Estimation**: using the sample to estimate a plausible range of values 
+for the unknown parameter
+
+- **Testing**: evaluating whether our observed sample provides evidence 
+for or against some claim about the population
+
+--
+
+Today we will focus on **Testing**.
+
+We will conduct hypothesis testing using simulation-based methods (**bootstrapping**, again). 
+
+---
+
+## Hypothesis testing framework 
+
+1. Defining the hypotheses
+
+2. Collecting and summarizing data
+
+3. Assessing the observed evidence
+
+4. Making a conclusion
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Choose the correct description in the following sentences:** 
+
+- Two hypotheses are about the ( population / sample ). 
+
+- The null and the alternative hypotheses are defined for ( statistics / parameters ).
+
+- The null hypothesis states ( "there is nothing unusual going on" / "there is something interesting going on" ).
+
+- The alternative hypothesis states ( the status quo / the research question ).
+
+- The alternative hypothesis is denoted by ( $H_1$ / $H_A$ ). 
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Choose the correct description in the following sentences:** 
+
+- Two hypotheses are about the ( **population** / sample ). 
+
+- The null and the alternative hypotheses are defined for ( statistics / **parameters** ).
+
+- The null hypothesis states ( **"there is nothing unusual going on"** / "there is something interesting going on" ).
+
+- The alternative hypothesis states ( the status quo / **the research question** ).
+
+- The alternative hypothesis is denoted by **( $H_1$ / $H_A$ )**. 
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Which of the following is the correct set of hypotheses?**
+
+(a) $H_0: p = 0.10$; $H_A: p \ne 0.10$ 
+
+(b) $H_0: p = 0.10$; $H_A: p > 0.10$ 
+
+(c) $H_0: \hat{p} = 0.10$; $H_A: \hat{p} \ne 0.10$ 
+
+(d) $H_0: \hat{p} = 0.10$; $H_A: \hat{p} < 0.10$ 
+
+- $\hat{\theta}$ used to denote the associated statistic to the parameter $\theta$.
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Which of the following is the correct set of hypotheses?**
+
+**(a) $H_0: p = 0.10$; $H_A: p \ne 0.10$** 
+
+**(b) $H_0: p = 0.10$; $H_A: p > 0.10$** 
+
+(c) $H_0: \hat{p} = 0.10$; $H_A: \hat{p} \ne 0.10$ 
+
+(d) $H_0: \hat{p} = 0.10$; $H_A: \hat{p} < 0.10$ 
+
+- $\hat{\theta}$ used to denote the associated statistic to the parameter $\theta$.
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Identify the null and alternative hypothesis in the following research questions.**
+
+A principal at a certain school claims that the students in the school are above average intelligence. The mean population IQ is 100.
+
+--
+
+- $H_0$: The mean IQ for students attending the school is equal to the mean population IQ.
+- $H_1$: The mean IQ for students attending the school is above the mean population IQ.
+
+With $\mu$ being the mean IQ for students attending the school,
+
+- $H_0$: $\mu = 100$
+- $H_1$: $\mu > 100$
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Identify the null and alternative hypothesis in the following research questions.**
+
+A researcher wants to test if vitamin C has the ability to prevent the flu in children. The flu infection rate in the US children population is 20%. 
+
+--
+
+- $H_0$: The true infection rate of the flu among children with sufficient vitamin C is equal to the infection rate among all US children. 
+- $H_1$: The true infection rate of the flu among children with sufficient vitamin C is lower than the infection rate among all US children. 
+
+With $p$ being the true infection rate of the flu among children with sufficient vitamin C,
+
+- $H_0$: $p = 0.2$
+- $H_1$: $p < 0.2$
+
+---
+
+## Quiz 
+
+3. Assessing the observed evidence
+
+**Q - What is p-value?** 
+
+--
+
+- Conditional probability 
+- Given $H_0$ is true, what is the probability of observing $\hat{p}$ (our statistic) or something more extreme against the null hypothesis?
+- We compute this probability by simulating a null distribution for $\hat{p}$. 
+
+--
+
+**Q - What is the null distribution?** 
+
+--
+
+- Distribution of the observed statistics given the null hypothesis is true ("under the null hypothesis")
+
+--
+
+**Q - We have only one sample. How can we possibly get a distribution?** 
+
+--
+Bootstrapping!
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - What are the conclusions we can make from a hypothesis test?**
+
+--
+
+- Reject $H_0$ in favor of $H_1$
+- Fail to reject $H_0$ 
+
+--
+
+**Q - We make a conclusion by comparing the p-value to a predetermined numeric cutoff. What is it called?**
+
+--
+
+- Significance level 
+- Denoted by $\alpha$
+- Depends on the context, but usually set at $\alpha = 0.05$
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - What does it mean that $\alpha = 0.05$?** 
+
+--
+
+- We would expect to incorrectly reject $H_0$ when $H_0$ is true for 5% of the time. 
+- P(reject $H_0$ | $H_0$ is true) = 0.05
+
+--
+
+**Q - State a conclusion to make when the p-value $< \alpha$.** 
+
+--
+
+- The results are statistically significant. 
+- There is sufficient evidence at $\alpha = 0.05$ to reject the null hypothesis in favor of $H_1$. 
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - State a conclusion to make when the p-value $\geq \alpha$.** 
+
+--
+
+- The results are not statistically significant. 
+- We fail to reject the null hypothesis.
+- There is insufficient evidence at $\alpha = 0.05$ to reject the null hypothesis. 
+
+--
+
+**Q - What are the two types of errors we can make?** 
+
+--
+
+- P(Type I error) = $\alpha$ = P(reject H_0 | H_0 is true)
+- P(Type II error) = $\beta$ = P(fail to reject H_0 | H_0 is false)
+
+--
+
+**Q - How do we assess the capability of a test for detecting "something interesting"?** 
+
+--
+
+- The power of a test: $1-\beta$ = P(reject H_0 | H_0 is false)
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 3](https://sta199-summer22.netlify.app/prepare/week04_jun03_BJ.html)
+
+- Project proposal due Friday, June 3 at 11:59pm 
+
+- HW03 released 
+
+

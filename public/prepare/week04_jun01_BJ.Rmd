@@ -21,4 +21,4 @@ You can ignore "Your Turn" sections.
 
 ## Optional 
 
-`r emo::ji("book")` Read [IMS: Chapter 12 - Confidence intervals with bootstrapping](https://openintro-ims.netlify.app/foundations-bootstrapping.html)
+`r emo::ji("book")` Read [IMS: Chapter 12 - Confidence Intervals With Bootstrapping](https://openintro-ims.netlify.app/foundations-bootstrapping.html)

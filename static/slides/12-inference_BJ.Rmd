@@ -43,7 +43,7 @@ library(tidyverse)
 --
 
 - Collect data in a way that does not interfere with how the data arise 
-- Establish **associations** (!= causation)
+- Establish **associations** ($\ne$ causation)
 - Data often cheaper and easier to collect 
 - e.g., Smoking behavior and health outcomes 
 
@@ -164,6 +164,8 @@ random sampling and non-random sampling
 
 **Q - What is non-random sampling?** 
 
+--
+
 - In a non-random sample, individuals are selected based on non-random criteria, and not every individual has a chance of being included.
 - Conclusions from a non-random sample are **not generalizable**. 
 - e.g., I make my close friends complete a survey and analyze the survey data for a final project.
@@ -192,8 +194,11 @@ Go to [AE 12: Foundations of Inference](https://sta199-summer22.netlify.app/appe
   
 - May 30 
 
-  - Memorial day holiday. No class! 
-  - Have fun after submitting Exam 01 
+  - Memorial day holiday. No class. 
+  - Have fun after submitting Exam 01! 
 
+- Nothing to prepare for May 31!
 
+- Lab 04 due Tuesday, May 31 at 11:59pm.
 
+- Submit your `ae12` before class on Tuesday, May 31. 

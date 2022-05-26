@@ -19,6 +19,7 @@ editor_options:
 - Calculate marginal, joint, and conditional probabilities in a reproducible way. 
 - Visualize categorical data.
 - Use visualizations and probabilities to describe the association between two categorical variables. 
+
 # Getting started
 
 - Go to [course GitHub organization page](https://github.com/sta199-summer22) and clone the repository entitled "lab04-GitHubUsername" in RStudio. 
@@ -52,7 +53,7 @@ glimpse(courage)
 
 - Create a new variable called `seasonal_category` that classifies NC courage games as `early` (games 1-9), `middle` (games 10-17), or `late` (18-26) season.
 - Create a new variable called `win` that takes the value `0` if the courage lose and `1` if they win.
-- Create a 3 x 2 tibble that has the season category (early, middle late) in one column and the proportion of wins in the second column.
+- Create a 3 x 2 tibble that has the season category (early, middle, late) in one column and the proportion of wins in the second column.
 - Save your tibble as `seasonal_courage` **and** print it to the screen.
 - Describe what this table shows using the term "conditional probability".
 
@@ -64,9 +65,6 @@ glimpse(courage)
 
 The code to reorder levels for `seasonal_category` is below.
 
-- Uncomment and run the code below. NOTE: you will need to save your output from the previous question as `seasonal_courage`.
-- Add one line of code to the chunk below so that the seasonal categories print in the correct order (`early` then `middle`, then `late`). Hint: what `dplyr` verb changes the order of output?
-
 ```{r seasonal-order}
 # seasonal_courage %>%
 #   mutate(seasonal_category =
@@ -74,7 +72,11 @@ The code to reorder levels for `seasonal_category` is below.
 #                   levels = c("early", "middle", "late")))
 ```
 
+- Add one line of code to the chunk above so that the seasonal categories print in the correct order (`early` then `middle`, then `late`). Hint: what `dplyr` verb changes the order of output?
+- Uncomment and run the code above. 
+
 4. Based on the data, 
+
 - what is the marginal probability the Courage win a game?
 - What is the conditional probability the Courage win a game given it was a home game? 
 - Based on your findings, would you say winning is independent of whether they are playing at their home-field? Why? What does this say about home-field advantage?
@@ -96,7 +98,7 @@ The code to reorder levels for `seasonal_category` is below.
 
 - Use the contingency table to find 
   - The marginal probability a game is home
-  - The marginal probability a tie
+  - The marginal probability a game is a tie
   - The conditional probability of a game being at home given the game was a tie
 
 Bayes' theorem tells us that
@@ -107,7 +109,7 @@ $$
   
   - Using Bayes' theorem, find and report the conditional probability a game is a tie given a game is home. Check your result using the contingency table.
 
-- Finally, is the probability of a tie independent of the Courage playing at home or away? Why?
+- Finally, is the event that a game is a tie independent of the Courage playing at home or away? Why?
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.

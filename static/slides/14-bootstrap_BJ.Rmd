@@ -26,6 +26,8 @@ library(tidyverse)
 
 - [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1) 
 
+Optional: `r emo::ji("book")` Read [IMS: Chapter 12 - Confidence Intervals With Bootstrapping](https://openintro-ims.netlify.app/foundations-bootstrapping.html)
+
 ---
 
 ## Today's Goal 
@@ -205,6 +207,12 @@ c. "in our sample"
 class: middle, center
 
 # Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 14: Confidence Intervals through Bootstrapping](https://sta199-summer22.netlify.app/appex/ae14_BJ.html)
 
 ---
 

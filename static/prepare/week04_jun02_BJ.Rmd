@@ -1,0 +1,26 @@
+---
+title: "Prepare: June 2"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Hypothesis Testing](https://warpwire.duke.edu/w/YQ4GAA/)
+
+- [Slides](https://sta199-f21-001.netlify.app/slides/16-hypothesis-test.html#1)
+
+
+## Optional 
+
+`r emo::ji("book")` Read [IMS: Chapter 11 - Hypothesis Testing With Randomization](https://openintro-ims.netlify.app/foundations-randomization.html)
+

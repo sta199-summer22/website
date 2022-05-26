@@ -147,6 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="TOC">
 <ul>
 <li><a href="#goals">Goals</a></li>
+<li><a href="#getting-started">Getting started</a></li>
 <li><a href="#packages">Packages</a></li>
 <li><a href="#nc-courage">NC Courage</a></li>
 <li><a href="#submission">Submission</a></li>
@@ -157,11 +158,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="goals" class="section level1">
 <h1>Goals</h1>
 <ul>
-<li><p>Calculate marginal, joint, and conditional probabilities in a reproducible way.</p></li>
-<li><p>Visualize categorical data.</p></li>
-<li><p>Use visualizations and probabilities to describe the association between two categorical variables. # Getting started</p></li>
-<li><p>Go to <a href="https://github.com/sta199-summer22">course GitHub organization page</a> and clone the repository entitled “lab04-GitHubUsername” in RStudio.</p></li>
-<li><p>Find <code>lab04.Rmd</code> to open the template R Markdown file.</p></li>
+<li>Calculate marginal, joint, and conditional probabilities in a reproducible way.</li>
+<li>Visualize categorical data.</li>
+<li>Use visualizations and probabilities to describe the association between two categorical variables.</li>
+</ul>
+</div>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<ul>
+<li>Go to <a href="https://github.com/sta199-summer22">course GitHub organization page</a> and clone the repository entitled “lab04-GitHubUsername” in RStudio.</li>
+<li>Find <code>lab04.Rmd</code> to open the template R Markdown file.</li>
 </ul>
 <p>Don’t forget to label your R chunk. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.</p>
 </div>
@@ -196,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Create a new variable called <code>seasonal_category</code> that classifies NC courage games as <code>early</code> (games 1-9), <code>middle</code> (games 10-17), or <code>late</code> (18-26) season.</li>
 <li>Create a new variable called <code>win</code> that takes the value <code>0</code> if the courage lose and <code>1</code> if they win.</li>
-<li>Create a 3 x 2 tibble that has the season category (early, middle late) in one column and the proportion of wins in the second column.</li>
+<li>Create a 3 x 2 tibble that has the season category (early, middle, late) in one column and the proportion of wins in the second column.</li>
 <li>Save your tibble as <code>seasonal_courage</code> <strong>and</strong> print it to the screen.</li>
 <li>Describe what this table shows using the term “conditional probability”.</li>
 </ul>
@@ -207,14 +213,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>By default, <code>R</code> will arrange the categories of a categorical variable in alphabetical order in any output and visualizations, but we want the levels for <code>seasonal_category</code> to be in logical order. To achieve this, we will use the <code>factor()</code> function to make both of these variables factors (categorical variables with ordering) and specify the levels we wish to use.</li>
 </ol>
 <p>The code to reorder levels for <code>seasonal_category</code> is below.</p>
-<ul>
-<li>Uncomment and run the code below. NOTE: you will need to save your output from the previous question as <code>seasonal_courage</code>.</li>
-<li>Add one line of code to the chunk below so that the seasonal categories print in the correct order (<code>early</code> then <code>middle</code>, then <code>late</code>). Hint: what <code>dplyr</code> verb changes the order of output?</li>
-</ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seasonal_courage %&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(seasonal_category =</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#            factor(seasonal_category,</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                   levels = c(&quot;early&quot;, &quot;middle&quot;, &quot;late&quot;)))</span></span></code></pre></div>
+<ul>
+<li>Add one line of code to the chunk above so that the seasonal categories print in the correct order (<code>early</code> then <code>middle</code>, then <code>late</code>). Hint: what <code>dplyr</code> verb changes the order of output?</li>
+<li>Uncomment and run the code above.</li>
+</ul>
 <ol start="4" style="list-style-type: decimal">
 <li>Based on the data,</li>
 </ol>
@@ -240,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use the contingency table to find</p>
 <ul>
 <li>The marginal probability a game is home</li>
-<li>The marginal probability a tie</li>
+<li>The marginal probability a game is a tie</li>
 <li>The conditional probability of a game being at home given the game was a tie</li>
 </ul></li>
 </ul>
@@ -250,7 +256,7 @@ P(\text{tie} \ | \ \text{home}) = \frac{P(\text{home} \ | \ \text{tie}) P(\text{
 \]</span></p>
 <ul>
 <li><p>Using Bayes’ theorem, find and report the conditional probability a game is a tie given a game is home. Check your result using the contingency table.</p></li>
-<li><p>Finally, is the probability of a tie independent of the Courage playing at home or away? Why?</p></li>
+<li><p>Finally, is the event that a game was a tie independent of the Courage playing at home or away? Why?</p></li>
 </ul>
 <div class="commit">
 <p>🧶 ✅ ⬆️ Knit, commit, and push your final changes to GitHub with a meaningful commit message.</p>

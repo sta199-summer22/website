@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis Testing 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hypothesis Testing 1
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Material 
+
+🎥 Watch [Hypothesis Testing](https://warpwire.duke.edu/w/YQ4GAA/)
+
+- [Slides](https://sta199-f21-001.netlify.app/slides/16-hypothesis-test.html#1)
+
+Optional: 📖 Read [IMS: Chapter 11 - Hypothesis Testing With Randomization](https://openintro-ims.netlify.app/foundations-randomization.html)
+
+---
+
+## Today's Goal 
+
+- Understand important concepts in hypothesis testing framework including the null hypothesis, alternative hypothesis, and p-value, etc.
+- Conduct simulation-based hypothesis testing with the `tidymodels` package 
+
+---
+
+## Statistical Inference
+
+Statistical inference is the process of using sample data to make 
+conclusions about the underlying population the sample came from.
+
+- **Estimation**: using the sample to estimate a plausible range of values 
+for the unknown parameter
+
+- **Testing**: evaluating whether our observed sample provides evidence 
+for or against some claim about the population
+
+--
+
+Today we will focus on **Testing**.
+
+We will conduct hypothesis testing using simulation-based methods (**bootstrapping**, again). 
+
+---
+
+## Hypothesis testing framework 
+
+1. Defining the hypotheses
+
+2. Collecting and summarizing data
+
+3. Assessing the observed evidence
+
+4. Making a conclusion
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Choose the correct description in the following sentences:** 
+
+- Two hypotheses are about the ( population / sample ). 
+
+- The null and the alternative hypotheses are defined for ( statistics / parameters ).
+
+- The null hypothesis states ( "there is nothing unusual going on" / "there is something interesting going on" ).
+
+- The alternative hypothesis states ( the status quo / the research question ).
+
+- The alternative hypothesis is denoted by ( `\(H_1\)` / `\(H_A\)` ). 
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Choose the correct description in the following sentences:** 
+
+- Two hypotheses are about the ( **population** / sample ). 
+
+- The null and the alternative hypotheses are defined for ( statistics / **parameters** ).
+
+- The null hypothesis states ( **"there is nothing unusual going on"** / "there is something interesting going on" ).
+
+- The alternative hypothesis states ( the status quo / **the research question** ).
+
+- The alternative hypothesis is denoted by **( `\(H_1\)` / `\(H_A\)` )**. 
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Which of the following is the correct set of hypotheses?**
+
+(a) `\(H_0: p = 0.10\)`; `\(H_A: p \ne 0.10\)` 
+
+(b) `\(H_0: p = 0.10\)`; `\(H_A: p &gt; 0.10\)` 
+
+(c) `\(H_0: \hat{p} = 0.10\)`; `\(H_A: \hat{p} \ne 0.10\)` 
+
+(d) `\(H_0: \hat{p} = 0.10\)`; `\(H_A: \hat{p} &lt; 0.10\)` 
+
+- `\(\hat{\theta}\)` used to denote the associated statistic to the parameter `\(\theta\)`.
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Which of the following is the correct set of hypotheses?**
+
+**(a) `\(H_0: p = 0.10\)`; `\(H_A: p \ne 0.10\)`** 
+
+**(b) `\(H_0: p = 0.10\)`; `\(H_A: p &gt; 0.10\)`** 
+
+(c) `\(H_0: \hat{p} = 0.10\)`; `\(H_A: \hat{p} \ne 0.10\)` 
+
+(d) `\(H_0: \hat{p} = 0.10\)`; `\(H_A: \hat{p} &lt; 0.10\)` 
+
+- `\(\hat{\theta}\)` used to denote the associated statistic to the parameter `\(\theta\)`.
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Identify the null and alternative hypothesis in the following research questions.**
+
+A principal at a certain school claims that the students in the school are above average intelligence. The mean population IQ is 100.
+
+--
+
+- `\(H_0\)`: The mean IQ for students attending the school is equal to the mean population IQ.
+- `\(H_1\)`: The mean IQ for students attending the school is above the mean population IQ.
+
+With `\(\mu\)` being the mean IQ for students attending the school,
+
+- `\(H_0\)`: `\(\mu = 100\)`
+- `\(H_1\)`: `\(\mu &gt; 100\)`
+
+---
+
+## Quiz 
+
+1. Defining the hypotheses
+
+**Q - Identify the null and alternative hypothesis in the following research questions.**
+
+A researcher wants to test if vitamin C has the ability to prevent the flu in children. The flu infection rate in the US children population is 20%. 
+
+--
+
+- `\(H_0\)`: The true infection rate of the flu among children with sufficient vitamin C is equal to the infection rate among all US children. 
+- `\(H_1\)`: The true infection rate of the flu among children with sufficient vitamin C is lower than the infection rate among all US children. 
+
+With `\(p\)` being the true infection rate of the flu among children with sufficient vitamin C,
+
+- `\(H_0\)`: `\(p = 0.2\)`
+- `\(H_1\)`: `\(p &lt; 0.2\)`
+
+---
+
+## Quiz 
+
+3. Assessing the observed evidence
+
+**Q - What is p-value?** 
+
+--
+
+- Conditional probability 
+- Given `\(H_0\)` is true, what is the probability of observing `\(\hat{p}\)` (our statistic) or something more extreme against the null hypothesis?
+- We compute this probability by simulating a null distribution for `\(\hat{p}\)`. 
+
+--
+
+**Q - What is the null distribution?** 
+
+--
+
+- Distribution of the observed statistics given the null hypothesis is true ("under the null hypothesis")
+
+--
+
+**Q - We have only one sample. How can we possibly get a distribution?** 
+
+--
+Bootstrapping!
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - What are the conclusions we can make from a hypothesis test?**
+
+--
+
+- Reject `\(H_0\)` in favor of `\(H_1\)`
+- Fail to reject `\(H_0\)` 
+
+--
+
+**Q - We make a conclusion by comparing the p-value to a predetermined numeric cutoff. What is it called?**
+
+--
+
+- Significance level 
+- Denoted by `\(\alpha\)`
+- Depends on the context, but usually set at `\(\alpha = 0.05\)`
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - What does it mean that `\(\alpha = 0.05\)`?** 
+
+--
+
+- We would expect to incorrectly reject `\(H_0\)` when `\(H_0\)` is true for 5% of the time. 
+- P(reject `\(H_0\)` | `\(H_0\)` is true) = 0.05
+
+--
+
+**Q - State a conclusion to make when the p-value `\(&lt; \alpha\)`.** 
+
+--
+
+- The results are statistically significant. 
+- There is sufficient evidence at `\(\alpha = 0.05\)` to reject the null hypothesis in favor of `\(H_1\)`. 
+
+---
+
+## Quiz 
+
+4. Making a conclusion
+
+**Q - State a conclusion to make when the p-value `\(\geq \alpha\)`.** 
+
+--
+
+- The results are not statistically significant. 
+- We fail to reject the null hypothesis.
+- There is insufficient evidence at `\(\alpha = 0.05\)` to reject the null hypothesis. 
+
+--
+
+**Q - What are the two types of errors we can make?** 
+
+--
+
+- P(Type I error) = `\(\alpha\)` = P(reject H_0 | H_0 is true)
+- P(Type II error) = `\(\beta\)` = P(fail to reject H_0 | H_0 is false)
+
+--
+
+**Q - How do we assess the capability of a test for detecting "something interesting"?** 
+
+--
+
+- The power of a test: `\(1-\beta\)` = P(reject H_0 | H_0 is false)
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 3](https://sta199-summer22.netlify.app/prepare/week04_jun03_BJ.html)
+
+- Project proposal due Friday, June 3 at 11:59pm 
+
+- HW03 released 
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
