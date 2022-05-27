@@ -340,7 +340,7 @@ P(Y = y) = {n \choose y} p^{y} (1-p)^{n-y}
 </div>
 <div id="part-5" class="section level3">
 <h3>Part 5</h3>
-<p>Once we figure out the distribution, we can either calculate the probability analytically or through simulations. For analytical results, we can simply replace <span class="math inline">\(y\)</span> with the observed number of heads that we want to compute the probability for.</p>
+<p>Once we figure out the distribution, we can either calculate the probability analytically or through simulations. For analytical results, we can simply replace <span class="math inline">\(y\)</span> with the number of heads that we want to compute the probability for.</p>
 <p>Let’s practice how to simulate coin flips. The code below simulates 100,000 coin flips where each flip is Bernoulli distributed with <span class="math inline">\(p = 0.5\)</span>. Note, Bernoulli(p) <span class="math inline">\(\stackrel{d}{=}\)</span> Binomial(1, p).</p>
 <pre class="r"><code>set.seed(527)
 flips &lt;- rbinom(100000, 1, 0.5)</code></pre>
@@ -360,6 +360,7 @@ total_head &lt;- rbinom(50000, 20, 0.5)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>What is the probability of seeing at least 15 tails?</p></li>
 <li><p>Verify the results in (4) with analytical results using <code>pbinom()</code>.</p></li>
+<li><p>Using <code>total_head</code>, find the probability of seeing your result out of 20 coin flips.</p></li>
 </ol>
 </div>
 </div>

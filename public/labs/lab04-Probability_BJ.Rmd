@@ -109,7 +109,7 @@ $$
   
   - Using Bayes' theorem, find and report the conditional probability a game is a tie given a game is home. Check your result using the contingency table.
 
-- Finally, is the event that a game was a tie independent of the Courage playing at home or away? Why?
+- Finally, is the event that a game is a tie independent of the Courage playing at home or away? Why?
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
