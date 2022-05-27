@@ -14,7 +14,7 @@ this exam.
 
   - If a PDF is not uploaded to Gradescope by the submission deadline, your
 latest commit prior to the deadline will be used as your submission.
-  - There will be a 5 percentage point (2.5 points) penalty for failing to 
+  - There will be a 5 percentage point penalty for failing to 
   submit a PDF to Gradescope.
 
 - Commit and push often and at appropriate times. Part of your grade will
