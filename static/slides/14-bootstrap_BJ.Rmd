@@ -222,5 +222,5 @@ Go to [AE 14: Confidence Intervals through Bootstrapping](https://sta199-summer2
 
 - Project proposal due Friday, June 3 at 11:59pm 
 
-
+- HW03 released 
 

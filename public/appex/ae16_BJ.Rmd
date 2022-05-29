@@ -1,0 +1,192 @@
+---
+title: "AE 16: Hypothesis Testing 2"
+subtitle: "due Monday, June 6 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae16-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Inference Overview 
+
+What do we want to do? 
+
+- Estimation $\Rightarrow$ Point estimate and confidence interval 
+- Decision $\Rightarrow$ Hypothesis test
+
+Always ask 
+
+- How many variables?
+- What types of variables?
+- What is the research question? 
+
+## Different Options Inside `generate()`
+
+The function `generate` allows three options for its `type` argument. Discussion of `type = bootstrap`, `type = draw`, and `type = permute` is available [here](https://infer.netlify.app/reference/generate.html).
+
+- `type = permute`: shuffle the data without replacement
+  - for hypothesis testing on a difference in the outcome between groups 
+  - example: HT for a difference in proportions of yawners in the treatment and the control group 
+
+- `type = draw`: sample from a theoretical distribution 
+  - only for hypothesis testing on a single proportion
+  - example: HT for proportion of the number of heads in coin flips
+  
+- `type = bootstrap`: re-sample the original data with replacement
+  - for confidence intervals (CI) or for hypothesis testing (HT) on a single mean / median
+  - example: CI and HT for the true mean rent of one-bedroom apartments in Manhattan
+
+## Push Ups and Pull Ups 
+
+First load the relevant packages:
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+Today's dataset `push_pull` comes from a "mini study" by [mountain tactical institute](https://mtntactical.com/knowledge/mini-study-grease-the-groove-beats-density-for-push-up-pull-up-improvement/). 
+
+```{r load-data, message = FALSE}
+push_pull <- read_csv("data/push_pull.csv")
+push_pull %>%
+  slice(1:3, 24:26)
+```
+
+26 individuals completed 1 of 2 exercise regiments for 3.5 weeks to increase their push ups and pull ups. See the codebook below:
+
+- `participant_id`: unique identifier for each participant
+- `age`: age of participant
+- `push1` / `push2`: push-ups at beginning and end of program respectively
+- `pull1` / `pull2`: pull-ups at beginning and end of program respectively
+- `training`: which training protocol the individual participated in - either "density" or "gtg" (grease-the-groove)
+
+We create new variables for relative change in push-ups and pull-ups before and after the training. 
+
+```{r rel-change}
+push_pull <- push_pull %>%
+  mutate(rel_change_push = (push2 - push1)/push1, 
+         rel_change_pull = (pull2 - pull1)/pull1)
+```
+
+### Part 1: Is the average relative change in pull-ups of a gtg trainee significantly greater than a density trainee?
+
+In other words, we wonder if the group variable `training` affects the average relative increase in pull-ups. Let $\mu_{den}$ and $\mu_{gtg}$ be the true average relative change in pull-ups among density trainees and gtg trainees, respectively.
+
+Let's perform a hypothesis testing. 
+
+**Q - Step 1:** State the null hypothesis and the alternative hypothesis both in words and math.
+
+**Q - Step 2:** Find the relevant statistic from the data. 
+
+```{r statistic, eval = FALSE}
+mu_hat_diff <- push_pull %>% 
+  group_by(____) %>% 
+  summarize(mu_hat = ____) %>% 
+  pull(mu_hat) %>% 
+  diff()
+mu_hat_diff
+```
+
+**Step 3:** Simulate from the null distribution and compute the p-value. 
+
+**Q - ** Which of the `type` option in the `generate()` function is the most appropriate in this case? Why?
+
+**Q - ** Complete the code chunk below to simulate 10,000 sample statistics under the null hypothesis. Hint: check the help page of `calculate()` for its `stat` argument. 
+
+```{r part1-null, eval = FALSE}
+set.seed(603)
+
+null_dist <- push_pull %>% 
+  specify() %>%
+  hypothesize() %>% 
+  generate() %>%
+  calculate()
+```
+
+**Q - ** Visualize the rejection region under the null hypothesis with informative labels and compute the p-value. 
+
+```{r part1-pvalue, eval = FALSE}
+visualize(null_dist) +
+  labs(x = "Difference in sample means of improvement in pull-ups", 
+       y = "Count") +
+  shade_pvalue(obs_stat = _____, direction = _____) 
+  
+pvalue1 <- null_dist %>%
+  get_pvalue(obs_stat = ______, direction = _____) 
+pvalue1
+```
+
+**Q - Step 4:** State your conclusion with $\alpha = 0.01$.
+
+### Part 2. Most people who train consistently will see at least a 15% increase in push-ups
+
+**Q - ** State the null hypothesis and the alternative hypothesis.
+  
+**Q - ** Create a binary outcome `over15` which takes TRUE if `rel_change_push` is larger than 0.15 and FALSE otherwise. 
+
+```{r over15}
+```
+
+**Q - ** Find the sample proportion $\hat{p}$. 
+
+```{r phat, eval = FALSE}
+p_hat
+```
+
+**Q - ** Which of the `type` option in the `generate()` function is the most appropriate in this case? Why?
+
+**Q - ** Perform a hypothesis test, compute the p-value, and state your conclusion with $\alpha = 0.05$.
+
+```{r part2-null, eval = FALSE}
+set.seed(603)
+
+null2_dist <- push_pull %>% 
+  specify() %>%
+  hypothesize() %>% 
+  generate() %>%
+  calculate()
+
+visualize(null2_dist) +
+  labs(x = "Sample proportion of people with a 15% increase in push-ups", 
+       y = "Count") +
+  shade_pvalue(obs_stat = _______, direction = _______) 
+  
+pvalue2 <- null2_dist %>%
+  get_pvalue(obs_stat = _______, direction = _______) 
+pvalue2
+```
+
+Now we will construct a confidence interval to evaluate the hypotheses above. 
+
+**Q - ** Which of the `type` option in the `generate()` function is the most appropriate in this case? Why?
+
+**Q - ** Simulate from a bootstrap distribution with `reps = 10000` and visualize the distribution. What is it centered at? 
+
+```{r part2-ci-null}
+set.seed(603)
+
+```
+
+**Q - ** We want to construct a confidence interval at a confidence level equivalent to the significance level of $\alpha = 0.05$. What do you think the confidence level should be? Hint: The alternative hypothesis is one-sided. 
+
+**Q - ** Construct a confidence interval with the confidence level equivalent to $\alpha = 0.05$. Interpret the confidence interval. Is the conclusion drawn from the confidence interval consistent with the conclusion from the hypothesis test? 
+
+```{r part2-ci}
+```
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

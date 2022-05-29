@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis Testing 2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hypothesis Testing 2
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Today's Goal 
+
+- Conduct simulation-based hypothesis testing for independence 
+- Practice the three `generate` options: `permute`, `draw`, and `bootstrap`
+
+---
+
+class: middle, center
+
+# Testing for Independence
+
+---
+
+## Is Yawning Contagious?
+
+.pull-left[
+![](img/16/yawn1.png)
+]
+.pull-right[
+![](img/16/yawn2.png)
+]
+
+An experiment conducted by the MythBusters tested if a person can be subconsciously influenced into yawning if another person near them yawns.
+
+---
+
+## Study Description
+
+In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment; trmt) and 16 to a control group where they didn't see someone yawn (control; ctrl).
+
+The data `yawn` are in the `openintro` package.
+
+
+```r
+glimpse(yawn)
+```
+
+```
+## Rows: 50
+## Columns: 2
+## $ result &lt;fct&gt; yawn, yawn, yawn, yawn, yawn, yawn, yawn, yawn, …
+## $ group  &lt;fct&gt; trmt, trmt, trmt, trmt, trmt, trmt, trmt, trmt, …
+```
+
+---
+
+## Proportion of Yawners
+
+
+```r
+yawn %&gt;%
+  count(group, result) %&gt;%
+  group_by(group) %&gt;%
+  mutate(p_hat = n / sum(n))
+```
+
+```
+## # A tibble: 4 × 4
+## # Groups:   group [2]
+##   group result       n p_hat
+##   &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;
+## 1 ctrl  not yawn    12 0.75 
+## 2 ctrl  yawn         4 0.25 
+## 3 trmt  not yawn    24 0.706
+## 4 trmt  yawn        10 0.294
+```
+
+- Proportion of yawners in the treatment group: `\(\frac{10}{34} = 0.2941\)`
+- Proportion of yawners in the control group: `\(\frac{4}{16} = 0.25\)`
+- Difference: `\(0.2941 - 0.25 = 0.0441\)`
+
+---
+
+## Independence?
+
+Based on the proportions we calculated, do you think yawning is really contagious, i.e. are seeing someone yawn and yawning dependent?
+
+
+|group |result   |  n| p_hat|
+|:-----|:--------|--:|-----:|
+|ctrl  |not yawn | 12| 0.750|
+|ctrl  |yawn     |  4| 0.250|
+|trmt  |not yawn | 24| 0.706|
+|trmt  |yawn     | 10| 0.294|
+
+Well, the Mythbusters claimed that the difference in proportion of yawners between the two groups (0.044) was significant, based on intuition. Do you buy this?
+
+---
+
+## Possible Explanations?
+
+--
+
+- The observed differences might suggest that yawning is contagious, i.e. seeing someone yawn and yawning are **dependent**.
+
+--
+
+- But the differences are small enough that we might wonder if they might be simply **due to chance**.
+
+--
+
+- Let's see what hypothesis testing says using simulations! 
+
+---
+
+## 1. Defining hypotheses
+
+`\(H_0:\)` 
+
+--
+
+- Yawning is not contagious.
+- Yawning and seeing someone yawn are **independent**. 
+- The observed difference in proportions is simply due to chance. 
+- `\(p_{trmt} = p_{ctrl}\)` `\(\Leftrightarrow\)` `\(p_{trmt} - p_{ctrl} = 0\)`
+
+--
+
+`\(H_1:\)` 
+
+--
+
+- Yawning is contagious.
+- Yawning and seeing someone yawn are **dependent**. 
+- The observed difference in proportions is not due to chance. 
+- `\(p_{trmt} &gt; p_{ctrl}\)` `\(\Leftrightarrow\)` `\(p_{trmt} - p_{ctrl} &gt; 0\)`
+
+.small[
+`\(p_{trmt}\)`: the true proportion of yawners among those who saw someone yawn &lt;br&gt;
+`\(p_{ctrl}\)`: the true proportion of yawners among those who didn't see someone yawn.
+]
+
+---
+
+## 2. Summarizing Data
+
+
+```r
+p_hat_diff &lt;- yawn %&gt;%
+  count(group, result) %&gt;%
+  group_by(group) %&gt;%
+  mutate(p_hat = n / sum(n)) %&gt;% 
+  filter(result == "yawn") %&gt;% 
+  pull(p_hat) %&gt;% 
+  diff()
+p_hat_diff
+```
+
+```
+## [1] 0.04411765
+```
+
+---
+
+## 3. Assessing Observed Evidence
+
+### 3-1. Null Distribution 
+
+We know from our observed data that 
+
+- 14 people yawned and 36 people didn't yawn
+- 16 people were assigned in the control group and 34 people in the treatment group (saw someone yawn). 
+
+If the null hypothesis is true, 14 people who yawned should still be a yawner and 36 people who didn't yawn shouldn't be a yawner regardless of their assignment to the treatment vs. control group. 
+
+---
+
+## 3. Assessing Observed Evidence
+
+### 3-1. Null Distribution 
+
+Therefore, we will **shuffle** the group assignment for 14 yawners and 36 non-yawners and calculate the difference in proportions of yawners in each group, `\(\hat{p}_{trmt} - \hat{p}_{ctrl}\)`. 
+
+We repeat the shuffling-calculation over and over again and approximate the distribution of the difference in sample proportions under the null. 
+
+Unlike bootstrapping, here we sample **without replacement**; we merely permute / shuffle the treatment labels of each subject in the data. 
+
+---
+
+## 3-1. Null Distribution 
+
+Let's simulate the null distribution with functions in the `infer` package. 
+
+
+```r
+set.seed(602)
+
+null_dist &lt;- yawn %&gt;%
+  specify(response = result, explanatory = group, success = "yawn") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 1000, type = "permute") %&gt;%
+  calculate(stat = "diff in props", order = c("trmt", "ctrl"))
+```
+
+---
+
+## 3-1. Null Distribution 
+
+### `specify`
+
+.small[
+- Start with the data frame
+- **Specify the variables**
+    - **Since the response variable is categorical, specify the level which should be considered as "success"**
+
+
+```r
+yawn %&gt;%
+*  specify(response = result, explanatory = group, success = "yawn") 
+```
+]
+
+---
+
+## 3-1. Null Distribution 
+
+### `hypothesize`
+
+.small[
+- Start with the data frame
+- Specify the variables
+    - Since the response variable is categorical, specify the level which should be considered as "success"
+- **State the null hypothesis (yawning and whether or not you see someone yawn are independent)**
+
+
+```r
+yawn %&gt;%
+  specify(response = result, explanatory = group, success = "yawn") %&gt;%
+* hypothesize(null = "independence") 
+```
+]
+
+---
+
+## 3-1. Null Distribution 
+
+### `generate`
+
+.small[
+- Start with the data frame
+- Specify the variables
+    - Since the response variable is categorical, specify the level which should be considered as "success"
+- State the null hypothesis (yawning and whether or not you see someone yawn are independent)
+- **Generate 1,000 simulated differences via permutation / shuffling**
+
+
+```r
+yawn %&gt;%
+  specify(response = result, explanatory = group, success = "yawn") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+* generate(reps = 1000, type = "permute") 
+```
+]
+
+---
+
+## 3-1. Null Distribution 
+
+### `calculate`
+
+.small[
+- Start with the data frame
+- Specify the variables
+    - Since the response variable is categorical, specify the level which should be considered as "success"
+- State the null hypothesis (yawning and whether or not you see someone yawn are independent)
+- Generate 1,000 simulated differences via permutation / shuffling
+- **Calculate the sample statistic of interest (difference in proportions)**
+    - **Since the explanatory variable is categorical, specify the order in which the subtraction should occur for the calculation of the sample statistic, `\((\hat{p}_{trmt} - \hat{p}_{ctrl})\)`.**
+
+
+```r
+yawn %&gt;%
+  specify(response = result, explanatory = group, success = "yawn") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 1000, type = "permute") %&gt;%
+* calculate(stat = "diff in props", order = c("trmt", "ctrl")) 
+```
+]
+
+---
+
+## 3-1. Null Distribution 
+
+### `&lt;-`
+
+.small[
+- **Save the result**
+- Start with the data frame
+- Specify the variables
+    - Since the response variable is categorical, specify the level which should be considered as "success"
+- State the null hypothesis (yawning and whether or not you see someone yawn are independent)
+- Generate 1,000 simulated differences via permutation / shuffling
+- Calculate the sample statistic of interest (difference in proportions)
+    - Since the explanatory variable is categorical, specify the order in which the subtraction should occur for the calculation of the sample statistic, `\((\hat{p}_{trmt} - \hat{p}_{ctrl})\)`.
+    
+
+```r
+*null_dist &lt;- yawn %&gt;% 
+  specify(response = outcome, explanatory = group, success = "yawn") %&gt;%
+  hypothesize(null = "independence") %&gt;%
+  generate(reps = 1000, type = "permute") %&gt;%
+  calculate(stat = "diff in props", order = c("treatment", "control"))
+```
+]
+
+---
+
+## 3-1. Null Distribution 
+
+### `visualize`
+
+**Q - What would you expect the center of the null distribution to be?**
+
+--
+.small[
+
+```r
+visualize(null_dist) + 
+  labs(x = "Difference in sample proportions", y = "Count")
+```
+]
+
+&lt;img src="16-hyptest2_BJ_files/figure-html/unnamed-chunk-13-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 3. Assessing Observed Evidence
+
+### 3-2. p-value
+
+**Q - Find the p-value.** 
+
+In what % of the simulations was the simulated difference in sample proportion 
+at least as extreme as the observed difference in sample proportions?
+
+---
+
+## 3-2. p-value
+
+**Q - Find the p-value.** 
+
+
+```r
+visualize(null_dist) +
+  labs(x = "Difference in sample proportions", y = "Count") +
+* shade_pvalue(obs_stat = p_hat_diff, direction = "greater") 
+```
+
+&lt;img src="16-hyptest2_BJ_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 3-2. p-value
+
+**Q - Find the p-value.** 
+
+
+```r
+null_dist %&gt;%
+  filter(stat &gt;= 0.0441) %&gt;%
+  summarise(p_value = n()/nrow(null_dist))
+```
+
+```
+## # A tibble: 1 × 1
+##   p_value
+##     &lt;dbl&gt;
+## 1   0.508
+```
+
+```r
+pvalue &lt;- null_dist %&gt;% 
+  get_pvalue(obs_stat = p_hat_diff, direction = "greater")
+pvalue
+```
+
+```
+## # A tibble: 1 × 1
+##   p_value
+##     &lt;dbl&gt;
+## 1   0.508
+```
+
+---
+
+## 4. Making a conclusion
+
+**Q - What is the conclusion of the hypothesis test at** `\(\alpha = 0.05\)`?
+
+--
+
+The p-value of 0.508 is larger than `\(\alpha = 0.05\)`, so we fail to reject the null.
+The true proportion of yawners among those who saw someone yawn is not significantly different from the proportion of yawners among those who didn't see someone yawn. 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 16: Hypothesis Testing 2](https://sta199-summer22.netlify.app/appex/ae16_BJ.html)
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 6](https://sta199-summer22.netlify.app/prepare/week05_jun06_BJ.html)
+
+- Project proposal due tonight at 11:59pm 
+
+- HW03 due Wednesday, June 8 at 11:59pm  
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

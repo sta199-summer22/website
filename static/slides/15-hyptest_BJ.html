@@ -50,7 +50,7 @@ Optional: 📖 Read [IMS: Chapter 11 - Hypothesis Testing With Randomization](ht
 ## Today's Goal 
 
 - Understand important concepts in hypothesis testing framework including the null hypothesis, alternative hypothesis, and p-value, etc.
-- Conduct simulation-based hypothesis testing with the `tidymodels` package 
+- Conduct simulation-based hypothesis testing for a population proportion and a mean manually and also with the `tidymodels` package 
 
 ---
 
@@ -85,9 +85,7 @@ We will conduct hypothesis testing using simulation-based methods (**bootstrappi
 
 ---
 
-## Quiz 
-
-1. Defining the hypotheses
+## Quiz: 1. Defining the hypotheses
 
 **Q - Choose the correct description in the following sentences:** 
 
@@ -103,9 +101,7 @@ We will conduct hypothesis testing using simulation-based methods (**bootstrappi
 
 ---
 
-## Quiz 
-
-1. Defining the hypotheses
+## Quiz: 1. Defining the hypotheses
 
 **Q - Choose the correct description in the following sentences:** 
 
@@ -121,9 +117,7 @@ We will conduct hypothesis testing using simulation-based methods (**bootstrappi
 
 ---
 
-## Quiz 
-
-1. Defining the hypotheses
+## Quiz: 1. Defining the hypotheses
 
 **Q - Which of the following is the correct set of hypotheses?**
 
@@ -139,9 +133,7 @@ We will conduct hypothesis testing using simulation-based methods (**bootstrappi
 
 ---
 
-## Quiz 
-
-1. Defining the hypotheses
+## Quiz: 1. Defining the hypotheses
 
 **Q - Which of the following is the correct set of hypotheses?**
 
@@ -157,9 +149,35 @@ We will conduct hypothesis testing using simulation-based methods (**bootstrappi
 
 ---
 
-## Quiz 
+## Types of Alternative Hypotheses 
 
-1. Defining the hypotheses
+- One sided alternatives: the parameter is hypothesized to be less than or greater than the null value 
+
+  - `\(p &gt; 0.10\)` or `\(p &lt; 0.10\)`
+
+- Two sided alternatives: the parameter is hypothesized to be not equal to the null value 
+
+  - `\(p \ne 0.10\)`
+  - more objective, and hence more widely preferred 
+  
+---
+
+## Quiz: 1. Defining the hypotheses
+
+**Q - Identify the null and alternative hypothesis in the following research questions.**
+
+Average systolic blood pressure of people with Stage 1 Hypertension is 150 mm Hg. We wonder whether a new blood pressure medication has an effect on the average blood pressure of heart patients. 
+
+--
+
+- `\(H_0\)`: A new blood pressure medication does not have an effect on the average blood pressure of heart patients.
+- `\(H_1\)`: A new blood pressure medication has an effect on the average blood pressure of heart patients.
+
+With `\(\mu\)` being the average blood pressure of heart patients who take a new blood pressure medication, `\(H_0\)`: `\(\mu = 150\)` vs. `\(H_1\)`: `\(\mu \ne 150\)`
+
+---
+
+## Quiz: 1. Defining the hypotheses
 
 **Q - Identify the null and alternative hypothesis in the following research questions.**
 
@@ -177,9 +195,7 @@ With `\(\mu\)` being the mean IQ for students attending the school,
 
 ---
 
-## Quiz 
-
-1. Defining the hypotheses
+## Quiz: 1. Defining the hypotheses
 
 **Q - Identify the null and alternative hypothesis in the following research questions.**
 
@@ -197,9 +213,7 @@ With `\(p\)` being the true infection rate of the flu among children with suffic
 
 ---
 
-## Quiz 
-
-3. Assessing the observed evidence
+## Quiz: 3. Assessing the observed evidence
 
 **Q - What is p-value?** 
 
@@ -226,9 +240,7 @@ Bootstrapping!
 
 ---
 
-## Quiz 
-
-4. Making a conclusion
+## Quiz: 4. Making a conclusion
 
 **Q - What are the conclusions we can make from a hypothesis test?**
 
@@ -236,8 +248,14 @@ Bootstrapping!
 
 - Reject `\(H_0\)` in favor of `\(H_1\)`
 - Fail to reject `\(H_0\)` 
+  - Could be because `\(H_0\)` is true 
+  - or because we happened to get a sample that didn't give us significant evidence to support `\(H_0\)` was false
+  - We never know which one occurred through hypothesis testing 
 
---
+---
+
+## Quiz: 4. Making a conclusion
+
 
 **Q - We make a conclusion by comparing the p-value to a predetermined numeric cutoff. What is it called?**
 
@@ -249,9 +267,7 @@ Bootstrapping!
 
 ---
 
-## Quiz 
-
-4. Making a conclusion
+## Quiz: 4. Making a conclusion
 
 **Q - What does it mean that `\(\alpha = 0.05\)`?** 
 
@@ -271,9 +287,7 @@ Bootstrapping!
 
 ---
 
-## Quiz 
-
-4. Making a conclusion
+## Quiz: 4. Making a conclusion
 
 **Q - State a conclusion to make when the p-value `\(\geq \alpha\)`.** 
 
@@ -306,15 +320,20 @@ class: middle, center
 
 # Questions?
 
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 15: Hypothesis Testing 1](https://sta199-summer22.netlify.app/appex/ae15_BJ.html)
+
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 3](https://sta199-summer22.netlify.app/prepare/week04_jun03_BJ.html)
-
 - Project proposal due Friday, June 3 at 11:59pm 
 
-- HW03 released 
+- HW03 due Wednesday, June 8 at 11:59pm  
 
 
     </textarea>
