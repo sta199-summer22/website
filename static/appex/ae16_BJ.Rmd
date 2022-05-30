@@ -113,7 +113,7 @@ null_dist <- push_pull %>%
   calculate()
 ```
 
-**Q - ** Visualize the rejection region under the null hypothesis with informative labels and compute the p-value. 
+**Q - ** Visualize the p-value region under the null hypothesis with informative labels and compute the p-value. 
 
 ```{r part1-pvalue, eval = FALSE}
 visualize(null_dist) +

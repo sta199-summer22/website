@@ -1,0 +1,217 @@
+---
+title: "Homework #03: Probability and Simulation-based Inference"
+subtitle: "due Wednesday, June 8 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "sta199-hw.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 2
+link-citations: yes
+---
+
+## Goals
+
+-   Gain proficiency calculating marginal, joint, and conditional probabilities
+-   Use visualizations and probabilities to analyze multivariate associations between categorical variables
+-   Construct confidence intervals
+-   Conduct hypothesis tests
+-   Interpret confidence intervals and results of hypothesis tests in context of the data 
+
+## Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "hw03-GitHubUsername"
+- Clone the repo and make a new project in RStudio. 
+- Find `hw03.Rmd` to open the template R Markdown file. 
+
+## Instructions
+
+For each exercise:
+
+- Make sure we see all relevant code and output in the knitted PDF. 
+If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write all narrative in complete sentences with **decimal numbers rounded to three decimal places.** 
+
+- Use a small number of `reps` (about 500) as you write and test out your code. 
+Once you have finalized all of your code, increase the number of `reps` to 15,000 
+to produce your final results.
+    
+- Write your code and narrative in a reproducible way, so you can easily change the number of reps. 
+For example, consider ways you can write your narrative using inline code, so the 
+relevant values update when you change the number of reps.
+
+- For each simulation exercise, use the seed specified in the exercise instructions.
+
+## Formatting 
+
+- All plots should follow best visualization practices; plots should include:
+
+  - an informative title, 
+  - axes that are labeled, and 
+  - careful consideration should be given to aesthetic choices.
+  - Please choose colorblind-friendly color maps such as `viridis`, `scico`, and many others.
+
+- Place all plots in the center and properly adjust their size so that they are placed nicely in a written report. 
+
+- Don’t forget to label your R chunk as well. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.
+
+## Packages 
+
+We’ll use the `tidyverse` package for much of the data wrangling and visualization, 
+the `tidymodels` package for inference, and the data lives in the `openintro` package.
+
+```{r load-package, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+library(openintro)
+```
+
+## United States Births 
+
+Every year, the US releases a large dataset containing information on births 
+recorded in the country. This dataset is useful to researchers 
+studying the relation between habits and practices of expectant mothers and 
+the birth of their children. We will work with a random sample of 1,000 observations
+from the dataset released in 2014. 
+
+The subsetted data can be found in the `openintro` package, and it's called `births14`.
+Each observation represents a birth in the US. You can find out more about the 
+dataset by running `?births14` in the Console.
+
+## Probability 
+
+1. The table below tells us that each birth is classified as full-term if 
+the gestational age is larger than or equal to 37 weeks. What is the probability 
+a randomly selected baby in the US is premature? 
+
+```{r echo = FALSE}
+births14 %>% 
+  group_by(premie) %>% 
+  summarize(min_week = min(weeks), 
+            max_week = max(weeks)) %>% 
+  knitr::kable()
+```
+
+
+2. Let $A$ be the event that a baby is female and $B$ be the event that a baby 
+weighs more than 9.5 pounds. Determine if the two events are disjoint or not. 
+Also determine if they are independent. Explain your reasoning. 
+
+
+3. What is the probability that a baby is premature given the baby is female? 
+What about the probability that a baby is premature given the baby is male? 
+Create a horizontal stacked bar plot of `sex` with relative frequencies of `premie`. 
+Have the sex of a baby on the y-axis and fill the bars according to whether 
+the baby was premature or not. 
+
+4. Using the results in exercises above and Bayes' theorem, compute the probability 
+that a baby is female given the baby is premature.
+Provided that the event $A$ is a baby is female and the event $B$ is a baby is premature, 
+is $A$ independent of $B$? Why or why not?
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+## Simulation-based Inference 
+
+### Baby weights
+
+According to this [article](https://www.medicalnewstoday.com/articles/325630#by-age), 
+the World Health Organization (WHO)-released average birth weight of a full-term 
+female baby is 7.125 pounds (lbs). 
+
+We want to evaluate whether the average weight of full-term female babies in the US is 
+significantly different than 7.125 lbs. 
+
+5. Conduct a hypothesis test following the steps described below. 
+
+- (a). State the null hypothesis and the alternative hypothesis in math. Clearly define 
+  all parameters you introduce. 
+
+- (b). Create a filtered data frame called `births_girl` that contain data only for 
+  full-term female babies. Then, calculate the mean of the weights of these babies.
+
+- (c). Simulate data under the null hypothesis, visualize it with the p-value 
+   region shaded, and calculate the p-value. You may start with the code chunk provided 
+   below. Set seed number at 5. Use `rep = 15000` for your final turn in. Remove 
+   `eval = FALSE` once you fill in the blanks. 
+
+- (d). Make a conclusion at $\alpha = 0.05$ and interpret the results in 
+   context of the data.
+   
+- (e). Construct a confidence interval at the equivalent level to the hypothesis test above
+   and interpret the interval in context of the data. Use the same seed as Ex 5-c.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+### Baby weight vs. smoking
+
+Consider the possible relationship between a mother's smoking habit and the weight of her baby. 
+Plotting the data is a useful first step because it helps us quickly visualize trends, 
+identify strong associations, and develop research questions.
+
+6.  Make side-by-side boxplots displaying the relationship between `habit` and `weight`.
+    What does the plot highlight about the relationship between these two variables?
+
+7.  Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`.
+    You can call this version `births_habitgiven`.
+
+8. Let's conduct the appropriate hypothesis test. 
+
+- (a). State the null and the alternative hypothesis in math with a clear definition 
+  of any parameter you introduce. 
+
+- (b). Calculate the observed difference between the average weights of babies 
+  born to smoking and non-smoking mothers. 
+
+- (c). Simulate data under the null hypothesis, visualize it with the p-value 
+  region shaded, and calculate the p-value. Set seed number at 8. 
+  Use `rep = 15000` for your final turn in.
+  
+- (d). State your conclusion in context of the research question with $\alpha = 0.01$.
+
+- (e). Construct a confidence interval, at the equivalent level to the hypothesis test, 
+  for the difference between the average weights of babies born to smoking and non-smoking mothers, 
+  and interpret this interval in context of the data. Again, use the seed number 8. 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+## Submission
+
+Knit to PDF to create a PDF document. Stage and commit all remaining
+changes, and push your work to GitHub. Make sure all files are updated
+on your GitHub repo.
+
+Only upload your PDF document to Gradescope. Before you submit the
+uploaded document, mark where each answer is to the exercises. If any
+answer spans multiple pages, then mark all pages. Associate the
+*"Workflow & formatting"* section with the first page.
+
+## Grading (60 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 1      |
+| Ex 2      | 4      |
+| Ex 3      | 4      |
+| Ex 4      | 5      |
+| Ex 5      | 18     |
+| Ex 6      | 2      |
+| Ex 7      | 1.5    |
+| Ex 8      | 18.5   |
+| Workflow & formatting   | 6      |
+
+**Grading notes**:
+
+- The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, using tidyverse style throughout, and following best visualization practices. 
+

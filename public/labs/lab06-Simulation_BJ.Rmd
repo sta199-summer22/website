@@ -152,7 +152,7 @@ of adult male ring-tailed lemurs is about 3 kilograms, and females are usually s
 
 - Step 3: Simulate the null distribution using the seed number 66. 
 
-- Step 4: Visualize the null distribution with the rejection region shaded. Choose an informative label on the $x$-axis (e.g., sample proportion, sample median, etc.). Hint: use `visualize()` and `shade_pvalue()`. Compute p-value and compare to $\alpha = 0.05$. Write your conclusion.
+- Step 4: Visualize the null distribution with a p-value region shaded. Choose an informative label on the $x$-axis (e.g., sample proportion, sample median, etc.). Hint: use `visualize()` and `shade_pvalue()`. Compute p-value and compare to $\alpha = 0.05$. Write your conclusion.
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.

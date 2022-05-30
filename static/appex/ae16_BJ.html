@@ -345,7 +345,7 @@ null_dist &lt;- push_pull %&gt;%
   hypothesize() %&gt;% 
   generate() %&gt;%
   calculate()</code></pre>
-<p><strong>Q - </strong> Visualize the rejection region under the null hypothesis with informative labels and compute the p-value.</p>
+<p><strong>Q - </strong> Visualize the p-value region under the null hypothesis with informative labels and compute the p-value.</p>
 <pre class="r"><code>visualize(null_dist) +
   labs(x = &quot;Difference in sample means of improvement in pull-ups&quot;, 
        y = &quot;Count&quot;) +
