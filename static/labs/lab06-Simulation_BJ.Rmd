@@ -1,0 +1,190 @@
+---
+title: "Lab #06: Simulation-based Inference"
+subtitle: "due Monday, June 6 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+# Goals
+
+- Use simulations to draw conclusions about population parameters.
+
+# Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and clone the repository entitled "lab06-GitHubUsername" in RStudio. 
+- Find `lab06.Rmd` to open the template R Markdown file. 
+
+For each exercise:
+
+- Show all relevant code and output used to obtain your response.
+
+- Write all narrative in complete sentences, and use clear axis labels and titles on visualizations.
+
+- Use a small number of `reps` (about 500) as you write and test out your code. 
+Once you have finalized all of your code, increase the number of `reps` to 15,000 
+to produce your final results.
+    
+- For each simulation exercise, use the **seed** specified in the exercise instructions.
+
+# Three types for `generate()`.
+
+- `type = bootstrap`: A bootstrap sample will be drawn for each replicate, where a sample of size equal to the input sample size is drawn (with replacement) from the input sample data. 
+
+  - Use when you want to re-sample the data while changing one aspect. 
+  - Example: re-sample data with a different mean / median, construct confidence intervals
+
+- `type = permute`: For each replicate, each input value will be randomly reassigned (without replacement) to a new output value in the sample. 
+
+  - This is a good option for randomizing categorical labels.
+  - Use when the null assumes group membership does not affect another variable.
+
+- `type = draw`: A value will be sampled from a theoretical distribution with parameters specified in `hypothesize()` for each replicate. This option is currently only applicable for testing point estimates. 
+
+  - This is a good option (although not limited to) simulating coin flips with a specified probability $p$. 
+  - Use when the null assumes a fixed proportion of something in the population.
+
+# Packages 
+
+We will use the **tidyverse** and **tidymodels** packages in this lab.
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+```
+
+# Duke Lemurs 
+
+Today's data come from the Duke Lemur center. We will examine a subset of the data and specifically focus on the following variables:
+
+- `taxon`: the specific lemur taxon
+- `age_at_death_y`: age of lemur at death
+- `birth_month`: month the lemur was born
+- `sex`: whether the lemur is male or female
+- `weight_g`: weight of lemur in grams 
+- `age_category`: age category (IJ: infant or juvenile, young_adult, adult)
+
+Click [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-08-24/readme.md) for more info on the dataset including a codebook of variable names and taxonomic codes.
+
+```{r load-lemur-data}
+lemurs <- read_csv("data/lemur_subset.csv")
+```
+
+## Hypothesis Testing for Difference Between Two Groups (i.e. Independence).
+
+The idea is that you want to test whether or not a categorical variable (group variable) affects a numerical variable. Example: Does lemur taxonomy affect lifespan?
+
+**We want to test if mongoose lemurs have a greater median lifespan than the red-bellied lemurs.**
+
+Construct a hypothesis test to investigate the difference in **median age of death** 
+between the two groups using `age_at_death_y`.
+
+1. State the null and alternative hypothesis mathematically and in words.
+ 
+2. Compute the sample statistic (what is the observed difference between the two groups?). Save this quantity as `diff_med`. Check the codebook to decode taxon names. 
+You can remove `NA` observations.
+
+3. Filter your data frame to contain only the two taxa of lemurs you care about. Save this new data frame as `lemurs2`. Simulate under the null using the template code below.
+
+  - Hint: `reponse` is the dependent variable while explanatory is the independent variable. Think about the prompt above: "does lemur taxonomy affect lifespan?"
+  - Once you complete the code chunk, remove `eval = FALSE`. 
+
+```{r null-diff-life, eval = FALSE}
+set.seed(63)
+
+null_diff_life <- lemurs2 %>%
+   specify(response = ___, explanatory = ___) %>%
+   hypothesize(null = ___) %>%
+   generate(reps = 500, type = ___) %>% # change reps to 15000 for final version
+   calculate(stat = ___, order = c("EMON", "ERUB")) # specifies order
+```
+
+4. Compute the p-value using the `get_pvalue()` function. In narrative, use inline code to compare the p-value with $\alpha = 0.05$ and make a conclusion. Be sure to state your conclusion in context.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+## Hypothesis Testing About a Proportion
+
+According to [Duke's lemur center](https://lemur.duke.edu/ring-tailed-lemur-scent-marking-and-breeding-season/) 75% of breeding occurs during October and November. Since gestation lasts about 4.5 months, one might expect 75% of births to occur in March and April. 
+
+**Do you believe the proportion of births in these two months is significantly different from the expectation?**
+
+5. As above, setup a hypothesis test to investigate, following each step below.
+
+- Step 1: State the null and alternative hypothesis.
+
+- Step 2: Compute the observed statistic. Hint: first mutate a new variable `birth_3or4` to be `TRUE` if birth month is 3 or 4 and `FALSE` otherwise. Save your mutated variable in `lemurs3`.
+
+- Step 3: Simulate the null distribution, specify the `response` to be the mutated variable you created above and `success = "TRUE"`. Use the seed number 65. 
+
+- Step 4: Compute p-value and compare to $\alpha = 0.05$. Write your conclusion in context.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+## Hypothesis Testing and Confidence Interval About a Point Estimate
+
+According to the [Smithsonian's National Zoo](https://nationalzoo.si.edu/animals/ring-tailed-lemur), the average weight 
+of adult male ring-tailed lemurs is about 3 kilograms, and females are usually smaller.  
+
+**Is adult, female, ring-tailed lemur weight significantly less than 3kg (3000g)?** 
+
+6. Setup a hypothesis test to investigate, following each step below.
+
+- Step 1: State the null and alternative hypothesis.
+
+- Step 2: Filter your data frame to contain only the information you care about. Save this new data frame as `lemurs4`. Compute the observed statistic.
+
+- Step 3: Simulate the null distribution using the seed number 66. 
+
+- Step 4: Visualize the null distribution with the rejection region shaded. Choose an informative label on the $x$-axis (e.g., sample proportion, sample median, etc.). Hint: use `visualize()` and `shade_pvalue()`. Compute p-value and compare to $\alpha = 0.05$. Write your conclusion.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+7. Construct a confidence interval with the confidence level equivalent to $\alpha = 0.05$. Interpret the confidence interval. Use the same seed number as Ex 6. Is the conclusion drawn from the confidence interval consistent with the conclusion from the hypothesis test in Ex 6? 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
+:::
+
+# Submission
+
+- Once you are finished with the lab, you will submit the PDF document produced from your final knit, commit, and push to [Gradescope](https://www.gradescope.com/courses/385955).
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all pages.
+- Follow the instructions in previous labs to submit your PDF to Gradescope.
+
+# Grading (50 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 4   |
+| Ex 2      | 4   |
+| Ex 3      | 4   |
+| Ex 4      | 4   |
+| Ex 5      | 10  |
+| Ex 6      | 13  |
+| Ex 7      | 5   |
+| Workflow & formatting   | 6      |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and having readable code that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)

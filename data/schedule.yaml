@@ -114,6 +114,7 @@ lessons:
 #    slides: "16-hyptest2_BJ.html"
 #    ae: "ae16_BJ.html"
   - title: "Lab 06: Simulation-based Inference"
+#    lab: "lab06-Simulation_BJ.html"
 
   - week: "Week 5"
     date: "Mon, Jun 6"
