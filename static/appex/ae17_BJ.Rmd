@@ -1,0 +1,99 @@
+---
+title: "AE 17: Central Limit Theorem"
+subtitle: "due Tuesday, June 7 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae17-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Bone Density for Women Over 65
+
+```{r load-package, message=F}
+library(tidyverse)
+theme_set(theme_bw())
+```
+
+Suppose the bone density for 65-year-old women is normally 
+distributed with mean $809 ~mg/cm^3$ and standard deviation of $140 ~mg/cm^3$.
+
+Let $X$ be the bone density of 65-year-old women. We can write this distribution of $X$ in mathematical notation as 
+
+$$X \sim N(809, 140)$$
+### Part 1: Original density 
+
+The original density is given below: 
+
+```{r visualize-normal}
+ggplot(NULL, aes(c(809 - 140*3, 809 + 140*3))) +
+  geom_area(stat = "function", fun = dnorm, 
+            args = list(mean = 809, sd = 140), color = "black", fill = NA) +
+  labs(title = "Population distribution", x = "", y = "Density") 
+```
+
+**Q - ** Before typing any code, based on what you know about the normal distribution, what do you expect the median bone density to be?
+
+The median is the same as the mean, 809. 
+
+**Q - ** What bone densities correspond to Q1 (25th percentile), Q2 (50th percentile), and Q3 (the 75th percentile) of this distribution? Use the `qnorm()` function to calculate these values. 
+
+```{r}
+(Q1 <- qnorm(0.25, mean = 809, sd = 140))
+(Q2 <- qnorm(0.5, mean = 809, sd = 140))
+(Q3 <- qnorm(0.75, mean = 809, sd = 140))
+```
+
+## Exercise 2
+
+The densities of three woods are below:
+
+- Plywood: $540 ~mg/cm^3$
+- Pine: $600 ~mg/cm^3$
+- Mahogany: $710 ~mg/cm^3$
+
+- What is the probability that a randomly selected 65-year-old woman has bones less dense than Pine?
+
+```{r}
+
+```
+
+- Would you be surprised if a randomly selected 65-year-old  woman had bone density less than Mahogany? What if she had bone density less than Plywood? Use the respective probabilities to support your response. 
+
+## Exercise 3
+
+Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women. 
+
+- Are the conditions met use the Central Limit Theorem to define the distribution of $\bar{x}$, the mean density of 10 randomly selected 65-year-old women? 
+  - Independence? 
+  - Sample size/distribution? 
+  
+- What is the shape, center, and spread of the distribution of $\bar{x}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
+
+- Write the distribution of $\bar{x}$ using mathematical notation. 
+
+## Exercise 4
+
+- What is the probability that the mean bone density for the group of 10 randomly-selected 65-year-old women is less dense than Pine?
+
+- Would you be surprised if a group of 10 randomly-selected 65-year old women had a mean bone density less than Mahogany? What the group had a mean bone density less than Plywood? Use the respective probabilities to support your response. 
+
+## Exercise 5
+
+Explain how your answers differ in Exercises 2 and 4.
+
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

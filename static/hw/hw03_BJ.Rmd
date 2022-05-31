@@ -60,7 +60,7 @@ relevant values update when you change the number of reps.
 ## Packages 
 
 We’ll use the `tidyverse` package for much of the data wrangling and visualization, 
-the `tidymodels` package for inference, and the data lives in the `openintro` package.
+the `tidymodels` package for inference, and the data live in the `openintro` package.
 
 ```{r load-package, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -83,8 +83,8 @@ dataset by running `?births14` in the Console.
 
 ## Probability 
 
-1. The table below tells us that each birth is classified as full-term if 
-the gestational age is larger than or equal to 37 weeks. What is the probability 
+1. The table below tells us that each birth is classified as preterm if 
+the gestational age is below 37 weeks. What is the probability 
 a randomly selected baby in the US is premature? 
 
 ```{r echo = FALSE}
@@ -96,14 +96,15 @@ births14 %>%
 ```
 
 
-2. Let $A$ be the event that a baby is female and $B$ be the event that a baby 
+2. Let $A$ be the event that a baby is premature and $B$ be the event that a baby 
 weighs more than 9.5 pounds. Determine if the two events are disjoint or not. 
 Also determine if they are independent. Explain your reasoning. 
 
 
 3. What is the probability that a baby is premature given the baby is female? 
 What about the probability that a baby is premature given the baby is male? 
-Create a horizontal stacked bar plot of `sex` with relative frequencies of `premie`. 
+Calculate the probabilities and also create a horizontal stacked bar plot of 
+`sex` with relative frequencies of `premie`. 
 Have the sex of a baby on the y-axis and fill the bars according to whether 
 the baby was premature or not. 
 
@@ -137,14 +138,22 @@ significantly different than 7.125 lbs.
 
 - (c). Simulate data under the null hypothesis, visualize it with the p-value 
    region shaded, and calculate the p-value. You may start with the code chunk provided 
-   below. Set seed number at 5. Use `rep = 15000` for your final turn in. Remove 
+   below. Set a seed number at 5. Use `rep = 15000` for your final turn in. Remove 
    `eval = FALSE` once you fill in the blanks. 
+
+```{r ex5-c, eval = FALSE}
+null_dist <- births_girl %>%
+  specify(response = ____) %>%
+  hypothesize(null = ____, __ = ____) %>%
+  generate(reps = 500, type = _____) %>%
+  calculate(stat = ____)
+```  
 
 - (d). Make a conclusion at $\alpha = 0.05$ and interpret the results in 
    context of the data.
    
 - (e). Construct a confidence interval at the equivalent level to the hypothesis test above
-   and interpret the interval in context of the data. Use the same seed as Ex 5-c.
+   and interpret the interval in context of the data. Use the same seed as Ex 5 (c).
 
 ::: {.commit}
 `r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message.
@@ -162,6 +171,11 @@ identify strong associations, and develop research questions.
 7.  Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`.
     You can call this version `births_habitgiven`.
 
+We want to examine if the relationship seen in the side-by-side boxplots is 
+statistically significant. We will conduct a hypothesis test on whether 
+the average weight of babies born to smoking mothers is less than that of babies 
+born to non-smoking mothers. 
+
 8. Let's conduct the appropriate hypothesis test. 
 
 - (a). State the null and the alternative hypothesis in math with a clear definition 
@@ -171,7 +185,7 @@ identify strong associations, and develop research questions.
   born to smoking and non-smoking mothers. 
 
 - (c). Simulate data under the null hypothesis, visualize it with the p-value 
-  region shaded, and calculate the p-value. Set seed number at 8. 
+  region shaded, and calculate the p-value. Set a seed number at 8. 
   Use `rep = 15000` for your final turn in.
   
 - (d). State your conclusion in context of the research question with $\alpha = 0.01$.

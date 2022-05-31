@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
-<p>We’ll use the <code>tidyverse</code> package for much of the data wrangling and visualization, the <code>tidymodels</code> package for inference, and the data lives in the <code>openintro</code> package.</p>
+<p>We’ll use the <code>tidyverse</code> package for much of the data wrangling and visualization, the <code>tidymodels</code> package for inference, and the data live in the <code>openintro</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="probability" class="section level2">
 <h2>Probability</h2>
 <ol style="list-style-type: decimal">
-<li>The table below tells us that each birth is classified as full-term if the gestational age is larger than or equal to 37 weeks. What is the probability a randomly selected baby in the US is premature?</li>
+<li>The table below tells us that each birth is classified as preterm if the gestational age is below 37 weeks. What is the probability a randomly selected baby in the US is premature?</li>
 </ol>
 <table>
 <thead>
@@ -242,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(A\)</span> be the event that a baby is female and <span class="math inline">\(B\)</span> be the event that a baby weighs more than 9.5 pounds. Determine if the two events are disjoint or not. Also determine if they are independent. Explain your reasoning.</p></li>
-<li><p>What is the probability that a baby is premature given the baby is female? What about the probability that a baby is premature given the baby is male? Create a horizontal stacked bar plot of <code>sex</code> with relative frequencies of <code>premie</code>. Have the sex of a baby on the y-axis and fill the bars according to whether the baby was premature or not.</p></li>
+<li><p>Let <span class="math inline">\(A\)</span> be the event that a baby is premature and <span class="math inline">\(B\)</span> be the event that a baby weighs more than 9.5 pounds. Determine if the two events are disjoint or not. Also determine if they are independent. Explain your reasoning.</p></li>
+<li><p>What is the probability that a baby is premature given the baby is female? What about the probability that a baby is premature given the baby is male? Calculate the probabilities and also create a horizontal stacked bar plot of <code>sex</code> with relative frequencies of <code>premie</code>. Have the sex of a baby on the y-axis and fill the bars according to whether the baby was premature or not.</p></li>
 <li><p>Using the results in exercises above and Bayes’ theorem, compute the probability that a baby is female given the baby is premature. Provided that the event <span class="math inline">\(A\)</span> is a baby is female and the event <span class="math inline">\(B\)</span> is a baby is premature, is <span class="math inline">\(A\)</span> independent of <span class="math inline">\(B\)</span>? Why or why not?</p></li>
 </ol>
 <div class="commit">
@@ -262,9 +262,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>(a). State the null hypothesis and the alternative hypothesis in math. Clearly define all parameters you introduce.</p></li>
 <li><p>(b). Create a filtered data frame called <code>births_girl</code> that contain data only for full-term female babies. Then, calculate the mean of the weights of these babies.</p></li>
-<li><p>(c). Simulate data under the null hypothesis, visualize it with the p-value region shaded, and calculate the p-value. You may start with the code chunk provided below. Set seed number at 5. Use <code>rep = 15000</code> for your final turn in. Remove <code>eval = FALSE</code> once you fill in the blanks.</p></li>
+<li><p>(c). Simulate data under the null hypothesis, visualize it with the p-value region shaded, and calculate the p-value. You may start with the code chunk provided below. Set a seed number at 5. Use <code>rep = 15000</code> for your final turn in. Remove <code>eval = FALSE</code> once you fill in the blanks.</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> births_girl <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> ____) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> ____, <span class="at">__ =</span> ____) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">500</span>, <span class="at">type =</span> _____) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> ____)</span></code></pre></div>
+<ul>
 <li><p>(d). Make a conclusion at <span class="math inline">\(\alpha = 0.05\)</span> and interpret the results in context of the data.</p></li>
-<li><p>(e). Construct a confidence interval at the equivalent level to the hypothesis test above and interpret the interval in context of the data. Use the same seed as Ex 5-c.</p></li>
+<li><p>(e). Construct a confidence interval at the equivalent level to the hypothesis test above and interpret the interval in context of the data. Use the same seed as Ex 5 (c).</p></li>
 </ul>
 <div class="commit">
 <p>🧶 ✅ ⬆️ Knit, commit, and push your final changes to GitHub with a meaningful commit message.</p>
@@ -276,12 +283,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="6" style="list-style-type: decimal">
 <li><p>Make side-by-side boxplots displaying the relationship between <code>habit</code> and <code>weight</code>. What does the plot highlight about the relationship between these two variables?</p></li>
 <li><p>Before moving forward, save a version of the dataset omitting observations where there are NAs for <code>habit</code>. You can call this version <code>births_habitgiven</code>.</p></li>
-<li><p>Let’s conduct the appropriate hypothesis test.</p></li>
+</ol>
+<p>We want to examine if the relationship seen in the side-by-side boxplots is statistically significant. We will conduct a hypothesis test on whether the average weight of babies born to smoking mothers is less than that of babies born to non-smoking mothers.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Let’s conduct the appropriate hypothesis test.</li>
 </ol>
 <ul>
 <li><p>(a). State the null and the alternative hypothesis in math with a clear definition of any parameter you introduce.</p></li>
 <li><p>(b). Calculate the observed difference between the average weights of babies born to smoking and non-smoking mothers.</p></li>
-<li><p>(c). Simulate data under the null hypothesis, visualize it with the p-value region shaded, and calculate the p-value. Set seed number at 8. Use <code>rep = 15000</code> for your final turn in.</p></li>
+<li><p>(c). Simulate data under the null hypothesis, visualize it with the p-value region shaded, and calculate the p-value. Set a seed number at 8. Use <code>rep = 15000</code> for your final turn in.</p></li>
 <li><p>(d). State your conclusion in context of the research question with <span class="math inline">\(\alpha = 0.01\)</span>.</p></li>
 <li><p>(e). Construct a confidence interval, at the equivalent level to the hypothesis test, for the difference between the average weights of babies born to smoking and non-smoking mothers, and interpret this interval in context of the data. Again, use the seed number 8.</p></li>
 </ul>

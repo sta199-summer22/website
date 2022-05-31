@@ -119,7 +119,7 @@ The proposal serves two purposes:
 - to get you started early with reading and thinking about a dataset and the
 questions you want to answer
 - to ensure that the data you wish to analyze, methods you plan to use, and the 
-scope of your analyses are feasible and have maximize your chance of success
+scope of your analyses are feasible and maximize your chance of success
 
 Choose **three** substantially different datasets you are interested in analyzing. 
 For each, identify the components below.
@@ -143,6 +143,8 @@ question and hypotheses
 end of your proposal
 - Place the file containing your data in the "data" folder of your project repo
 
+Click [here](https://sta199-summer22.netlify.app/slides/13-projectproposal_BJ.html) for examples.
+
 ### Submission
 
 Order your proposals from first choice to third choice.
@@ -150,7 +152,7 @@ Order your proposals from first choice to third choice.
 Submit the PDF of your proposal to Gradescope by **Friday, June 3 at 11:59pm**. 
 I will provide feedback on your proposal and help you decide which dataset you 
 should use for your final project. Project proposals should have no more than 
-one page of **text.** (With the `glimpse` data it is likely to go beyond a page total.)
+one page of **text.** (With the `glimpse()` it is likely to go beyond a page total.)
 
 The project proposal will be graded as follows:
 
@@ -271,7 +273,7 @@ and drawing initial conclusions.
 <!-- Lab on **Tuesday, June 14** will be devoted to allowing your group to  -->
 <!-- write your peer review. -->
 
-Click [here](https://sta199-summer22.netlify.app/project/project-review_BJ.html) 
+Click [here](https://sta199-summer22.netlify.app/project/peer-review_BJ.html) 
 for detailed guidelines on how to create GitHub issues and relevant questions to 
 answer in the peer review process.
 
@@ -368,14 +370,14 @@ misunderstanding of many concepts and is unable to put together a cogent argumen
 Communication of results is unclear.
 - **Below 60%**: Student is not making a sufficient effort.
 
-# Peer evaluation
+# Peer Evaluation
 
 You will be asked to fill out a survey where you rate the contribution and 
 teamwork of each team member by assigning a contribution percentage for each 
 team member with justification. This will contribute to your final project 
 grade. Final survey evaluations will be due **Thursday, June 23 at 12pm**.
 
-# Late work policy
+# Late Work Policy
 
 **There is no late work accepted on this project!** Be sure to turn in your work 
 early to avoid any technological mishaps.

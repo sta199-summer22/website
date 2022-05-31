@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Confidence Intervals through Bootstrapping</title>
+    <title>Central Limit Theorem 1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Confidence Intervals through Bootstrapping
+# Central Limit Theorem 1
 ### Bora Jin
 
 ---
@@ -39,185 +39,229 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Bootstrapping](https://youtu.be/bdqpI3iVOso)
+🎥 Watch [Central Limit Theorem](https://warpwire.duke.edu/w/Vw4GAA/)
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d11-bootstrap/u4-d11-bootstrap.html#1) 
+- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-intro.html#1)
 
-Optional: 📖 Read [IMS: Chapter 12 - Confidence Intervals With Bootstrapping](https://openintro-ims.netlify.app/foundations-bootstrapping.html)
+Optional: 📖 Read [IMS: Chapter 13 - Inference With Mathematical Models](https://openintro-ims.netlify.app/foundations-mathematical.html?q=central%20limit%20th#CLTsection)
 
 ---
 
 ## Today's Goal 
 
-- Understand how to draw a bootstrap sample and calculate a bootstrap statistic
-- Use `infer` (part of `tidymodels`) to obtain a bootstrap distribution
-- Calculate a confidence interval from the bootstrap distribution
-- Interpret a confidence interval in context of the data
+- Use Central Limit Theorem to define distribution of sample means
+- Calculate probabilities from the normal distribution
 
 ---
 
-## Ideas Behind Bootstrapping   
+## Quantifying Variability
+
+We can quantify the variability of sample statistics using different approaches:
+
+- **Simulation**: via bootstrapping or "resampling" techniques 
+
+or
+
+- **Theory**: via the Central Limit Theorem 
 
 --
 
-- It is extremely hard to hit the exact population parameter with a single value (a.k.a. point estimate or sample statistic) from a sample.
-
---
-
-- We would have a better chance with **a range of plausible values** for the population parameter. 
-
---
-
-- One statistic from one sample... then we need multiple samples to obtain multiple statistics. 
-
---
-
-- Uh oh, getting multiple samples is generally expensive and time-consuming. If it was 
-so easy, we would simply collect data from every unit in the population. 
-
---
-
-- We just have to make the best of it! With the sample at hand, let's pretend 
-that we have multiple samples!! `\(\Rightarrow\)` Bootstrapping is a resampling technique. 
+Today we will focus on **Theory**.
 
 ---
 
 ## Quiz 
 
-**Q - Correct the following sentences.**
-
-🆘 A bootstrap sample is taken without replacement from the original sample. 
+**Q - What is a sampling distribution of the sample mean?**
 
 --
 
-✅ A bootstrap sample is taken with replacement from the original sample. 
+From one random sample of size `\(n\)`, calculate the sample mean `\(\bar{X}_1\)`
 
 --
 
-🆘 A researcher chooses a bootstrap sample size.
+From a second random sample of size `\(n\)`, calculate the sample mean `\(\bar{X}_2\)`
 
 --
 
-✅ A bootstrap sample should be of the same size as the original sample.
+`\(\vdots\)` 
+
+Repeat this many times. 
+
+--
+
+We call the distribution of `\(\bar{X}\)` the **sampling distribution**. 
 
 ---
 
 ## Quiz 
 
-**Q - Correct the following sentences.**
+**Q - Apply the central limit theorem (CLT) on sample means.**
 
-🚨 A bootstrap distribution is a distribution of resampled data. 
-
---
-
-✅ A bootstrap distribution is a distribution of bootstrap statistics. 
+Let a random variable `\(X\)` have a mean `\(\mu\)` and standard deviation `\(\sigma\)`. 
+Then the sampling distribution of the sample mean `\(\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n}\)` 
 
 --
 
-🚨 Calculate the bounds of the XX% confidence interval as 
-the shortest interval with XX% of the bootstrap distribution. 
+- Has the mean `\(\mu\)`
 
 --
 
-✅ Calculate the bounds of the XX% confidence interval as the middle XX% of the bootstrap distribution. 
+- Has the standard error `\(\sigma/\sqrt{n}\)`
+
+.small[
+standard error of a sample mean = standard deviation of its sampling distribution or an estimate of that standard deviation
+]
+
+--
+
+- **If the sample size** `\(n\)` **is large enough**, the sampling distribution of `\(\bar{X}\)` is **approximately** normally distributed. 
+
+.question[
+As `\(n \rightarrow \infty\)`, `\(\bar{X}\)` converges in distribution to 
+`\(N(\mu, \sigma/\sqrt{n})\)`.
+]
 
 ---
 
 ## Quiz 
 
-**Q - Correct the following sentences.**
-
-🚨 Bootstrapping can be used for mean and median, but not for 
-standard deviation.  
+**Q - Describe density of a normal distribution.** 
 
 --
 
-✅ Bootstrapping can be used for any sample statistic. 
+.pull-left[
+- unimodal (peak at `\(\mu\)`)
+- symmetric abound `\(\mu\)`
+- bell-shaped
+]
 
---
+.pull-right[
+&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-🆘 The length of a confidence interval has nothing to do with its confidence level.
-
---
-
-✅ The lower the confidence level, the narrower the interval. 
 
 ---
 
 ## Quiz 
 
-**Q - Correct the following sentences.**
-
-🆘 Bootstrapping can improve statistical inference based on 
-a bad sample. 
+**Q - The CLT holds only if** `\(X \sim N(\mu, \sigma)\)`. **(T/F)**
 
 --
 
-✅ Bootstrapping is meaningless if the original sample is not representative because your bootstrap distribution will be centered around the original sample statistic.  
-
-- Bootstrapping is best suited for modeling studies where the data have been generated through **random sampling** from a population.
-
----
-
-## Quiz 
-
-The 95% confidence interval for the mean price per guest per night
-among Airbnb rentals (with at least ten reviews) in Asheville was ($64, $90).
-
-**Q - What is the correct interpretation for this interval?**
-
-a. There is a 95% probability the mean price per night for an Airbnb in Asheville is between $64 and $90.
-
-b. There is a 95% probability the price per night for an Airbnb in Asheville is between $64 and $90.
-
-c. We are 95% confident the mean price per night for Airbnbs in Asheville in our sample is between $64 and $90.
-
-d. We are 95% confident the mean price per night for all Airbnbs in Asheville is between $64 and $90.
-
----
-
-## Quiz 
-
-The 95% confidence interval for the mean price per guest per night
-among Airbnb rentals (with at least ten reviews) in Asheville was ($64, $90).
-
-**Q - What is the correct interpretation for this interval?**
-
-a. There is a 95% probability the mean price per night for an Airbnb in Asheville is between $64 and $90.
-
-b. There is a 95% probability the price per night for an Airbnb in Asheville is between $64 and $90.
-
-c. We are 95% confident the mean price per night for Airbnbs in Asheville in our sample is between $64 and $90.
-
-**d. We are 95% confident the mean price per night for all Airbnbs in Asheville is between $64 and $90.**
-
----
-
-## Quiz 
-
-a. "There is a 95% probability"
-
-- The true unknown parameter is either in ($64, $90) or not. It can't have a "95% probability" of being in any specific interval. 
-
-b. "the price per night for an Airbnb in Asheville"
-
-- We did not infer on individual price; we did infer on the population mean price per night. 
-
-c. "in our sample"
-
-- I don't need to build a confidence interval for the sample statistic. It's known! 
-
----
-
-## Quiz 
-
-**Q - What does it mean that "we are 95% confident"?**
+F
 
 --
 
-- Suppose we took 100 independent samples from a population. 
-- For each sample, we computed the sample statistic and constructed a 95% confidence interval using bootstrapping. 
-- Then we would expect 95 out of these 100 intervals to contain the unknown parameter. 
+`\(X\)` can be from **any** distribution with a mean `\(\mu\)` and standard deviation `\(\sigma\)`. 
+
+Let's play with weird looking original distributions -  [Click!](https://onlinestatbook.com/stat_sim/sampling_dist/index.html)
+
+---
+
+## Quiz 
+
+**Q - What are the two conditions for CLT to hold?** 
+
+--
+
+Independence 
+
+- `\(\{X_1,\cdots,X_n\}\)` must be independent to one another
+- One observation's value should not "influence" another observation's value.
+- Rules of thumb to check independence:
+  - Completely random sampling
+  - If taken without replacement, `\(n\)` should be less than 10% of the population size
+  
+---
+
+## Quiz 
+
+**Q - What are the two conditions for CLT to hold?** 
+
+--
+
+Sample size `\(n\)` 
+
+- If `\(X\)` is numerical, `\(n &gt; 30\)` 
+- If `\(X\)` is categorical, at least 10 successes and 10 failures 
+- If `\(X \sim N(\mu, \sigma)\)`, then the distribution of sample means will also be **exactly** normal, regardless of the sample size.
+
+---
+
+## Recap
+
+- If certain assumptions are satisfied, regardless of the shape of the 
+population distribution, the sampling distribution of the mean follows an 
+approximately normal distribution.
+
+--
+
+- The center of the sampling distribution is at the center of the population 
+distribution.
+
+--
+
+- The sampling distribution is less variable than the population distribution 
+by a factor of `\(1/\sqrt{n}\)`. 
+
+--
+
+- As `\(n\)` increases, the standard error (the spread of the sampling distribution) decreases. 
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** `\(P(Z &lt; 1.2)\)` **where** `\(Z \sim N(0,1)\)`**?**
+
+&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+--
+
+
+```r
+pnorm(1.2)
+```
+
+```
+## [1] 0.8849303
+```
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** `\(P(-2 &lt; X &lt; 7)\)` **where** `\(X \sim N(1,3)\)`**?**
+
+&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+--
+
+
+```r
+pnorm(7, mean = 1, sd = 3) - pnorm(-2, mean = 1, sd = 3)
+```
+
+```
+## [1] 0.8185946
+```
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to find** q **s.t.** `\(P(X &gt; q) = 0.05\)` **where** `\(X \sim N(-1,2)\)`**?**
+
+&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+--
+
+
+```r
+qnorm(0.05, mean = -1, sd = 2, lower.tail = FALSE)
+```
+
+```
+## [1] 2.289707
+```
 
 ---
 
@@ -229,17 +273,17 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 14: Confidence Intervals through Bootstrapping](https://sta199-summer22.netlify.app/appex/ae14_BJ.html)
+Go to [AE 17: Central Limit Theorem](https://sta199-summer22.netlify.app/appex/ae17_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 2](https://sta199-summer22.netlify.app/prepare/week04_jun02_BJ.html)
+- Watch videos for [Prepare: June 7](https://sta199-summer22.netlify.app/prepare/week05_jun07_BJ.html)
 
-- Project proposal due Friday, June 3 at 11:59pm 
+- Project proposal feedback released 
 
-- HW03 released 
+- HW03 due Wednesday, June 8 at 11:59pm 
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
