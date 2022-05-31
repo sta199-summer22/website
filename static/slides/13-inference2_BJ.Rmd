@@ -521,7 +521,9 @@ class: middle, center
 
 - Watch videos for [Prepare: June 1](https://sta199-summer22.netlify.app/prepare/week04_jun01_BJ.html)
 
-- Kick-off of the final project! Read [intructions](https://sta199-summer22.netlify.app/project/project_BJ.html) carefully. 
+- Mid-course feedback on [Sakai](https://sakai.duke.edu/x/YNKidU) due Fridy, June 3 at 11:59pm
+
+- Kick-off of the final project! Read [intructions](https://sta199-summer22.netlify.app/project/project_BJ.html) carefully
 
 - Project proposal due Friday, June 3 at 11:59pm 
 

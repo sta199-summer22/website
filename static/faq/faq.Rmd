@@ -173,8 +173,8 @@ like in the image below.
 
 The solution is:
 
-- fix the `.Rmd` to look like you want it to
-- Go to the terminal tab in the bottom right and type `git commit -m "merge fixed"` and press enter
+- fix the `.Rmd` to look like you want it to, knit, and stage it in the "Git" tab 
+- Go to the "Terminal" tab in the bottom left and type `git commit -m "merge fixed"` and press enter
 - Push as normal pressing the arrow in the upper right
 
 See the picture below for details.
