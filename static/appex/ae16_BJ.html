@@ -278,17 +278,17 @@ div.tocify {
 <ul>
 <li><code>type = permute</code>: shuffle the data without replacement
 <ul>
-<li>for hypothesis testing on a difference in the outcome between groups</li>
+<li>for hypothesis testing (HT) on a difference in the outcome between groups</li>
 <li>example: HT for a difference in proportions of yawners in the treatment and the control group</li>
 </ul></li>
 <li><code>type = draw</code>: sample from a theoretical distribution
 <ul>
-<li>only for hypothesis testing on a single proportion</li>
+<li>only for HT on a single proportion</li>
 <li>example: HT for proportion of the number of heads in coin flips</li>
 </ul></li>
 <li><code>type = bootstrap</code>: re-sample the original data with replacement
 <ul>
-<li>for confidence intervals (CI) or for hypothesis testing (HT) on a single mean / median</li>
+<li>for confidence intervals (CI) or for HT on a single mean / median</li>
 <li>example: CI and HT for the true mean rent of one-bedroom apartments in Manhattan</li>
 </ul></li>
 </ul>
@@ -315,11 +315,11 @@ push_pull %&gt;%
 <ul>
 <li><code>participant_id</code>: unique identifier for each participant</li>
 <li><code>age</code>: age of participant</li>
-<li><code>push1</code> / <code>push2</code>: push-ups at beginning and end of program respectively</li>
-<li><code>pull1</code> / <code>pull2</code>: pull-ups at beginning and end of program respectively</li>
+<li><code>push1</code> / <code>push2</code>: push-ups at beginning and end of program, respectively</li>
+<li><code>pull1</code> / <code>pull2</code>: pull-ups at beginning and end of program, respectively</li>
 <li><code>training</code>: which training protocol the individual participated in - either “density” or “gtg” (grease-the-groove)</li>
 </ul>
-<p>We create new variables for relative change in push-ups and pull-ups before and after the training.</p>
+<p>We create new variables for relative change in push-ups and pull-ups before and after the training. Recall, relative change = (new - old)/old.</p>
 <pre class="r"><code>push_pull &lt;- push_pull %&gt;%
   mutate(rel_change_push = (push2 - push1)/push1, 
          rel_change_pull = (pull2 - pull1)/pull1)</code></pre>
@@ -347,7 +347,7 @@ null_dist &lt;- push_pull %&gt;%
   calculate()</code></pre>
 <p><strong>Q - </strong> Visualize the p-value region under the null hypothesis with informative labels and compute the p-value.</p>
 <pre class="r"><code>visualize(null_dist) +
-  labs(x = &quot;Difference in sample means of improvement in pull-ups&quot;, 
+  labs(x = &quot;_____&quot;, 
        y = &quot;Count&quot;) +
   shade_pvalue(obs_stat = _____, direction = _____) 
   

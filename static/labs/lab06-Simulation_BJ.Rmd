@@ -1,6 +1,6 @@
 ---
 title: "Lab #06: Simulation-based Inference"
-subtitle: "due Monday, June 6 at 11:59pm"
+subtitle: "due Tuesday, June 7 at 11:59pm"
 output: 
   tufte::tufte_html:
     css: "./sta199-labs.css"

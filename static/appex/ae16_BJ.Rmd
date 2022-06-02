@@ -34,15 +34,15 @@ Always ask
 The function `generate` allows three options for its `type` argument. Discussion of `type = bootstrap`, `type = draw`, and `type = permute` is available [here](https://infer.netlify.app/reference/generate.html).
 
 - `type = permute`: shuffle the data without replacement
-  - for hypothesis testing on a difference in the outcome between groups 
+  - for hypothesis testing (HT) on a difference in the outcome between groups 
   - example: HT for a difference in proportions of yawners in the treatment and the control group 
 
 - `type = draw`: sample from a theoretical distribution 
-  - only for hypothesis testing on a single proportion
+  - only for HT on a single proportion
   - example: HT for proportion of the number of heads in coin flips
   
 - `type = bootstrap`: re-sample the original data with replacement
-  - for confidence intervals (CI) or for hypothesis testing (HT) on a single mean / median
+  - for confidence intervals (CI) or for HT on a single mean / median
   - example: CI and HT for the true mean rent of one-bedroom apartments in Manhattan
 
 ## Push Ups and Pull Ups 
@@ -66,11 +66,11 @@ push_pull %>%
 
 - `participant_id`: unique identifier for each participant
 - `age`: age of participant
-- `push1` / `push2`: push-ups at beginning and end of program respectively
-- `pull1` / `pull2`: pull-ups at beginning and end of program respectively
+- `push1` / `push2`: push-ups at beginning and end of program, respectively
+- `pull1` / `pull2`: pull-ups at beginning and end of program, respectively
 - `training`: which training protocol the individual participated in - either "density" or "gtg" (grease-the-groove)
 
-We create new variables for relative change in push-ups and pull-ups before and after the training. 
+We create new variables for relative change in push-ups and pull-ups before and after the training. Recall, relative change = (new - old)/old.
 
 ```{r rel-change}
 push_pull <- push_pull %>%
@@ -117,7 +117,7 @@ null_dist <- push_pull %>%
 
 ```{r part1-pvalue, eval = FALSE}
 visualize(null_dist) +
-  labs(x = "Difference in sample means of improvement in pull-ups", 
+  labs(x = "_____", 
        y = "Count") +
   shade_pvalue(obs_stat = _____, direction = _____) 
   

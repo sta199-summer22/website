@@ -130,8 +130,8 @@ $H_1:$
 - $p_{trmt} > p_{ctrl}$ $\Leftrightarrow$ $p_{trmt} - p_{ctrl} > 0$
 
 .small[
-$p_{trmt}$: the true proportion of yawners among those who saw someone yawn <br>
-$p_{ctrl}$: the true proportion of yawners among those who didn't see someone yawn.
+$p_{trmt}$: the true proportion of yawners among those who see someone yawn <br>
+$p_{ctrl}$: the true proportion of yawners among those who don't see someone yawn.
 ]
 
 ---
@@ -349,7 +349,7 @@ visualize(null_dist) +
 ```{r}
 null_dist %>%
   filter(stat >= 0.0441) %>%
-  summarise(p_value = n()/nrow(null_dist))
+  summarize(p_value = n()/nrow(null_dist))
 
 
 pvalue <- null_dist %>% 
@@ -366,7 +366,7 @@ pvalue
 --
 
 The p-value of `r pvalue` is larger than $\alpha = 0.05$, so we fail to reject the null.
-The true proportion of yawners among those who saw someone yawn is not significantly different from the proportion of yawners among those who didn't see someone yawn. 
+The data do not provide convincing evidence that the true proportion of yawners among those who see someone yawn is significantly larger than the proportion of yawners among those who don't see someone yawn. 
 
 ---
 
@@ -386,8 +386,12 @@ Go to [AE 16: Hypothesis Testing 2](https://sta199-summer22.netlify.app/appex/ae
 
 - Watch videos for [Prepare: June 6](https://sta199-summer22.netlify.app/prepare/week05_jun06_BJ.html)
 
+- Mid-course evaluation due tonight at 11:59pm 
+
 - Project proposal due tonight at 11:59pm 
 
 - HW03 due Wednesday, June 8 at 11:59pm  
+
+- Submit `ae15` (Rent in Manhattan and Practice) and `ae16` 
 
 

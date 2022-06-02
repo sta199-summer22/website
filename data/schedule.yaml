@@ -111,10 +111,10 @@ lessons:
     ae: "ae15_BJ.html"
   - date: "Fri, Jun 3"
     title: "Hypothesis Testing 2"
-#    slides: "16-hyptest2_BJ.html"
-#    ae: "ae16_BJ.html"
+    slides: "16-hyptest2_BJ.html"
+    ae: "ae16_BJ.html"
   - title: "Lab 06: Simulation-based Inference"
-#    lab: "lab06-Simulation_BJ.html"
+    lab: "lab06-Simulation_BJ.html"
 
   - week: "Week 5"
     date: "Mon, Jun 6"
