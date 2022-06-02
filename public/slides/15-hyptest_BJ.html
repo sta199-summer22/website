@@ -251,6 +251,7 @@ Bootstrapping!
   - Could be because `\(H_0\)` is true 
   - or because we happened to get a sample that didn't give us significant evidence to support `\(H_0\)` was false
   - We never know which one occurred through hypothesis testing 
+  - We never say we "accept" the null 
 
 ---
 
@@ -284,6 +285,7 @@ Bootstrapping!
 
 - The results are statistically significant. 
 - There is sufficient evidence at `\(\alpha = 0.05\)` to reject the null hypothesis in favor of `\(H_1\)`. 
+- The data provide convincing evidence for the alternative hypothesis.
 
 ---
 
@@ -296,6 +298,7 @@ Bootstrapping!
 - The results are not statistically significant. 
 - We fail to reject the null hypothesis.
 - There is insufficient evidence at `\(\alpha = 0.05\)` to reject the null hypothesis. 
+- The data do not provide convincing evidence for the alternative hypothesis.
 
 --
 
@@ -303,8 +306,8 @@ Bootstrapping!
 
 --
 
-- P(Type I error) = `\(\alpha\)` = P(reject H_0 | H_0 is true)
-- P(Type II error) = `\(\beta\)` = P(fail to reject H_0 | H_0 is false)
+- P(Type I error) = `\(\alpha\)` = P(reject `\(H_0\)` | `\(H_0\)` is true)
+- P(Type II error) = `\(\beta\)` = P(fail to reject `\(H_0\)` | `\(H_0\)` is false)
 
 --
 
@@ -312,7 +315,7 @@ Bootstrapping!
 
 --
 
-- The power of a test: `\(1-\beta\)` = P(reject H_0 | H_0 is false)
+- The power of a test: `\(1-\beta\)` = P(reject `\(H_0\)` | `\(H_0\)` is false)
 
 ---
 
@@ -335,7 +338,7 @@ Go to [AE 15: Hypothesis Testing 1](https://sta199-summer22.netlify.app/appex/ae
 
 - HW03 due Wednesday, June 8 at 11:59pm  
 
-
+- Submit `ae15`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

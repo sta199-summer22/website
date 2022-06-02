@@ -1,0 +1,31 @@
+---
+title: "Prepare: June 7"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Inference Using Central Limit Theorem](https://warpwire.duke.edu/w/WQ4GAA/)
+
+- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-inference.html#1)
+
+## Optional 
+
+`r emo::ji("book")` Read
+
+- [IMS: Section 16.2 - Mathematical Model for a Proportion](https://openintro-ims.netlify.app/inference-one-prop.html#one-prop-norm)
+- [IMS: Section 17.3 - Mathematical Model for Difference in Proportions](https://openintro-ims.netlify.app/inference-two-props.html#math-2prop)
+- [IMS: Section 19.2 - Mathematical Model for a Mean](https://openintro-ims.netlify.app/inference-one-mean.html#one-mean-math)
+- [IMS: Section 20.3 - Mathematical Model for Testing Difference in Means](https://openintro-ims.netlify.app/inference-two-means.html#math2samp)
+
+

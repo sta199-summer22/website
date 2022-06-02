@@ -29,30 +29,25 @@ distributed with mean $809 ~mg/cm^3$ and standard deviation of $140 ~mg/cm^3$.
 Let $X$ be the bone density of 65-year-old women. We can write this distribution of $X$ in mathematical notation as 
 
 $$X \sim N(809, 140)$$
-### Part 1: Original density 
 
-The original density is given below: 
+### Part 1: Population distribution
+
+The population distribution is given below: 
 
 ```{r visualize-normal}
-ggplot(NULL, aes(c(809 - 140*3, 809 + 140*3))) +
-  geom_area(stat = "function", fun = dnorm, 
-            args = list(mean = 809, sd = 140), color = "black", fill = NA) +
+ggplot(data = data.frame(x = c(809 - 140*3, 809 + 140*3)), 
+       aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140)) + 
   labs(title = "Population distribution", x = "", y = "Density") 
 ```
 
 **Q - ** Before typing any code, based on what you know about the normal distribution, what do you expect the median bone density to be?
 
-The median is the same as the mean, 809. 
-
 **Q - ** What bone densities correspond to Q1 (25th percentile), Q2 (50th percentile), and Q3 (the 75th percentile) of this distribution? Use the `qnorm()` function to calculate these values. 
 
 ```{r}
-(Q1 <- qnorm(0.25, mean = 809, sd = 140))
-(Q2 <- qnorm(0.5, mean = 809, sd = 140))
-(Q3 <- qnorm(0.75, mean = 809, sd = 140))
-```
 
-## Exercise 2
+```
 
 The densities of three woods are below:
 
@@ -60,36 +55,91 @@ The densities of three woods are below:
 - Pine: $600 ~mg/cm^3$
 - Mahogany: $710 ~mg/cm^3$
 
-- What is the probability that a randomly selected 65-year-old woman has bones less dense than Pine?
+**Q - ** What is the probability that a randomly selected 65-year-old woman has bones less dense than Pine?
 
 ```{r}
 
 ```
 
-- Would you be surprised if a randomly selected 65-year-old  woman had bone density less than Mahogany? What if she had bone density less than Plywood? Use the respective probabilities to support your response. 
+**Q - ** Would you be surprised if a randomly selected 65-year-old woman had bone density less than Mahogany? What if she had bone density less than Plywood? Use the respective probabilities to support your response. 
 
-## Exercise 3
+```{r}
+
+```
+
+### Part 2: Sample mean and its distribution 
 
 Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women. 
 
-- Are the conditions met use the Central Limit Theorem to define the distribution of $\bar{x}$, the mean density of 10 randomly selected 65-year-old women? 
+**Q - ** Before moving forward, let's check the conditions required to apply the Central Limit Theorem to define the distribution of $\bar{X}$.
+
   - Independence? 
-  - Sample size/distribution? 
+  - Sample size / distribution? 
   
-- What is the shape, center, and spread of the distribution of $\bar{x}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
+**Q - ** What is the shape, center, and spread of the distribution of $\bar{X}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
 
-- Write the distribution of $\bar{x}$ using mathematical notation. 
+**Q - ** Write the distribution of $\bar{X}$ using mathematical notation. 
 
-## Exercise 4
+The distribution of sample means is given below in comparison with the population distribution: 
 
-- What is the probability that the mean bone density for the group of 10 randomly-selected 65-year-old women is less dense than Pine?
+```{r visualize-normal2}
+ggplot(data = data.frame(x = c(809 - 140*3, 809 + 140*3)), 
+       aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140), 
+            aes(color = "population", linetype = "population")) +
+  stat_function(fun = dnorm, args = list(mean = 809, sd = 140/sqrt(10)), 
+            aes(color = "sample mean", linetype = "sample mean")) +
+  labs(x = "", y = "Density", linetype = "", color = "") +
+  scale_color_manual(values = c("population" = "black", 
+                                "sample mean" = "red")) +
+  scale_linetype_manual(values = c("population" = "solid", 
+                                   "sample mean" = "dashed")) +
+  geom_vline(xintercept = 809, color = "gray", size = 1) +
+  theme(legend.position = c(0.8, 0.8))
+```
 
-- Would you be surprised if a group of 10 randomly-selected 65-year old women had a mean bone density less than Mahogany? What the group had a mean bone density less than Plywood? Use the respective probabilities to support your response. 
+**Q - ** What is the probability that the mean bone density for a group of 10 randomly-selected 65-year-old women is less dense than Pine?
 
-## Exercise 5
+```{r}
 
-Explain how your answers differ in Exercises 2 and 4.
+```
 
+**Q - ** Would you be surprised if a group of 10 randomly-selected 65-year old women had a mean bone density less than Mahogany? What the group had a mean bone density less than Plywood? Use the respective probabilities to support your response. 
+
+**Q - ** Explain how and why your answers differ in Part 1 and Part 2. 
+
+### Practice 
+
+Let $X$ follow a Gamma distribution with the shape parameter $\alpha = 1$ and the rate parameter $\beta = 0.1$. Then its distribution looks like this: 
+
+```{r visualize-gamma}
+ggplot(data = data.frame(x = c(0,30)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = 1, rate = .1), 
+                color = "black") +
+  labs(x = "", y = "Density") 
+```
+
+This is far from any normal distributions. Theoretically, its mean is $\alpha/\beta = 10$ and standard deviation is $\sqrt{\alpha/\beta^2} = 10$.
+
+Suppose you take 40 random observations of $X$, take the mean, and save it as $\bar{X}$. 
+
+**Q - ** Can we apply the CLT? Does this scenario satisfy the following conditions? 
+
+- Independence? 
+- Sample size / distribution? 
+
+**Q - ** If you said yes from the previous question, write the distribution of $\bar{X}$ by CLT using mathematical notation. 
+
+**Q - ** Visualize the distribution of the sample mean by completing the code chunk below:
+
+```{r visualize-gamma2, eval = FALSE}
+ggplot(data = data.frame(x = c(0,30)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = 1, rate = 0.1), 
+                color = "black", linetype = "solid") +
+  stat_function(fun = dnorm, args = list(mean = __, sd = __), 
+                color = "red", linetype = "dashed") +
+  labs(x = "", y = "Density") 
+```
 
 ## Submitting Application Exercises
 

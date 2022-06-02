@@ -224,3 +224,5 @@ Go to [AE 14: Confidence Intervals through Bootstrapping](https://sta199-summer2
 
 - HW03 released 
 
+- Submit `ae14`
+

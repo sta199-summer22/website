@@ -170,7 +170,7 @@ Independence
 
 --
 
-Sample size $n$ 
+Sample size $n$ / distribution
 
 - If $X$ is numerical, $n > 30$ 
 - If $X$ is categorical, at least 10 successes and 10 failures 

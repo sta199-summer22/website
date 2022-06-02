@@ -1,0 +1,245 @@
+---
+title: "AE 18: Central Limit Theorem 2"
+subtitle: "due Wednesday, June 8 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae18-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Central Limit Theorem for Proportion 
+
+If $X$ is a categorical variable with only two categories, for instance, success vs. failure, or heads vs. tails, then we can write $X \sim Bernoulli(p)$. In this case, the sample mean becomes the **sample proportion**, i.e., $\bar{X} = \hat{p}$. Therefore, the CLT can apply to $\hat{p}$ as it does to $\bar{X}$. 
+
+For a random variable $X \sim Bernoulli(p)$, we know its mean is $p$ and its standard deviation is $\sqrt{p(1-p)}$. 
+
+**Q - ** Provided that we randomly took observations and there are more than 10 "successes" and 10 "failures" in the sample, what is the distribution of the sample proportion by the CLT? 
+
+Suppose we want to formally test if $H_0: p = p_0$ vs. $H_1: p > p_0$ where $p_0$ is a number, e.g., 0.4, 0.5, 0.9, etc. 
+
+**Q - **What would be the test statistic and its distribution under the null?
+
+## Pokemon 
+
+```{r load-package, message=F}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+```
+
+We will be using the `pokemon` dataset, which contains information about 42 randomly selected Pokemon (from all generations). 
+
+```{r load-data, warning = FALSE, message = FALSE}
+pokemon <- read_csv("data/pokemon.csv")
+```
+
+In this analysis, we will use CLT-based inference to draw conclusions about the **mean height** among all Pokemon species.
+
+### Part 1: Point estimate 
+
+Let's start by looking at the distribution of `height_m`, the typical height in meters for a Pokemon species, using a visualization and summary statistics.
+
+```{r height-histogram}
+ggplot(data = pokemon, aes(x = height_m)) +
+  geom_histogram(binwidth = 0.25, fill = "steelblue", color = "black") + 
+  labs(x = "Height (in meters)", 
+       y = "Distributon of Pokemon heights")
+```
+
+```{r height-stats, echo = FALSE}
+pokemon %>%
+  summarize(mean_height = mean(height_m), 
+            sd_height = sd(height_m), 
+            n_pokemon = n()) %>% 
+  knitr::kable()
+```
+
+In the previous lecture, we assumed that we knew the mean $\mu$, and standard deviation $\sigma$, of the population. That is unrealistic in practice (if we knew $\mu$ and $\sigma$, we wouldn't need to do statistical inference!).
+
+Today we will be realistic - we don't know what $\mu$ or $\sigma$ are. We aim to draw conclusions about $\mu$, the mean height in the population of Pokemon using our sample data. 
+
+**Q - **What is the point estimate for $\mu$, i.e., the "best guess" for the mean height of all Pokemon?
+
+```{r height-mean}
+
+```
+
+In order to construct confidence intervals or conduct hypothesis tests about $\mu$, we need a sampling distribution of the sample mean. We will use theoretical distributions based on the CLT. 
+
+Before moving forward, however, we need to estimate another unknown, but less interesting, parameter $\sigma$. 
+
+**Q - ** What is the point estimate for $\sigma$, i.e., the "best guess" for the standard deviation of the distribution of Pokemon heights?
+
+```{r height-sd}
+
+```
+
+### Part 2: CLT conditions
+
+Before applying the CLT, always check if the following CLT conditions are met: 
+
+-   Independence? 
+-   Sample size / distribution? 
+
+### Part 3: CLT 
+
+By the Central Limit Theorem,
+
+$$\bar{X} \sim N(\mu, \sigma/ \sqrt{n}) \hspace{2mm} \Leftrightarrow \hspace{2mm} Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+
+approximately for a large enough $n$. 
+
+**Q - **Describe the distribution of $Z$ in words.
+
+In practice, we can't calculate the standardized score $Z$ due to the unknown $\sigma$, so instead we will use the standardized random variable $T$ when conducting inference for a population mean.
+
+$$Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \hspace{2mm} \rightarrow \hspace{2mm} T = \frac{\bar{X} - \mu}{S/\sqrt{n}}$$
+
+where
+$$S^2 = \frac{\sum_{i=1}^n(X_i - \bar{X})^2}{n-1}.$$
+
+**Q - ** How do $Z$ and $T$ differ?
+
+
+$T$ follows a $t$ distribution with $n-1$ degrees of freedom. It is written as $t_{n-1}$. We will use the $t_{n-1}$ distribution to help us conduct hypothesis tests and construct confidence intervals.
+
+### Part 4: CLT-based hypothesis test 
+
+The mean height of humans is about 1.65 meters (m). We would like to test whether the mean height of Pokemon is less than the mean height of humans.
+
+**Q - Step 1:** State the null and alternative hypotheses in words and statistical notation.
+
+Next steps in hypothesis testing is to summarize data into a point estimate and assess how likely it is to observe what we observed or even more extreme **if in fact the null hypothesis is true**. 
+
+In order to use CLT-based distributions we learned in Part 3, we compute a standardized point estimate **under the null**. We plug the null value $\mu_0$ for $\mu$, the observed sample mean $\bar{x}$ for $\bar{X}$, and the observed sample standard deviation $s$ for $S$ in $T$. Then we get a test statistic
+
+$$ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}. $$
+
+**Q - Step 2:** What is the estimated standard error $s/\sqrt{n}$ for the Pokemon data?
+
+```{r se}
+
+```
+
+**Q - Step 2:** Calculate the test statistic ($t$-value). 
+
+```{r test-stat}
+
+```
+
+**Q - Step 3:** What is the distribution of the test statistic under the null?
+
+**Q - Step 3:** Now let's calculate the p-value. Fill in the code below to use the `pt()` function to calculate the p-value. 
+
+```{r calc-pvalue, eval = FALSE}
+pt(___, df = ___)
+```
+
+-  State what the p-value means. 
+
+-   State the conclusion in the context of the data using a significance level of $\alpha = 0.05$.
+
+### Part 5: CLT-based confidence interval 
+
+We would like to construct a 90% confidence interval for the mean height of Pokemon species. The confidence interval for the population mean is
+
+$$\bar{x} \pm t^*_{n-1} \times \frac{s}{\sqrt{n}}$$
+
+where $t^*_{n-1} \times \frac{s}{\sqrt{n}}$ is called the **margin of error**.
+
+We already know $\bar{x}$ and $s/\sqrt{n}$, so let's talk about $t^*_{n-1}$. This value is determined based on the confidence level, $C$. It is the point on the $t$ distribution with $n-1$ degrees of freedom, such that the area between $-t^*_{n-1}$ and $t^*_{n-1}$ is $C$.
+
+**Q - **What is the critical value $t^*_{n-1}$ for our 90% confidence interval of the mean Pokemon height?
+
+```{r crit-val}
+
+```
+
+**Q - **Now calculate the 90% confidence interval for the mean Pokemon height.
+
+```{r conf-int}
+
+```
+
+**Q - **Interpret the interval in the context of the data.
+
+### Part 6: CLT-based hypothesis test using `infer`
+
+**Q - ** Conduct the hypothesis test from Part 4 using the `t_test()` function.
+
+```{r eval = FALSE}
+pokemon %>%
+  t_test(response = ____, 
+         alternative = ____, 
+         mu = ____, 
+         conf_int = FALSE)
+```
+
+### Part 7: CLT-based confidence interval using `infer`
+
+**Q - ** Calculate the 90% confidence interval from Part 5 using the `t_test()` function.
+
+```{r eval = FALSE}
+pokemon %>%
+  t_test(response = ____, 
+         conf_int = TRUE, 
+         conf_level = ____) %>%
+  select(lower_ci, upper_ci)
+```
+
+**Q - **Why not doing `conf_int = TRUE` in Part 6 and finishing CI and HT at once? 
+
+### Practice 
+
+We found that the observed average height of Pokemon in our sample is about 0.93 m. For human, the average weight among those with height about 0.95 meters is 14 kg. We would like to test if the proportion of Pokemon heavier than 14 kg is significantly different from 50%.
+
+**Q - ** State the null and the alternative hypothesis. 
+
+**Q - ** Verify if the CLT conditions are satisfied. 
+
+- Independence? 
+- Sample size / distribution? 
+
+```{r}
+
+```
+
+**Q - ** Conduct a CLT-based hypothesis test both manually and using `infer` at the significance level 0.05. Make a conclusion in context of data. Hint: use `prop_test()`. 
+
+```{r}
+# sample proportion
+
+
+# null value 
+
+
+# compute z-statistic
+
+
+# p-value under the null distribution
+```
+
+```{r}
+# infer 
+
+```
+
+
+**Q - ** Suppose the true proportion of Pokemon heavier than 14 kg is 0.5. In your conclusion above, did you make the correct decision, a Type 1 error, or a Type 2 error? Explain. 
+
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

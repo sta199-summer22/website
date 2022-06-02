@@ -318,7 +318,7 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p><strong>Step 1 (returned):</strong> Define the hypotheses.</p>
+<p><strong>Step 1 (revisited):</strong> Define the hypotheses.</p>
 <p>Now we ask ourselves: “Is <span class="math inline">\(\hat{p}\)</span> so different from our assumption that we have to reject our assumption as true?”</p>
 <p>To answer this, the alternative hypothesis matters. Our options are:</p>
 <ul>
@@ -334,7 +334,7 @@ div.tocify {
 </ul>
 <p>Choice of hypothesis affects calculation of p-value in the next step and thus affects our conclusions. For this reason, one should choose an alternative hypothesis before looking at the data.</p>
 <p><strong>Step 3:</strong> Assess the evidence.</p>
-<p>In this step, we compute a p-value corresponding to an alternative hypothesis. By definition, the p-value is the probability of seeing what we observed (in this case, <span class="math inline">\(\hat{p} = 3/20\)</span>) or something more extreme if <span class="math inline">\(H_0\)</span> is true. The direction of alternative hypotheses decide what “something more extreme” is.</p>
+<p>In this step, we compute a p-value. By definition, the p-value is the probability of seeing what we observed (in this case, <span class="math inline">\(\hat{p} = 3/20\)</span>) or something more extreme if <span class="math inline">\(H_0\)</span> is true. The direction of alternative hypotheses decide what “something more extreme” is.</p>
 <p>The following probabilities are the p-value for each alternative hypothesis given above:</p>
 <ul>
 <li><ol style="list-style-type: decimal">
@@ -347,7 +347,7 @@ div.tocify {
 <li>The probability of observing a <span class="math inline">\(\hat{p} \leq 3/20\)</span> <strong>or</strong> <span class="math inline">\(\hat{p} \geq 17/20\)</span> if the null is true?</li>
 </ol></li>
 </ul>
-<p>We will find the three p-values using simulations. First, we need to know what 20 coin flips would have looked like “under the null”. In other words, “if the null was actually true”.</p>
+<p>We will find the three p-values using simulations. First, we need to know what 20 coin flips would look like “under the null”. In other words, “if the null was actually true”.</p>
 <p><strong>Q - </strong> Create 200000 random numbers from Binomial(20, 0.5). This generates a distribution for <span class="math inline">\(\hat{p}\)</span> (the sample proportion of heads out of 20 coin flips) given the coin is fair. This is called the null distribution.</p>
 <pre class="r"><code>set.seed(123)
 null_heads &lt;- rbinom(____, size = __, prob = __)
@@ -380,9 +380,9 @@ null &lt;- data.frame(null_heads)</code></pre>
 <pre class="r"><code>manhattan &lt;- read_csv(&quot;data/manhattan.csv&quot;)</code></pre>
 <div id="part-2-testing-using-functions-in-infer" class="section level3">
 <h3>Part 2: Testing using functions in <code>infer</code></h3>
-<p>We were lucky in Part 1 because we knew the analytic distribution of the number of heads from <span class="math inline">\(n\)</span> coin flips with a probability <span class="math inline">\(p\)</span>. The distribution was Binomial(<span class="math inline">\(n\)</span>, <span class="math inline">\(p\)</span>), and <code>rbinom()</code> function generated random numbers from Binomial distributions.</p>
+<p>We were lucky in Part 1 because we knew the theoretical distribution of the number of heads from <span class="math inline">\(n\)</span> coin flips with a probability <span class="math inline">\(p\)</span>. The distribution was Binomial(<span class="math inline">\(n\)</span>, <span class="math inline">\(p\)</span>), and <code>rbinom()</code> function generated random numbers from Binomial distributions.</p>
 <p>Often, however, you do not know the exact distribution of the statistics of interest. In that case, we can use <strong>bootstrapping</strong> to capture variability in sample statistics from the original sample.</p>
-<p>In Part 2, we will conduct hypothesis testing using in a <code>tidy</code> way. We load the <code>tidymodels</code> package that contains the <code>infer</code> package.</p>
+<p>In Part 2, we will conduct hypothesis testing in a <code>tidy</code> way. We load the <code>tidymodels</code> package that contains the <code>infer</code> package.</p>
 <pre class="r"><code>library(tidymodels)</code></pre>
 <p><strong>Step 1:</strong> Define the hypotheses.</p>
 <p><strong>Q - </strong> Suppose you are interested in whether the mean rent of one-bedroom apartments in Manhattan is less than $3000. State the null and alternative hypotheses.</p>
@@ -418,7 +418,7 @@ null_dist &lt;- manhattan %&gt;%
   labs(x = &quot;______&quot;, y = &quot;______&quot;, 
        title = &quot;Simulated null distribution of sample means&quot;,
        subtitle = &quot;[about the assumption]&quot;) </code></pre>
-<p>After simulating under the null, next we want to find where our observed statistic lands in the null.</p>
+<p>After simulating under the null, next we want to find where our observed statistic lands in the null distribution.</p>
 <p><strong>Q - </strong> Use the code below to plot visualize the p-value on the graph above.</p>
 <pre class="r"><code>visualize(null_dist) +
   labs(x = &quot;Sample mean&quot;, y = &quot;Count&quot;, 
@@ -429,6 +429,7 @@ null_dist &lt;- manhattan %&gt;%
 <li><code>shade_pvalue()</code>: plots a p-value region on top of <code>visualize()</code>. We plug the observed statistic in <code>obs_stat</code>. <code>direction = &quot;left&quot;</code>, <code>direction = &quot;right&quot;</code>, <code>direction = &quot;two-sided&quot;</code> corresponding to the directionality of your alternative hypothesis.</li>
 </ul>
 <p><strong>Q - </strong> Manually compute the p-value and compare to the <code>easy-p-value</code> code chunk below.</p>
+<p>Manual p-value:</p>
 <p>Easy p-value:</p>
 <p><strong>Step 4:</strong> Make a conclusion.</p>
 <p><strong>Q - </strong>At the significance level 0.05, make your conclusion with the following 3 components:</p>
