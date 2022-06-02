@@ -317,6 +317,8 @@ Go to [AE 15: Hypothesis Testing 1](https://sta199-summer22.netlify.app/appex/ae
 
 ## Bulletin
 
+- Mid-course evaluation due Friday, June 3 at 11:59pm 
+
 - Project proposal due Friday, June 3 at 11:59pm 
 
 - HW03 due Wednesday, June 8 at 11:59pm  

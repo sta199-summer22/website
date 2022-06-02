@@ -1,0 +1,214 @@
+---
+title: "Lab #07: CLT-based Inference"
+subtitle: "due Friday, June 10 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+# Goals
+
+- Use inference based on the Central Limit Theorem to draw conclusions about a population mean.
+- Compare inference based on Central Limit Theorem to simulation-based inference.
+
+# Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and clone the repository entitled "lab07-GitHubUsername" in RStudio. 
+- Find `lab07.Rmd` to open the template R Markdown file. 
+
+For each exercise:
+
+- Show all relevant code and output used to obtain your response. If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write all narrative in complete sentences, and use clear axis labels and titles on visualizations.
+
+- Use a small number of `reps` (about 500) as you write and test out your code. 
+Once you have finalized all of your code, increase the number of `reps` to 15,000 
+to produce your final results.
+    
+- For each simulation exercise, use the **seed** specified in the exercise instructions.
+
+# Packages 
+
+We will use the **tidyverse**, **tidymodels**, **knitr** packages in this lab.
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+```
+
+# Burrito
+
+What makes a good burrito?
+
+Today's dataset has been adapted from Scott Cole's [Burritos of San Diego 
+project](https://srcole.github.io/100burritos/). The goal 
+of the project was to identify the best and worst burritos in San Diego, 
+characterize variance in burrito quality, and generate predictive models for 
+what makes a burrito great. 
+
+As part of this project, 71 participants reviewed burritos from 79 different 
+taco shops. Reviewers captured objective measures of the burrito (such as 
+whether it contains certain ingredients) and reviewed it on a number of metrics 
+(such as quality of the tortilla, the temperature, quality of meat, etc.). For 
+the purposes of this lab, you may consider each of these observations to be an
+independent and representative sample of **all burritos.**
+
+The subjective ratings in the dataset are as follows. Each variable is ranked
+on a 0 to 5 point scale, with 0 being the worst and 5 being the best. 
+
+- `tortilla`: quality of the tortilla
+- `temp`: temperature of the burrito
+- `meat`: quality of the meat
+- `fillings`: quality of non-meat fillings
+- `salsa`: quality of the salsa
+- `mfr`: meat-to-filling ratio
+- `uniformity`: whether each bite contains a uniform slew of ingredients (e.g.,
+a bite entirely composed of tortilla and sour cream would probably be terrible)
+- `synergy`: how well it all comes together
+
+In addition, the reviewers noted the presence of the following burrito
+components. Each of the following variables is a binary variable taking on 
+values `present` or `none`:
+
+- `guac`: guacamole
+- `cheese`: cheese
+- `fries`: fries (it's a thing, [look it up.](https://en.wikipedia.org/wiki/Burrito#San_Diego))
+- `sourcream`: sour cream
+- `rice`: rice
+- `beans`: beans
+
+The data are available in `burritos.csv`
+
+The goal of this analysis is to make inference about the mean synergy rating of burritos based on the Central Limit Theorem (CLT).
+
+1. We'll start by examining the distribution of `synergy`, a rating indicating how well all the ingredients in the burrito come together. 
+
+  - Visualize the distribution of `synergy` using a histogram with binwidth of 0.5. 
+  
+  - Does the distribution look "normal"? Comment on the shape of the distribution.
+  
+  - Calculate the following summary statistics: the mean synergy, standard deviation of synergy, and sample size. Save the summary statistics as `summary_stats`. Then display `summary_stat` with `kable()`. 
+
+2. The goal of this analysis is to use CLT-based inference to understand the true mean synergy rating of all burritos. What is your "best guess" for the mean synergy rating of burritos?
+
+
+**Is the synergy in burritos generally good?** To answer this question, we will conduct a hypothesis test to evaluate if the mean synergy score of all burritos is greater than 3.
+
+3. Before conducting inference, we need to check the conditions to make sure the CLT can be applied in this analysis. For each condition, indicate whether it is satisfied and provide a brief explanation supporting your response. 
+
+  - Independence?
+  - Sample size / distribution? 
+  
+4. State the null and alternative hypotheses to evaluate the question posed in the previous exercise. Write the hypotheses in words and in statistical notation. Clearly define any parameter you introduce. 
+
+5. Let $\bar{X}$ be a random variable for the mean synergy score in a sample of 330 randomly selected burritos. Given the CLT and the hypotheses from the previous exercise,
+
+  - What is the mean of the sampling distribution of $\bar{X}$ under the null? 
+  - What is the standard error of the sampling distribution of $\bar{X}$? Assume the true $\sigma$ is 1. 
+  - Write the null distribution of $\bar{X}$ concisely in math notation, i.e. $\bar{X} \sim N( , )$. You may use the math symbols given below: 
+  
+  ```
+  $\bar{X} \sim N( , )$
+  ```
+  
+In practice, we never know the true value of $\sigma$, so we estimate it with the observed standard deviation $s$ from our data. Consequently, the null distribution would slightly change. 
+
+6. Recall the formula for the test statistic: 
+
+$$t = \frac{\bar{x}- \mu_{0}}{\hat{se}}$$
+where $\mu_0$ is the null value of $\mu$ (the specified value in the null hypothesis for $\mu$), and $\hat{se}$ is the estimated standard error of $\bar{X}$. $\hat{se}$ is calculated by replacing $\sigma$ in the standard error you found in Ex 5 with $s$. 
+
+  - Use R as a "calculator" to calculate the test statistic, $t$. 
+  - Explain what this value means in the context of this analysis. 
+  - What is the distribution of the test statistic under the null? Be specific.
+
+7. Now let's calculate the p-value and draw a conclusion. 
+
+  - Use the `pt()` function to calculate the p-value. 
+  - Explain what this value means in the context of this analysis. 
+  - State your conclusion in the context of the data using a significance level of $\alpha = 0.01$.
+
+8. We also want to calculate a 90% confidence interval for the mean synergy rating of all burritos. The confidence interval for a population mean is 
+
+$$\bar{x} \pm t^*_{n-1} \times \hat{se}$$
+
+We already know $\bar{x}$ and $\hat{se}$, so let's focus on the calculating $t^*_{n-1}$. We will use the `qt()` function to calculate the critical value $t^*_{n-1}$. 
+
+```{marginfigure}
+Here is an example: If we want to calculate a 95% confidence interval for the mean, we will use `qt(0.975, n-1)`, where 0.975 is the cumulative probability at the upper bound of the 95% confidence interval (recall we used this value to find the upper bound when calculating bootstrap confidence intervals), and (n-1) are the degrees of freedom.
+```
+
+  - Calculate the critical value, $t^*_{n-1}$, of the 90% confidence interval for the mean synergy rating of all burritos. 
+  - Use R as a "calculator" to calculate the 90% confidence interval. 
+  - Interpret the interval in the context of the data. 
+
+9. In the previous exercises, we conducted a hypothesis test and calculated a confidence interval step-by-step. We can also use the `infer` package for the calculations in CLT-based inference using the `t_test()` function. 
+
+  - Fill in the code below to produce the calculations for the hypothesis test you conducted in Ex 4 - 7.
+
+```{marginfigure}
+ The results should be the same as the calculations you did in the previous exercises.
+```
+
+```{r eval= F}
+burrito %>%
+  t_test(response = _____, 
+         alternative = "______", 
+         mu = ______, 
+         conf_int = FALSE)
+```
+
+  - Next, fill in the code below to produce the 90% confidence interval for the mean synergy rating. 
+
+```{marginfigure}
+The results should be the same as the calculations in Ex 8.
+```
+
+```{r eval= F}
+burrito %>%
+  t_test(response = _____, 
+         conf_int = _____, 
+         conf_level = _____) %>%
+  select(lower_ci, upper_ci)
+```
+
+# Submission
+
+- Once you are finished with the lab, you will submit the PDF document produced from your final knit, commit, and push to [Gradescope](https://www.gradescope.com/courses/385955).
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all pages.
+- Follow the instructions in previous labs to submit your PDF to Gradescope.
+
+# Grading (45 pts)
+
+<br>
+
+| Component             | Points |
+|:----------------------|:-------|
+| Ex 1                  |   6    |
+| Ex 2                  |   1    |
+| Ex 3                  |   3    |
+| Ex 4                  |   4    |
+| Ex 5                  |   3    |
+| Ex 6                  |   5    |
+| Ex 7                  |   6    |
+| Ex 8                  |   8    |
+| Ex 9                  |   4    |
+| Workflow & formatting |   5    |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and having readable code that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)

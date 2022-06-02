@@ -128,6 +128,7 @@ lessons:
 #    slides: "18-clt2_BJ.html"
 #    ae: "ae18_BJ.html"
   - title: "Lab 07: CLT-based Inference"
+#    lab: "lab07-CLT_BJ.html"
   - date: "Wed, Jun 8"
     title: "Introduction to Models"
   - date: "Thu, Jun 9"
