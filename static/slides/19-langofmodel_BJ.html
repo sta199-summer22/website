@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Central Limit Theorem 2</title>
+    <title>Introduction to Linear Models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Central Limit Theorem 2
+# Introduction to Linear Models
 ### Bora Jin
 
 ---
@@ -39,26 +39,55 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Inference Using Central Limit Theorem](https://warpwire.duke.edu/w/WQ4GAA/)
+🎥 Watch [The Language of Models](https://youtu.be/MWkkvDopBKc)
 
-- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-inference.html#1)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) 
 
-Optional: 📖 Read 
+🎥 Watch [Fitting and Interpreting Models](https://youtu.be/69U92Q3pwnA)
 
-- [IMS: Section 16.2 - Mathematical Model for a Proportion](https://openintro-ims.netlify.app/inference-one-prop.html#one-prop-norm)
-- [IMS: Section 17.3 - Mathematical Model for Difference in Proportions](https://openintro-ims.netlify.app/inference-two-props.html#math-2prop)
-- [IMS: Section 19.2 - Mathematical Model for a Mean](https://openintro-ims.netlify.app/inference-one-mean.html#one-mean-math)
-- [IMS: Section 20.3 - Mathematical Model for Testing Difference in Means](https://openintro-ims.netlify.app/inference-two-means.html#math2samp)
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1) 
 
 ---
 
 ## Today's Goal 
 
-- Use Central Limit Theorem (CLT) to conduct inference on a population mean
-- Conduct CLT-based inference step-by-step and using the `infer` package
-- Understand t-distribution vs. standard normal, N(0,1) distribution
+- Understand the language and notation of linear modeling.
+- Use `tidymodels` to make inference under a linear regression model
 
 ---
+
+functions 
+height as a function of width 
+response 
+explanatory 
+predicted value : output of the model function 
+residuals 
+positive residual vs. negative residual 
+models - upsides and downsides 
+variation around the model 
+explanation 
+prediction (netflix / amazon recommendation)
+
+step 1: Specify model linear_reg
+step 2: set model fitting engine set_engine("lm")
+step 3: fit model &amp; estimate parameters fit(formula syntax): ~, "versus"
+recreate the formula with parameter estimates 
+
+uncertainty - standard error 
+interpretation "on average" "expected"
+least squares regression 
+goes through (xbar, ybar)
+has the same sign as the correlation coefficient 
+sum of the residuals is zero 
+
+interpretation
+dummy variables 
+
+
+
+
+
+
 
 ## Quiz 
 
@@ -173,7 +202,7 @@ the degrees of freedom.
 
 **Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
 
-&lt;img src="18-clt2_BJ_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -181,7 +210,7 @@ the degrees of freedom.
 
 **Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
 
-&lt;img src="18-clt2_BJ_files/figure-html/unnamed-chunk-3-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-3-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 - thicker tails 
 - As the degrees of freedom increases, the t-distribution becomes more like N(0,1)
 
@@ -191,7 +220,7 @@ the degrees of freedom.
 
 **Q - What is an appropriate code to calculate** `\(P(T &lt; 1.2)\)` **where** `\(T \sim t_5\)`**?**
 
-&lt;img src="18-clt2_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 --
 
 
@@ -209,7 +238,7 @@ pt(1.2, df = 5)
 
 **Q - What is an appropriate code to calculate** `\(P(-2 &lt; T &lt; 3)\)` **where** `\(T \sim t_{10}\)`**?**
 
-&lt;img src="18-clt2_BJ_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 --
 
 
@@ -227,7 +256,7 @@ pt(3, df = 10) - pt(-2, df = 10)
 
 **Q - What is an appropriate code to find** q **s.t.** `\(P(T &gt; q) = 0.25\)` **where** `\(X \sim t_7\)`**?**
 
-&lt;img src="18-clt2_BJ_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 --
 
 

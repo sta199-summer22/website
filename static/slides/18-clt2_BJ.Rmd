@@ -40,7 +40,7 @@ Optional: `r emo::ji("book")` Read
 
 - Use Central Limit Theorem (CLT) to conduct inference on a population mean
 - Conduct CLT-based inference step-by-step and using the `infer` package
-- Understand t-distribution vs. standard normal, N(0,1) distribution.
+- Understand t-distribution vs. standard normal, N(0,1) distribution
 
 ---
 

@@ -1,0 +1,452 @@
+---
+title: "Introduction to Linear Models"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [The Language of Models](https://youtu.be/MWkkvDopBKc)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) 
+
+`r emo::ji("movie_camera")` Watch [Fitting and Interpreting Models](https://youtu.be/69U92Q3pwnA)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1) 
+
+---
+
+## Today's Goal 
+
+- Understand the language and notation of linear modeling
+- Use `tidymodels` to make inference under a linear regression model
+
+---
+
+## Quiz 
+
+**Q - What do we need models for?**
+
+--
+
+- Explain the relationship between variables 
+- Make predictions (e.g., Amazon / Netflix recommendations)
+- We will focus on **linear** models (straight lines!) but there are many other types.
+
+---
+
+## Quiz 
+
+**Q - What is a predicted value?**
+
+--
+
+- Output of a model function 
+- Typical or expected value of the response variable conditioning on the explanatory variable 
+- $\hat{y} = f(x)$
+
+---
+
+## Quiz 
+
+**Q - What is a predicted value?**
+
+```{r echo = FALSE, out.width= "70%"}
+ht_wt_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+ht_wt_fit_tidy <- tidy(ht_wt_fit$fit) 
+ht_wt_fit_aug  <- augment(ht_wt_fit$fit) %>%
+  mutate(res_cat = ifelse(.resid > 0, TRUE, FALSE))
+
+ggplot(data = ht_wt_fit_aug) +
+  geom_point(aes(x = Width_in, y = Height_in)) +
+  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  ) 
+```
+
+---
+
+## Quiz 
+
+**Q - What is a predicted value?**
+
+```{r echo = FALSE, out.width= "70%"}
+ggplot(data = ht_wt_fit_aug) +
+  geom_point(aes(x = Width_in, y = Height_in), color = "gray") +
+  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
+  geom_point(aes(x = Width_in, y = .fitted), color = "#8E2C90", size = 2) +
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  ) 
+```
+
+---
+
+## Quiz 
+
+**Q - What is a residual?**
+
+--
+
+- A measure of how far each observation is from its predicted value 
+- residual = observed value - predicted value 
+- $e = y - \hat{y}$
+
+---
+
+## Quiz 
+
+**Q - What is a residual?**
+
+```{r echo = FALSE, out.width= "70%"}
+ggplot(data = ht_wt_fit_aug) +
+  geom_segment(mapping = aes(xend = Width_in, yend = .fitted, 
+                             x = Width_in, y = Height_in), 
+               color = "pink", size = 1) + 
+  geom_point(aes(x = Width_in, y = Height_in)) +
+  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
+  geom_point(aes(x = Width_in, y = .fitted), color = "#8E2C90", size = 2) +
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  ) 
+```
+
+---
+
+## Quiz 
+
+**Q - What is a residual?**
+
+- Where are the paintings with positive / negative residual relative to the fitted line? 
+
+```{r echo = FALSE, out.width= "60%"}
+ggplot(data = ht_wt_fit_aug) +
+  geom_point(aes(x = Width_in, y = Height_in)) +
+  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  ) 
+```
+---
+
+## Quiz 
+
+**Q - What is a residual?**
+
+- Where are the paintings with positive / negative residual relative to the fitted line? 
+
+```{r echo = FALSE, out.width= "50%"}
+ggplot(data = ht_wt_fit_aug) +
+  geom_point(aes(x = Width_in, y = Height_in, color = res_cat)) +
+  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  ) + 
+  scale_color_manual(values = c("#260b27", "#e6b0e7")) +
+  geom_text(aes(x = 0, y = 150), label = "Positive\nresidual", 
+            color = "#e6b0e7", hjust = 0, size = 8) +
+  geom_text(aes(x = 150, y = 25), label = "Negative\nresidual", 
+            color = "#260b27", hjust = 0, size = 8) +
+  theme(legend.position = "none")
+```
+--
+
+- What does a negative residual mean? 
+
+--
+The predicted value is greater than the actual value.
+
+---
+
+## Quiz 
+
+**Q - What are some upsides and downsides of models?** 
+
+--
+
+- Upsides: 
+
+  - Can sometimes reveal patterns that are not evident in visualizations. 
+
+--
+
+- Downsides: 
+
+  - Might impose structures that are not really there.
+  - Be skeptical about modeling assumptions! 
+
+---
+
+## Quiz 
+
+**Q - Models always entail uncertainty. Which part of the following visualization and table is relevant to uncertainty?**
+
+.pull-left[
+```{r echo = FALSE, out.width = "100%", message=FALSE, warning=FALSE}
+ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Height vs. width of paintings",
+    subtitle = "Paris auctions, 1764 - 1780",
+    x = "Width (inches)",
+    y = "Height (inches)"
+  )
+```
+]
+
+.pull-right[
+```{r echo = FALSE}
+tidy(lm(Height_in ~ Width_in, data = pp)) %>% 
+  select(term, estimate, std.error)
+```
+]
+
+--
+
+- Uncertainty is as important as the fitted line, if not more. 
+
+---
+
+## Linear Model with a Single Predictor 
+
+We are interested in $\beta_0$ and $\beta_1$ in the following model: 
+
+$$ y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$ 
+- $y_i$: response variable value for the $i$th observation 
+- $\beta_0$: population parameter for the intercept 
+- $\beta_1$: population parameter for the slope 
+- $x_i$: independent variable (or predictor, covariate) value for the $i$th observation 
+  - can be numeric or categorical 
+- $\epsilon_i$: random error for the $i$th observation 
+
+---
+
+## Linear Model with a Single Predictor 
+
+As usual, we have to estimate the true parameters with sample statistics:
+
+$$ \hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i $$ 
+- $\hat{y}_i$: predicted value for the $i$th observation 
+- $\hat{\beta}_0$: estimate for $\beta_0$
+- $\hat{\beta}_1$: estimate for $\beta_1$
+
+---
+
+## Least Squares Regression 
+
+In the least squares regression the estimates are calculated in a way to minimize the sum of squared residuals. 
+In other words, if I have $n$ observations and the $i$th residual is $e_i = y_i - \hat{y}_i$, 
+then the fitted regression line minimizes $\sum_{i=1}^n e_i^2$. 
+
+**Q - Why do we minimize the "squares" of the residuals?**
+
+--
+
+- Some residuals are positive, and others are negative. If we just naively sum them, they will cancel each other. 
+- Residuals are not good in both directions. We especially want to penalize residuals that are large in absolute magnitude. 
+
+--
+
+[Click](https://seeing-theory.brown.edu/regression-analysis/index.html#section1) to play with least squares regression!
+
+---
+
+## Quiz
+
+**Q - What are some properties of the least squares regression?** 
+
+--
+
+- The fitted line always goes through $(\bar{x}, \bar{y})$ 
+
+$$\bar{y} = \hat{\beta}_0 + \hat{\beta}_1 \bar{x} $$ 
+
+- The fitted line has a positive slope ( $\hat{\beta}_1$ > 0) if $x$ and $y$ are positively correlated and a negative slope if they are negatively correlated. The line has 0 slope is they are not correlated. 
+- The sum of the residuals is always zero: $\sum_{i=1}^n e_i = 0$.
+- The residuals and $x$ values are uncorrelated.
+
+---
+
+## Quiz
+
+**Q - Based on the code and output below, write a model formula with parameter estimates.** 
+
+```{r}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+
+--
+
+$$\hat{height}_i = 3.62 + 0.781 \times width_i$$
+---
+
+## Quiz
+
+**Q - Interpret slope and intercept estimates in the context of data.** 
+
+$$\hat{height}_i = 3.62 + 0.781 \times width_i$$
+--
+
+- Slope: For each additional inch the painting is wider, the height is **expected** to be higher, **on average**, by 0.781 inches.
+  - Always remember, the slope is about correlation, not causation. We are not saying increasing one inch in width of a painting will cause it to become 0.781 inches taller. 
+- Intercept: Paintings that are 0 inches wide are **expected** to be 3.62 inches high, **on average**. 
+
+---
+
+## Quiz
+
+**Q - Explain the code chunk below. Based on its output, write a model formula with parameter estimates.** 
+
+.small[
+`landsALL` is a categorical variable with the following two levels:
+
+- `0`: no landscape features
+- `1`: some landscape features
+]
+
+```{r}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ factor(landsALL), data = pp) %>%
+  tidy()
+```
+
+--
+
+$$\hat{height}_i = 22.7 - 5.65 \times landsALL$$
+---
+
+## Quiz
+
+**Q - Interpret slope and intercept estimates in the context of data.** 
+
+$$\hat{height}_i = 22.7 - 5.65 \times landsALL$$
+--
+
+- Slope: Paintings with landscape features are **expected**, **on average**, to be 5.65 inches shorter than paintings that without landscape features.
+
+  - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
+  - **Q - ** How do you know which one is the baseline level? 
+- Intercept: Paintings that don't have landscape features are **expected**, **on average**, to be 22.7 inches tall.
+
+---
+
+## Quiz
+
+**Q - What happens in model fitting if a categorical variable has more than two levels?** 
+
+--
+
+- They are automatically encoded to **dummy variables** (e.g., 6 dummies for 7 levels). 
+- Each coefficient describes the expected difference by the level compared to the baseline level. 
+
+---
+
+## Quiz
+
+**Q - Explain the code chunk below.** 
+
+.small[
+`school_pntg` is a categorical variable about school of paintings with 7 levels:
+`A`: Austrian, `D\FL`: Dutch/Flemish, `F`: French, `G`: German, `I`: Italian, `S`: Spanish, `X`: Unknown
+]
+
+```{r}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ school_pntg, data = pp) %>%
+  tidy()
+```
+
+---
+
+## Quiz
+
+**Q - Interpret slope and intercept estimates in the context of data.** 
+
+.small[
+`school_pntg` is a categorical variable about school of paintings with 7 levels:
+`A`: Austrian, `D\FL`: Dutch/Flemish, `F`: French, `G`: German, `I`: Italian, `S`: Spanish, `X`: Unknown
+
+```{r echo = FALSE}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ school_pntg, data = pp) %>%
+  tidy()
+```
+]
+
+--
+
+- Intercept: Austrian school (A) paintings are expected, on average, to be 14 inches tall. 
+- Slope: French school (F) paintings are expected, on average, to be 10.2 inches **taller 
+than Austrian school paintings**.
+- **Q - ** How do you know which one is the baseline level? 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 19: Introduction to Linear Models](https://sta199-summer22.netlify.app/appex/ae19_BJ.html)
+
+---
+
+## Bulletin
+
+- `r emo::ji("grinning face with sweat")` **Classroom change to Old Chem 025 from next week**
+
+- Watch videos for [Prepare: June 9](https://sta199-summer22.netlify.app/prepare/week05_jun09_BJ.html)
+
+- HW03 due tonight at 11:59pm 
+
+- Project draft due Monday, June 13 at 11:59pm 
+
+- Submit `ae19` 
+
