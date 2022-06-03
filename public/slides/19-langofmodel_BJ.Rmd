@@ -1,0 +1,351 @@
+---
+title: "Language of Models"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [The Language of Models](https://youtu.be/MWkkvDopBKc)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) 
+
+---
+
+## Today's Goal 
+
+- Use Central Limit Theorem (CLT) to conduct inference on a population mean
+- Conduct CLT-based inference step-by-step and using the `infer` package
+- Understand t-distribution vs. standard normal, N(0,1) distribution.
+
+---
+
+## Quiz 
+
+**Q - State the central limit theorem.**
+
+For a population with a well-defined mean $\mu$ and standard deviation $\sigma$,
+these three properties hold for the distribution of sample average $\bar{X}$,
+assuming certain conditions hold:
+
+--
+
+`r emo::ji("white_check_mark")` The distribution of the sample statistic is 
+
+--
+**approximately** normal 
+
+--
+
+`r emo::ji("white_check_mark")` The distribution is centered at 
+
+--
+the population parameter (often interest of inference)
+
+--
+
+`r emo::ji("white_check_mark")` The variability of the distribution is **inversely** proportional to the square root of 
+
+--
+the sample size
+
+---
+
+## Quiz 
+
+**Q - Why do we care about the distribution of sample mean?** 
+
+--
+
+We can estimate / test for a population mean. 
+
+We can construct a confidence interval or conduct a hypothesis test for the population mean using the CLT-based distribution in place of a simulation-based distribution of sample mean. 
+
+---
+
+## Quiz 
+
+**Q - What is the distribution of sample mean by CLT?** 
+
+When the population mean $\mu$ and the population standard deviation $\sigma$ are known, 
+
+--
+
+$$\bar{X} \sim N(\mu, \sigma/\sqrt{n}) \Leftrightarrow Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+
+approximately, for a large enough $n$. 
+
+--
+
+- N(0,1) is standard normal distribution.
+- Often, a random variable following the standard normal distribution is denoted by $Z$.
+
+---
+
+## Quiz 
+
+**Q - What if** $\sigma$ **is unknown?** 
+
+--
+
+- We approximate $\sigma$ with the sample standard deviation. 
+
+--
+
+$$Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \rightarrow T = \frac{\bar{X}-\mu}{S/\sqrt{n}}$$
+where $S^2 = \sum_{i=1}^n(X_i - \bar{X})^2/(n-1)$
+--
+
+- $\sigma$ replaced by $S$! (The realized value of $S$ from a sample is $s$.)
+--
+
+- This change renders the random variable $T$ follow another distribution than the standard normal distribution, i.e., $$T \sim t_{n-1}$$
+where $t_{n-1}$ is a t-distribution with $n-1$ degrees of freedom. 
+
+---
+
+## Quiz 
+
+**Q - List properties of the t-distribution.** 
+
+- Its shape is 
+
+--
+unimodal, symmetric, centered at 0 similarly to N(0,1).
+
+--
+
+- Its tails are 
+
+--
+thicker than N(0,1).
+
+--
+
+- It is fully defined by 
+
+--
+the degrees of freedom.
+
+---
+
+## Quiz 
+
+**Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
+
+```{r echo=FALSE, out.width = "60%"}
+x <- seq(-5, 5, length = 1000)
+d <- rbind(
+  data.frame(dist="t(df=1)",  x=x, d=dt(x,1)),
+  data.frame(dist="t(df=3)",  x=x, d=dt(x,3)),
+  data.frame(dist="t(df=10)", x=x, d=dt(x,10)),
+  data.frame(dist="t(df=30)", x=x, d=dt(x,30))
+)
+ggplot(d) + 
+  geom_line(data = data.frame(x=x, d=dnorm(x)), aes(x = x, y = d)) +
+  geom_line(aes(x = x, y = d, color = dist, linetype = dist)) +
+  labs(x = "", y = "Density") + 
+  theme(legend.position = "none")
+```
+
+---
+
+## Quiz 
+
+**Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
+
+```{r echo=FALSE, out.width = "55%"}
+x <- seq(-5, 5, length = 1000)
+d <- rbind(
+  data.frame(dist="t(df=1)",  x=x, d=dt(x,1)),
+  data.frame(dist="t(df=3)",  x=x, d=dt(x,3)),
+  data.frame(dist="t(df=10)", x=x, d=dt(x,10)),
+  data.frame(dist="t(df=30)", x=x, d=dt(x,30))
+)
+ggplot(d) + 
+  geom_line(data = data.frame(x=x, d=dnorm(x)), aes(x = x, y = d)) +
+  geom_line(aes(x = x, y = d, color = dist, linetype = dist)) +
+  labs(x = "", y = "Density", 
+       color = "Distribution", linetype = "Distribution") +
+  theme(legend.position = c(0.8, 0.75), 
+        legend.background = element_rect(fill = NA))
+```
+- thicker tails 
+- As the degrees of freedom increases, the t-distribution becomes more like N(0,1)
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** $P(T < 1.2)$ **where** $T \sim t_5$**?**
+
+```{r echo = F, out.width = "50%"}
+cutoff <- 1.2
+ggplot(NULL, aes(c(-6,6))) +
+  geom_area(stat = "function", fun = dt, 
+            args = list(df = 5), 
+            fill = "#00998a", xlim = c(-6, cutoff), color = "black") +
+  geom_area(stat = "function", fun = dt, 
+            args = list(df = 5), 
+            fill = "#FFFFFF", xlim = c(cutoff, 6), color = "black") +
+  labs(x = "", y = "Density") +
+  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+```
+--
+
+```{r}
+pt(1.2, df = 5)
+```
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** $P(-2 < T < 3)$ **where** $T \sim t_{10}$**?**
+
+```{r echo = F, out.width = "50%"}
+cutoff1 <- -2
+cutoff2 <- 3
+ggplot(NULL, aes(c(-6,6))) +
+  geom_area(stat = "function", fun = dt, args = list(df = 10), 
+            fill = "#FFFFFF", xlim = c(-6, cutoff1), color = "black") +
+  geom_area(stat = "function", fun = dt, args = list(df = 10), 
+            fill = "#00998a", xlim = c(cutoff1, cutoff2), color = "black") +
+  geom_area(stat = "function", fun = dt, args = list(df = 10), 
+            fill = "#FFFFFF", xlim = c(cutoff2, 6), color = "black") +
+  labs(x = "", y = "Density") +
+  scale_x_continuous(breaks = seq(-6, 6, by = 2))
+```
+--
+
+```{r}
+pt(3, df = 10) - pt(-2, df = 10)
+```
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to find** q **s.t.** $P(T > q) = 0.25$ **where** $X \sim t_7$**?**
+
+```{r echo = F, out.width = "50%"}
+cutoff <- qt(0.25, df = 7, lower.tail = FALSE)
+ggplot(NULL, aes(c(-6,6))) +
+  geom_area(stat = "function", fun = dt, 
+            args = list(df = 7), 
+            fill = "#FFFFFF", xlim = c(-6, cutoff), color = "black") +
+  geom_area(stat = "function", fun = dt, 
+            args = list(df = 7), 
+            fill = "#00998a", xlim = c(cutoff, 6), color = "black") +
+  labs(x = "", y = "Density") +
+  scale_x_continuous(breaks = seq(-6, 6, by = 2)) +
+  geom_point(data = data.frame(x = cutoff, y = 0), aes(x,y)) + 
+  geom_text(aes(x = 0.8, y = 0.02, label = "q = ?"))
+```
+--
+
+```{r}
+qt(0.25, df = 7, lower.tail = FALSE)
+```
+
+---
+
+## Quiz: HT 
+
+Let's conduct a hypothesis test for $H_0: \mu = 5$ vs. $H_1: \mu \neq 5$. 
+We don't know the population standard deviation. We have a random sample of size 100. 
+The CLT conditions are checked. 
+
+**Q - What is the test statistic and its null distribution by CLT?**
+
+--
+
+- The test statistic is calculated by $t = \frac{\bar{x} - 5}{s/10}$.
+
+--
+
+- Under the null, 
+$$T = \frac{\bar{X} - 5}{S/10} \sim t_{99}$$
+- Capital letters for random variables and lowercase letters for observed values 
+
+---
+
+## Quiz: HT 
+
+**Q - What does it mean that the test statistic is 3.5?**
+
+--
+
+The observed sample mean $\bar{x}$ is 3.5 standard errors above the hypothesized population mean, 5. 
+
+---
+
+## Quiz: CI
+
+**Q - What is the formula to obtain a** $1-\alpha$ **confidence interval for** $\mu$ **?**
+
+--
+
+$$\bar{x} \pm t^*_{n-1}\times \frac{s}{\sqrt{n}}$$
+
+where $t^*_{n-1}$ is a critical value that satisfies $P(T > t^*_{n-1}) = \alpha/2$ for $T \sim t_{n-1}$. 
+
+--
+
+**Q - What is the R function to calculate** $t^*_{n-1}$?
+
+--
+
+```{r, eval = F}
+qt(alpha/2, df = n-1, lower.tail = FALSE)
+```
+
+---
+
+## Quiz 
+
+**Q - What is the function in the** `infer` **package to use for CLT-based inference when** $\sigma$ **is unknown?**
+
+--
+
+`t_test()`
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 18: Central Limit Theorem 2](https://sta199-summer22.netlify.app/appex/ae18_BJ.html)
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 8](https://sta199-summer22.netlify.app/prepare/week05_jun08_BJ.html)
+
+- HW03 due Wednesday, June 8 at 11:59pm 
+
+- Tomorrow (June 8) is the last day to withdraw with W
+
