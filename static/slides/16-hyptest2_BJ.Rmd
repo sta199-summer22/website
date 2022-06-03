@@ -384,6 +384,8 @@ Go to [AE 16: Hypothesis Testing 2](https://sta199-summer22.netlify.app/appex/ae
 
 ## Bulletin
 
+- `r emo::ji("grinning face with sweat")` **Classroom change to Old Chem 025 from next week**
+
 - Watch videos for [Prepare: June 6](https://sta199-summer22.netlify.app/prepare/week05_jun06_BJ.html)
 
 - Mid-course evaluation due tonight at 11:59pm 
@@ -392,6 +394,6 @@ Go to [AE 16: Hypothesis Testing 2](https://sta199-summer22.netlify.app/appex/ae
 
 - HW03 due Wednesday, June 8 at 11:59pm  
 
-- Submit `ae15` (Rent in Manhattan and Practice) and `ae16` 
+- Submit `ae15` (Rent in Manhattan and Practice) and `ae16` (Part 1)
 
 
