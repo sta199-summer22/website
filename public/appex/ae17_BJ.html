@@ -287,13 +287,14 @@ theme_set(theme_bw())</code></pre>
 <div id="part-2-sample-mean-and-its-distribution" class="section level3">
 <h3>Part 2: Sample mean and its distribution</h3>
 <p>Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women.</p>
-<p><strong>Q - </strong> Before moving forward, let’s check the conditions required to apply the Central Limit Theorem to define the distribution of <span class="math inline">\(\bar{X}\)</span>.</p>
+<p><strong>Q - </strong> What is the center and spread of the distribution of <span class="math inline">\(\bar{X}\)</span>, the mean bone density for a group of 10 randomly selected 65-year-old women?</p>
+<p>We want to know the shape of the distribution of <span class="math inline">\(\bar{X}\)</span>, not just mean and standard deviation.</p>
+<p><strong>Q - </strong> Before moving forward, let’s check the conditions required to apply the Central Limit Theorem (CLT) to define the distribution of <span class="math inline">\(\bar{X}\)</span>.</p>
 <ul>
 <li>Independence?</li>
 <li>Sample size / distribution?</li>
 </ul>
-<p><strong>Q - </strong> What is the shape, center, and spread of the distribution of <span class="math inline">\(\bar{X}\)</span>, the mean bone density for a group of 10 randomly selected 65-year-old women?</p>
-<p><strong>Q - </strong> Write the distribution of <span class="math inline">\(\bar{X}\)</span> using mathematical notation.</p>
+<p><strong>Q - </strong> Apply CLT and write the distribution of <span class="math inline">\(\bar{X}\)</span> using mathematical notation. Describe its distribution in terms of the shape, center, and spread. Is is an approximate distribution or an exact distribution?</p>
 <p>The distribution of sample means is given below in comparison with the population distribution:</p>
 <pre class="r"><code>ggplot(data = data.frame(x = c(809 - 140*3, 809 + 140*3)), 
        aes(x)) + 
@@ -334,6 +335,16 @@ theme_set(theme_bw())</code></pre>
   stat_function(fun = dgamma, args = list(shape = 1, rate = 0.1), 
                 color = &quot;black&quot;, linetype = &quot;solid&quot;) +
   stat_function(fun = dnorm, args = list(mean = __, sd = __), 
+                color = &quot;red&quot;, linetype = &quot;dashed&quot;) +
+  labs(x = &quot;&quot;, y = &quot;Density&quot;) </code></pre>
+</div>
+<div id="optional" class="section level3">
+<h3>Optional</h3>
+<p>Let <span class="math inline">\(X\)</span> follow a Chi-squared distribution with degrees of freedom 9, <span class="math inline">\(X \sim \chi^2(9)\)</span>. Suppose you take 200 random observations of <span class="math inline">\(X\)</span>, take the mean, and save it as <span class="math inline">\(\bar{X}\)</span>. Find the distribution of <span class="math inline">\(\bar{X}\)</span> and visualize distributions of <span class="math inline">\(X\)</span> and <span class="math inline">\(\bar{X}\)</span>. Hint: Theoretically, a random variable <span class="math inline">\(Y\)</span> that follows <span class="math inline">\(\chi^2(d)\)</span> has mean of <span class="math inline">\(d\)</span> and standard deviation of <span class="math inline">\(\sqrt{2d}\)</span>.</p>
+<pre class="r"><code>ggplot(data = data.frame(x = c(0, 15)), aes(x)) +
+  stat_function(fun = ____, args = list(df = __), # original Chisq distribution
+                color = &quot;black&quot;, linetype = &quot;solid&quot;) +
+  stat_function(fun = ____, args = list(mean = ___, sd = ___), # dist of xbar
                 color = &quot;red&quot;, linetype = &quot;dashed&quot;) +
   labs(x = &quot;&quot;, y = &quot;Density&quot;) </code></pre>
 </div>

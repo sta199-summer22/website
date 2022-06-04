@@ -71,14 +71,16 @@ The densities of three woods are below:
 
 Suppose you want to analyze the mean bone density for a group of 10 randomly selected 65-year-old women. 
 
-**Q - ** Before moving forward, let's check the conditions required to apply the Central Limit Theorem to define the distribution of $\bar{X}$.
+**Q - ** What is the center and spread of the distribution of $\bar{X}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
+
+We want to know the shape of the distribution of $\bar{X}$, not just mean and standard deviation. 
+
+**Q - ** Before moving forward, let's check the conditions required to apply the Central Limit Theorem (CLT) to define the distribution of $\bar{X}$.
 
   - Independence? 
   - Sample size / distribution? 
   
-**Q - ** What is the shape, center, and spread of the distribution of $\bar{X}$, the mean bone density for a group of 10 randomly selected 65-year-old women?
-
-**Q - ** Write the distribution of $\bar{X}$ using mathematical notation. 
+**Q - ** Apply CLT and write the distribution of $\bar{X}$ using mathematical notation. Describe its distribution in terms of the shape, center, and spread. Is is an approximate distribution or an exact distribution?
 
 The distribution of sample means is given below in comparison with the population distribution: 
 
@@ -137,6 +139,22 @@ ggplot(data = data.frame(x = c(0,30)), aes(x)) +
   stat_function(fun = dgamma, args = list(shape = 1, rate = 0.1), 
                 color = "black", linetype = "solid") +
   stat_function(fun = dnorm, args = list(mean = __, sd = __), 
+                color = "red", linetype = "dashed") +
+  labs(x = "", y = "Density") 
+```
+
+### Optional 
+
+Let $X$ follow a Chi-squared distribution with degrees of freedom 9, $X \sim \chi^2(9)$. 
+Suppose you take 200 random observations of $X$, take the mean, and save it as $\bar{X}$. 
+Find the distribution of $\bar{X}$ and visualize distributions of $X$ and $\bar{X}$. 
+Hint: Theoretically, a random variable $Y$ that follows $\chi^2(d)$ has mean of $d$ and standard deviation of $\sqrt{2d}$. 
+
+```{r visualize-chi, eval = FALSE}
+ggplot(data = data.frame(x = c(0, 15)), aes(x)) +
+  stat_function(fun = ____, args = list(df = __), # original Chisq distribution
+                color = "black", linetype = "solid") +
+  stat_function(fun = ____, args = list(mean = ___, sd = ___), # dist of xbar
                 color = "red", linetype = "dashed") +
   labs(x = "", y = "Density") 
 ```

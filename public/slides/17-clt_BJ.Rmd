@@ -115,7 +115,7 @@ $N(\mu, \sigma/\sqrt{n})$.
 
 .pull-left[
 - unimodal (peak at $\mu$)
-- symmetric abound $\mu$
+- symmetric around $\mu$
 - bell-shaped
 ]
 
