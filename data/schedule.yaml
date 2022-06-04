@@ -120,7 +120,7 @@ lessons:
     date: "Mon, Jun 6"
     title: "Central Limit Theorem 1"
     prepare: "week05_jun06_BJ.html"
-    slides: "17-clt_BJ.html"
+    slides: "17-clt_nosol_BJ.html"
     ae: "ae17_BJ.html"
   - date: "Tue, Jun 7"
     title: "Central Limit Theorem 2"

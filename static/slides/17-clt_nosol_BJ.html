@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Central Limit Theorem 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Bora Jin" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Central Limit Theorem 1
+### Bora Jin
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+## Material 
+
+🎥 Watch [Central Limit Theorem](https://warpwire.duke.edu/w/Vw4GAA/)
+
+- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-intro.html#1)
+
+Optional: 📖 Read [IMS: Chapter 13 - Inference With Mathematical Models](https://openintro-ims.netlify.app/foundations-mathematical.html?q=central%20limit%20th#CLTsection)
+
+---
+
+## Today's Goal 
+
+- Use Central Limit Theorem to define distribution of sample means
+- Calculate probabilities from the normal distribution
+
+---
+
+## Quantifying Variability
+
+We can quantify the variability of sample statistics using different approaches:
+
+- **Simulation**: via bootstrapping or "resampling" techniques 
+
+or
+
+- **Theory**: via the Central Limit Theorem 
+
+--
+
+Today we will focus on **Theory**.
+
+---
+
+## Quiz 
+
+**Q - What is a sampling distribution of the sample mean?**
+
+---
+
+## Quiz 
+
+**Q - Apply the central limit theorem (CLT) on sample means.**
+
+Let a random variable `\(X\)` have a mean `\(\mu\)` and standard deviation `\(\sigma\)`. 
+Then the sampling distribution of the sample mean `\(\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n}\)` 
+
+---
+
+## Quiz 
+
+**Q - Describe density of a normal distribution.** 
+
+---
+
+## Quiz 
+
+**Q - The CLT holds only if** `\(X \sim N(\mu, \sigma)\)`. **(T/F)**
+
+[Click!](https://onlinestatbook.com/stat_sim/sampling_dist/index.html)
+
+---
+
+## Quiz 
+
+**Q - What are the two conditions for CLT to hold?** 
+
+---
+
+## Quiz 
+
+**Q - What are the two conditions for CLT to hold?** 
+
+---
+
+## Recap
+
+- If certain assumptions are satisfied, regardless of the shape of the 
+population distribution, the sampling distribution of the mean follows an 
+approximately normal distribution.
+
+--
+
+- The center of the sampling distribution is at the center of the population 
+distribution.
+
+--
+
+- The sampling distribution is less variable than the population distribution 
+by a factor of `\(1/\sqrt{n}\)`. 
+
+--
+
+- As `\(n\)` increases, the standard error (the spread of the sampling distribution) decreases. 
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** `\(P(Z &lt; 1.2)\)` **where** `\(Z \sim N(0,1)\)`**?**
+
+&lt;img src="17-clt_nosol_BJ_files/figure-html/unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to calculate** `\(P(-2 &lt; X &lt; 7)\)` **where** `\(X \sim N(1,3)\)`**?**
+
+&lt;img src="17-clt_nosol_BJ_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to find** q **s.t.** `\(P(X &gt; q) = 0.05\)` **where** `\(X \sim N(-1,2)\)`**?**
+
+&lt;img src="17-clt_nosol_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 17: Central Limit Theorem](https://sta199-summer22.netlify.app/appex/ae17_BJ.html)
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 7](https://sta199-summer22.netlify.app/prepare/week05_jun07_BJ.html)
+
+- Project proposal feedback released 
+
+- HW03 due Wednesday, June 8 at 11:59pm 
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
