@@ -1,6 +1,5 @@
 ---
-title: "AE 19: Introduction to Linear Models"
-subtitle: "due Thursday, June 9 at 9:29am"
+title: "AE 19: More Practice"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
@@ -10,157 +9,72 @@ output:
     toc_float: true
 ---
 
-## Getting Started 
+## Package
 
-- Clone the repository entitled "ae19-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
-
-- Open the `.Rmd` file and replace "Your Name" with your name. 
-
-## Used Cars Price 
-
-```{r load-package, message = F}
+```{r load-package, message = FALSE}
 library(tidyverse)
-theme_set(theme_bw())
-library(tidymodels)
 ```
 
-The dataset `car_prices.csv` contains attributes of cars offered for sale on 
-cars.com in 2017^[The data is from the `Stat2Data` R package.]. The codebook is 
-available below:
+## Part 1: Pivoting 
 
-- `type`: Model (Accord, Maxima, Mazda6)
-- `age`: Age of the used car (in years)
-- `price`: Price (in thousands of dollars)
-- `mileage`: Previous miles driven (in thousands of miles)
+![](img/pivoting.png)
 
-```{r load-data, message = FALSE}
-car_prices <- read_csv("data/car_prices.csv")
-glimpse(car_prices)
+- `pivot_longer()` "lengthens" data, increasing the number of rows and 
+decreasing the number of columns.
+
+```{r, eval = FALSE}
+data_left %>% 
+  pivot_longer(col = Y1:Y3, 
+               names_to = "Y", 
+               values_to = "Z")
 ```
 
-### Part 1: Price and Mileage
+- `pivot_wider()` "widens" data, increasing the number of columns and decreasing 
+the number of rows.
 
-Consider a regression model with the response `price` and a single predictor `mileage`. 
-
-**Q - ** Write out the equation of a model using parameters and variable names. 
-
-**Q - ** Create a scatterplot of price and mileage.
-
-```{r price-mileage}
-
+```{r, eval = FALSE}
+data_right %>% 
+  pivot_wider(names_from = Y, 
+              values_from = Z)
 ```
 
-**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. 
+### Practice^[Source: https://tidyr.tidyverse.org/reference/pivot_wider.html, https://tidyr.tidyverse.org/reference/pivot_longer.html]
 
-```{r model1fitting, eval = FALSE}
-## option 1
-linear_reg(engine = "lm") %>% 
-  fit(____ ~ _____, data = ______) %>% 
-  tidy()
+(1) Transform the dataset `relig_income` to one with columns `religion`, `income`, and `count` using either `pivot_wider()` or `pivot_longer()`.
 
-## option 2
-lm_pm <- lm(____ ~ _____, data = ______) %>% 
-  tidy()
-lm_pm
+```{r}
+relig_income %>% 
+  head()
 ```
 
-- `linear_reg(engine = "lm")`: specify which regression model to use ("lm" = linear model) 
-- `fit`: fit, i.e., estimate parameters for a given model. `y ~ x`. use variable names in `data` argument. 
-- `tidy`: construct a tidy data frame summarizing model results 
-- `lm`: `R` base function to fit a linear model. same formula syntax as `fit`
+(2) Transform the dataset `fish_encounters` to one with a matrix structure where 
+rows indicate fish, columns indicate station, and each cell indicates whether each 
+fish was seen in a certain station (1 if yes and 0 otherwise). Use either 
+`pivot_wider()` or `pivot_longer()`.
 
-**Q - ** Write out the equation of the fitted model, and interpret the slope and 
-intercept in the context of data. 
-
-- Intercept: 
-- Slope: 
-
-**Q - ** What is the predicted selling price of a car with 50,000 miles?
-
-```{r pred}
-
+```{r}
+fish_encounters %>% 
+  head()
 ```
 
-**Q - ** Include a visualization of the linear model on the scatterplot we created above. 
-Try two options provided below and compare the two visualizations focusing on any difference. 
-
-```{r price-mileage2, eval = FALSE}
-## option 1: intercept and slope
-
-## option 2: predicted values
-car_prices <- car_prices %>% 
-  mutate(pred = ____)
-
-car_prices %>% 
-  ggplot() + 
-  geom_point(aes(x = mileage, y = price)) +
-  geom_line(aes(x = _____, y = _____), 
-              size = 1.5, color = "red") + 
-  labs(x = "Mileage (in thousands of miles)", 
-       y = "Price (in thousands of dollars)")
+(3) Transform the dataset `billboard` to one with columns `artist`, `track`, 
+`data.entered`, `week`, and `rank`. Drop `NA` values for `rank`. Use `pivot_wider()` or `pivot_longer()`.
+ 
+```{r}
+billboard %>% 
+  head()
 ```
 
+## Part 2: Probability
 
-**Q - ** Suppose my friend has a Honda Accord with 225,000 miles. 
-Suppose another friend has a BMW car with 80,000 miles. Is it appropriate 
-to use this model to make a prediction for the selling prices? Why or why not?
+Try exercises [here](https://sta199-sp22-003.netlify.app/hw/hw03.html) and ask me questions. 
 
-### Part 2: Price and Type
+## Part 3: Inference based on Simulations or Central Limit Theorem
 
-Consider a regression model with the response `price` and the categorical predictor `type` (Accord, Maxima, Mazda6).
-
-**Q - ** Create side-by-side boxplots of price for each type.
-
-```{r price-type}
-```
-
-**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. 
-Write out the equation of the fitted model.
-
-```{r model2fitting}
-## option 1
-
-## option 2
-
-```
-
-
-**Q - ** How many terms are in the model for `type`? Is this equal to the number 
-of car types in the data set? If not, briefly explain why the number of terms for 
-`type` in the model differs from the number car types in the data set.
-
-**Q - ** Interpret the intercept and slope(s) in the context of the problem.
-
-- Intercept: 
-- Slope: 
-
-### Part 3: Towards More Complex Models 
-
-**Q - ** Create a scatterplot of price and age. Comment on what you observe. 
-
-```{r price-age}
-
-```
-
-**Q - ** Add fitted linear lines for each `type` of cars on top of the scatterplot of price and age.
-Comment on what you observe. 
-
-```{r summary, eval = FALSE}
-car_prices %>% 
-  ggplot(aes(x = ___, y = ___, color = ___)) + 
-  geom_point() +
-  geom_XXXX(method = ___, se = FALSE) + 
-  labs(x = "Car age (in years)", 
-       y = "Price (in thousands of dollars)", 
-       color = "Model") +
-  scale_color_viridis_d()
-```
-
-**Q - ** What are possible limitations of two regression models in Part 1 and 2?
+Try questions [here](https://sta199-summer2021.github.io/website/hw/hw-02.html) 
+and ask me questions. 
 
 ## Submitting Application Exercises
 
-- Once you have completed the activity, push your final changes to your GitHub repo. 
-- Make sure you committed at least *three* times. 
-- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+- No need to submit anything 
 

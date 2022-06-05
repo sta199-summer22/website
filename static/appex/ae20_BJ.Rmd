@@ -1,0 +1,166 @@
+---
+title: "AE 20: Introduction to Linear Models"
+subtitle: "due Friday, June 10 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae20-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Used Cars Price 
+
+```{r load-package, message = F}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+```
+
+The dataset `car_prices.csv` contains attributes of cars offered for sale on 
+cars.com in 2017^[The data is from the `Stat2Data` R package.]. The codebook is 
+available below:
+
+- `type`: Model (Accord, Maxima, Mazda6)
+- `age`: Age of the used car (in years)
+- `price`: Price (in thousands of dollars)
+- `mileage`: Previous miles driven (in thousands of miles)
+
+```{r load-data, message = FALSE}
+car_prices <- read_csv("data/car_prices.csv")
+glimpse(car_prices)
+```
+
+### Part 1: Price and Mileage
+
+Consider a regression model with the response `price` and a single predictor `mileage`. 
+
+**Q - ** Write out the equation of a model using parameters and variable names. 
+
+**Q - ** Create a scatterplot of price and mileage.
+
+```{r price-mileage}
+
+```
+
+**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. 
+
+```{r model1fitting, eval = FALSE}
+## option 1
+linear_reg(engine = "lm") %>% 
+  fit(____ ~ _____, data = ______) %>% 
+  tidy()
+
+## option 2
+lm_pm <- lm(____ ~ _____, data = ______) %>% 
+  tidy()
+lm_pm
+```
+
+- `linear_reg(engine = "lm")`: specify which regression model to use ("lm" = linear model) 
+- `fit`: fit, i.e., estimate parameters for a given model. `y ~ x`. use variable names in `data` argument. 
+- `tidy`: construct a tidy data frame summarizing model results 
+- `lm`: `R` base function to fit a linear model. same formula syntax as `fit`
+
+**Q - ** Write out the equation of the fitted model, and interpret the slope and 
+intercept in the context of data. 
+
+- Intercept: 
+- Slope: 
+
+**Q - ** What is the predicted selling price of a car with 50,000 miles?
+
+```{r pred}
+
+```
+
+**Q - ** Include a visualization of the linear model on the scatterplot we created above. 
+Try two options provided below and compare the two visualizations focusing on any difference. 
+
+```{r price-mileage2, eval = FALSE}
+## option 1: intercept and slope
+
+## option 2: predicted values
+car_prices <- car_prices %>% 
+  mutate(pred = ____)
+
+car_prices %>% 
+  ggplot() + 
+  geom_point(aes(x = mileage, y = price)) +
+  geom_line(aes(x = _____, y = _____), 
+              size = 1.5, color = "red") + 
+  labs(x = "Mileage (in thousands of miles)", 
+       y = "Price (in thousands of dollars)")
+```
+
+
+**Q - ** Suppose my friend has a Honda Accord with 225,000 miles. 
+Suppose another friend has a BMW car with 80,000 miles. Is it appropriate 
+to use this model to make a prediction for the selling prices? Why or why not?
+
+### Part 2: Price and Type
+
+Consider a regression model with the response `price` and the categorical predictor `type` (Accord, Maxima, Mazda6).
+
+**Q - ** Create side-by-side boxplots of price for each type.
+
+```{r price-type}
+```
+
+**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. 
+Write out the equation of the fitted model.
+
+```{r model2fitting}
+## option 1
+
+## option 2
+
+```
+
+
+**Q - ** How many terms are in the model for `type`? Is this equal to the number 
+of car types in the data set? If not, briefly explain why the number of terms for 
+`type` in the model differs from the number car types in the data set.
+
+**Q - ** Interpret the intercept and slope(s) in the context of the problem.
+
+- Intercept: 
+- Slope: 
+
+### Part 3: Towards More Complex Models 
+
+**Q - ** Create a scatterplot of price and age. Comment on what you observe. 
+
+```{r price-age}
+
+```
+
+**Q - ** Add fitted linear lines for each `type` of cars on top of the scatterplot of price and age.
+Comment on what you observe. 
+
+```{r summary, eval = FALSE}
+car_prices %>% 
+  ggplot(aes(x = ___, y = ___, color = ___)) + 
+  geom_point() +
+  geom_XXXX(method = ___, se = FALSE) + 
+  labs(x = "Car age (in years)", 
+       y = "Price (in thousands of dollars)", 
+       color = "Model") +
+  scale_color_viridis_d()
+```
+
+**Q - ** What are possible limitations of two regression models in Part 1 and 2?
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

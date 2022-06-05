@@ -1,0 +1,28 @@
+---
+title: "Prepare: June 9"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [The Language of Models](https://youtu.be/MWkkvDopBKc)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) 
+
+`r emo::ji("movie_camera")` Watch [Fitting and Interpreting Models](https://youtu.be/69U92Q3pwnA)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1) 
+
+## Optional 
+
+`r emo::ji("book")` Read [IMS: Chapter 7 - Linear Regression With a Single Predictor](https://openintro-ims.netlify.app/model-slr.html) 

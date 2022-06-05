@@ -434,17 +434,17 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 19: Introduction to Linear Models](https://sta199-summer22.netlify.app/appex/ae19_BJ.html)
+Go to [AE 20: Introduction to Linear Models](https://sta199-summer22.netlify.app/appex/ae20_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 9](https://sta199-summer22.netlify.app/prepare/week05_jun09_BJ.html)
+- Watch videos for [Prepare: June 10](https://sta199-summer22.netlify.app/prepare/week05_jun10_BJ.html)
 
-- HW03 due tonight at 11:59pm 
+- HW04 released
 
 - Project draft due Monday, June 13 at 11:59pm 
 
-- Submit `ae19` 
+- Submit `ae20` 
 
