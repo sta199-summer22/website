@@ -1,0 +1,245 @@
+---
+title: "AE 21: Models with Multiple Predictors 1"
+subtitle: "due Monday, June 13 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Used Cars Price 
+
+```{r load-package, message = F}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+library(plotly)
+```
+
+```{r load-data, message = FALSE}
+car_prices <- read_csv("data/car_prices.csv")
+```
+
+We will continue examining the used cars dataset with the following variables: 
+
+- `type`: Model (Accord, Maxima, Mazda6)
+- `age`: Age of the used car (in years)
+- `price`: Price (in thousands of dollars)
+- `mileage`: Previous miles driven (in thousands of miles)
+
+We have worked on linear models with a single predictor. But, there is no reason we couldn't have more predictors. For example, 
+
+```{r echo = FALSE}
+plot_ly(car_prices,
+  x = ~age, y = ~mileage, z = ~price,
+  marker = list(size = 3, color = "lightgray", alpha = 0.5, 
+                line = list(color = "gray", width = 2))) %>%
+  add_markers() %>%
+  plotly::layout(scene = list(
+    xaxis = list(title = "Car age"),
+    yaxis = list(title = "Mileage"),
+    zaxis = list(title = "Price")
+  )) %>%
+  config(displayModeBar = FALSE)
+```
+
+An associated linear model would be 
+
+$$ y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \epsilon $$
+where 
+
+- $y$: `price`
+- $x_1$: `age`
+- $x_2$: `mileage`.
+
+Linear regression with multiple ($\geq$ 2) predictors are called "multiple regression" 
+or "multiple linear regression". 
+
+### Part 1: Price vs. Age + Mileage
+
+Consider the above regression model with the response `price` and predictors `age` and `mileage`. 
+
+**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. Hint: multiple predictors are added in the regression function by `+`. 
+
+```{r model1fitting}
+## option 1
+
+## option 2
+
+```
+
+**Q - ** Write out the equation of the fitted model with variable names, and interpret the slope and intercept in the context of data. 
+
+- Intercept:
+- Slope of `age`: **All else held constant**, 
+- Slope of `mileage`: 
+
+**Q - ** What is the predicted selling price of a 5 year-old car with 45,000 miles?
+  
+```{r pred}
+
+```
+
+**Q - ** Five cars in the data actually are 5 years old. What are the residuals 
+associated with these observations? What do negative / positive residuals mean?
+ Remember the residual for the $i$th observation is 
+$$e_i = y_i - \hat{y}_i$$. 
+
+```{r resid-5years, eval = FALSE}
+car_prices %>% 
+  filter(____) %>% 
+  mutate(pred = ____) %>% 
+  mutate(resid = ____)
+```
+
+### Part 2: $R^2$
+
+After fitting a model, we may wonder how "good" our model is. It depends on how much the response variable is explained by explanatory variables, which is summarized as a statistic called $R^2$. $R^2$ is the percentage of variability in the response variable explained by the model. 
+
+In mathematical definition, 
+
+$$
+  R^2 = 1 - \frac{\sum_i^n e_i^2}{\sum_i^n (y_i - \bar{y})^2}
+$$
+
+where $\bar{y}$ is the sample mean of $y_1, \dots, y_n$. 
+
+In words, 
+
+$$
+  R^2 = 1 - \frac{\text{sum of squared residuals}}{\text{sum of squared deviations}}
+$$
+  
+Let's focus on the second term to build intuition.
+
+- The numerator "sum of squared residuals" is a measure of how wrong our model is (the  amount of variability *not* explained by the model).
+
+- The denominator is proportional to the sample variance i.e., the amount of variability in the data. With the sample variance denoted by $S^2$, we have 
+$\text{sum of squared deviations} = 
+\sum_i^n (y_i - \bar{y})^2 = (n-1)S^2$. 
+
+- Together, the fraction represents the proportion of variability *not* explained by the model.
+
+- $R^2$ is 1 minus the fraction. Therefore, it's the proportion of variability explained by the model.
+
+If the sum of squared residuals is 0, then the model is perfect and $R^2 = 1 - 0 = 1$.
+
+If the sum of squared residuals is the same as all the variability in the data, 
+then model is so poor, not explaining any variability, and $R^2 = 1 - 1 = 0$.
+
+Final take-away: $R^2$ is a measure of the proportion of variability the model explains. An $R^2$ of 0 is a poor fit and $R^2$ of 1 is a perfect fit.
+
+**Q - ** Compute $R^2$ of the following models we fitted yesterday. Based on the $R^2$ statistics, which model is better? Hint: use `glance` to construct a single row summary of a model. 
+
+- Model 1: Price vs. Mileage
+- Model 2: Price vs. Type 
+
+```{r r2-models}
+## model 1
+
+## model 2
+
+```
+
+**Q - ** We now wonder how good today's model is in Part 1. Before writing any code, do you think $R^2$ will increase, decrease or stay the same? Why? 
+
+- Model 3: Price vs. Age + Mileage
+
+
+**Q - ** Report $R^2$ of Model 3. Based on the $R^2$ statistics, how does it compare to Model 1 and 2? Which one is the best model?
+
+```{r r2-model3}
+## model 3
+
+```
+
+Suppose a completely irrelevant variable is added in the dataset. No matter how irrelevant that is, including one more variable will only increase the amount of variability explained, if not the same. Therefore, $R^2$ increases as more variables are added, which is not desirable. 
+
+- It is perfectly fine to compare simple linear models (w/ a single predictor) using $R^2$.
+- It is *not* okay to compare multiple linear models with $R^2$ especially when they have different number of predictors. 
+
+**Q - (Optional)** Create a dataset `car_prices2` with mutating a silly variable from `car_prices`. It can be any variable. Be creative! Then fit a multiple linear model for price vs. `age`, `mileage`, and `silly`. Report $R^2$ and verify if it doesn't decrease. 
+
+```{r r2-model0}
+
+```
+
+### Part 3: Adjusted $R^2$
+
+For the reason described in Part 2, we should use adjusted $R^2$ to compare multiple regression models. 
+
+- Adjusted $R^2$ doesn't increase if a new variable does not provide any new information or is completely unrelated. 
+- Adjusted $R^2$ penalizes the number of predictors in the model. 
+- Therefore, adjusted $R^2$ decreases unless the new variable helps explain the response.
+
+In mathematical definition, the adjusted $R^2$ is 
+
+$$
+1 - (1 - R^2) \frac{n-1}{n - k - 1}
+$$
+
+where $n$ is the number of observations (in the data) and $k$ is the number of predictors (in the model).
+
+- $(1-R^2)$ is the proportion of variability *not* explained by the model.
+- If $k$ increases, the denominator of $\frac{n-1}{n - k - 1}$ ("weight") decreases and thus the weight increases. 
+- Together, the larger weight amplifies the unexplained proportion of the variability by the model and reduces the adjusted $R^2$. 
+
+**Q - ** Report adjusted $R^2$ values for Model 1-3. Based on those, determine which one is the best model. 
+
+```{r adjR2-models}
+## model 1
+
+## model 2
+
+## model 3
+
+```
+
+### Part 4: Price vs. Age + Type
+
+We now consider a regression model with the response `price` versus a numeric variable `age` and a categorical variable `type` (Accord, Maxima, Mazda6).
+
+Yesterday, we created a plot below.
+
+```{r p-mt, message = FALSE}
+car_prices %>% 
+  ggplot(aes(x = age, y = price, color = type)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + 
+  labs(x = "Car age (in years)", 
+       y = "Price (in thousands of dollars)", 
+       color = "Model") +
+  scale_color_viridis_d() +
+  theme(aspect.ratio = .6)
+```
+
+**Q - ** From the visualization, do you think the relationship between age and price depends on the model of a car?
+
+**Q - ** Fit a linear model (Model 4) for `price` with `age` and `type` as predictors. Write out the equation of the fitted model with variable names. Interpret the coefficients in the context of data. Report either $R^2$ or adjusted $R^2$ to compare with previous models (Model 1-3). 
+
+- Model 4: Price vs. Age + Type
+
+```{r model4}
+```
+
+Interpretations 
+
+- Intercept: 
+- Slope of `age`:
+- Slope of `type = Maxima`: 
+- Slope of `type = Mazda6`: 
+
+
+**Q - ** In the above visualization, lines for Accord and Mazda6 seem parallel, while the slope of the line for Maxima is different. What do you think it suggests? 
+
+
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

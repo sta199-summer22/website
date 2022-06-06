@@ -1,0 +1,21 @@
+---
+title: "Prepare: June 10"
+output: 
+  html_document:
+    css: "prepare.css"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note:** All required prepare activities are due **<u>by the beginning of class (9:30am)</u>** on the specified date.
+<br>
+You can ignore "Your Turn" sections. 
+
+## Required 
+
+`r emo::ji("movie_camera")` Watch [Models with Multiple Predictors](https://www.youtube.com/watch?v=mjkNabD4oi4)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#1)
+

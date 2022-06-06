@@ -38,7 +38,7 @@ pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 ## Today's Goal 
 
 - Understand the language and notation of linear modeling
-- Use `tidymodels` to make inference under a linear regression model
+- Use `tidymodels` and `stat` package to make inference under a linear regression model
 
 ---
 

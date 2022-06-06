@@ -1,0 +1,58 @@
+---
+title: "Models with Multiple Predictors 2"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+## Material 
+
+---
+
+## Today's Goal 
+
+- Use functions in `R` to fit a linear model with multiple predictors 
+- Model interactions between variables 
+
+main vs. interaction effects
+main effects : parallel slopes 
+interaction : not parallel 
+---
+
+## Quiz 
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 22: Models with Multiple Predictors 2](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 14](https://sta199-summer22.netlify.app/prepare/week06_jun14_BJ.html)
+
+- Project draft due tonight at 11:59pm 
+
+- HW04 due Thursday, June 16 at 11:59pm
+
+- Submit `ae22` 
+

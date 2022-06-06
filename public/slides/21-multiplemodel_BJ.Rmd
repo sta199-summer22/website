@@ -1,0 +1,172 @@
+---
+title: "Models with Multiple Predictors 1"
+author: "Bora Jin"
+
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides.css"]
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+## Material 
+
+`r emo::ji("movie_camera")` Watch [Models with Multiple Predictors](https://www.youtube.com/watch?v=mjkNabD4oi4)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d04-model-multiple-predictors/u4-d04-model-multiple-predictors.html#1)
+
+---
+
+## Today's Goal 
+
+- Use functions in `R` to fit a linear model with multiple predictors 
+- Interpret coefficients of the model 
+- Understand and compare $R^2$ and adjusted $R^2$
+- Model interactions between variables 
+
+---
+
+## Quiz 
+
+**Q - Which of the following is the correct code to fit a linear model for $y$ with $x_1$ and $x_2$ from `mydata`?**
+
+a. `linear_reg(engine = "lm") %>% fit(y ~ x1 & x2, data = mydata)`
+
+b. `linear_reg(engine = "lm") %>% fit(y ~ x1 ~ x2, data = mydata)`
+
+c. `linear_reg(engine = "lm") %>% fit(y ~ x1 + x2, data = mydata)`
+
+d. `linear_reg(engine = "lm") %>% fit(y ~ x1 * x2, data = mydata)`
+
+---
+
+## Quiz 
+
+**Q - Which of the following is the correct code to fit a linear model for $y$ with $x1$ and $x2$ from `mydata`?**
+
+a. `linear_reg(engine = "lm") %>% fit(y ~ x1 & x2, data = mydata)`
+
+b. `linear_reg(engine = "lm") %>% fit(y ~ x1 ~ x2, data = mydata)`
+
+**c. `linear_reg(engine = "lm") %>% fit(y ~ x1 + x2, data = mydata)`**
+
+d. `linear_reg(engine = "lm") %>% fit(y ~ x1 * x2, data = mydata)`
+
+---
+
+## Quiz 
+
+**Q - What is the biggest difference in interpreting regression coefficients of a model with multiple predictors compared to a model with a single predictor?**
+
+a. "all else at 0"
+
+b. "all else held constant"
+
+c. "all increased by 1 unit"
+
+d. no difference
+
+---
+
+## Quiz 
+
+**Q - What is the biggest difference in interpreting regression coefficients of a model with multiple predictors compared to a model with a single predictor?**
+
+a. "all else at 0"
+
+**b. "all else held constant"**
+
+c. "all increased by 1 unit"
+
+d. no difference
+
+---
+
+## Quiz 
+
+**Q - What does Occam's razor state in terms of model selection?** 
+
+a. "choose the simplest model"
+
+b. "choose the model with more predictors"
+
+c. "choose the model with the highest predictive power"
+
+d. "choose the parsimonious model" 
+
+---
+
+## Quiz 
+
+**Q - What does Occam's razor state in terms of model selection?** 
+
+a. "choose the simplest model"
+
+b. "choose the model with more predictors"
+
+c. "choose the model with the highest predictive power"
+
+**d. "choose the parsimonious model"** 
+
+--
+the simplest best model
+
+---
+
+## Quiz 
+
+**Q - Which of the following is the value to consider when comparing multiple models? Select all that apply.**
+
+a. Type I error
+
+b. Adjusted R-squared
+
+c. Coefficients 
+
+d. R-squared
+
+---
+
+## Quiz 
+
+**Q - Which of the following is the value to consider when comparing multiple models? Select all that apply.**
+
+a. Type I error
+
+**b. Adjusted R-squared**
+
+c. Coefficients 
+
+**d. R-squared**
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+## Let's Practice Together! 
+
+Go to [AE 21: Models with Multiple Predictors 1](https://sta199-summer22.netlify.app/appex/ae21_BJ.html)
+
+---
+
+## Bulletin
+
+- Watch videos for [Prepare: June 13](https://sta199-summer22.netlify.app/prepare/week06_jun13_BJ.html)
+
+- Project draft due Monday, June 13 at 11:59pm 
+
+- HW04 due Thursday, June 16 at 11:59pm
+
+- Submit `ae21` 
+
