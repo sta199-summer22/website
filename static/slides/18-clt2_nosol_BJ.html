@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Central Limit Theorem 1</title>
+    <title>Central Limit Theorem 2</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Central Limit Theorem 1
+# Central Limit Theorem 2
 ### Bora Jin
 
 ---
@@ -39,229 +39,146 @@ layout: true
 
 ## Material 
 
-🎥 Watch [Central Limit Theorem](https://warpwire.duke.edu/w/Vw4GAA/)
+🎥 Watch [Inference Using Central Limit Theorem](https://warpwire.duke.edu/w/WQ4GAA/)
 
-- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-intro.html#1)
+- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-inference.html#1)
 
-Optional: 📖 Read [IMS: Chapter 13 - Inference With Mathematical Models](https://openintro-ims.netlify.app/foundations-mathematical.html?q=central%20limit%20th#CLTsection)
+Optional: 📖 Read 
+
+- [IMS: Section 16.2 - Mathematical Model for a Proportion](https://openintro-ims.netlify.app/inference-one-prop.html#one-prop-norm)
+- [IMS: Section 17.3 - Mathematical Model for Difference in Proportions](https://openintro-ims.netlify.app/inference-two-props.html#math-2prop)
+- [IMS: Section 19.2 - Mathematical Model for a Mean](https://openintro-ims.netlify.app/inference-one-mean.html#one-mean-math)
+- [IMS: Section 20.3 - Mathematical Model for Testing Difference in Means](https://openintro-ims.netlify.app/inference-two-means.html#math2samp)
 
 ---
 
 ## Today's Goal 
 
-- Use Central Limit Theorem to define distribution of sample means
-- Calculate probabilities from the normal distribution
-
----
-
-## Quantifying Variability
-
-We can quantify the variability of sample statistics using different approaches:
-
-- **Simulation**: via bootstrapping or "resampling" techniques 
-
-or
-
-- **Theory**: via the Central Limit Theorem 
-
---
-
-Today we will focus on **Theory**.
+- Use Central Limit Theorem (CLT) to conduct inference on a population mean
+- Conduct CLT-based inference step-by-step and using the `infer` package
+- Understand t-distribution vs. standard normal, N(0,1) distribution
 
 ---
 
 ## Quiz 
 
-**Q - What is a sampling distribution of the sample mean?**
+**Q - State the central limit theorem.**
+
+For a population with a well-defined mean `\(\mu\)` and standard deviation `\(\sigma\)`,
+these three properties hold for the distribution of sample average `\(\bar{X}\)`,
+assuming certain conditions hold:
 
 --
 
-From one random sample of size `\(n\)`, calculate the sample mean `\(\bar{X}_1\)`
+✅ The distribution of the sample statistic is 
 
 --
 
-From a second random sample of size `\(n\)`, calculate the sample mean `\(\bar{X}_2\)`
+✅ The distribution is centered at 
 
 --
 
-`\(\vdots\)` 
-
-Repeat this many times. 
-
---
-
-We call the distribution of `\(\bar{X}\)` the **sampling distribution**. 
+✅ The variability of the distribution is **inversely** proportional to the square root of 
 
 ---
 
 ## Quiz 
 
-**Q - Apply the central limit theorem (CLT) on sample means.**
-
-Let a random variable `\(X\)` have a mean `\(\mu\)` and standard deviation `\(\sigma\)`. 
-Then the sampling distribution of the sample mean `\(\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n}\)` 
-
---
-
-- Has the mean `\(\mu\)`
-
---
-
-- Has the standard error `\(\sigma/\sqrt{n}\)`
-
-.small[
-standard error of a sample mean = standard deviation of its sampling distribution or an estimate of that standard deviation
-]
-
---
-
-- **If the sample size** `\(n\)` **is large enough**, the sampling distribution of `\(\bar{X}\)` is **approximately** normally distributed. 
-
-.question[
-As `\(n \rightarrow \infty\)`, `\(\bar{X}\)` converges in distribution to 
-`\(N(\mu, \sigma/\sqrt{n})\)`.
-]
+**Q - Why do we care about the distribution of sample mean?** 
 
 ---
 
 ## Quiz 
 
-**Q - Describe density of a normal distribution.** 
+**Q - What is the distribution of sample mean by CLT?** 
 
---
-
-.pull-left[
-- unimodal (peak at `\(\mu\)`)
-- symmetric around `\(\mu\)`
-- bell-shaped
-]
-
-.pull-right[
-&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
+When the population mean `\(\mu\)` and the population standard deviation `\(\sigma\)` are known, 
 
 ---
 
 ## Quiz 
 
-**Q - The CLT holds only if** `\(X \sim N(\mu, \sigma)\)`. **(T/F)**
-
---
-
-F
-
---
-
-`\(X\)` can be from **any** distribution with a mean `\(\mu\)` and standard deviation `\(\sigma\)`. 
-
-Let's play with weird looking original distributions -  [Click!](https://onlinestatbook.com/stat_sim/sampling_dist/index.html)
+**Q - What if** `\(\sigma\)` **is unknown?** 
 
 ---
 
 ## Quiz 
 
-**Q - What are the two conditions for CLT to hold?** 
+**Q - List properties of the t-distribution.** 
+
+- Its shape is 
 
 --
 
-Independence 
-
-- `\(\{X_1,\cdots,X_n\}\)` must be independent to one another
-- One observation's value should not "influence" another observation's value.
-- Rules of thumb to check independence:
-  - Completely random sampling
-  - If taken without replacement, `\(n\)` should be less than 10% of the population size
-  
----
-
-## Quiz 
-
-**Q - What are the two conditions for CLT to hold?** 
+- Its tails are 
 
 --
 
-Sample size `\(n\)` / distribution
-
-- If `\(X\)` is numerical, `\(n &gt; 30\)` 
-- If `\(X\)` is categorical, at least 10 successes and 10 failures 
-- If `\(X \sim N(\mu, \sigma)\)`, then the distribution of sample means will also be **exactly** normal, regardless of the sample size.
-
----
-
-## Recap
-
-- If certain assumptions are satisfied, regardless of the shape of the 
-population distribution, the sampling distribution of the mean follows an 
-approximately normal distribution.
-
---
-
-- The center of the sampling distribution is at the center of the population 
-distribution.
-
---
-
-- The sampling distribution is less variable than the population distribution 
-by a factor of `\(1/\sqrt{n}\)`. 
-
---
-
-- As `\(n\)` increases, the standard error (the spread of the sampling distribution) decreases. 
+- It is fully defined by 
 
 ---
 
 ## Quiz 
 
-**Q - What is an appropriate code to calculate** `\(P(Z &lt; 1.2)\)` **where** `\(Z \sim N(0,1)\)`**?**
+**Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
 
-&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
---
-
-
-```r
-pnorm(1.2)
-```
-
-```
-## [1] 0.8849303
-```
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Quiz 
 
-**Q - What is an appropriate code to calculate** `\(P(-2 &lt; X &lt; 7)\)` **where** `\(X \sim N(1,3)\)`**?**
+**Q - What is an appropriate code to calculate** `\(P(T &lt; 1.2)\)` **where** `\(T \sim t_5\)`**?**
 
-&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
---
-
-
-```r
-pnorm(7, mean = 1, sd = 3) - pnorm(-2, mean = 1, sd = 3)
-```
-
-```
-## [1] 0.8185946
-```
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Quiz 
 
-**Q - What is an appropriate code to find** q **s.t.** `\(P(X &gt; q) = 0.05\)` **where** `\(X \sim N(-1,2)\)`**?**
+**Q - What is an appropriate code to calculate** `\(P(-2 &lt; T &lt; 3)\)` **where** `\(T \sim t_{10}\)`**?**
 
-&lt;img src="17-clt_BJ_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz 
+
+**Q - What is an appropriate code to find** q **s.t.** `\(P(T &gt; q) = 0.25\)` **where** `\(X \sim t_7\)`**?**
+
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Quiz: HT 
+
+Let's conduct a hypothesis test for `\(H_0: \mu = 5\)` vs. `\(H_1: \mu \neq 5\)`. 
+We don't know the population standard deviation. We have a random sample of size 100. 
+The CLT conditions are checked. 
+
+**Q - What is the test statistic and its null distribution by CLT?**
+
+---
+
+## Quiz: HT 
+
+**Q - What does it mean that the test statistic is 3.5?**
+
+---
+
+## Quiz: CI
+
+**Q - What is the formula to obtain a** `\(1-\alpha\)` **confidence interval for** `\(\mu\)` **?**
+
 --
 
+**Q - What is the R function to calculate** `\(t^*_{n-1}\)`?
 
-```r
-qnorm(0.05, mean = -1, sd = 2, lower.tail = FALSE)
-```
+---
 
-```
-## [1] 2.289707
-```
+## Quiz 
+
+**Q - What is the function in the** `infer` **package to use for CLT-based inference when** `\(\sigma\)` **is unknown?**
 
 ---
 
@@ -273,22 +190,21 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 17: Central Limit Theorem](https://sta199-summer22.netlify.app/appex/ae17_BJ.html)
+Go to [AE 18: Central Limit Theorem 2](https://sta199-summer22.netlify.app/appex/ae18_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 7](https://sta199-summer22.netlify.app/prepare/week05_jun07_BJ.html)
+- Tomorrow is Ask-for-Help day. Bring your questions. 
 
-- Project proposal feedback released 
-
-- Lab06 due Tuesday, June 7 at 11:59pm 
+- Lab06 due tonight at 11:59pm 
 
 - HW03 due Wednesday, June 8 at 11:59pm 
 
-- Submit `ae17`
+- Tomorrow (June 8) is the last day to withdraw with W
 
+- Submit `ae18`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

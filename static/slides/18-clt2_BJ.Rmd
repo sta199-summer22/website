@@ -350,9 +350,12 @@ Go to [AE 18: Central Limit Theorem 2](https://sta199-summer22.netlify.app/appex
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 8](https://sta199-summer22.netlify.app/prepare/week05_jun08_BJ.html)
+- Tomorrow is Ask-for-Help day. Bring your questions. 
+
+- Lab06 due tonight at 11:59pm 
 
 - HW03 due Wednesday, June 8 at 11:59pm 
 
 - Tomorrow (June 8) is the last day to withdraw with W
 
+- Submit `ae18`

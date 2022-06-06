@@ -67,12 +67,13 @@ billboard %>%
 
 ## Part 2: Probability
 
-Try exercises [here](https://sta199-sp22-003.netlify.app/hw/hw03.html) and ask me questions. 
+Try [exercises](https://sta199-sp22-003.netlify.app/hw/hw03.html) originally 
+developed by Prof. Alexander Fisher and ask me questions. 
 
 ## Part 3: Inference based on Simulations or Central Limit Theorem
 
-Try questions [here](https://sta199-summer2021.github.io/website/hw/hw-02.html) 
-and ask me questions. 
+Try [questions](https://sta199-summer2021.github.io/website/hw/hw-02.html) originally 
+developed by Prof. Becky Tang and ask me questions. 
 
 ## Submitting Application Exercises
 

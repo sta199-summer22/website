@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Introduction to Linear Models</title>
+    <title>Central Limit Theorem 2</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Introduction to Linear Models
+# Central Limit Theorem 2
 ### Bora Jin
 
 ---
@@ -39,55 +39,26 @@ layout: true
 
 ## Material 
 
-🎥 Watch [The Language of Models](https://youtu.be/MWkkvDopBKc)
+🎥 Watch [Inference Using Central Limit Theorem](https://warpwire.duke.edu/w/WQ4GAA/)
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d01-language-of-models/u4-d01-language-of-models.html#1) 
+- [Slides](https://sta199-fa21-003.netlify.app/slides/clt-inference.html#1)
 
-🎥 Watch [Fitting and Interpreting Models](https://youtu.be/69U92Q3pwnA)
+Optional: 📖 Read 
 
-- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d02-fitting-interpreting-models/u4-d02-fitting-interpreting-models.html#1) 
+- [IMS: Section 16.2 - Mathematical Model for a Proportion](https://openintro-ims.netlify.app/inference-one-prop.html#one-prop-norm)
+- [IMS: Section 17.3 - Mathematical Model for Difference in Proportions](https://openintro-ims.netlify.app/inference-two-props.html#math-2prop)
+- [IMS: Section 19.2 - Mathematical Model for a Mean](https://openintro-ims.netlify.app/inference-one-mean.html#one-mean-math)
+- [IMS: Section 20.3 - Mathematical Model for Testing Difference in Means](https://openintro-ims.netlify.app/inference-two-means.html#math2samp)
 
 ---
 
 ## Today's Goal 
 
-- Understand the language and notation of linear modeling.
-- Use `tidymodels` to make inference under a linear regression model
+- Use Central Limit Theorem (CLT) to conduct inference on a population mean
+- Conduct CLT-based inference step-by-step and using the `infer` package
+- Understand t-distribution vs. standard normal, N(0,1) distribution
 
 ---
-
-functions 
-height as a function of width 
-response 
-explanatory 
-predicted value : output of the model function 
-residuals 
-positive residual vs. negative residual 
-models - upsides and downsides 
-variation around the model 
-explanation 
-prediction (netflix / amazon recommendation)
-
-step 1: Specify model linear_reg
-step 2: set model fitting engine set_engine("lm")
-step 3: fit model &amp; estimate parameters fit(formula syntax): ~, "versus"
-recreate the formula with parameter estimates 
-
-uncertainty - standard error 
-interpretation "on average" "expected"
-least squares regression 
-goes through (xbar, ybar)
-has the same sign as the correlation coefficient 
-sum of the residuals is zero 
-
-interpretation
-dummy variables 
-
-
-
-
-
-
 
 ## Quiz 
 
@@ -102,33 +73,18 @@ assuming certain conditions hold:
 ✅ The distribution of the sample statistic is 
 
 --
-**approximately** normal 
-
---
 
 ✅ The distribution is centered at 
 
 --
-the population parameter (often interest of inference)
-
---
 
 ✅ The variability of the distribution is **inversely** proportional to the square root of 
-
---
-the sample size
 
 ---
 
 ## Quiz 
 
 **Q - Why do we care about the distribution of sample mean?** 
-
---
-
-We can estimate / test for a population mean. 
-
-We can construct a confidence interval or conduct a hypothesis test for the population mean using the CLT-based distribution in place of a simulation-based distribution of sample mean. 
 
 ---
 
@@ -138,38 +94,11 @@ We can construct a confidence interval or conduct a hypothesis test for the popu
 
 When the population mean `\(\mu\)` and the population standard deviation `\(\sigma\)` are known, 
 
---
-
-`$$\bar{X} \sim N(\mu, \sigma/\sqrt{n}) \Leftrightarrow Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$`
-
-approximately, for a large enough `\(n\)`. 
-
---
-
-- N(0,1) is standard normal distribution.
-- Often, a random variable following the standard normal distribution is denoted by `\(Z\)`.
-
 ---
 
 ## Quiz 
 
 **Q - What if** `\(\sigma\)` **is unknown?** 
-
---
-
-- We approximate `\(\sigma\)` with the sample standard deviation. 
-
---
-
-`$$Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \rightarrow T = \frac{\bar{X}-\mu}{S/\sqrt{n}}$$`
-where `\(S^2 = \sum_{i=1}^n(X_i - \bar{X})^2/(n-1)\)`
---
-
-- `\(\sigma\)` replaced by `\(S\)`! (The realized value of `\(S\)` from a sample is `\(s\)`.)
---
-
-- This change renders the random variable `\(T\)` follow another distribution than the standard normal distribution, i.e., `$$T \sim t_{n-1}$$`
-where `\(t_{n-1}\)` is a t-distribution with `\(n-1\)` degrees of freedom. 
 
 ---
 
@@ -180,39 +109,20 @@ where `\(t_{n-1}\)` is a t-distribution with `\(n-1\)` degrees of freedom.
 - Its shape is 
 
 --
-unimodal, symmetric, centered at 0 similarly to N(0,1).
-
---
 
 - Its tails are 
-
---
-thicker than N(0,1).
 
 --
 
 - It is fully defined by 
 
---
-the degrees of freedom.
-
 ---
 
 ## Quiz 
 
 **Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
 
-&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Quiz 
-
-**Q - Black solid line is N(0,1). What is the t-distribution with df = 1, 3, 10, and 30?**
-
-&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-3-1.png" width="55%" style="display: block; margin: auto;" /&gt;
-- thicker tails 
-- As the degrees of freedom increases, the t-distribution becomes more like N(0,1)
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -220,17 +130,7 @@ the degrees of freedom.
 
 **Q - What is an appropriate code to calculate** `\(P(T &lt; 1.2)\)` **where** `\(T \sim t_5\)`**?**
 
-&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
---
-
-
-```r
-pt(1.2, df = 5)
-```
-
-```
-## [1] 0.8580545
-```
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -238,17 +138,7 @@ pt(1.2, df = 5)
 
 **Q - What is an appropriate code to calculate** `\(P(-2 &lt; T &lt; 3)\)` **where** `\(T \sim t_{10}\)`**?**
 
-&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /&gt;
---
-
-
-```r
-pt(3, df = 10) - pt(-2, df = 10)
-```
-
-```
-## [1] 0.9566342
-```
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -256,17 +146,7 @@ pt(3, df = 10) - pt(-2, df = 10)
 
 **Q - What is an appropriate code to find** q **s.t.** `\(P(T &gt; q) = 0.25\)` **where** `\(X \sim t_7\)`**?**
 
-&lt;img src="19-langofmodel_BJ_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
---
-
-
-```r
-qt(0.25, df = 7, lower.tail = FALSE)
-```
-
-```
-## [1] 0.7111418
-```
+&lt;img src="18-clt2_nosol_BJ_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -278,25 +158,11 @@ The CLT conditions are checked.
 
 **Q - What is the test statistic and its null distribution by CLT?**
 
---
-
-- The test statistic is calculated by `\(t = \frac{\bar{x} - 5}{s/10}\)`.
-
---
-
-- Under the null, 
-`$$T = \frac{\bar{X} - 5}{S/10} \sim t_{99}$$`
-- Capital letters for random variables and lowercase letters for observed values 
-
 ---
 
 ## Quiz: HT 
 
 **Q - What does it mean that the test statistic is 3.5?**
-
---
-
-The observed sample mean `\(\bar{x}\)` is 3.5 standard errors above the hypothesized population mean, 5. 
 
 ---
 
@@ -306,30 +172,13 @@ The observed sample mean `\(\bar{x}\)` is 3.5 standard errors above the hypothes
 
 --
 
-`$$\bar{x} \pm t^*_{n-1}\times \frac{s}{\sqrt{n}}$$`
-
-where `\(t^*_{n-1}\)` is a critical value that satisfies `\(P(T &gt; t^*_{n-1}) = \alpha/2\)` for `\(T \sim t_{n-1}\)`. 
-
---
-
 **Q - What is the R function to calculate** `\(t^*_{n-1}\)`?
-
---
-
-
-```r
-qt(alpha/2, df = n-1, lower.tail = FALSE)
-```
 
 ---
 
 ## Quiz 
 
 **Q - What is the function in the** `infer` **package to use for CLT-based inference when** `\(\sigma\)` **is unknown?**
-
---
-
-`t_test()`
 
 ---
 
@@ -347,12 +196,15 @@ Go to [AE 18: Central Limit Theorem 2](https://sta199-summer22.netlify.app/appex
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 8](https://sta199-summer22.netlify.app/prepare/week05_jun08_BJ.html)
+- Tomorrow is Ask-for-Help day. Bring your questions. 
+
+- Lab06 due tonight at 11:59pm 
 
 - HW03 due Wednesday, June 8 at 11:59pm 
 
 - Tomorrow (June 8) is the last day to withdraw with W
 
+- Submit `ae18`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
