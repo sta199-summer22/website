@@ -80,7 +80,7 @@ We want to know the shape of the distribution of $\bar{X}$, not just mean and st
   - Independence? 
   - Sample size / distribution? 
   
-**Q - ** Apply CLT and write the distribution of $\bar{X}$ using mathematical notation. Describe its distribution in terms of the shape, center, and spread. Is is an approximate distribution or an exact distribution?
+**Q - ** Apply CLT and write the distribution of $\bar{X}$ using mathematical notation. Describe its distribution in terms of the shape, center, and spread. Is it an approximate distribution or an exact distribution?
 
 The distribution of sample means is given below in comparison with the population distribution: 
 
