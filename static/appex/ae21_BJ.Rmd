@@ -10,6 +10,12 @@ output:
     toc_float: true
 ---
 
+## Getting Started 
+
+- Clone the repository entitled "ae21-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
 ## Used Cars Price 
 
 ```{r load-package, message = F}

@@ -18,19 +18,75 @@ output:
 
 ## Material 
 
+`r emo::ji("movie_camera")` Watch [Models with Multiple Predictors 2](https://www.youtube.com/watch?v=nJAYRnLPb10)
+
+- [Slides](https://rstudio-education.github.io/datascience-box/course-materials/slides/u4-d05-more-model-multiple-predictors/u4-d05-more-model-multiple-predictors.html#1) 
+
 ---
 
 ## Today's Goal 
 
 - Use functions in `R` to fit a linear model with multiple predictors 
 - Model interactions between variables 
+- Understand what's linear in linear regressions
+- Implement CLT-based CI and HT for regression parameters
 
-main vs. interaction effects
-main effects : parallel slopes 
-interaction : not parallel 
 ---
 
 ## Quiz 
+
+Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variable `x1` is numeric and `x2` is categorical. For the following questions, write out a regression model and the code to fit the model. 
+
+**Q - Same slope and same intercept between `x1` and `y` for different levels of `x2`.** 
+
+--
+$$y = \beta_0 + \beta_1~x_1 + \epsilon$$
+```{r, eval = FALSE}
+lm(y ~ x1, data = mydata)
+```
+
+---
+
+## Quiz
+
+**Q - Same slope and different intercept (parallel lines) for different levels of `x2`.** 
+
+--
+
+$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$
+
+```{r, eval = FALSE}
+linear_reg(engine = "lm") %>% 
+  fit(y ~ x1 + x2, data = mydata)
+```
+
+---
+
+## Quiz
+
+**Q - Different slope and different intercept (non-parallel lines) for different levels of `x2`.** 
+
+--
+
+$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$
+```{r, eval = FALSE}
+lm(y ~ x1*x2, data = mydata)
+lm(y ~ x1 + x2 + x1:x2, data = mydata)
+```
+
+---
+
+## Quiz 
+
+**Q - Write separate fitted models for non-living artists (`artistliving` = 0) and for living artists (`artistliving` = 1) using the following result. Your fitted models should include `log_price` and `surface` only.**
+
+$$\widehat{log\_price} = 4.91 + 0.00021~surface - 0.126~artistliving$$
+$$+ ~ 0.00048 ~surface * artistliving$$
+--
+
+- Non-living artists: $\widehat{log\_price} = 4.91 + 0.00021~surface$
+- Living artists: $\widehat{log\_price} = 4.784 + 0.00069~surface$
+- Non-parallel lines due to the interaction effect!
 
 ---
 
