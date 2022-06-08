@@ -1,0 +1,207 @@
+---
+title: "Homework #04: Linear Regression"
+subtitle: "due Thursday, June 16 at 11:59pm"
+output: 
+  tufte::tufte_html:
+    css: "sta199-hw.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: true
+    toc_depth: 2
+link-citations: yes
+---
+
+## Goals
+
+-   Fitting a linear regression with a single numerical and categorical predictor
+-   Fitting a linear regression with multiple predictors
+-   Interpreting regression output in context of the data
+-   Comparing models
+
+## Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "hw04-GitHubUsername"
+- Clone the repo and make a new project in RStudio. 
+- Find `hw04.Rmd` to open the template R Markdown file. 
+
+## Instructions
+
+For each exercise:
+
+- Make sure we see all relevant code and output in the knitted PDF. 
+If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write all narrative in complete sentences with **decimal numbers rounded to three decimal places.** 
+
+- Write your code and narrative in a reproducible way, so you can easily change the number of reps. 
+For example, consider ways you can write your narrative using inline code, so the 
+relevant values update when you change the number of reps.
+
+## Formatting 
+
+- All plots should follow best visualization practices; plots should include:
+
+  - an informative title, 
+  - axes that are labeled, and 
+  - careful consideration should be given to aesthetic choices.
+  - Please choose colorblind-friendly color maps such as `viridis`, `scico`, and many others.
+
+- Place all plots in the center and properly adjust their size so that they are placed nicely in a written report. 
+
+- Don’t forget to label your R chunk as well. Your label should be short, informative, shouldn’t include spaces, and shouldn’t repeat a previous label.
+
+- The following resource provides code needed to make useful symbols. You may use 
+the code to typeset the characters of interest in the narrative of your document:
+
+  - $\hat{y}$ : `$\hat{y}$`
+  - $\widehat{long-y}$ : `$\widehat{long-y}$`
+  - $\beta_{name}$ : `$\beta_{name}$`
+  - $text\_with\_underbar$ : `$text\_with\_underbar$`
+
+## Packages 
+
+We’ll use the `tidyverse` package for much of the data wrangling and visualization, 
+the `tidymodels` package for inference, and the data live in the `openintro` package.
+We use the `knitr` package for nice-looking tables. 
+
+```{r load-package, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+library(openintro)
+library(knitr)
+```
+
+## Grading the professor
+
+Many college courses conclude by giving students the opportunity to evaluate the course and the instructor anonymously.
+However, the use of these student evaluations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, such as the physical appearance of the instructor.
+The article titled, "Beauty in the classroom: instructors' pulchritude and putative pedagogical productivity" (Hamermesh and Parker, 2005) found that instructors who are viewed to be better looking receive higher instructional ratings.
+(Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005, Pages 369-376, ISSN 0272-7757, 10.1016/j.econedurev.2004.07.013. <http://www.sciencedirect.com/science/article/pii/S0272775704001165>.)
+
+In this homework you will analyze the data from this study in order to learn what goes into a positive professor evaluation.
+
+The data were gathered from end of semester student evaluations for a large sample of professors from the University of Texas at Austin. In addition, six students rated the professors' physical appearance.
+(This is a slightly modified version of the original dataset that was released as part of the replication data for Data Analysis Using Regression and Multilevel / Hierarchical Models (Gelman and Hill, 2007).) The result is a data frame where each row contains a different course and columns represent variables about the courses and professors.
+
+The data can be found in the `openintro` package, and it's called `evals`.
+Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
+You can find out more about the dataset by inspecting its documentation, which you can access by running `?evals` in the Console. 
+
+## Exploratory Data Analysis
+
+1.  Visualize the distribution of `score`.
+    Is the distribution skewed?
+    What does that tell you about how students rate courses?
+    Is this what you expected to see?
+    Why, or why not?
+    Include any summary statistics and visualizations you use in your response.
+
+2.  Visualize and describe the relationship between `score` and `bty_avg`.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message. 
+:::
+
+## Linear Regression with a Numerical Predictor
+
+3.  Let's see if the trend in the plot in Ex 2 is something more than natural variation.
+    Fit a linear model called `score_bty_fit` to predict average professor evaluation `score` by average beauty rating (`bty_avg`). Print the regression output as a nice `kable` table with all numbers rounded up to three decimal places. 
+    Based on the regression output, write the linear model.
+
+4.  Recreate the scatterplot from Ex 2, and add the regression line to this plot in orange color, with shading for the uncertainty of the line turned off. Hint: use the `geom_smooth()` function. 
+
+5.  Interpret the slope and the intercept of the linear model in context of the data.
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message. 
+:::
+
+## Linear Regression with a Categorical Predictor
+
+6.  Fit a new linear model called `score_gender_fit` to predict average professor evaluation `score` based on `gender` of the professor.
+    Based on the regression output, write the linear model using an indicator variable 
+    and interpret the slope and intercept in context of the data.
+
+7.  Determine the $R^2$ of both models and interpret the $R^2$ statistics in context of the data. Which model do you prefer and why? 
+
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message. 
+:::
+
+## Multiple Linear Regression
+
+8.  Fit a linear model: `score_bty_gen_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`) and `gender`.
+    Write the linear model with an indicator variable for `gender` and interpret the slopes and intercept in context of the data.
+
+9.  What is the equation of the line between `score` and `bty_avg` corresponding to 
+male professors? What is it for female professors?
+    
+10.  For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score? Why?
+
+11. How do the $R^2$ and the adjusted $R^2$ values of `score_bty_gen_fit` and `score_bty_fit` compare? Which metric do you believe more in this case? Why?
+
+12. What does this tell us about how useful `gender` is in explaining the variability in evaluation scores when we already have information on the beauty score of the professor?
+
+13. Fit a linear model: `score_bty_gen_int_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`), `gender`, and their interaction. 
+Print the regression output as a nice `kable` table with all numbers rounded up to three decimal places. Based on the regression output, write the linear model with an indicator variable for `gender`.
+
+14.  What is the equation of the line between `score` and `bty_avg` corresponding to 
+male professors from `score_bty_gen_int_fit`? What is it for female professors? Which gender professors benefit more on the course evaluation by a one point increase in the average beauty rating? Why?
+
+15.  Compare the adjusted $R^2$ values of `score_bty_gen_fit` and `score_bty_gen_int_fit` compare? Which model do you prefer and why?
+
+16. What does this tell us about how useful the interaction term between `bty_avg` and `gender` is in explaining the variability in evaluation scores when we already have information on main effects of the beauty score of a professor and gender?
+
+17. We will verify if the coefficient parameter for the interaction term ($\beta_3$) is significantly different from zero via the Central Limit Theorem based hypothesis testing. 
+
+  - State the null and the alternative hypothesis in mathematical notation
+  - Compute the test statistic, state its null distribution precisely, and calculate the p-value manually. 
+  - Confirm the p-value with the one `R` produces in the regression output. 
+  - Conclude at the significance level $\alpha = 0.05$ and interpret the result in context of data. 
+    
+::: {.commit}
+`r emo::ji("yarn")` `r emo::ji("white_check_mark")` `r emo::ji("arrow_up")` Knit, commit, and push your final changes to GitHub with a meaningful commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards. Go to your homework repo on GitHub and see if your commit is well reflected. 
+:::
+
+## Submission
+
+Knit to PDF to create a PDF document. Stage and commit all remaining
+changes, and push your work to GitHub. Make sure all files are updated
+on your GitHub repo.
+
+Only upload your PDF document to Gradescope. Before you submit the
+uploaded document, mark where each answer is to the exercises. If any
+answer spans multiple pages, then mark all pages. Associate the
+*"Workflow & formatting"* section with the first page.
+
+## Grading (60 pts)
+
+<br>
+
+| Component | Points |
+|:----------|:-------|
+| Ex 1      | 4      |
+| Ex 2      | 2      |
+| Ex 3      | 3      |
+| Ex 4      | 2      |
+| Ex 5      | 3      |
+| Ex 6      | 6      |
+| Ex 7      | 5      |
+| Ex 8      | 7      |
+| Ex 9      | 2      |
+| Ex 10     | 2      |
+| Ex 11     | 4      |
+| Ex 12     | 1      |
+| Ex 13     | 3      |
+| Ex 14     | 4      |
+| Ex 15     | 2      |
+| Ex 16     | 1      |
+| Ex 17     | 7      |
+| Workflow & formatting   | 2      |
+
+**Grading notes**:
+
+- The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, using tidyverse style throughout, and following best visualization practices. 
+
+

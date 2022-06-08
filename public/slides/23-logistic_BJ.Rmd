@@ -26,6 +26,28 @@ output:
 
 ## Today's Goal 
 
+
+model diagnosis 
+
+nonlinear relationship 
+residual plots 
+augment
+randomly distributed around 0 
+lienear relationshp was captured already by the model 
+if not lm happens not to be the best model 
+
+log transformation 
+
+logit
+logistic_reg
+"glm"
+fit(family = "binomial")
+write out logit model 
+
+sensitivity and specificity
+trade off 
+but still want them high 
+
 - Use functions in `R` to fit a linear model with multiple predictors 
 - Model interactions between variables 
 - Understand what's linear in linear regressions
