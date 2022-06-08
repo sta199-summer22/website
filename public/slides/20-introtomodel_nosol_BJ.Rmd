@@ -46,23 +46,12 @@ pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 
 **Q - What do we need models for?**
 
---
-
-- Explain the relationship between variables 
-- Make predictions (e.g., Amazon / Netflix recommendations)
-- We will focus on **linear** models (straight lines!) but there are many other types.
-
 ---
 
 ## Quiz 
 
 **Q - What is a predicted value?**
 
---
-
-- Output of a model function 
-- Typical or expected value of the response variable conditioning on the explanatory variable 
-- $\hat{y} = f(x)$
 
 ---
 
@@ -93,32 +82,7 @@ ggplot(data = ht_wt_fit_aug) +
 
 ## Quiz 
 
-**Q - What is a predicted value?**
-
-```{r echo = FALSE, out.width= "70%"}
-ggplot(data = ht_wt_fit_aug) +
-  geom_point(aes(x = Width_in, y = Height_in), color = "gray") +
-  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
-  geom_point(aes(x = Width_in, y = .fitted), color = "#8E2C90", size = 2) +
-  labs(
-    title = "Height vs. width of paintings",
-    subtitle = "Paris auctions, 1764 - 1780",
-    x = "Width (inches)",
-    y = "Height (inches)"
-  ) 
-```
-
----
-
-## Quiz 
-
 **Q - What is a residual?**
-
---
-
-- A measure of how far each observation is from its predicted value 
-- residual = observed value - predicted value 
-- $e = y - \hat{y}$
 
 ---
 
@@ -127,30 +91,6 @@ ggplot(data = ht_wt_fit_aug) +
 **Q - What is a residual?**
 
 ```{r echo = FALSE, out.width= "70%"}
-ggplot(data = ht_wt_fit_aug) +
-  geom_segment(mapping = aes(xend = Width_in, yend = .fitted, 
-                             x = Width_in, y = Height_in), 
-               color = "pink", size = 1) + 
-  geom_point(aes(x = Width_in, y = Height_in)) +
-  geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
-  geom_point(aes(x = Width_in, y = .fitted), color = "#8E2C90", size = 2) +
-  labs(
-    title = "Height vs. width of paintings",
-    subtitle = "Paris auctions, 1764 - 1780",
-    x = "Width (inches)",
-    y = "Height (inches)"
-  ) 
-```
-
----
-
-## Quiz 
-
-**Q - What is a residual?**
-
-- Where are the paintings with positive / negative residual relative to the fitted line? 
-
-```{r echo = FALSE, out.width= "60%"}
 ggplot(data = ht_wt_fit_aug) +
   geom_point(aes(x = Width_in, y = Height_in)) +
   geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
@@ -161,6 +101,7 @@ ggplot(data = ht_wt_fit_aug) +
     y = "Height (inches)"
   ) 
 ```
+
 ---
 
 ## Quiz 
@@ -171,27 +112,19 @@ ggplot(data = ht_wt_fit_aug) +
 
 ```{r echo = FALSE, out.width= "50%"}
 ggplot(data = ht_wt_fit_aug) +
-  geom_point(aes(x = Width_in, y = Height_in, color = res_cat)) +
+  geom_point(aes(x = Width_in, y = Height_in)) +
   geom_line(aes(x = Width_in, y = .fitted), color = "#8E2C90") + 
   labs(
     title = "Height vs. width of paintings",
     subtitle = "Paris auctions, 1764 - 1780",
     x = "Width (inches)",
     y = "Height (inches)"
-  ) + 
-  scale_color_manual(values = c("#260b27", "#e6b0e7")) +
-  geom_text(aes(x = 0, y = 150), label = "Positive\nresidual", 
-            color = "#e6b0e7", hjust = 0, size = 8) +
-  geom_text(aes(x = 150, y = 25), label = "Negative\nresidual", 
-            color = "#260b27", hjust = 0, size = 8) +
-  theme(legend.position = "none")
+  ) 
 ```
+
 --
 
 - What does a negative residual mean? 
-
---
-The predicted value is greater than the actual value.
 
 ---
 
@@ -203,14 +136,9 @@ The predicted value is greater than the actual value.
 
 - Upsides: 
 
-  - Can sometimes reveal patterns that are not evident in visualizations. 
-
 --
 
 - Downsides: 
-
-  - Might impose structures that are not really there.
-  - Be skeptical about modeling assumptions! 
 
 ---
 
@@ -278,13 +206,6 @@ then the fitted regression line minimizes $\sum_{i=1}^n e_i^2$.
 
 **Q - Why do we minimize the "squares" of the residuals?**
 
---
-
-- Some residuals are positive, and others are negative. If we just naively sum them, they will cancel each other. 
-- Residuals are not good in both directions. We especially want to penalize residuals that are large in absolute magnitude. 
-
---
-
 [Click](https://seeing-theory.brown.edu/regression-analysis/index.html#section1) to play with least squares regression!
 
 ---
@@ -293,15 +214,6 @@ then the fitted regression line minimizes $\sum_{i=1}^n e_i^2$.
 
 **Q - What are some properties of the least squares regression?** 
 
---
-
-- The fitted line always goes through $(\bar{x}, \bar{y})$ 
-
-$$\bar{y} = \hat{\beta}_0 + \hat{\beta}_1 \bar{x} $$ 
-
-- The fitted line has a positive slope ( $\hat{\beta}_1$ > 0) if $x$ and $y$ are positively correlated and a negative slope if they are negatively correlated. The line has 0 slope if they are not correlated. 
-- The sum of the residuals is always zero: $\sum_{i=1}^n e_i = 0$.
-- The residuals and $x$ values are uncorrelated.
 
 ---
 
@@ -316,9 +228,6 @@ linear_reg() %>%
   tidy()
 ```
 
---
-
-$$\widehat{height}_i = 3.62 + 0.781 \times width_i$$
 ---
 
 ## Quiz
@@ -326,11 +235,9 @@ $$\widehat{height}_i = 3.62 + 0.781 \times width_i$$
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
 $$\widehat{height}_i = 3.62 + 0.781 \times width_i$$
---
 
-- Slope: For each additional inch the painting is wider, the height is **expected** to be higher, **on average**, by 0.781 inches.
-  - Always remember, the slope is about correlation, not causation. We are not saying increasing one inch in width of a painting will cause it to become 0.781 inches taller. 
-- Intercept: Paintings that are 0 inches wide are **expected** to be 3.62 inches high, **on average**. 
+- Slope: 
+- Intercept: 
 
 ---
 
@@ -352,9 +259,7 @@ linear_reg() %>%
   tidy()
 ```
 
---
 
-$$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$
 ---
 
 ## Quiz
@@ -362,24 +267,17 @@ $$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
 $$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$
---
 
-- Slope: Paintings with landscape features are **expected**, **on average**, to be 5.65 inches shorter than paintings that without landscape features.
+- Slope: 
 
-  - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
   - **Q - ** How do you know which one is the baseline level? 
-- Intercept: Paintings that don't have landscape features are **expected**, **on average**, to be 22.7 inches tall.
+- Intercept: 
 
 ---
 
 ## Quiz
 
 **Q - What happens in model fitting if a categorical variable has more than two levels?** 
-
---
-
-- They are automatically encoded to **dummy variables** (e.g., 6 dummies for 7 levels). 
-- Each coefficient describes the expected difference by the level compared **to the baseline level**. 
 
 ---
 
@@ -417,11 +315,8 @@ linear_reg() %>%
 ```
 ]
 
---
-
-- Intercept: Austrian school (A) paintings are expected, on average, to be 14 inches tall. 
-- Slope: French school (F) paintings are expected, on average, to be 10.2 inches **taller 
-than Austrian school paintings**.
+- Intercept: 
+- Slope: 
 - **Q - ** How do you know which one is the baseline level? 
 
 ---

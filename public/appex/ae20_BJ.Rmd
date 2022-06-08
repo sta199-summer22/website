@@ -44,7 +44,7 @@ Consider a regression model with the response `price` and a single predictor `mi
 
 **Q - ** Write out the equation of a model using parameters and variable names. 
 
-**Q - ** Create a scatterplot of price and mileage.
+**Q - ** Create a scatterplot of price and mileage. Do you see any patterns?
 
 ```{r price-mileage}
 
@@ -109,7 +109,7 @@ to use this model to make a prediction for the selling prices? Why or why not?
 
 Consider a regression model with the response `price` and the categorical predictor `type` (Accord, Maxima, Mazda6).
 
-**Q - ** Create side-by-side boxplots of price for each type.
+**Q - ** Create side-by-side boxplots of price for each type. Comment on what you observe.
 
 ```{r price-type}
 ```
@@ -126,8 +126,8 @@ Write out the equation of the fitted model.
 
 
 **Q - ** How many terms are in the model for `type`? Is this equal to the number 
-of car types in the data set? If not, briefly explain why the number of terms for 
-`type` in the model differs from the number car types in the data set.
+of car types in the dataset? If not, briefly explain why the number of terms for 
+`type` in the model differs from the number car types in the dataset.
 
 **Q - ** Interpret the intercept and slope(s) in the context of the problem.
 

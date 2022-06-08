@@ -239,7 +239,7 @@ then the fitted regression line minimizes `\(\sum_{i=1}^n e_i^2\)`.
 
 $$\bar{y} = \hat{\beta}_0 + \hat{\beta}_1 \bar{x} $$ 
 
-- The fitted line has a positive slope ( `\(\hat{\beta}_1\)` &gt; 0) if `\(x\)` and `\(y\)` are positively correlated and a negative slope if they are negatively correlated. The line has 0 slope is they are not correlated. 
+- The fitted line has a positive slope ( `\(\hat{\beta}_1\)` &gt; 0) if `\(x\)` and `\(y\)` are positively correlated and a negative slope if they are negatively correlated. The line has 0 slope if they are not correlated. 
 - The sum of the residuals is always zero: `\(\sum_{i=1}^n e_i = 0\)`.
 - The residuals and `\(x\)` values are uncorrelated.
 
@@ -267,14 +267,14 @@ linear_reg() %&gt;%
 
 --
 
-`$$\hat{height}_i = 3.62 + 0.781 \times width_i$$`
+`$$\widehat{height}_i = 3.62 + 0.781 \times width_i$$`
 ---
 
 ## Quiz
 
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
-`$$\hat{height}_i = 3.62 + 0.781 \times width_i$$`
+`$$\widehat{height}_i = 3.62 + 0.781 \times width_i$$`
 --
 
 - Slope: For each additional inch the painting is wider, the height is **expected** to be higher, **on average**, by 0.781 inches.
@@ -312,14 +312,14 @@ linear_reg() %&gt;%
 
 --
 
-`$$\hat{height}_i = 22.7 - 5.65 \times landsALL$$`
+`$$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$`
 ---
 
 ## Quiz
 
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
-`$$\hat{height}_i = 22.7 - 5.65 \times landsALL$$`
+`$$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$`
 --
 
 - Slope: Paintings with landscape features are **expected**, **on average**, to be 5.65 inches shorter than paintings that without landscape features.
@@ -337,7 +337,7 @@ linear_reg() %&gt;%
 --
 
 - They are automatically encoded to **dummy variables** (e.g., 6 dummies for 7 levels). 
-- Each coefficient describes the expected difference by the level compared to the baseline level. 
+- Each coefficient describes the expected difference by the level compared **to the baseline level**. 
 
 ---
 
@@ -422,6 +422,8 @@ Go to [AE 20: Introduction to Linear Models](https://sta199-summer22.netlify.app
 - Watch videos for [Prepare: June 10](https://sta199-summer22.netlify.app/prepare/week05_jun10_BJ.html)
 
 - HW04 released
+
+- Don't forget HW02! It's due Thursday, June 16 at 11:59pm.
 
 - Project draft due Monday, June 13 at 11:59pm 
 

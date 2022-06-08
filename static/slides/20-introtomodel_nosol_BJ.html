@@ -60,11 +60,12 @@ layout: true
 
 **Q - What do we need models for?**
 
---
+---
 
-- Explain the relationship between variables 
-- Make predictions (e.g., Amazon / Netflix recommendations)
-- We will focus on **linear** models (straight lines!) but there are many other types.
+## Quiz 
+
+**Q - What is a predicted value?**
+
 
 ---
 
@@ -72,27 +73,7 @@ layout: true
 
 **Q - What is a predicted value?**
 
---
-
-- Output of a model function 
-- Typical or expected value of the response variable conditioning on the explanatory variable 
-- `\(\hat{y} = f(x)\)`
-
----
-
-## Quiz 
-
-**Q - What is a predicted value?**
-
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Quiz 
-
-**Q - What is a predicted value?**
-
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="20-introtomodel_nosol_BJ_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -100,19 +81,13 @@ layout: true
 
 **Q - What is a residual?**
 
---
-
-- A measure of how far each observation is from its predicted value 
-- residual = observed value - predicted value 
-- `\(e = y - \hat{y}\)`
-
 ---
 
 ## Quiz 
 
 **Q - What is a residual?**
 
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="20-introtomodel_nosol_BJ_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -122,22 +97,11 @@ layout: true
 
 - Where are the paintings with positive / negative residual relative to the fitted line? 
 
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
----
+&lt;img src="20-introtomodel_nosol_BJ_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-## Quiz 
-
-**Q - What is a residual?**
-
-- Where are the paintings with positive / negative residual relative to the fitted line? 
-
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 --
 
 - What does a negative residual mean? 
-
---
-The predicted value is greater than the actual value.
 
 ---
 
@@ -149,14 +113,9 @@ The predicted value is greater than the actual value.
 
 - Upsides: 
 
-  - Can sometimes reveal patterns that are not evident in visualizations. 
-
 --
 
 - Downsides: 
-
-  - Might impose structures that are not really there.
-  - Be skeptical about modeling assumptions! 
 
 ---
 
@@ -165,7 +124,7 @@ The predicted value is greater than the actual value.
 **Q - Models always entail uncertainty. Which part of the following visualization and table is relevant to uncertainty?**
 
 .pull-left[
-&lt;img src="20-introtomodel_BJ_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="20-introtomodel_nosol_BJ_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -218,13 +177,6 @@ then the fitted regression line minimizes `\(\sum_{i=1}^n e_i^2\)`.
 
 **Q - Why do we minimize the "squares" of the residuals?**
 
---
-
-- Some residuals are positive, and others are negative. If we just naively sum them, they will cancel each other. 
-- Residuals are not good in both directions. We especially want to penalize residuals that are large in absolute magnitude. 
-
---
-
 [Click](https://seeing-theory.brown.edu/regression-analysis/index.html#section1) to play with least squares regression!
 
 ---
@@ -233,15 +185,6 @@ then the fitted regression line minimizes `\(\sum_{i=1}^n e_i^2\)`.
 
 **Q - What are some properties of the least squares regression?** 
 
---
-
-- The fitted line always goes through `\((\bar{x}, \bar{y})\)` 
-
-$$\bar{y} = \hat{\beta}_0 + \hat{\beta}_1 \bar{x} $$ 
-
-- The fitted line has a positive slope ( `\(\hat{\beta}_1\)` &gt; 0) if `\(x\)` and `\(y\)` are positively correlated and a negative slope if they are negatively correlated. The line has 0 slope if they are not correlated. 
-- The sum of the residuals is always zero: `\(\sum_{i=1}^n e_i = 0\)`.
-- The residuals and `\(x\)` values are uncorrelated.
 
 ---
 
@@ -265,9 +208,6 @@ linear_reg() %&gt;%
 ## 2 Width_in       0.781   0.00950      82.1 0
 ```
 
---
-
-`$$\widehat{height}_i = 3.62 + 0.781 \times width_i$$`
 ---
 
 ## Quiz
@@ -275,11 +215,9 @@ linear_reg() %&gt;%
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
 `$$\widehat{height}_i = 3.62 + 0.781 \times width_i$$`
---
 
-- Slope: For each additional inch the painting is wider, the height is **expected** to be higher, **on average**, by 0.781 inches.
-  - Always remember, the slope is about correlation, not causation. We are not saying increasing one inch in width of a painting will cause it to become 0.781 inches taller. 
-- Intercept: Paintings that are 0 inches wide are **expected** to be 3.62 inches high, **on average**. 
+- Slope: 
+- Intercept: 
 
 ---
 
@@ -310,9 +248,7 @@ linear_reg() %&gt;%
 ## 2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26
 ```
 
---
 
-`$$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$`
 ---
 
 ## Quiz
@@ -320,24 +256,17 @@ linear_reg() %&gt;%
 **Q - Interpret slope and intercept estimates in the context of data.** 
 
 `$$\widehat{height}_i = 22.7 - 5.65 \times landsALL$$`
---
 
-- Slope: Paintings with landscape features are **expected**, **on average**, to be 5.65 inches shorter than paintings that without landscape features.
+- Slope: 
 
-  - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
   - **Q - ** How do you know which one is the baseline level? 
-- Intercept: Paintings that don't have landscape features are **expected**, **on average**, to be 22.7 inches tall.
+- Intercept: 
 
 ---
 
 ## Quiz
 
 **Q - What happens in model fitting if a categorical variable has more than two levels?** 
-
---
-
-- They are automatically encoded to **dummy variables** (e.g., 6 dummies for 7 levels). 
-- Each coefficient describes the expected difference by the level compared **to the baseline level**. 
 
 ---
 
@@ -396,11 +325,8 @@ linear_reg() %&gt;%
 ```
 ]
 
---
-
-- Intercept: Austrian school (A) paintings are expected, on average, to be 14 inches tall. 
-- Slope: French school (F) paintings are expected, on average, to be 10.2 inches **taller 
-than Austrian school paintings**.
+- Intercept: 
+- Slope: 
 - **Q - ** How do you know which one is the baseline level? 
 
 ---

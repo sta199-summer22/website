@@ -282,7 +282,7 @@ glimpse(car_prices)</code></pre>
 <h3>Part 1: Price and Mileage</h3>
 <p>Consider a regression model with the response <code>price</code> and a single predictor <code>mileage</code>.</p>
 <p><strong>Q - </strong> Write out the equation of a model using parameters and variable names.</p>
-<p><strong>Q - </strong> Create a scatterplot of price and mileage.</p>
+<p><strong>Q - </strong> Create a scatterplot of price and mileage. Do you see any patterns?</p>
 <p><strong>Q - </strong> Use appropriate functions to find the fitted model and display the results in <code>tidy</code> format.</p>
 <pre class="r"><code>## option 1
 linear_reg(engine = &quot;lm&quot;) %&gt;% 
@@ -324,12 +324,12 @@ car_prices %&gt;%
 <div id="part-2-price-and-type" class="section level3">
 <h3>Part 2: Price and Type</h3>
 <p>Consider a regression model with the response <code>price</code> and the categorical predictor <code>type</code> (Accord, Maxima, Mazda6).</p>
-<p><strong>Q - </strong> Create side-by-side boxplots of price for each type.</p>
+<p><strong>Q - </strong> Create side-by-side boxplots of price for each type. Comment on what you observe.</p>
 <p><strong>Q - </strong> Use appropriate functions to find the fitted model and display the results in <code>tidy</code> format. Write out the equation of the fitted model.</p>
 <pre class="r"><code>## option 1
 
 ## option 2</code></pre>
-<p><strong>Q - </strong> How many terms are in the model for <code>type</code>? Is this equal to the number of car types in the data set? If not, briefly explain why the number of terms for <code>type</code> in the model differs from the number car types in the data set.</p>
+<p><strong>Q - </strong> How many terms are in the model for <code>type</code>? Is this equal to the number of car types in the dataset? If not, briefly explain why the number of terms for <code>type</code> in the model differs from the number car types in the dataset.</p>
 <p><strong>Q - </strong> Interpret the intercept and slope(s) in the context of the problem.</p>
 <ul>
 <li>Intercept:</li>
