@@ -343,5 +343,5 @@ Go to [AE 20: Introduction to Linear Models](https://sta199-summer22.netlify.app
 
 - Project draft due Monday, June 13 at 11:59pm 
 
-- Submit `ae20` 
+- Submit `ae20` (~ Part 2 Question 2)
 

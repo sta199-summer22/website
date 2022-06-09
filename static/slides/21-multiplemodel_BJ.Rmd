@@ -166,7 +166,9 @@ Go to [AE 21: Models with Multiple Predictors 1](https://sta199-summer22.netlify
 
 - Project draft due Monday, June 13 at 11:59pm 
 
+- HW02 due Thursday, June 16 at 11:59pm.
+
 - HW04 due Thursday, June 16 at 11:59pm
 
-- Submit `ae21` 
+- Submit `ae20` and `ae21` 
 
