@@ -72,7 +72,7 @@ library(openintro)
 library(knitr)
 ```
 
-## Grading the professor
+## Grading the professor^[This homework is adapted from lab assignments in Data Science in a Box. See the original exercises at https://rstudio-education.github.io/datascience-box/course-materials/lab-instructions/lab-10/lab-10-slr-course-evals.html and https://rstudio-education.github.io/datascience-box/course-materials/lab-instructions/lab-11/lab-11-mlr-course-evals.html]
 
 Many college courses conclude by giving students the opportunity to evaluate the course and the instructor anonymously.
 However, the use of these student evaluations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, such as the physical appearance of the instructor.
