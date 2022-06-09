@@ -228,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Exploratory Data Analysis</h2>
 <ol style="list-style-type: decimal">
 <li><p>Visualize the distribution of <code>score</code>. Is the distribution skewed? What does that tell you about how students rate courses? Is this what you expected to see? Why, or why not? Include any summary statistics and visualizations you use in your response.</p></li>
-<li><p>Visualize and describe the relationship between <code>score</code> and <code>bty_avg</code>.</p></li>
+<li><p>Visualize and describe the relationship between <code>score</code> and <code>bty_avg</code> in a scatterplot.</p></li>
 </ol>
 <div class="commit">
 <p>🧶 ✅ ⬆️ Knit, commit, and push your final changes to GitHub with a meaningful commit message.</p>
@@ -260,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="8" style="list-style-type: decimal">
 <li><p>Fit a linear model: <code>score_bty_gen_fit</code>, predicting average professor evaluation <code>score</code> based on average beauty rating (<code>bty_avg</code>) and <code>gender</code>. Write the linear model with an indicator variable for <code>gender</code> and interpret the slopes and intercept in context of the data.</p></li>
 <li><p>What is the equation of the line between <code>score</code> and <code>bty_avg</code> corresponding to male professors? What is it for female professors?</p></li>
-<li><p>For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score? Why?</p></li>
+<li><p>For two professors who received the same beauty rating, which gender tends to have higher course evaluation score? Why?</p></li>
 <li><p>How do the <span class="math inline">\(R^2\)</span> and the adjusted <span class="math inline">\(R^2\)</span> values of <code>score_bty_gen_fit</code> and <code>score_bty_fit</code> compare? Which metric do you believe more in this case? Why?</p></li>
 <li><p>What does this tell us about how useful <code>gender</code> is in explaining the variability in evaluation scores when we already have information on the beauty score of the professor?</p></li>
 <li><p>Fit a linear model: <code>score_bty_gen_int_fit</code>, predicting average professor evaluation <code>score</code> based on average beauty rating (<code>bty_avg</code>), <code>gender</code>, and their interaction. Print the regression output as a nice <code>kable</code> table with all numbers rounded up to three decimal places. Based on the regression output, write the linear model with an indicator variable for <code>gender</code>.</p></li>
