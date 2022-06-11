@@ -26,89 +26,75 @@ output:
 
 ## Today's Goal 
 
-
-model diagnosis 
-
-nonlinear relationship 
-residual plots 
-augment
-randomly distributed around 0 
-lienear relationshp was captured already by the model 
-if not lm happens not to be the best model 
-
-log transformation 
-
-logit
-logistic_reg
-"glm"
-fit(family = "binomial")
-write out logit model 
-
-sensitivity and specificity
-trade off 
-but still want them high 
-
-- Use functions in `R` to fit a linear model with multiple predictors 
-- Model interactions between variables 
-- Understand what's linear in linear regressions
-- Implement CLT-based CI and HT for regression parameters
+- Understand logistic regression 
+- Be able to fit logistic regression in `R`
 
 ---
 
 ## Quiz 
 
-Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variable `x1` is numeric and `x2` is categorical. For the following questions, write out a regression model and the code to fit the model. 
+**Q - Which of the following is the correct scenario to use a logistic regression?**
 
-**Q - Same slope and same intercept between `x1` and `y` for different levels of `x2`.** 
+a. when we have multiple categorical predictors 
 
---
-$$y = \beta_0 + \beta_1~x_1 + \epsilon$$
-```{r, eval = FALSE}
-lm(y ~ x1, data = mydata)
-```
+b. when we have a mix of numeric and categorical predictors 
 
----
+c. when we have a count response variable 
 
-## Quiz
-
-**Q - Same slope and different intercept (parallel lines) for different levels of `x2`.** 
-
---
-
-$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$
-
-```{r, eval = FALSE}
-linear_reg(engine = "lm") %>% 
-  fit(y ~ x1 + x2, data = mydata)
-```
-
----
-
-## Quiz
-
-**Q - Different slope and different intercept (non-parallel lines) for different levels of `x2`.** 
-
---
-
-$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$
-```{r, eval = FALSE}
-lm(y ~ x1*x2, data = mydata)
-lm(y ~ x1 + x2 + x1:x2, data = mydata)
-```
+d. when we have a binary response variable 
 
 ---
 
 ## Quiz 
 
-**Q - Write separate fitted models for non-living artists (`artistliving` = 0) and for living artists (`artistliving` = 1) using the following result. Your fitted models should include `log_price` and `surface` only.**
+**Q - Which of the following is the correct scenario to use a logistic regression?**
 
-$$\widehat{log\_price} = 4.91 + 0.00021~surface - 0.126~artistliving$$
-$$+ ~ 0.00048 ~surface * artistliving$$
+a. when we have multiple categorical predictors 
+
+b. when we have a mix of numeric and categorical predictors 
+
+c. when we have a count response variable 
+
+**d. when we have a binary response variable**
+
+---
+
+## Quiz 
+
+**Q - Which of the following is not correct for a logistic regression? Select all that apply.**
+
+a. it is a non-linear model 
+
+b. it uses a logit link 
+
+c. logit is a function of a binary response $y$
+
+d. in order to fit the logistic regression in `R`, we define `family = "binomial"`
+
+---
+
+## Quiz 
+
+**Q - Which of the following is not correct for a logistic regression? Select all that apply.**
+
+**a. it is a non-linear model** $\rightarrow$ linear model with $logit(p)$ as a response (Generalized linear model)
+
+b. it uses a logit link 
+
+**c. logit is a function of a binary response $y$** $\rightarrow$ it is a function of the success probability $p$ of $y$
+
+d. in order to fit the logistic regression in `R`, we define `family = "binomial"`
+
+---
+
+## Quiz 
+
+**Q - Write out a logistic model using parameters.** 
+
 --
 
-- Non-living artists: $\widehat{log\_price} = 4.91 + 0.00021~surface$
-- Living artists: $\widehat{log\_price} = 4.784 + 0.00069~surface$
-- Non-parallel lines due to the interaction effect!
+$$ \log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1~x$$ 
+No error term!
 
 ---
 
@@ -120,17 +106,15 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 22: Models with Multiple Predictors 2](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
+Go to [AE 23: Logistic Regression + Model Diagnostics](https://sta199-summer22.netlify.app/appex/ae23_BJ.html)
 
 ---
 
 ## Bulletin
 
-- Watch videos for [Prepare: June 14](https://sta199-summer22.netlify.app/prepare/week06_jun14_BJ.html)
-
-- Project draft due tonight at 11:59pm 
+- Project peer review due Wednesday, June 15 at 11:59pm 
 
 - HW04 due Thursday, June 16 at 11:59pm
 
-- Submit `ae22` 
+- Submit `ae23` 
 

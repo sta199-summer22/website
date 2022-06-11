@@ -1,0 +1,305 @@
+---
+title: "AE 23: Logistic Regression"
+subtitle: "due Wednesday, June 15 at 9:29am"
+author: "Bora Jin"
+editor_options:
+  chunk_output_type: console
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae23-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Introduction
+
+Multiple linear regression allows us to relate a numerical response variable to one or more numerical or categorical predictors. We have used them to understand relationships and make predictions.
+
+But what about a situation where the response of interest is binary?
+
+- spam or non-spam
+- malignant or benign tumor
+- survived or died
+- admitted or denied
+- won or lost an election
+
+Then we use **logistic regression**!
+
+## Email Spam
+
+To illustrate logistic regression, we will build a spam filter from email data. Today's data consists of 4,601 emails from George's inbox that are classified as spam or non-spam. The data were collected at Hewlett-Packard labs and contains 58 variables. The first 48 variables are specific keywords, and each observation is the percentage of appearance of that word in the message. Click [here](https://rdrr.io/cran/kernlab/man/spam.html) to read more. 
+
+- `type` $= 1$ is spam
+- `type` $= 0$ is non-spam
+
+We first load relevant packages 
+
+```{r load-package, message = F}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+```
+
+and then read the data.
+
+```{r load-data, message = FALSE}
+spam <- read_csv("data/spam.csv")
+glimpse(spam)
+```
+
+### Part 1: Business as usual 
+
+The basic modeling logic is that the percentage of certain words in each email can help us determine whether or not the email is spam.
+
+Let's start by examining one predictor, the word "george" (`george`) because it's George's inbox.
+
+**Q -** Create faceted histogram showing the percentage of the word "george" by being spam or non-spam. Make a table of mean and maximum number of "george" by spam or non-spam. 
+Would you expect emails with or without the word "george" to be spam? 
+
+```{r hist, message = FALSE}
+
+```
+
+```{r table}
+
+```
+
+Then we might assume the following model: 
+
+$$type = \beta_0 + \beta_1~george + \epsilon$$
+
+**Q - ** Fit the linear regression model above and print the output in a `tidy` way. 
+Visualize the fitted line on a scatterplot using `geom_smooth()`. 
+Discuss your visualization with your neighbor. 
+Is this a good model? Why or why not? 
+
+```{r fitted-type}
+
+```
+
+```{r viz-type}
+
+```
+
+**Q - ** What are some problems with this approach? 
+
+$$type = \beta_0 + \beta_1~george + \epsilon$$
+We need a new tool to match ranges of the left hand side (LHS) and the right hand side (RHS) of the model equation.  
+
+### Part 2: Preliminaries 
+
+- Let $p$ be the **success probability** of some event, e.g., $P(type = spam) = p$ or $P(game = win) = p$.
+- **Odds** of success is $\frac{p}{1-p}$
+  - Odds are sometimes expressed as $p:(1-p)$ and read $p$ to $1-p$.
+- **Log odds** is natural log of the odds, yielding the **logit** of $p$,
+$$\log\left(\frac{p}{1-p}\right) = logit(p)$$
+  - The logit function takes an input in $[0,1]$ and maps it to a value between $-\infty$ and $\infty$.
+- **Logistic (or inverse-logit)** function undoes the logit transformation. 
+$$logistic(x) = \frac{\exp(x)}{1+\exp(x)} = \frac{1}{1+\exp(-x)}$$
+  - It takes a value between $-\infty$ and $\infty$ and maps it to a value between 0 and 1. 
+  
+**Q - ** Suppose there is a 70% chance it will rain tomorrow. Calculate the following: 
+
+Probability it will rain: 
+
+Probability it won't rain: 
+
+Odds it will rain: 
+
+**Q - ** What do you notice in the visualization of $logit(p)$ vs. $p$ below 
+in terms of ranges in $x$ and $y$ axes? 
+
+```{r echo=FALSE}
+d <- tibble(p = seq(0.001, 0.999, length.out = 1000)) %>%
+  mutate(logit_p = log(p/(1-p)))
+ggplot(d, aes(x = p, y = logit_p)) + 
+  geom_line() + 
+  xlim(0,1) + 
+  labs(y = "logit(p)", title = "logit(p) vs. p")
+```
+
+### Part 3: Logistic regression 
+
+Logistic regression is a generalized linear model that explains a **binary response** variable using **a linear regression** with a **logit link**:
+
+$$\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1x_1 + \cdots + \beta_kx_k$$ 
+
+Using the inverse logit function, we can find the equation for $p$
+
+$$ p = \frac{1}{1+\exp\{-(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)\}} = \frac{\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}{1+\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}$$ 
+
+Suppose we want to relate the probability that an email is spam to the 
+percentage of the word "you" (`you`) and the total number of capital letters 
+(`capitalTotal`) in the email. 
+
+**Q - ** Write out a logistic regression model in context of our data using parameters and variable names. Write out a probability equation as well using the inverse logit function. 
+
+
+**Q - ** Using functions in `R`, fit the logistic regression model in the previous question and print its output in a `tidy` way.  
+
+```{r glm, eval = FALSE}
+# option 1
+glm1 <- XXXXX_reg(engine = "____") %>% 
+  fit(_______, data = spam, family = _______)
+glm1 %>% 
+  tidy()
+```
+
+**Q - ** What is different in the code above from previous linear models we fit?
+
+Another way of fitting the same glm is the following:
+
+```{r glm2}
+# option 2
+```
+
+Here, you don't have to manually make `type` as a factor. 
+
+**Q - ** Based on the regression result, write out the fitted logistic regression model and reformulate it into the fitted equation for $\hat{p}$ as well. 
+
+**Q - ** Interpret the estimated coefficients in context of data. Hint: Use the term "log odds". 
+
+- Intercept: 
+- Slope of `you`: 
+- Slope of `capitalTotal`:  
+
+### Part 4: Predicted probabilities 
+
+Let's examine predicted values using the `augment()` function. One caveat is the `augment()` function should apply to the `fit` element in the model object from the first option with `logistic_reg()`, while it can directly apply to the model object from the second option with `glm()`. See the code below.
+
+```{r augment, eval = FALSE}
+# option 1
+glm1$fit %>% 
+  augment() %>% 
+  head()
+
+# option 2
+glm2 %>% 
+  augment() %>% 
+  head()
+```
+
+**Q - ** Which of the following is the predicted value (values in `.fitted` column) in this model? Hint: What is on LHS of a logistic regression model?
+
+a. predicted odds
+b. predicted log odds 
+c. predicted binary response 
+d. predicted probability 
+
+
+For instance, the predicted odds of being spam for the first email is $\exp(-0.324) = 0.723$.
+
+**Q - ** Calculate the predicted probability of being spam for the first email. 
+
+```{r estprob}
+
+```
+
+**Q - ** Calculate the predicted probability of being spam for the third email. 
+
+```{r estprob3}
+
+```
+
+We can also obtain predicted probabilities of being spam at new levels of the explanatory variables. 
+
+**Q - ** Calculate predicted probability the email is spam if the percentage of the word "you" is 5% in the email and there are 2500 capital letters.
+
+```{r newdata}
+
+```
+
+You can also obtain the predicted probabilities at new values of the explanatory variables using the `augment()` function. 
+
+```{r newdata2, eval = FALSE}
+new_data <- tibble(you = 5, 
+                   capitalTotal = 2500)
+glm2 %>% 
+  augment(., newdata = ______) %>% 
+  mutate(phat = _____)
+```
+
+**Q - ** Compute the predicted probability of the following new email to be spam. The percentage of the word "you" is defined as 
+100*(total number of "you")/(total number of words).
+
+```{r newemail}
+email <- read_lines("data/test_email.txt")
+email 
+```
+
+```{r char}
+# total number of words
+total_word <- sum(str_count(email, " ")) + 5
+# total number of the word "you"
+total_you <- sum(str_count(tolower(email), "you")) - 1
+# total number of capital letters 
+total_cap <- sum(str_count(email, "[A-Z]"))
+```
+
+```{r pred-newemail}
+
+```
+
+
+### Part 5: Sensitivity and specificity 
+
+One might also be interested in the predicted labels (spam vs. non-spam), not just predicted probabilities. 
+
+Just because there's greater than 50% chance an email is spam doesn't mean we have to label it as such. We can adjust our **threshold** or **cutoff probability** to be more or less sensitive to spam emails.
+
+In other words, we get to select a number $p_c$ such that if $p > p_c$, then label the email as spam.
+
+Let's make a 2x2 contingency table at cutoff probability = 0.05 
+where rows represent predicted labels of emails, 
+columns represent the actual type of emails, and each cell contains counts. 
+
+```{r cutoff5, eval = FALSE}
+cutoff <- 0.5
+glm2 %>% 
+  augment() %>%
+  mutate(type_name = ifelse(type == 1, "spam", "non-spam"),
+         phat = exp(.fitted)/(1+exp(.fitted))) %>% 
+  mutate(type_pred = ifelse(phat > cutoff, 
+                            "labeled spam", "labeled non-spam")) %>% 
+  count(type_pred, type_name) %>% 
+  pivot_wider(values_from = n, 
+              names_from = type_name)
+```
+
+**Q - ** Change the cutoff value in the above code chunk to 0.1, 0.3, 0.7, and 0.99. What do you observe?
+
+```{r cutoff1}
+
+```
+
+```{r cutoff3}
+
+```
+
+```{r cutoff7}
+
+```
+
+```{r cutoff9}
+
+```
+
+- Lower threshold means that we are sensitive to spam emails and label more emails as spam. 
+- Higher threshold means we can tolerate spam emails and label fewer emails as spam. 
+- Sensitivity = P(labeled spam | spam), how well we can detect success events
+- Specificity = P(labeled non-spam | non-spam), how well we can rule out failure events 
+- We want both of them to be high, but there is always a trade-off! 
+  - Imagine a spam filter which labels all emails as spam: 1 sensitivity, but 0 specificity
+- We can adjust the threshold depending on how much we dislike spam (sensitivity) vs. how much we value receiving important emails (specificity).
+
+## Submitting Application Exercises
+
+- Once you have completed the activity, push your final changes to your GitHub repo. 
+- Make sure you committed at least *three* times. 
+- Check that your repo is updated on GitHub, and that’s all you need to do to submit application exercises for participation.
+

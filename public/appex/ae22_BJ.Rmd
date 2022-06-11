@@ -1,5 +1,5 @@
 ---
-title: "AE 22: Models with Multiple Predictors 2"
+title: "AE 22: Models with Multiple Predictors 2 + Model Diagnostics"
 subtitle: "due Tuesdays, June 14 at 9:29am"
 author: "Bora Jin"
 editor_options:
@@ -250,6 +250,52 @@ lm_pam %>%
 ```
 
 **Q - ** Is $\beta_2$ significant at the $\alpha = 0.05$ level? State your conclusion.
+
+### Part 5: Model diagnostics 
+
+After fitting models, we should examine if certain model conditions hold. If they do, our inferences based on the fitted models are reliable. Otherwise, we should consider fitting different models. 
+
+We will examine residuals vs. predicted values to check the following conditions:
+
+-  Linearity: There is a linear relationship between the response and predictor variables.
+-  Constant variance: The variability of the errors is equal for all values of the predictor variable.
+
+While we can manually compute residuals and predicted values from the regression output, this time we will use `augment()` function in the `tidymodels` package. 
+
+We first fit a model and pipe it into the `augment()` function. For instance, for Model 1,
+
+```{r augment, eval = FALSE}
+aug_main <- ____ %>% # fitted model 
+  augment() 
+aug_main %>% 
+  head()
+```
+
+We will focus on two output values from the `augment`ed results: 
+
+- `.fitted`: Fitted or predicted value
+- `.resid`: The difference between observed and fitted values
+- For information on more outputs, try `?augment`.
+
+**Q - ** Create a scatterplot of residuals vs. predicted values using the augmented results above. To aid the visual assessment, add a horizontal gray dashed line at 0. 
+
+- Does linearity condition hold? 
+- Does constant variance condition hold? 
+
+```{r model1-diagnostics, eval = FALSE}
+aug_main %>% 
+  ggplot(aes(y = _____, x = _____)) +
+  geom_point() + 
+  geom_hline(yintercept = __, linetype = _____, color = ____) + 
+  labs(x = "Predicted price", y = "Residuals")
+```
+
+**Q - ** Repeat the same exercise for Model 2.  
+
+```{r model2-diagnostics}
+
+```
+
 
 ## Submitting Application Exercises
 

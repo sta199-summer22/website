@@ -1,5 +1,5 @@
 ---
-title: "Models with Multiple Predictors 2"
+title: "Models with Multiple Predictors 2 + Model Diagnostics"
 author: "Bora Jin"
 
 output:
@@ -16,6 +16,12 @@ output:
 ```{r child = "setup.Rmd"}
 ```
 
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+```
+
 ## Material 
 
 `r emo::ji("movie_camera")` Watch [Models with Multiple Predictors 2](https://www.youtube.com/watch?v=nJAYRnLPb10)
@@ -30,6 +36,7 @@ output:
 - Model interactions between variables 
 - Understand what's linear in linear regressions
 - Implement CLT-based CI and HT for regression parameters
+- Understand model diagnostics and how to handle common model violations 
 
 ---
 
@@ -92,13 +99,242 @@ $$+ ~ 0.00048 ~surface * artistliving$$
 
 class: middle, center
 
+# Model Diagnostics
+
+---
+
+## Model Assumptions 
+
+-  **Linearity:** There is a linear relationship between the response and predictor variables.
+-  **Constant variance:** The variability of the errors is equal for all values of the predictor variable.
+
+There are other assumptions as well that are beyond the scope of this course. 
+
+---
+
+## Linearity and Constant variance 
+
+- **Linearity:** The residuals vs. fitted values plot should show a random scatter of residuals around 0.
+  - No distinguishable pattern or structure along the x or y axes.
+  - Why do we want a complete random scatter?
+    
+      - This shows my model is good and captures any interesting (linear) relationship in the data. 
+      - Remaining patterns in residuals vs. fitted values suggest that the linear model is not the best assumption for the data. 
+  
+- **Constant variance:** The vertical spread of the residuals should be relatively constant across the plot.
+
+---
+
+## Linearity and Constant variance 
+
+**This is what we look for**
+
+```{r out.width = "70%", echo=FALSE}
+set.seed(12346)
+df1 <- tibble(
+  fake_resid = rnorm(1000, mean = 0, sd = 30),
+  fake_predicted = runif(1000, min = 0, max = 200)
+)
+ggplot(df1, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** <br>
+increasing / decreasing variability in residuals as predicted value increases 
+
+```{r out.width = "65%", echo=FALSE}
+set.seed(12346)
+df2 <- tibble(
+  fake_resid = c(rnorm(100, mean = 0, sd = 1), 
+                 rnorm(100, mean = 0, sd = 15), 
+                 rnorm(100, mean = 0, sd = 25), 
+                 rnorm(100, mean = 0, sd = 20), 
+                 rnorm(100, mean = 0, sd = 25), 
+                 rnorm(100, mean = 0, sd = 50), 
+                 rnorm(100, mean = 0, sd = 35), 
+                 rnorm(100, mean = 0, sd = 40),
+                 rnorm(200, mean = 0, sd = 80)),
+  fake_predicted = seq(0.2, 200, 0.2)
+)
+ggplot(df2, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** <br>
+any groups of residuals 
+
+```{r out.width = "65%", echo=FALSE}
+set.seed(12346)
+df3 <- tibble(
+  fake_predicted = seq(0.2, 200, 0.2),
+  fake_resid = c(
+    rnorm(500, mean = -20, sd = 10),
+    rnorm(500, mean = 10, sd = 10)
+  )
+)
+ggplot(df3, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** <br>
+residuals correlated with predicted values
+
+```{r out.width = "65%", echo=FALSE}
+set.seed(12346)
+df4 <- tibble(
+  fake_predicted = seq(0.2, 200, 0.2),
+  fake_resid = fake_predicted + rnorm(1000, mean = 0, sd = 50)
+)
+ggplot(df4, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** <br>
+any patterns 1
+
+```{r out.width = "65%", echo=FALSE}
+set.seed(12346)
+df5 <- tibble(
+  fake_predicted = seq(-100, 100, 0.4),
+  fake_resid = -5*fake_predicted^2 - 3*fake_predicted + 20000 + 
+    rnorm(501, mean = 0, sd = 10000)
+)
+ggplot(df5, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** <br>
+any patterns 2
+
+```{r out.width = "65%", echo=FALSE}
+set.seed(12346)
+df6 <- tibble(
+  fake_predicted = seq(-2*pi, 2*pi, length = 500),
+  fake_resid = 2*sin(fake_predicted) + rnorm(500, mean = 0, sd = 1.5)
+)
+ggplot(df6, mapping = aes(x = fake_predicted, y = fake_resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")
+```
+
+---
+
+## When Model Assumptions Are Violated 
+
+```{r echo = FALSE, out.width="75%"}
+set.seed(12345)
+x <- seq(-5, 5, length = 500)
+y <- exp(.5*x + rnorm(500, sd = 2))
+lm1 <- lm(y ~ x)
+all_lm1 <- augment(lm1)
+plt0 <- all_lm1 %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() + 
+  labs(x = "Predictor", y = "Response")
+plt1 <- all_lm1 %>% 
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point() + 
+  labs(x = "Predicted", y = "Residuals")
+plt2 <- all_lm1 %>% 
+  ggplot(aes(x = y)) +
+  geom_histogram(bins = 50) + 
+  labs(y = "Count")
+gridExtra::grid.arrange(plt1, plt2, nrow = 2) 
+```
+
+---
+
+## When Model Assumptions Are Violated 
+
+.pull-left[
+```{r echo = FALSE, out.width="100%"}
+gridExtra::grid.arrange(plt1, plt2, nrow = 2) 
+```
+]
+
+.pull-right[
+Transform the response variable. This may help! 
+
+- Natural log transformation on $y$ variable: In `R`, `log(y)`
+- Helpful for extremely right skewed distribution and/or non-constant variance in residuals 
+]
+
+---
+
+## Log Transformation 
+
+This is still a linear model with $\log(y)$ as the response:
+$$\log(y) = \beta_0 + \beta_1~x + \epsilon ~\Rightarrow~ \widehat{\log(y)} = \hat{\beta}_0 + \hat{\beta}_1~x $$ 
+
+.pull-left[
+```{r eval = FALSE}
+logy <- log(y)
+lm2 <- lm(logy ~ x)
+```
+]
+
+.pull-right[
+```{r echo = FALSE, out.width="100%"}
+logy <- log(y)
+lm2 <- lm(logy ~ x)
+all_lm2 <- augment(lm2)
+plt1 <- all_lm2 %>% 
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_point() + 
+  geom_hline(yintercept = 0, color = "gray", lty = "dashed") + 
+  labs(x = "Predicted log(y)", y = "Residuals")
+plt2 <- all_lm2 %>% 
+  ggplot(aes(x = logy)) +
+  geom_histogram() + 
+  labs(y = "Count", x = "log(y)")
+gridExtra::grid.arrange(plt1, plt2, nrow = 2) 
+```
+]
+
+
+---
+
+
+class: middle, center
+
 # Questions?
 
 ---
 
 ## Let's Practice Together! 
 
-Go to [AE 22: Models with Multiple Predictors 2](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
+Go to [AE 22: Models with Multiple Predictors 2 + Model Diagnostics](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
 
 ---
 

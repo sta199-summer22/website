@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Models with Multiple Predictors 2</title>
+    <title>Models with Multiple Predictors 2 + Model Diagnostics</title>
     <meta charset="utf-8" />
     <meta name="author" content="Bora Jin" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,7 +16,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Models with Multiple Predictors 2
+# Models with Multiple Predictors 2 + Model Diagnostics
 ### Bora Jin
 
 ---
@@ -35,6 +35,8 @@ layout: true
 
 ---
 
+
+
 ## Material 
 
 🎥 Watch [Models with Multiple Predictors 2](https://www.youtube.com/watch?v=nJAYRnLPb10)
@@ -49,6 +51,7 @@ layout: true
 - Model interactions between variables 
 - Understand what's linear in linear regressions
 - Implement CLT-based CI and HT for regression parameters
+- Understand model diagnostics and how to handle common model violations 
 
 ---
 
@@ -114,13 +117,136 @@ lm(y ~ x1 + x2 + x1:x2, data = mydata)
 
 class: middle, center
 
+# Model Diagnostics
+
+---
+
+## Model Assumptions 
+
+-  **Linearity:** There is a linear relationship between the response and predictor variables.
+-  **Constant variance:** The variability of the errors is equal for all values of the predictor variable.
+
+There are other assumptions as well that are beyond the scope of this course. 
+
+---
+
+## Linearity and Constant variance 
+
+- **Linearity:** The residuals vs. fitted values plot should show a random scatter of residuals around 0.
+  - No distinguishable pattern or structure along the x or y axes.
+  - Why do we want a complete random scatter?
+    
+      - This shows my model is good and captures any interesting (linear) relationship in the data. 
+      - Remaining patterns in residuals vs. fitted values suggest that the linear model is not the best assumption for the data. 
+  
+- **Constant variance:** The vertical spread of the residuals should be relatively constant across the plot.
+
+---
+
+## Linearity and Constant variance 
+
+**This is what we look for**
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** &lt;br&gt;
+increasing / decreasing variability in residuals as predicted value increases 
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-6-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** &lt;br&gt;
+any groups of residuals 
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-7-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** &lt;br&gt;
+residuals correlated with predicted values
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-8-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** &lt;br&gt;
+any patterns 1
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-9-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Linearity and Constant variance 
+
+We **don't want** &lt;br&gt;
+any patterns 2
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-10-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## When Model Assumptions Are Violated 
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-11-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## When Model Assumptions Are Violated 
+
+.pull-left[
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Transform the response variable. This may help! 
+
+- Natural log transformation on `\(y\)` variable: In `R`, `log(y)`
+- Helpful for extremely right skewed distribution and/or non-constant variance in residuals 
+]
+
+---
+
+## Log Transformation 
+
+This is still a linear model with `\(\log(y)\)` as the response:
+$$\log(y) = \beta_0 + \beta_1~x + \epsilon ~\Rightarrow~ \widehat{\log(y)} = \hat{\beta}_0 + \hat{\beta}_1~x $$ 
+
+.pull-left[
+
+```r
+logy &lt;- log(y)
+lm2 &lt;- lm(logy ~ x)
+```
+]
+
+.pull-right[
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+
+class: middle, center
+
 # Questions?
 
 ---
 
 ## Let's Practice Together! 
 
-Go to [AE 22: Models with Multiple Predictors 2](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
+Go to [AE 22: Models with Multiple Predictors 2 + Model Diagnostics](https://sta199-summer22.netlify.app/appex/ae22_BJ.html)
 
 ---
 
