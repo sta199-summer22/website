@@ -274,14 +274,14 @@ library(tidymodels)</code></pre>
 <li>Model 2: Price vs. Age + Type + Age*Type</li>
 </ul>
 <p>We call Age*Type an interaction term, which is defined as the product of <code>age</code> and <code>type</code>. The effect of the interaction term on a dependent variable is called “interaction effects”.</p>
-<p>On the other hand, “main effects” represent the effect of a single independent variable on the dependent variable. Since Model 1 only includes main effects for age and type, it is called a main effects only model.</p>
+<p>On the other hand, “main effects” represent the effect of a single independent variable on the dependent variable. Since Model 1 includes main effects only for age and type, it is called a main effects only model.</p>
 <p><strong>Q - </strong> How many more terms do you expect to appear in Model 2 compared to Model 1? Hint: there are three car types (<code>Accord</code>, <code>Maxima</code>, and <code>Mazda6</code>) among which one is used as a baseline.</p>
-<p><strong>Q - </strong> What do we assume about relationship between car age and selling price by different car types in Model 1 and Model 2?</p>
+<p><strong>Q - </strong> What do we assume about a relationship between car age and selling price by different car types in Model 1 and Model 2?</p>
 <ul>
 <li>Model 1:</li>
 <li>Model 2:</li>
 </ul>
-<p><strong>Q - </strong> Use appropriate functions to find the fitted model and display the results in <code>tidy</code> format. Hint: <code>y ~ x1*x2</code> fits two main effects for <code>x1</code> and <code>x2</code> and their interaction effect.</p>
+<p><strong>Q - </strong> Use appropriate functions to find the fitted models and display the results in <code>tidy</code> format. Hint: <code>y ~ x1*x2</code> fits two main effects for <code>x1</code> and <code>x2</code> and their interaction effect.</p>
 <pre class="r"><code># model 1
 
 # model 2</code></pre>
@@ -341,8 +341,8 @@ library(tidymodels)</code></pre>
 <li><p>Fit a linear model with the transformed <span class="math inline">\(x\)</span>. Find <span class="math inline">\(R^2\)</span> of the new model and compare.</p></li>
 </ol>
 </div>
-<div id="part-3-clt-based-ci-for-parameters-in-a-regression-framework" class="section level3">
-<h3>Part 3: CLT-based CI for parameters in a regression framework</h3>
+<div id="part-3-ci-for-parameters-in-a-regression-framework" class="section level3">
+<h3>Part 3: CI for parameters in a regression framework</h3>
 <p>Let’s revisit one of the models from the latest AE:</p>
 <p><span class="math display">\[price = \beta_0 + \beta_1~age + \beta_2~mileage + \epsilon \]</span></p>
 <p><strong>Q - </strong> To remind ourselves, fit the above model and find <span class="math inline">\(\hat{\beta}_0\)</span>, <span class="math inline">\(\hat{\beta}_1\)</span>, and <span class="math inline">\(\hat{\beta}_2\)</span>.</p>
@@ -351,8 +351,17 @@ library(tidymodels)</code></pre>
 <li><span class="math inline">\(\hat{\beta}_1 = ?\)</span></li>
 <li><span class="math inline">\(\hat{\beta}_2 = ?\)</span></li>
 </ul>
-<p>Beyond these point estimates, we can find some plausible values for <span class="math inline">\(\beta\)</span>’s. Using CLT, a <span class="math inline">\((1-\alpha)*100\)</span>% confidence interval for <span class="math inline">\(\beta\)</span> is obtained as</p>
-<p><span class="math display">\[ \hat{\beta} \pm t^*_{n-p} \times \hat{se}\]</span> where <span class="math inline">\(t^*_{n-p}\)</span> is a <span class="math inline">\(1-\alpha/2\)</span> quantile value of a t-distribution with degrees of freedom <span class="math inline">\(n-p\)</span>. The number of observations is <span class="math inline">\(n\)</span>, and the number of parameters in the model is <span class="math inline">\(p\)</span>. For instance, in the above model, <span class="math inline">\(p=3\)</span>.</p>
+<p>Beyond these point estimates, we can find some plausible values for <span class="math inline">\(\beta\)</span>’s.</p>
+<p>Let’s build a theory-based CI on regression parameters. In order to make theory-based inferences, we need to assume <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span> independently and identically (iid). (So far, we haven’t assumed the normality!)</p>
+<p>Independence means knowing the error term for one observation doesn’t tell you anything about the error term for another observation.</p>
+<p>Then a <span class="math inline">\((1-\alpha)*100\)</span>% confidence interval for <span class="math inline">\(\beta\)</span> is obtained as</p>
+<p><span class="math display">\[ \hat{\beta} \pm t^*_{n-p} \times \hat{se}\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\hat{\beta}\)</span> is the <code>estimate</code> for <span class="math inline">\(\beta\)</span> in the regression</li>
+<li><span class="math inline">\(\hat{se}\)</span> is the estimated <code>std.error</code> of <span class="math inline">\(\hat{\beta}\)</span></li>
+<li><span class="math inline">\(t^*_{n-p}\)</span> is a <span class="math inline">\(1-\alpha/2\)</span> quantile value of a t-distribution with degrees of freedom <span class="math inline">\(n-p\)</span>. The number of observations is <span class="math inline">\(n\)</span>, and the number of parameters in the model is <span class="math inline">\(p\)</span>. For instance, in the above model, <span class="math inline">\(p=3\)</span>.</li>
+</ul>
+<p>Notice a similar structure with CIs for population mean using CLT.</p>
 <p><strong>Q - </strong> Manually compute a 95% CI for <span class="math inline">\(\beta_2\)</span>.</p>
 <pre class="r"><code># df for t-distribution
 
@@ -380,19 +389,20 @@ library(tidymodels)</code></pre>
 
 # tidy</code></pre>
 </div>
-<div id="part-4-clt-based-ht-for-parameters-in-a-regression-framework" class="section level3">
-<h3>Part 4: CLT-based HT for parameters in a regression framework</h3>
+<div id="part-4-ht-for-parameters-in-a-regression-framework" class="section level3">
+<h3>Part 4: HT for parameters in a regression framework</h3>
 <p>Based on the point estimate and the confidence interval for <span class="math inline">\(\beta_2\)</span> in Part 3, we may want to determine if <span class="math inline">\(\beta_2\)</span> is significantly different from 0.</p>
 <p>We can set it up as a hypothesis test, with the hypotheses below:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2 = 0\)</span> There is no relationship between price and mileage. <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\beta_2 \neq 0\)</span> There is a relationship between price and mileage.</p>
 <p>We reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_1\)</span> if the data provide strong evidence that the true slope <span class="math inline">\(\beta_2\)</span> is different from 0.</p>
-<p>Our test statistic is</p>
-<p><span class="math display">\[ t = \frac{\hat{\beta}_2 - 0}{\hat{se}}, \]</span> and its null distribution is a t-distribution with <span class="math inline">\(n-p\)</span> degrees of freedom.</p>
+<p>Again, we assume <span class="math inline">\(\epsilon \stackrel{iid}{\sim} N(0, \sigma^2)\)</span>.</p>
+<p>Then our test statistic is <span class="math display">\[ t = \frac{\hat{\beta}_2 - 0}{\hat{se}}, \]</span> and its null distribution is a t-distribution with <span class="math inline">\(n-p\)</span> degrees of freedom.</p>
 <p><strong>Q - </strong> Using the equation above, compute the p-value.</p>
 <p><code>R</code> takes care of much of this behind the scenes with the <code>tidy</code> output and reports a p-value for each <span class="math inline">\(\beta\)</span> by default.</p>
 <pre class="r"><code>lm_pam %&gt;% 
   tidy()</code></pre>
 <p><strong>Q - </strong> Is <span class="math inline">\(\beta_2\)</span> significant at the <span class="math inline">\(\alpha = 0.05\)</span> level? State your conclusion.</p>
+<p><strong>Q - </strong> What about <span class="math inline">\(\beta_0\)</span> or <span class="math inline">\(\beta_1\)</span>? Are they significant at the <span class="math inline">\(\alpha = 0.05\)</span> level?</p>
 </div>
 <div id="part-5-model-diagnostics" class="section level3">
 <h3>Part 5: Model diagnostics</h3>
@@ -400,7 +410,7 @@ library(tidymodels)</code></pre>
 <p>We will examine residuals vs. predicted values to check the following conditions:</p>
 <ul>
 <li>Linearity: There is a linear relationship between the response and predictor variables.</li>
-<li>Constant variance: The variability of the errors is equal for all values of the predictor variable.</li>
+<li>Equal variance: The variability of the errors is equal for all values of the predictor variable.</li>
 </ul>
 <p>While we can manually compute residuals and predicted values from the regression output, this time we will use <code>augment()</code> function in the <code>tidymodels</code> package.</p>
 <p>We first fit a model and pipe it into the <code>augment()</code> function. For instance, for Model 1,</p>
@@ -417,14 +427,20 @@ aug_main %&gt;%
 <p><strong>Q - </strong> Create a scatterplot of residuals vs. predicted values using the augmented results above. To aid the visual assessment, add a horizontal gray dashed line at 0.</p>
 <ul>
 <li>Does linearity condition hold?</li>
-<li>Does constant variance condition hold?</li>
+<li>Does equal variance condition hold?</li>
 </ul>
 <pre class="r"><code>aug_main %&gt;% 
   ggplot(aes(y = _____, x = _____)) +
   geom_point() + 
   geom_hline(yintercept = __, linetype = _____, color = ____) + 
   labs(x = &quot;Predicted price&quot;, y = &quot;Residuals&quot;)</code></pre>
-<p><strong>Q - </strong> Repeat the same exercise for Model 2.</p>
+<p>If we want theory-based inferences about model parameters, we also need to check normality.</p>
+<ul>
+<li><strong>Normality:</strong> The errors follow a normal distribution.</li>
+</ul>
+<p><strong>Q - </strong> Check if the normality assumption is plausible for Model 1 using the <code>augment</code>ed result.</p>
+<p>If the cars in our data are completely randomly selected, then <strong>independence</strong> assumption also holds as the error for one car wouldn’t inform us of the error for another car.</p>
+<p><strong>Q - </strong> Repeat the same exercises for Model 2.</p>
 </div>
 </div>
 <div id="submitting-application-exercises" class="section level2">

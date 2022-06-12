@@ -35,7 +35,7 @@ library(knitr)
 - Use functions in `R` to fit a linear model with multiple predictors 
 - Model interactions between variables 
 - Understand what's linear in linear regressions
-- Implement CLT-based CI and HT for regression parameters
+- Understand and implement CI and HT for regression parameters
 - Understand model diagnostics and how to handle common model violations 
 
 ---
@@ -48,6 +48,8 @@ Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variabl
 
 --
 $$y = \beta_0 + \beta_1~x_1 + \epsilon$$
+
+--
 ```{r, eval = FALSE}
 lm(y ~ x1, data = mydata)
 ```
@@ -61,7 +63,7 @@ lm(y ~ x1, data = mydata)
 --
 
 $$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$
-
+--
 ```{r, eval = FALSE}
 linear_reg(engine = "lm") %>% 
   fit(y ~ x1 + x2, data = mydata)
@@ -76,6 +78,7 @@ linear_reg(engine = "lm") %>%
 --
 
 $$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$
+--
 ```{r, eval = FALSE}
 lm(y ~ x1*x2, data = mydata)
 lm(y ~ x1 + x2 + x1:x2, data = mydata)
@@ -101,31 +104,36 @@ class: middle, center
 
 # Model Diagnostics
 
----
-
-## Model Assumptions 
-
--  **Linearity:** There is a linear relationship between the response and predictor variables.
--  **Constant variance:** The variability of the errors is equal for all values of the predictor variable.
-
-There are other assumptions as well that are beyond the scope of this course. 
+.footnote[Source: Duke STA210 by Prof. Mine Çetinkaya-Rundel https://sta210-s22.github.io/website/slides/lec-7.html#]
 
 ---
 
-## Linearity and Constant variance 
+## Model Conditions 
+
+- **L**inearity: There is a linear relationship between the response and predictor variables.
+- **I**ndependence: The errors are independent from each other. 
+- **N**ormality (optional): The errors follow a normal distribution.
+- **E**qual variance: The variability of the errors is equal for all values of the predictor variable.
+
+
+- For multiple regression, the predictors should not be too correlated with each other. 
+
+---
+
+## Linearity and Equal Variance 
 
 - **Linearity:** The residuals vs. fitted values plot should show a random scatter of residuals around 0.
   - No distinguishable pattern or structure along the x or y axes.
   - Why do we want a complete random scatter?
     
-      - This shows my model is good and captures any interesting (linear) relationship in the data. 
+      - It means that my model is good and captures any interesting (linear) relationship in the data. 
       - Remaining patterns in residuals vs. fitted values suggest that the linear model is not the best assumption for the data. 
   
-- **Constant variance:** The vertical spread of the residuals should be relatively constant across the plot.
+- **Equal variance:** The vertical spread of the residuals should be relatively constant across the plot.
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 **This is what we look for**
 
@@ -143,7 +151,7 @@ ggplot(df1, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** <br>
 increasing / decreasing variability in residuals as predicted value increases 
@@ -170,7 +178,7 @@ ggplot(df2, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** <br>
 any groups of residuals 
@@ -192,7 +200,7 @@ ggplot(df3, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** <br>
 residuals correlated with predicted values
@@ -211,7 +219,7 @@ ggplot(df4, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** <br>
 any patterns 1
@@ -231,7 +239,7 @@ ggplot(df5, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** <br>
 any patterns 2
@@ -250,9 +258,35 @@ ggplot(df6, mapping = aes(x = fake_predicted, y = fake_resid)) +
 
 ---
 
-## When Model Assumptions Are Violated 
+## Normality 
 
-```{r echo = FALSE, out.width="75%"}
+```{r out.width = "70%", echo=FALSE}
+df1 %>% 
+  ggplot() + 
+  geom_histogram(aes(x = fake_resid, y = ..density..), 
+                 bins = 15, 
+                 color = "white") + 
+  geom_function(data = data.frame(x = seq(-100, 100, length = 1000)), 
+                aes(x),
+                fun = dnorm, 
+                args = list(mean = 0, sd = 30), 
+                size = 2, color = "steelblue", alpha = 0.8) +
+  labs(x = "Residual", y = "Density", title = "Histogram of residuals")
+```
+
+---
+
+## Independence 
+
+- We can often check the independence assumption based on the context of the data and how the observations were collected.
+
+- If the data were collected in a particular order, examine a scatterplot of the residuals versus order in which the data were collected.
+
+---
+
+## When Model Conditions Are Violated 
+
+```{r echo = FALSE, out.width="70%"}
 set.seed(12345)
 x <- seq(-5, 5, length = 500)
 y <- exp(.5*x + rnorm(500, sd = 2))
@@ -273,9 +307,11 @@ plt2 <- all_lm1 %>%
 gridExtra::grid.arrange(plt1, plt2, nrow = 2) 
 ```
 
+Linearity and equal variance seem violated. 
+
 ---
 
-## When Model Assumptions Are Violated 
+## When Model Conditions Are Violated 
 
 .pull-left[
 ```{r echo = FALSE, out.width="100%"}
@@ -344,7 +380,7 @@ Go to [AE 22: Models with Multiple Predictors 2 + Model Diagnostics](https://sta
 
 - Project draft due tonight at 11:59pm 
 
-- HW04 due Thursday, June 16 at 11:59pm
+- HW02, HW04 due Thursday, June 16 at 11:59pm
 
 - Submit `ae22` 
 

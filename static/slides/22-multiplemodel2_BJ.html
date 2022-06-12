@@ -50,7 +50,7 @@ layout: true
 - Use functions in `R` to fit a linear model with multiple predictors 
 - Model interactions between variables 
 - Understand what's linear in linear regressions
-- Implement CLT-based CI and HT for regression parameters
+- Understand and implement CI and HT for regression parameters
 - Understand model diagnostics and how to handle common model violations 
 
 ---
@@ -63,6 +63,8 @@ Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variabl
 
 --
 `$$y = \beta_0 + \beta_1~x_1 + \epsilon$$`
+
+--
 
 ```r
 lm(y ~ x1, data = mydata)
@@ -77,7 +79,7 @@ lm(y ~ x1, data = mydata)
 --
 
 `$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$`
-
+--
 
 ```r
 linear_reg(engine = "lm") %&gt;% 
@@ -93,6 +95,7 @@ linear_reg(engine = "lm") %&gt;%
 --
 
 `$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$`
+--
 
 ```r
 lm(y ~ x1*x2, data = mydata)
@@ -119,31 +122,36 @@ class: middle, center
 
 # Model Diagnostics
 
----
-
-## Model Assumptions 
-
--  **Linearity:** There is a linear relationship between the response and predictor variables.
--  **Constant variance:** The variability of the errors is equal for all values of the predictor variable.
-
-There are other assumptions as well that are beyond the scope of this course. 
+.footnote[Source: Duke STA210 by Prof. Mine Çetinkaya-Rundel https://sta210-s22.github.io/website/slides/lec-7.html#]
 
 ---
 
-## Linearity and Constant variance 
+## Model Conditions 
+
+- **L**inearity: There is a linear relationship between the response and predictor variables.
+- **I**ndependence: The errors are independent from each other. 
+- **N**ormality (optional): The errors follow a normal distribution.
+- **E**qual variance: The variability of the errors is equal for all values of the predictor variable.
+
+
+- For multiple regression, the predictors should not be too correlated with each other. 
+
+---
+
+## Linearity and Equal Variance 
 
 - **Linearity:** The residuals vs. fitted values plot should show a random scatter of residuals around 0.
   - No distinguishable pattern or structure along the x or y axes.
   - Why do we want a complete random scatter?
     
-      - This shows my model is good and captures any interesting (linear) relationship in the data. 
+      - It means that my model is good and captures any interesting (linear) relationship in the data. 
       - Remaining patterns in residuals vs. fitted values suggest that the linear model is not the best assumption for the data. 
   
-- **Constant variance:** The vertical spread of the residuals should be relatively constant across the plot.
+- **Equal variance:** The vertical spread of the residuals should be relatively constant across the plot.
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 **This is what we look for**
 
@@ -151,7 +159,7 @@ There are other assumptions as well that are beyond the scope of this course.
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** &lt;br&gt;
 increasing / decreasing variability in residuals as predicted value increases 
@@ -160,7 +168,7 @@ increasing / decreasing variability in residuals as predicted value increases
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** &lt;br&gt;
 any groups of residuals 
@@ -169,7 +177,7 @@ any groups of residuals
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** &lt;br&gt;
 residuals correlated with predicted values
@@ -178,7 +186,7 @@ residuals correlated with predicted values
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** &lt;br&gt;
 any patterns 1
@@ -187,7 +195,7 @@ any patterns 1
 
 ---
 
-## Linearity and Constant variance 
+## Linearity and Equal Variance 
 
 We **don't want** &lt;br&gt;
 any patterns 2
@@ -196,16 +204,32 @@ any patterns 2
 
 ---
 
-## When Model Assumptions Are Violated 
+## Normality 
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-11-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## When Model Assumptions Are Violated 
+## Independence 
+
+- We can often check the independence assumption based on the context of the data and how the observations were collected.
+
+- If the data were collected in a particular order, examine a scatterplot of the residuals versus order in which the data were collected.
+
+---
+
+## When Model Conditions Are Violated 
+
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Linearity and equal variance seem violated. 
+
+---
+
+## When Model Conditions Are Violated 
 
 .pull-left[
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -231,7 +255,7 @@ lm2 &lt;- lm(logy ~ x)
 ]
 
 .pull-right[
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -256,7 +280,7 @@ Go to [AE 22: Models with Multiple Predictors 2 + Model Diagnostics](https://sta
 
 - Project draft due tonight at 11:59pm 
 
-- HW04 due Thursday, June 16 at 11:59pm
+- HW02, HW04 due Thursday, June 16 at 11:59pm
 
 - Submit `ae22` 
 

@@ -1,0 +1,136 @@
+---
+title: "Lab #08: Logistic Regression"
+subtitle: "due Friday, June 17 at 8:59am"
+output: 
+  tufte::tufte_html:
+    css: "./sta199-labs.css"
+    tufte_variant: "envisioned"
+    highlight: pygments
+    toc: false
+    toc_depth: 1
+link-citations: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE)
+```
+
+# Goals
+
+- Build a logistic regression model.
+
+# Getting started
+
+- Go to [course GitHub organization page](https://github.com/sta199-summer22) and clone the repository entitled "lab08-GitHubUsername" in RStudio. 
+- Find `lab08.Rmd` to open the template R Markdown file. 
+
+`r emo::ji("stop_sign")` This assignment is due **Friday, June 17 at 8:59am** so that you are not stressed about submitting the lab during the final exam hours. 
+
+For each exercise:
+
+- Show all relevant code and output used to obtain your response. If you use inline code, make sure we can still see the code used to derive that answer.
+
+- Write all narrative in complete sentences, and use clear axis labels and titles on visualizations.
+
+# Packages 
+
+We will use the **tidyverse**, **tidymodels**, **knitr** packages in this lab.
+
+```{r load-package, message = FALSE, warning = FALSE}
+library(tidyverse)
+theme_set(theme_bw())
+library(tidymodels)
+library(knitr)
+```
+
+# Titanic
+
+The wreck of the Titanic is one of the most infamous shipwrecks in history. 
+
+On April 15, 1912, the widely considered "unsinkable" ocean liner Titanic sank after striking an iceberg on its maiden voyage. Unfortunately, the ship did not carry enough lifeboats for everyone onboard, resulting in thousands of deaths. 
+
+The dataset `titanic.csv` contains the survival status and other attributes of 
+a group of individuals on the Titanic.
+
+- `pid`: passenger ID
+- `survived`: survival status  (0 = died, 1 = survived)
+- `pclass`: passenger class (1 = 1st, 2 = 2nd, 3 = 3rd)
+- `sex`: sex (male or female)
+- `age`: age in years
+- `fare`: passenger fare in British pounds
+
+```{r load-data, message = FALSE}
+titanic <- read_csv("data/titanic.csv")
+```
+
+We are interested in investigating if some groups of people were more likely to survive than others in this tragic accident. 
+
+1. Make a new variable `pclass_name` in `titanic` which takes the value "1st" if `pclass` is 1, "2nd" if `pclass` is 2, and "3rd" if `pclass` is 3. 
+
+2. Do the following exploratory data analysis and comment on what you observe.
+
+- Make a scatterplot of survival status vs. age where each point has different shape and color by `pclass_name`. Combine legends for color and shape into one. Use `geom_jitter(height = 0.1)` instead of `geom_point()` not to have points on top of each other. 
+
+- Make a scatterplot of survival status vs. ticket fare where each point is colored by sex. Use `geom_jitter(height = 0.1)` again. Set alpha = 0.7.
+
+- Create a 2x2 contingency table where rows represent survival status, columns represent sex, and each cell contains conditional probability of survival / death given each sex. Print the table as a nice `kable`. Hint: Use `pivot_wider()`. In a `tibble` format, the dimension of the resulting table will be 2x3. 
+
+- Create a 2x3 contingency table where rows represent survival status, columns represent passenger class, and each cell contains conditional probability of survival / death given each class. Print the table as a nice `kable`. Hint: Use `pivot_wider()`. In a `tibble` format, the dimension of the resulting table will be 2x4. 
+
+3. We will predict survival status based on sex, age, and class of passengers. 
+
+- Fit a logistic regression that predicts survival probability from sex, age, and class of passengers. Print the model output `tid`ily.
+
+- Based on the regression output, write out the fitted regression using variable names. Hint: Use indicator variables $I(\cdot)$. 
+
+- Which predictors are significant at $\alpha = 0.05$? 
+
+- Interpret the coefficients in context of data using "odds for survival". 
+
+4. Predict the probability of survival for the following new passengers using the `augment()` function. Hint: Make a new dataset for new passengers. Uncomment the code chunk below and complete it based on the table below to make the new dataset. 
+
+| pclass |   sex   | age |
+|:-------|:--------|:----|
+|   1    |  female |  17 |
+|   2    |  female |  16 |
+|   3    |  female |  18 |
+|   1    |   male  |  9  |
+|   1    |   male  |  23 |
+|   1    |   male  |  52 |
+|   3    |   male  |  18 |
+
+```{r}
+# new_data <- tibble(
+#   age = c(17, 16, 18, 9, 23, 52, 18),
+#   sex = c("female", ...),
+#   # either pclass or pclass_name
+#   )
+```
+
+5. Predict the probability of survival for passengers in the original data using the `augment()` function and create a new column `survived_pred` that takes a value 1 if the predicted probability is larger than some cutoff probability. Try three cutoff probabilities of 0.3, 0.5, and 0.8. Report sensitivity and specificity at each cutoff value. Suppose you were a decision maker during the incident of the Titanic and needed to send lifeboats to rescue the new passengers in Ex 4 (you have information who is where in the ocean). Which cutoff would you prefer in this case and why? Hint: Sensitivity = P(labeled survived | survived), specificity = P(labeled not survived | not survived).
+
+# Submission
+
+- Once you are finished with the lab, you will submit the PDF document produced from your final knit, commit, and push to [Gradescope](https://www.gradescope.com/courses/385955).
+- Associate the "Workflow & formatting" graded section with the first page of your PDF, and mark the page associated with each exercise. If any answer spans multiple pages, then mark all pages.
+- Follow the instructions in previous labs to submit your PDF to Gradescope.
+
+# Grading (50 pts)
+
+<br>
+
+| Component             | Points |
+|:----------------------|:-------|
+| Ex 1                  |   3    |
+| Ex 2                  |   15.5 |
+| Ex 3                  |   15.5 |
+| Ex 4                  |   4    |
+| Ex 5                  |   7.5  |
+| Workflow & formatting |   4.5  |
+
+**Grading notes**:
+
+-   The "Workflow & formatting" grade is to assess the reproducible workflow. This includes updating the name on the assignment to your name, having at least 3 informative commit messages, labeling the code chunks, and having readable code that does not exceed 80 characters (i.e., we can read all your code in the knitted PDF.)

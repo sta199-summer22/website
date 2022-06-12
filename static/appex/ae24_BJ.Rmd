@@ -1,0 +1,189 @@
+---
+title: 'AE 24: Final Project in R Markdown - Report'
+author: "Bora Jin"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+  pdf_document: default
+---
+
+## Getting Started 
+
+- Clone the repository entitled "ae24-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+
+- Open the `.Rmd` file and replace "Your Name" with your name. 
+
+## Introduction
+
+Refer to [STA199: Final Project - Tips](https://sta199-summer22.netlify.app/project/project-tips_bj) for general guidelines for formatting of your report. 
+
+## Text 
+
+In order to make bullet points, skip a line and use a hyphen `-`. 
+
+- *italic*
+- **bold**
+- `function` or `variable`
+- [links](https://rmarkdown.rstudio.com/lesson-8.html)
+  - `tab` once for a sub-list 
+  - **Q - **Knit the document to PDF and see how the link appears. 
+  - If you know your PDF will be printed, add `links-as-notes: TRUE` to YAML to 
+  display URLs as a footnote in the knitted PDF. 
+- Latex equations 
+  - inline: $y = \beta_0 + \beta_1x_1 + \epsilon$ 
+  - chunk: $$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x_1$$
+- The default font size is 10pt. You can increase it to 11pt or 12pt. 
+In order to change the font size to 11pt, add `fontsize: 11pt` to YAML.
+
+## Citation 
+
+Your report will include citations about the data source, previous research, and other sources as needed. At a minimum, you should have a citation for the data source. 
+
+Follow the steps below to easily include citations in your report:
+
+1. Prepare a `.bib` file. All of your bibliography entries will be stored in it. 
+Let's take a look at `references.bib`. 
+
+**Q -** Add a bibliography entry for the book *R markdown: The definitive guide* to `references.bib`. 
+
+- Search the title in Google scholar. 
+- Click "Cite". 
+- Click "BibTeX".
+- Copy all and paste it in `references.bib`. 
+
+2. Include `bibliography: references.bib` in the YAML. 
+
+3. At the end of the report, include `## References`. This will list all of the references at the end of the document under the section "References". 
+
+4. If you want to include an Appendix after References, include the additional code shown at the end of this document. 
+
+Here are examples of different in-text citations: 
+
+- In @gorman2014structural, the authors focus on the analysis of Adelie penguins.
+- Studies have shown whether environmental variability in the form of winter sea ice is associated with differences in male and female pre-breeding foraging niche [@gorman2014structural].
+
+**Q - ** Add a citation for *R markdown: The definitive guide* in the sentence below.
+
+The following code chunk is adapted from ______.
+
+## Options for Code Chunks 
+
+Code chunk options are used to customize how the code and output is displayed in the knitted R Markdown document. There are two ways to set code chunk options: 
+
+- In the header of an individual code chunk 
+- As a global setting to apply to all code chunks
+  
+A few options to change what we show / hide in the knitted document: 
+
+- `message = FALSE` to hide messages.
+- `warning = FALSE` to hide warnings (with caution!) 
+  - While you conduct analyses, you should know what warning messages you receive and decide if it is okay to ignore them. For the final knitting, you may use `warning = FALSE`. 
+- `echo = FALSE` to hide code. 
+  - For the project, you will set the option `echo = FALSE` to hide all code in your final report. 
+- `include = FALSE` to run code but hide code, output, messages, warnings, etc.
+  - Avoid using this option as a global setting.
+- `eval = FALSE` to not run code. 
+  - Useful when your code chunk is incomplete. You should not have any incomplete code chunks in your final report! 
+
+**Q - ** Clean up the mess below. 
+
+```{r setup, include = TRUE}
+knitr::opts_chunk$set(message = TRUE, 
+                      warning = TRUE, 
+                      echo = TRUE,
+                      fig.width = 6, # width of figure
+                      fig.asp = .618, # aspect ratio of figure
+                      out.width = "70%", # width relative to text
+                      fig.align = "center" # figure alignment
+                      )
+```
+
+```{r load-packages}
+library(knitr)
+library(tidyverse)
+theme_set(theme_bw()) # set global theme 
+```
+
+**Q - ** Try `echo = FALSE` and take a look at the updated PDF. 
+
+## Theme for Plotting
+
+For `ggplots`, you can set a global theme (see the code chunk above). Click [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) to explore available themes and choose your favorite. In case your PDF is printed, gray or dark background for plots are not recommended. 
+
+You can also set a color theme of your choosing. You can call any color by any name you would like in `my_palette`. 
+
+**Q - ** Add "dukeblue" in `my_palette`. Hint: Find hex code. 
+
+```{r color-options, include = FALSE}
+my_palette <- list(gray = "#999999", 
+                   yelorange = "#E69F00", 
+                   blue = "#56B4E9", 
+                   green = "#009E73", 
+                   yellow = "#F0E442", 
+                   darkblue = "#0072B2", 
+                   orangered = "#D55E00",
+                   deeppink = "#CC79A7"
+                   )
+```
+
+## Customizing Plots 
+
+```{r basic-plot}
+mpg %>% 
+  ggplot(aes(y = manufacturer, fill = drv)) + 
+  geom_bar()
+```
+
+We can do better than this. 
+
+**Q - ** Incorporate the following recommended changes in the plot. 
+
+- Axes labels begin with a capital letter.
+- The title of the fill legend is "The type of drive train". 
+- The levels of the fill legend are "front-wheel" for "f", 
+"rear-wheel" for "r", and "four-wheel" for "4" in written order.
+- Use fill colors from `my_palette`.
+- Manufacturer names begin with a capital letter. 
+- Shorter bars locate on top. 
+- Add a caption "Counts of the type of drive train by manufacturer".
+
+```{r customize-plot}
+
+```
+
+
+## Customizing Tables
+
+Calculate mean, median, and standard deviation of `cty`. 
+
+```{r summary-stats}
+mpg %>% 
+  summarize(mean_cty = mean(cty), median_cty = median(cty), sd_cty = sd(cty))
+```
+
+We can also do better than this. 
+
+**Q - ** Incorporate the following recommended changes in the table. 
+
+  - Print it as a nice table. 
+  - Results are rounded to 3 decimal places. 
+  - Column names are "mean mpg", "median mpg", "sd of mpg".
+  - Add a caption "Summary statistics of city miles per gallon (mpg) in city". 
+  
+```{r format-table}
+
+```
+
+## Acknowledgements 
+
+These notes were adapted from the following: 
+
+- [Markdown Basics](https://rmarkdown.rstudio.com/lesson-8.html)
+- [Communicating data analysis](https://sta-212-f19.netlify.app/slides/lec-slides/15-communicating-data-analysis.html#1) by Dr. Lucy McGowan
+- [Customizing R Markdown](https://rladiesstl.github.io/intro-meetup4-oct-2021/customize-rmd.html#1) by Dr. Mine Çetinkaya-Rundel
+- [Take a sad plot and make it better](https://alison.netlify.app/rlm-sad-plot-better/#1) by Dr. Alison Hill
+
+<!-- <div id="refs"></div> -->
+
+<!-- ## Appendix -->

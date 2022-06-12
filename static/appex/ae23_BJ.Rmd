@@ -162,11 +162,21 @@ Here, you don't have to manually make `type` as a factor.
 
 **Q - ** Based on the regression result, write out the fitted logistic regression model and reformulate it into the fitted equation for $\hat{p}$ as well. 
 
-**Q - ** Interpret the estimated coefficients in context of data. Hint: Use the term "log odds". 
+**Q - ** Interpret the estimated coefficients in context of the data using the term "log odds". 
 
 - Intercept: 
 - Slope of `you`: 
 - Slope of `capitalTotal`:  
+
+**Q - ** Interpret the estimated coefficients in context of the data using the term "odds". 
+
+- Intercept: 
+- Slope of `you`: 
+- Slope of `capitalTotal`: 
+
+```{r exp-coef}
+
+```
 
 ### Part 4: Predicted probabilities 
 

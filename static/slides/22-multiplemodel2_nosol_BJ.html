@@ -61,14 +61,6 @@ Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variabl
 
 **Q - Same slope and same intercept between `x1` and `y` for different levels of `x2`.** 
 
---
-`$$y = \beta_0 + \beta_1~x_1 + \epsilon$$`
-
---
-
-```r
-lm(y ~ x1, data = mydata)
-```
 
 ---
 
@@ -76,31 +68,11 @@ lm(y ~ x1, data = mydata)
 
 **Q - Same slope and different intercept (parallel lines) for different levels of `x2`.** 
 
---
-
-`$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$`
---
-
-```r
-linear_reg(engine = "lm") %&gt;% 
-  fit(y ~ x1 + x2, data = mydata)
-```
-
 ---
 
 ## Quiz
 
 **Q - Different slope and different intercept (non-parallel lines) for different levels of `x2`.** 
-
---
-
-`$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$`
---
-
-```r
-lm(y ~ x1*x2, data = mydata)
-lm(y ~ x1 + x2 + x1:x2, data = mydata)
-```
 
 ---
 
@@ -110,11 +82,8 @@ lm(y ~ x1 + x2 + x1:x2, data = mydata)
 
 `$$\widehat{log\_price} = 4.91 + 0.00021~surface - 0.126~artistliving$$`
 `$$+ ~ 0.00048 ~surface * artistliving$$`
---
-
-- Non-living artists: `\(\widehat{log\_price} = 4.91 + 0.00021~surface\)`
-- Living artists: `\(\widehat{log\_price} = 4.784 + 0.00069~surface\)`
-- Non-parallel lines due to the interaction effect!
+- Non-living artists: 
+- Living artists: 
 
 ---
 
@@ -155,7 +124,7 @@ class: middle, center
 
 **This is what we look for**
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -164,7 +133,7 @@ class: middle, center
 We **don't want** &lt;br&gt;
 increasing / decreasing variability in residuals as predicted value increases 
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-6-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-3-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -173,7 +142,7 @@ increasing / decreasing variability in residuals as predicted value increases
 We **don't want** &lt;br&gt;
 any groups of residuals 
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-7-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-4-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -182,7 +151,7 @@ any groups of residuals
 We **don't want** &lt;br&gt;
 residuals correlated with predicted values
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-8-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-5-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -191,7 +160,7 @@ residuals correlated with predicted values
 We **don't want** &lt;br&gt;
 any patterns 1
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-9-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-6-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -200,13 +169,13 @@ any patterns 1
 We **don't want** &lt;br&gt;
 any patterns 2
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-10-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-7-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Normality 
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -220,7 +189,7 @@ any patterns 2
 
 ## When Model Conditions Are Violated 
 
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 Linearity and equal variance seem violated. 
 
@@ -229,7 +198,7 @@ Linearity and equal variance seem violated.
 ## When Model Conditions Are Violated 
 
 .pull-left[
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -255,7 +224,7 @@ lm2 &lt;- lm(logy ~ x)
 ]
 
 .pull-right[
-&lt;img src="22-multiplemodel2_BJ_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="22-multiplemodel2_nosol_BJ_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 

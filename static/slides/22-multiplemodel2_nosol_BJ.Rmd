@@ -46,13 +46,6 @@ Suppose a dataset called `mydata` has variables `y`, `x1`, and `x2`. The variabl
 
 **Q - Same slope and same intercept between `x1` and `y` for different levels of `x2`.** 
 
---
-$$y = \beta_0 + \beta_1~x_1 + \epsilon$$
-
---
-```{r, eval = FALSE}
-lm(y ~ x1, data = mydata)
-```
 
 ---
 
@@ -60,29 +53,11 @@ lm(y ~ x1, data = mydata)
 
 **Q - Same slope and different intercept (parallel lines) for different levels of `x2`.** 
 
---
-
-$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \epsilon$$
---
-```{r, eval = FALSE}
-linear_reg(engine = "lm") %>% 
-  fit(y ~ x1 + x2, data = mydata)
-```
-
 ---
 
 ## Quiz
 
 **Q - Different slope and different intercept (non-parallel lines) for different levels of `x2`.** 
-
---
-
-$$y = \beta_0 + \beta_1~x_1 + \beta_2~x_2 + \beta_3~(x_1*x_2)+ \epsilon$$
---
-```{r, eval = FALSE}
-lm(y ~ x1*x2, data = mydata)
-lm(y ~ x1 + x2 + x1:x2, data = mydata)
-```
 
 ---
 
@@ -92,11 +67,8 @@ lm(y ~ x1 + x2 + x1:x2, data = mydata)
 
 $$\widehat{log\_price} = 4.91 + 0.00021~surface - 0.126~artistliving$$
 $$+ ~ 0.00048 ~surface * artistliving$$
---
-
-- Non-living artists: $\widehat{log\_price} = 4.91 + 0.00021~surface$
-- Living artists: $\widehat{log\_price} = 4.784 + 0.00069~surface$
-- Non-parallel lines due to the interaction effect!
+- Non-living artists: 
+- Living artists: 
 
 ---
 

@@ -53,16 +53,16 @@ We call Age*Type an interaction term, which is defined as the product of `age` a
 The effect of the interaction term on a dependent variable is called "interaction effects". 
 
 On the other hand, "main effects" represent the effect of a single independent variable 
-on the dependent variable. Since Model 1 only includes main effects for age and type, it is called a main effects only model.   
+on the dependent variable. Since Model 1 includes main effects only for age and type, it is called a main effects only model.   
 
 **Q - ** How many more terms do you expect to appear in Model 2 compared to Model 1? Hint: there are three car types (`Accord`, `Maxima`, and `Mazda6`) among which one is used as a baseline. 
 
-**Q - ** What do we assume about relationship between car age and selling price by different car types in Model 1 and Model 2? 
+**Q - ** What do we assume about a relationship between car age and selling price by different car types in Model 1 and Model 2? 
 
 - Model 1: 
 - Model 2: 
 
-**Q - ** Use appropriate functions to find the fitted model and display the results in `tidy` format. Hint: `y ~ x1*x2` fits two main effects for `x1` and `x2` and their interaction effect. 
+**Q - ** Use appropriate functions to find the fitted models and display the results in `tidy` format. Hint: `y ~ x1*x2` fits two main effects for `x1` and `x2` and their interaction effect. 
 
 ```{r models}
 # model 1
@@ -159,7 +159,7 @@ What is the $R^2$ associated with the fitted line?
 ```
 
 
-### Part 3: CLT-based CI for parameters in a regression framework
+### Part 3: CI for parameters in a regression framework
 
 Let's revisit one of the models from the latest AE:
 
@@ -176,10 +176,21 @@ $$price = \beta_0 + \beta_1~age + \beta_2~mileage + \epsilon $$
 - $\hat{\beta}_2 = ?$
 
 Beyond these point estimates, we can find some plausible values for $\beta$'s. 
-Using CLT, a $(1-\alpha)*100$% confidence interval for $\beta$ is obtained as 
+
+Let's build a theory-based CI on regression parameters. In order to make theory-based inferences, we need to assume $\epsilon \sim N(0, \sigma^2)$ independently and identically (iid). (So far, we haven't assumed the normality!) 
+
+Independence means knowing the error term for one observation doesn't tell you anything about the error term for another observation. 
+
+Then a $(1-\alpha)*100$% confidence interval for $\beta$ is obtained as 
 
 $$ \hat{\beta} \pm t^*_{n-p} \times \hat{se}$$ 
-where $t^*_{n-p}$ is a $1-\alpha/2$ quantile value of a t-distribution with degrees of freedom $n-p$. The number of observations is $n$, and the number of parameters in the model is $p$. For instance, in the above model, $p=3$. 
+where 
+
+- $\hat{\beta}$ is the `estimate` for $\beta$ in the regression
+- $\hat{se}$ is the estimated `std.error` of $\hat{\beta}$ 
+- $t^*_{n-p}$ is a $1-\alpha/2$ quantile value of a t-distribution with degrees of freedom $n-p$. The number of observations is $n$, and the number of parameters in the model is $p$. For instance, in the above model, $p=3$. 
+
+Notice a similar structure with CIs for population mean using CLT. 
 
 **Q - ** Manually compute a 95% CI for $\beta_2$. 
 
@@ -220,7 +231,7 @@ lm_pam %>%
 # tidy
 ```
  
-### Part 4: CLT-based HT for parameters in a regression framework
+### Part 4: HT for parameters in a regression framework
 
 Based on the point estimate and the confidence interval for $\beta_2$ in Part 3, we may want to determine if $\beta_2$ is significantly different from 0. 
 
@@ -231,8 +242,9 @@ $H_1$: $\beta_2 \neq 0$ There is a relationship between price and mileage.
 
 We reject $H_0$ in favor of $H_1$ if the data provide strong evidence that the true slope $\beta_2$ is different from 0. 
 
-Our test statistic is 
+Again, we assume $\epsilon \stackrel{iid}{\sim} N(0, \sigma^2)$.
 
+Then our test statistic is 
 $$ t = \frac{\hat{\beta}_2 - 0}{\hat{se}}, $$
 and its null distribution is a t-distribution with $n-p$ degrees of freedom. 
 
@@ -251,6 +263,8 @@ lm_pam %>%
 
 **Q - ** Is $\beta_2$ significant at the $\alpha = 0.05$ level? State your conclusion.
 
+**Q - ** What about $\beta_0$ or $\beta_1$? Are they significant at the $\alpha = 0.05$ level?
+
 ### Part 5: Model diagnostics 
 
 After fitting models, we should examine if certain model conditions hold. If they do, our inferences based on the fitted models are reliable. Otherwise, we should consider fitting different models. 
@@ -258,7 +272,7 @@ After fitting models, we should examine if certain model conditions hold. If the
 We will examine residuals vs. predicted values to check the following conditions:
 
 -  Linearity: There is a linear relationship between the response and predictor variables.
--  Constant variance: The variability of the errors is equal for all values of the predictor variable.
+-  Equal variance: The variability of the errors is equal for all values of the predictor variable.
 
 While we can manually compute residuals and predicted values from the regression output, this time we will use `augment()` function in the `tidymodels` package. 
 
@@ -280,7 +294,7 @@ We will focus on two output values from the `augment`ed results:
 **Q - ** Create a scatterplot of residuals vs. predicted values using the augmented results above. To aid the visual assessment, add a horizontal gray dashed line at 0. 
 
 - Does linearity condition hold? 
-- Does constant variance condition hold? 
+- Does equal variance condition hold? 
 
 ```{r model1-diagnostics, eval = FALSE}
 aug_main %>% 
@@ -290,7 +304,19 @@ aug_main %>%
   labs(x = "Predicted price", y = "Residuals")
 ```
 
-**Q - ** Repeat the same exercise for Model 2.  
+If we want theory-based inferences about model parameters, we also need to check normality. 
+
+- **Normality:** The errors follow a normal distribution.
+
+**Q - ** Check if the normality assumption is plausible for Model 1 using the `augment`ed result. 
+
+```{r model1-resid}
+
+```
+
+If the cars in our data are completely randomly selected, then **independence** assumption also holds as the error for one car wouldn't inform us of the error for another car. 
+
+**Q - ** Repeat the same exercises for Model 2.  
 
 ```{r model2-diagnostics}
 
