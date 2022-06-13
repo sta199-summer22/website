@@ -1,6 +1,6 @@
 ---
 title: "AE 23: Logistic Regression"
-subtitle: "due Wednesday, June 15 at 9:29am"
+subtitle: "due Thursday, June 16 at 9:29am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
@@ -74,7 +74,7 @@ Then we might assume the following model:
 $$type = \beta_0 + \beta_1~george + \epsilon$$
 
 **Q - ** Fit the linear regression model above and print the output in a `tidy` way. 
-Visualize the fitted line on a scatterplot using `geom_smooth()`. 
+Visualize the fitted line on a scatterplot between `type` and `george` using `geom_smooth()`. 
 Discuss your visualization with your neighbor. 
 Is this a good model? Why or why not? 
 
@@ -131,7 +131,7 @@ $$\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1x_1 + \cdots + \beta_kx_k$$
 
 Using the inverse logit function, we can find the equation for $p$
 
-$$ p = \frac{1}{1+\exp\{-(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)\}} = \frac{\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}{1+\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}$$ 
+$$ p = \frac{\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}{1+\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)} = \frac{1}{1+\exp\{-(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)\}}$$ 
 
 Suppose we want to relate the probability that an email is spam to the 
 percentage of the word "you" (`you`) and the total number of capital letters 
@@ -156,6 +156,9 @@ Another way of fitting the same glm is the following:
 
 ```{r glm2}
 # option 2
+glm2 <- glm(type ~ you + capitalTotal, data = spam, family = "binomial") 
+glm2 %>% 
+  tidy()
 ```
 
 Here, you don't have to manually make `type` as a factor. 

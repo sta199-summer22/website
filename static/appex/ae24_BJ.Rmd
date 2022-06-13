@@ -8,6 +8,13 @@ output:
   pdf_document: default
 ---
 
+## Bulletin 
+
+Course evaluation is now open! It will be closed on Tuesday, June 21 at 11:59pm. 
+If **more than 80%** of you complete the evaluation, everyone will receive **a bonus point**!  
+
+Check your emails or visit [duke.evaluationkit.com](https://duke.evaluationkit.com/) to complete the evaluation. 
+
 ## Getting Started 
 
 - Clone the repository entitled "ae24-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
@@ -187,3 +194,5 @@ These notes were adapted from the following:
 <!-- <div id="refs"></div> -->
 
 <!-- ## Appendix -->
+
+

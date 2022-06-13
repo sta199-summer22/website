@@ -106,7 +106,7 @@ class: middle, center
 
 ## Let's Practice Together! 
 
-Go to [AE 23: Logistic Regression + Model Diagnostics](https://sta199-summer22.netlify.app/appex/ae23_BJ.html)
+Go to [AE 23: Logistic Regression](https://sta199-summer22.netlify.app/appex/ae23_BJ.html)
 
 ---
 
@@ -114,7 +114,9 @@ Go to [AE 23: Logistic Regression + Model Diagnostics](https://sta199-summer22.n
 
 - Project peer review due Wednesday, June 15 at 11:59pm 
 
-- HW04 due Thursday, June 16 at 11:59pm
+- HW02, HW04 due Thursday, June 16 at 11:59pm
 
-- Submit `ae23` 
+- Submit `ae22` by Wednesday, June 15 at 9:29am
+
+- Submit `ae23` by Thursday, June 16 at 9:29am
 

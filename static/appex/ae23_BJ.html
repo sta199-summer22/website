@@ -245,7 +245,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">AE 23: Logistic Regression</h1>
-<h3 class="subtitle">due Wednesday, June 15 at 9:29am</h3>
+<h3 class="subtitle">due Thursday, June 16 at 9:29am</h3>
 <h4 class="author">Bora Jin</h4>
 
 </div>
@@ -352,7 +352,7 @@ glimpse(spam)</code></pre>
 <p><strong>Q -</strong> Create faceted histogram showing the percentage of the word “george” by being spam or non-spam. Make a table of mean and maximum number of “george” by spam or non-spam. Would you expect emails with or without the word “george” to be spam?</p>
 <p>Then we might assume the following model:</p>
 <p><span class="math display">\[type = \beta_0 + \beta_1~george + \epsilon\]</span></p>
-<p><strong>Q - </strong> Fit the linear regression model above and print the output in a <code>tidy</code> way. Visualize the fitted line on a scatterplot using <code>geom_smooth()</code>. Discuss your visualization with your neighbor. Is this a good model? Why or why not?</p>
+<p><strong>Q - </strong> Fit the linear regression model above and print the output in a <code>tidy</code> way. Visualize the fitted line on a scatterplot between <code>type</code> and <code>george</code> using <code>geom_smooth()</code>. Discuss your visualization with your neighbor. Is this a good model? Why or why not?</p>
 <p><strong>Q - </strong> What are some problems with this approach?</p>
 <p><span class="math display">\[type = \beta_0 + \beta_1~george + \epsilon\]</span> We need a new tool to match ranges of the left hand side (LHS) and the right hand side (RHS) of the model equation.</p>
 </div>
@@ -385,7 +385,7 @@ glimpse(spam)</code></pre>
 <p>Logistic regression is a generalized linear model that explains a <strong>binary response</strong> variable using <strong>a linear regression</strong> with a <strong>logit link</strong>:</p>
 <p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1x_1 + \cdots + \beta_kx_k\]</span></p>
 <p>Using the inverse logit function, we can find the equation for <span class="math inline">\(p\)</span></p>
-<p><span class="math display">\[ p = \frac{1}{1+\exp\{-(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)\}} = \frac{\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}{1+\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}\]</span></p>
+<p><span class="math display">\[ p = \frac{\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)}{1+\exp(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)} = \frac{1}{1+\exp\{-(\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k)\}}\]</span></p>
 <p>Suppose we want to relate the probability that an email is spam to the percentage of the word “you” (<code>you</code>) and the total number of capital letters (<code>capitalTotal</code>) in the email.</p>
 <p><strong>Q - </strong> Write out a logistic regression model in context of our data using parameters and variable names. Write out a probability equation as well using the inverse logit function.</p>
 <p><strong>Q - </strong> Using functions in <code>R</code>, fit the logistic regression model in the previous question and print its output in a <code>tidy</code> way.</p>
@@ -396,7 +396,16 @@ glm1 %&gt;%
   tidy()</code></pre>
 <p><strong>Q - </strong> What is different in the code above from previous linear models we fit?</p>
 <p>Another way of fitting the same glm is the following:</p>
-<pre class="r"><code># option 2</code></pre>
+<pre class="r"><code># option 2
+glm2 &lt;- glm(type ~ you + capitalTotal, data = spam, family = &quot;binomial&quot;) 
+glm2 %&gt;% 
+  tidy()</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   term         estimate std.error statistic   p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)  -1.50     0.0554       -27.1 2.97e-162
+## 2 you           0.361    0.0198        18.3 1.84e- 74
+## 3 capitalTotal  0.00173  0.000104      16.6 5.66e- 62</code></pre>
 <p>Here, you don’t have to manually make <code>type</code> as a factor.</p>
 <p><strong>Q - </strong> Based on the regression result, write out the fitted logistic regression model and reformulate it into the fitted equation for <span class="math inline">\(\hat{p}\)</span> as well.</p>
 <p><strong>Q - </strong> Interpret the estimated coefficients in context of the data using the term “log odds”.</p>

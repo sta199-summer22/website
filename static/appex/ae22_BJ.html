@@ -409,8 +409,8 @@ library(tidymodels)</code></pre>
 <p>After fitting models, we should examine if certain model conditions hold. If they do, our inferences based on the fitted models are reliable. Otherwise, we should consider fitting different models.</p>
 <p>We will examine residuals vs. predicted values to check the following conditions:</p>
 <ul>
-<li>Linearity: There is a linear relationship between the response and predictor variables.</li>
-<li>Equal variance: The variability of the errors is equal for all values of the predictor variable.</li>
+<li><strong>Linearity</strong>: There is a linear relationship between the response and predictor variables.</li>
+<li><strong>Equal variance</strong>: The variability of the errors is equal for all values of the predictor variable.</li>
 </ul>
 <p>While we can manually compute residuals and predicted values from the regression output, this time we will use <code>augment()</code> function in the <code>tidymodels</code> package.</p>
 <p>We first fit a model and pipe it into the <code>augment()</code> function. For instance, for Model 1,</p>

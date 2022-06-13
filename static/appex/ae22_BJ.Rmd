@@ -271,8 +271,8 @@ After fitting models, we should examine if certain model conditions hold. If the
 
 We will examine residuals vs. predicted values to check the following conditions:
 
--  Linearity: There is a linear relationship between the response and predictor variables.
--  Equal variance: The variability of the errors is equal for all values of the predictor variable.
+-  **Linearity**: There is a linear relationship between the response and predictor variables.
+-  **Equal variance**: The variability of the errors is equal for all values of the predictor variable.
 
 While we can manually compute residuals and predicted values from the regression output, this time we will use `augment()` function in the `tidymodels` package. 
 

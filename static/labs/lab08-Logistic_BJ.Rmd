@@ -110,7 +110,7 @@ We are interested in investigating if some groups of people were more likely to 
 #   )
 ```
 
-5. Predict the probability of survival for passengers in the original data using the `augment()` function and create a new column `survived_pred` that takes a value 1 if the predicted probability is larger than some cutoff probability. Try three cutoff probabilities of 0.3, 0.5, and 0.8. Report sensitivity and specificity at each cutoff value. Suppose you were a decision maker during the incident of the Titanic and needed to send lifeboats to rescue the new passengers in Ex 4 (you have information who is where in the ocean). Which cutoff would you prefer in this case and why? Hint: Sensitivity = P(labeled survived | survived), specificity = P(labeled not survived | not survived).
+5. Predict the probability of survival for passengers in the original data using the `augment()` function and create a new column `survived_pred` that takes a value 1 if the predicted probability is larger than some cutoff probability. Try three cutoff probabilities of 0.3, 0.5, and 0.8. Report sensitivity and specificity at each cutoff value. Suppose you were a decision maker during the incident of the Titanic and needed to send a limited number of lifeboats to rescue the new passengers in Ex 4 (you have information who is where in the ocean). Which cutoff would you prefer in this case and why? Hint: Sensitivity = P(labeled survived | survived), specificity = P(labeled not survived | not survived).
 
 # Submission
 
