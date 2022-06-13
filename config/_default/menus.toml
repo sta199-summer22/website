@@ -13,48 +13,48 @@
     url = "/schedule/"
     weight = 20
 
-#[[main]]
+[[main]]
    # pre = "<i class=\"fa fa-info-circle\"></i>"
-#    name = "Project"
-#    url = "/project/project.html"
-#    weight = 30
+    name = "Project"
+    url = "/project/project_BJ.html"
+    weight = 30
 
 
 [[main]]
     pre = "<i class=\"fa fa-graduation-cap\" aria-hidden=\"true\"></i>"
     url = "https://sakai.duke.edu/portal/site/075d15cd-07a5-4c1d-91bb-8aa4a955b02d"
     name = "Sakai"
-    weight = 30
+    weight = 40
 
 [[main]]
     pre = "<i class=\"fa fa-check-square\" aria-hidden=\"true\"></i>"
     url = "https://www.gradescope.com/courses/385955"
     name = "Gradescope"
-    weight = 40
+    weight = 50
 
 
 [[main]]
-    url = "https://vm-manage.oit.duke.edu/containers"
+    url = "https://cmgr.oit.duke.edu/containers"
    # pre = "<i class=\"fa fa-code\" aria-hidden\"true\"></i>"
     name = "<i class=\"fab fa-r-project\"></i>"
     #name = "R Studio"
-    weight = 50
+    weight = 60
 
 [[main]]
     url = "https://github.com/sta199-summer22"
     # pre = "<i class='fab fa-github fa-lg'></i>"
     name  = "<i class='fab fa-github fa-lg'></i>"
     #name = "GitHub"
-    weight = 60
+    weight = 70
 
 [[main]]
     url = "https://sta199-summer22.slack.com"
     name = "<i class='fab fa-slack fa-lg'></i>"
     #name  = "Slack"
-    weight = 70
+    weight = 80
 
 [[main]]
     # pre = "<i class=\"fa fa-info-circle\"></i>"
     name = "FAQ"
     url = "/faq/faq.html"
-    weight = 80
+    weight = 90
