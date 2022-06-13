@@ -1,6 +1,6 @@
 ---
 title: "AE 22: Models with Multiple Predictors 2 + Model Diagnostics"
-subtitle: "due Tuesdays, June 14 at 9:29am"
+subtitle: "due Tuesday, June 14 at 9:29am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
