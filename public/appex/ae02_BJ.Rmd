@@ -11,7 +11,7 @@ output:
 
 # Tour of R and RStudio 
 
-- Open RStudio: [https://vm-manage.oit.duke.edu/containers](https://vm-manage.oit.duke.edu/containers)
+- Open RStudio: [cmgr.oit.duke.edu/containers](https://cmgr.oit.duke.edu/containers)
 - Tour of RStudio interface 
   - Console
   - Environment 

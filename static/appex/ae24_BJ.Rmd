@@ -17,7 +17,7 @@ Check your emails or visit [duke.evaluationkit.com](https://duke.evaluationkit.c
 
 ## Getting Started 
 
-- Clone the repository entitled "ae24-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+- Clone the repository entitled "ae24-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://cmgr.oit.duke.edu/containers).
 
 - Open the `.Rmd` file. 
 

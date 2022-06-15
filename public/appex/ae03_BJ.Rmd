@@ -14,7 +14,7 @@ output:
 
 - Go to the [course GitHub organization page](https://github.com/sta199-summer22) and find the repository entitled "ae03-GitHubUsername".
 - Click the green "code" button and copy the `SSH` URL.
-- Go to [RStudio](https://vm-manage.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
+- Go to [RStudio](https://cmgr.oit.duke.edu/containers), select `File` $\rightarrow$ `New Project` $\rightarrow$ `Version Control` $\rightarrow$ `Git` and paste the URL.
 - Open the `.Rmd` file
 
 ## Minneapolis Housing Data

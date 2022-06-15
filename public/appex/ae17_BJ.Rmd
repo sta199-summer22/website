@@ -12,7 +12,7 @@ output:
 
 ## Getting Started 
 
-- Clone the repository entitled "ae17-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://vm-manage.oit.duke.edu/containers).
+- Clone the repository entitled "ae17-GitHubUsername" at [course GitHub organization page](https://github.com/sta199-summer22) on your [RStudio](https://cmgr.oit.duke.edu/containers).
 
 - Open the `.Rmd` file and replace "Your Name" with your name. 
 
