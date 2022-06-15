@@ -166,7 +166,7 @@ lessons:
     title: "Class Office Hours"
   - date: "Fri, Jun 17"
     title: "Exam 02 released at 9am"
-#   exam: "exam02_instructions_BJ.html"
+    exam: "exam02_instructions_BJ.html"
 
   - week: "Week 7"
     date: "Thu, Jun 23"
