@@ -1,6 +1,6 @@
 ---
 title: "AE 23: Logistic Regression"
-subtitle: "due Thursday, June 16 at 9:29am"
+subtitle: "due Friday, June 17 at 8:59am"
 author: "Bora Jin"
 editor_options:
   chunk_output_type: console
